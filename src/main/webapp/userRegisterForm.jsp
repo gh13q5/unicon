@@ -20,14 +20,20 @@
 </head>
 <body>
 	<div id="header" align="center">
+		<div id="header" align="center">
+			<h1>
+				<br>찜꽁
+			</h1>
+			<hr>
+		</div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col" align="center" style="padding: 50px;">
-					<div id="upload-title">게임 등록</div>
-					<!-- 게임 등록 form -->
-					<form id="upload-form">
+					<div id="registerForm-title">회원가입</div>
+					<!-- 회원가입 form -->
+					<form id="registerForm-form">
 						<div id="form-container" class="container">
-							<!-- 게임 이름 입력 -->
+							<!-- 회원 정보 입력 -->
 							<div class="row">
 								<div id="id-label" class="col-5">아이디</div>
 								<div id="id-input" class="col-6">
@@ -64,7 +70,8 @@
 								<div id="email-label" class="col-5">이메일</div>
 								<div id="email-input" class="col-6">
 									<input type="email" class="form-control" id="email"
-										data-rule-required="true" placeholder="이메일을 입력하세요." maxlength="40">
+										data-rule-required="true" placeholder="이메일을 입력하세요."
+										maxlength="40">
 								</div>
 							</div>
 							<div class="row">
@@ -86,7 +93,7 @@
 							<div class="row">
 								<div id="gender-label" class="col-5">성별</div>
 								<div id="gender-input" class="col-6">
-									<select class="form-control" id="gender" >
+									<select class="form-control" id="gender">
 										<option value="M">남</option>
 										<option value="F">여</option>
 										<option value="B">그 외</option>
@@ -125,9 +132,9 @@
 							</div>
 							<hr id="terms-divide">
 							<button id="terms-btn" type="button" class="btn btn-warning">약관
-								전문 보기</button> 약관을 읽고 내용에 동의하였습니다.
-							<input type="radio" id="inputTermsYes" name="inputTermsYes"
-								value="Y" checked> 동의합니다.
+								전문 보기</button>
+							약관을 읽고 내용에 동의하였습니다. <input type="radio" id="inputTermsYes"
+								name="inputTermsYes" value="Y" checked> 동의합니다.
 							<button id="submit-btn" type="button" class="btn btn-warning">가입하기</button>
 						</div>
 					</form>
@@ -138,8 +145,9 @@
 	<div id="footer">
 		<hr class="haveMargin">
 		<p class="text-center" align="center">
-			<small><strong>업체명 : UNI-CON</strong></small><br> <small>대표 : 심해림  박주희 최가희 조수 ㆍ 주소 : 동덕여자 대학교 ㆍ 사업자등록번호:123-12-12345 ㆍ 전화 : 02-123-1234</small><br> <small>Copyrightⓒ
-				찜꽁 - 찜하고 꽁짜 보상 받자! .</small>
+			<small><strong>업체명 : UNI-CON</strong></small><br> <small>대표
+				: 심해림 박주희 최가희 조수 ㆍ 주소 : 동덕여자 대학교 ㆍ 사업자등록번호:123-12-12345 ㆍ 전화 :
+				02-123-1234</small><br> <small>Copyrightⓒ 찜꽁 - 찜하고 꽁짜 보상 받자! .</small>
 		</p>
 	</div>
 	<script
