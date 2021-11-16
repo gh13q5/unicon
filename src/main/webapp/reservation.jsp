@@ -20,9 +20,77 @@
 </head>
 <body>
 	<div id="header" align="center">
+		<h1>
+			<br>찜꽁
+		</h1>
+		<hr>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col" align="left" style="padding: 50px;">
+				<div class="col-2">
+					<div class="accordion" id="accordionExample">
+						<div class="accordion-item">
+							<h2 class="accordion-header" id="headingOne">
+								<button class="accordion-button" type="button"
+									data-bs-toggle="collapse" data-bs-target="#collapseOne"
+									aria-expanded="true" aria-controls="collapseOne">메뉴1</button>
+							</h2>
+							<div id="collapseOne" class="accordion-collapse collapse show"
+								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+
+								<div class="list-group">
+									<a href="#"
+										class="list-group-item list-group-item-action active"
+										aria-current="true"> 서브메뉴1 </a> <a href="#"
+										class="list-group-item list-group-item-action">서브메뉴2</a> <a
+										href="#" class="list-group-item list-group-item-action">서브메뉴3</a>
+									<a href="#" class="list-group-item list-group-item-action">서브메뉴4</a>
+								</div>
+
+							</div>
+						</div>
+						<div class="accordion-item">
+							<h2 class="accordion-header" id="headingTwo">
+								<button class="accordion-button collapsed" type="button"
+									data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+									aria-expanded="false" aria-controls="collapseTwo">메뉴2</button>
+							</h2>
+							<div id="collapseTwo" class="accordion-collapse collapse"
+								aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+
+								<div class="list-group">
+									<a href="#"
+										class="list-group-item list-group-item-action active"
+										aria-current="true"> 서브메뉴1 </a> <a href="#"
+										class="list-group-item list-group-item-action">서브메뉴2</a> <a
+										href="#" class="list-group-item list-group-item-action">서브메뉴3</a>
+									<a href="#" class="list-group-item list-group-item-action">서브메뉴4</a>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<h2 class="accordion-header" id="headingThree">
+								<button class="accordion-button collapsed" type="button"
+									data-bs-toggle="collapse" data-bs-target="#collapseThree"
+									aria-expanded="false" aria-controls="collapseThree">
+									메뉴3</button>
+							</h2>
+							<div id="collapseThree" class="accordion-collapse collapse"
+								aria-labelledby="headingThree"
+								data-bs-parent="#accordionExample">
+
+								<div class="list-group">
+									<a href="#"
+										class="list-group-item list-group-item-action active"
+										aria-current="true"> 서브메뉴1 </a> <a href="#"
+										class="list-group-item list-group-item-action">서브메뉴2</a> <a
+										href="#" class="list-group-item list-group-item-action">서브메뉴3</a>
+									<a href="#" class="list-group-item list-group-item-action">서브메뉴4</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-8" align="left" style="padding: 50px;">
 					<!-- 작성 다 하면 메뉴랑 아이디창은 없애두기 -->
 					<h1 id="title">게임 이름</h1>
 					<h5 id="company-title">개발사 이름</h5>
@@ -118,7 +186,31 @@
 						</div>
 					</div>
 				</div>
-				
+				<div class="col-2">
+					<div class="card border-warning mb-3" style="max-width: 18rem;">
+						<div class="card-body">
+							<form>
+								<div class="row mb-3">
+
+									<input type="email" class="form-control" id="inputEmail3"
+										placeholder="ID">
+								</div>
+								<div class="row mb-3">
+									<input type="password" class="form-control" id="inputPassword3"
+										placeholder="PW">
+								</div>
+								<div class="row mb-3">
+									<div class="col-sm-6" align="left">
+										<a href="#">regist in</a>
+									</div>
+									<div class="col-sm-6">
+										<button type="submit" class="btn btn-primary">Sign in</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

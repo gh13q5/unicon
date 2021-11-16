@@ -1,4 +1,4 @@
-package controller.user;
+package controller.info;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import model.User;
 import model.service.ExistingUserException;
 import model.service.UserManager;
 
-public class RegisterUserController implements Controller {
-    private static final Logger log = LoggerFactory.getLogger(RegisterUserController.class);
+public class RegisterController implements Controller {
+    private static final Logger log = LoggerFactory.getLogger(RegisterController.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
