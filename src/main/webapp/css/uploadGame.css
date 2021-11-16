@@ -1,0 +1,131 @@
+@charset "EUC-KR";
+
+div#upload-title {
+	width: 40%;
+	height: 80px;
+	margin: auto;
+	padding-top: 1.5%;
+	border: 3px solid #5fc8d7;
+	border-radius: 10px; text-align : center;
+	color: #5fc8d7;
+	font-weight: bolder;
+	text-align: center; color : #5fc8d7; font-weight : bolder;
+	font-size: 200%;
+}
+/* 게임 업로드 form */
+form#upload-form {
+	width: 100%;
+	margin-top: 50px;
+	padding: 0px;
+	display: inline;
+	text-align: center;
+	float: left;
+}
+
+div.row {
+	margin-bottom: 30px;
+}
+
+div.col-4 {
+	padding-left: 18%;
+	padding-bottom: 5px;
+	text-align: left;
+	color: #5fb3c7;
+	font-weight: bolder;
+	font-size: 150%;
+}
+
+div.col-6 input {
+	width: 100%;
+	border: 2px solid #AAAAAA;
+}
+/* 업로드 기간 설정 */
+div#period-input {
+	text-align: left;
+}
+
+input#start-period, input#end-period {
+	display: inline;
+	width: 47%;
+}
+/* 홍보 이미지 업로드 + 보상 이미지 업로드 */
+div#image-label, div#description-label, div#genre-label, div#reward-description-label
+	{
+	padding-left: 18%;
+	padding-right: 20%;
+	padding-bottom: 5px;
+	text-align: left;
+	color: #5fb3c7;
+	font-weight: bolder;
+	font-size: 150%;
+	padding-bottom: 5px;
+}
+
+img.image-upload-icon {
+	width: 120px;
+	border: 2px solid #AAAAAA;
+	border-radius: 10px;
+	padding: 0px;
+	margin-left: 1%;
+	margin-top: 10px;
+}
+
+div#image-input input, div#reward-image-input input {
+	display: none !important;
+}
+
+/* 게임 소개글 + 보상 목록 */
+div#description-row, div#genre-row, div#reward-description-row {
+	justify-content: center;
+}
+
+div#description-input, div#reward-description-input {
+	width: 68%;
+	margin-top: 10px;
+}
+
+textarea#description, textarea#reward-description {
+	width: 100%;
+	border: 2px solid #AAAAAA;
+}
+
+/* 게임 장르(태그) 선택 */
+div#genre-input {
+	width: 68%;
+	margin-top: 10px;
+	padding: 2%; border : 3px solid #5fc8d7;
+	border-radius: 10px;
+	border: 3px solid #5fc8d7;
+}
+
+div.checkbox-group {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+input.form-check-input {
+	border: 2px solid #ffab40 !important;
+}
+
+input.form-check-input:checked {
+	background-color: #ffab40 !important;
+}
+
+label.form-check-label {
+	margin-right: 3%;
+}
+
+hr#reward-divide {
+	margin: 80px;
+	border-top: 3px solid #222222;
+}
+
+/* 게임 업로드 */
+button#upload-btn {
+	margin: 50px;
+	width: 550px;
+	height: 80px;
+	color: white;
+	font-weight: bolder;
+	font-size: 170%;
+}

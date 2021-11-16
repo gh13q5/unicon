@@ -1,0 +1,91 @@
+@charset "EUC-KR";
+
+h1#title{
+	color:#5fc8d7;
+}
+h5#company-title{
+	margin-top:20px;
+	color:#5fb3c7;
+}
+/* 게임 이미지 슬라이드 */
+div#game-image-carousel{
+	margin-top:30px;
+}
+/* 게임 태그 버튼 */
+div#game-tag{
+	margin-top:30px;
+}
+button.btn.btn-warning{
+	font-weight:bold;
+	margin-right:10px;
+	color:white;
+}
+/* 예약 현황 */
+div#reservation-status{
+	margin-top:30px;
+	width:100%;
+	height:150px;
+	overflow: hidden;
+}
+div#total-reservate{
+	width:70%;
+	height:150px;
+	margin-left:1.5%;
+	padding: 0px;
+	display:inline;
+	text-align:center;
+	float: left;
+}
+div#total-reservate-text{
+	height:150px;
+	padding-top:45px;
+	font-size:200%;
+	font-weight:bolder;
+	border:3px solid #5fc8d7;
+}
+div#total-reservate-num{
+	height:150px;
+	padding-top:45px;
+	background-color:#5fc8d7;
+	font-size:200%;
+	font-weight:bolder;
+	color:white;
+	border:3px solid #5fc8d7;
+}
+button#reservate{
+	width:25%;
+	height:100%;
+	margin-left:3%;
+	margin-right:0px;
+	color:white;
+	font-size:200%;
+	font-weight:bolder;
+	float: left;
+}
+/* 게임 소개 및 예약 보상, 통계 */
+div#game-more-inform{
+	margin-top:30px;
+	padding:0px;
+}
+div.card.text-center{
+	border:3px solid #5fc8d7 !important;
+}
+div.card-header{
+	background-color:#5fc8d7 !important;
+	border-bottom:0px;
+}
+li.nav-item{
+	width:33.3%;
+}
+button.nav-link{
+   	width:100%;
+   	color: white;
+   	font-weight:bolder;
+   	border:none !important;
+}
+button.nav-link.active{
+   	color:black !important;
+}
+div.tab-content{
+	padding:30px;
+}
