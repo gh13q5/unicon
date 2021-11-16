@@ -1,4 +1,4 @@
-package controller.user;
+package controller.info;
 
 import javax.servlet.http.HttpSession;
 
