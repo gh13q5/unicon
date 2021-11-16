@@ -48,7 +48,7 @@
 								<div id="passwardCheck-label" class="col-5">비밀번호 확인</div>
 								<div id="passwardCheck-input" class="col-6">
 									<input type="password" class="form-control" id="passwordCheck"
-										data-rule-required="true" placeholder="비밀번호 재입력"
+										data-rule-required="true" placeholder="비밀번호를 다시 입력해주세요."
 										maxlength="10">
 								</div>
 							</div>
@@ -64,7 +64,7 @@
 								<div id="email-label" class="col-5">이메일</div>
 								<div id="email-input" class="col-6">
 									<input type="email" class="form-control" id="email"
-										data-rule-required="true" placeholder="이메일" maxlength="40">
+										data-rule-required="true" placeholder="이메일을 입력하세요." maxlength="40">
 								</div>
 							</div>
 							<div class="row">
@@ -128,8 +128,7 @@
 								전문 보기</button> 약관을 읽고 내용에 동의하였습니다.
 							<input type="radio" id="inputTermsYes" name="inputTermsYes"
 								value="Y" checked> 동의합니다.
-							<button id="upload-btn" type="button" class="btn btn-warning">게임
-								등록</button>
+							<button id="submit-btn" type="button" class="btn btn-warning">가입하기</button>
 						</div>
 					</form>
 				</div>

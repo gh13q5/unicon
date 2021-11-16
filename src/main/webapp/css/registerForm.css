@@ -1,6 +1,6 @@
 @charset "EUC-KR";
 
-div#upload-title {
+div#registerForm-title {
 	width: 40%;
 	height: 80px;
 	margin: auto;
@@ -12,8 +12,8 @@ div#upload-title {
 	text-align: center; color : #5fc8d7; font-weight : bolder;
 	font-size: 200%;
 }
-/* 게임 업로드 form */
-form#upload-form {
+/* 회원가입 form */
+form#registerForm-form {
 	width: 100%;
 	margin-top: 50px;
 	padding: 0px;
@@ -67,8 +67,8 @@ label.form-check-label {
 	margin-right: 3%;
 }
 
-hr#reward-divide {
-	margin: 80px;
+hr#terms-divide {
+	margin-top: 80px;
 	border-top: 3px solid #222222;
 }
 
@@ -82,11 +82,11 @@ button#terms-btn {
 	font-size: 110%;
 }
 input#inputTermsYes {
-	margin-left: 50px;
+	margin-left: 30px;
 }
 
-/* 게임 업로드 */
-button#upload-btn {
+/* 회원가입 버튼 */
+button#submit-btn {
 	margin: 50px;
 	width: 550px;
 	height: 80px;
