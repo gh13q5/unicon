@@ -5,8 +5,11 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import controller.user.*;
-import controller.comm.*;
+import controller.game.*;
+import controller.info.*;
+import controller.main.*;
+import controller.point.*;
+import controller.reservation.*;
 
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
@@ -16,31 +19,42 @@ public class RequestMapping {
 
     public void initMapping() {
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장
+    	
+    	// main
         mappings.put("/", new ForwardController("index.jsp"));
-        mappings.put("/user/login/form", new ForwardController("/user/loginForm.jsp"));
-        mappings.put("/user/login", new LoginController());
-        mappings.put("/user/logout", new LogoutController());
-        mappings.put("/user/list", new ListUserController());
-        mappings.put("/user/view", new ViewUserController());
+        mappings.put("/main", new ForwardController("main.jsp"));
+        mappings.put("/main/search", new SearchController());
+        mappings.put("/main/gameRanking", new ForwardController("main.jsp"));
+        mappings.put("/main/category", new ViewCategoryController());
+        mappings.put("/main/recommendation", new ViewRecommendationController());
         
-        // 회원 가입 폼 요청과 가입 요청 처리 병합 (폼에 커뮤니티 선택 메뉴 추가를 위함)
-//      mappings.put("/user/register/form", new ForwardController("/user/registerForm.jsp"));
-//      mappings.put("/user/register", new RegisterUserController());
-        mappings.put("/user/register", new RegisterUserController());
-
-        // 사용자 정보 수정 폼 요청과 수정 요청 처리 병합
-//      mappings.put("/user/update/form", new UpdateUserFormController());
-//      mappings.put("/user/update", new UpdateUserController());        
-        mappings.put("/user/update", new UpdateUserController());
+        // info
+        mappings.put("/info/register", new ForwardController("chooseUserType.jsp"));
+        mappings.put("/info/register/user", new RegisterController());
+        mappings.put("/info/register/company", new RegisterController());
+        mappings.put("/info/login", new LoginController());
+        mappings.put("/info/logout", new LogoutController());
+        mappings.put("/info/userGameList", new ForwardController("mypage.jsp"));
+        mappings.put("/info/updateRegister/user", new UpdateInfoController());
+        mappings.put("/info/updateRegister/company", new UpdateInfoController());
         
-        mappings.put("/user/delete", new DeleteUserController());
+        // point
+        mappings.put("/point/pointShop", new ViewPointshopController());
+        mappings.put("/point/pointShop", new BuyItemController());
+        mappings.put("/point/addPoint", new AddPointController());
         
-        // 커뮤니티 관련 request URI 추가
-        mappings.put("/community/list", new ListCommunityController());
-        mappings.put("/community/view", new ViewCommunityController());
-        mappings.put("/community/create/form", new ForwardController("/community/creationForm.jsp"));
-        mappings.put("/community/create", new CreateCommunityController());
-        mappings.put("/community/update", new UpdateCommunityController());
+        // game
+        mappings.put("/game/upload", new UploadGameController());
+        mappings.put("/game/edit", new UpdateGameController());
+        mappings.put("/game/remove", new DeleteGameController());
+        
+        // reservation
+        mappings.put("/reservation/game", new ForwardController("reservation.jsp"));
+        mappings.put("/reservation/reservate", new ReservateController());
+        mappings.put("/reservation/cancle", new CancleReservationController());
+        mappings.put("/reservation/reward", new SendRewardController());
+        mappings.put("/reservation/statistics", new StatisticUserController());
+        
         
         logger.info("Initialized Request Mapping!");
     }
