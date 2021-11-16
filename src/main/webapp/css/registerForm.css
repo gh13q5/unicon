@@ -1,0 +1,96 @@
+@charset "EUC-KR";
+
+div#upload-title {
+	width: 40%;
+	height: 80px;
+	margin: auto;
+	padding-top: 1.5%;
+	border: 3px solid #5fc8d7;
+	border-radius: 10px; text-align : center;
+	color: #5fc8d7;
+	font-weight: bolder;
+	text-align: center; color : #5fc8d7; font-weight : bolder;
+	font-size: 200%;
+}
+/* 게임 업로드 form */
+form#upload-form {
+	width: 100%;
+	margin-top: 50px;
+	padding: 0px;
+	display: inline;
+	text-align: center;
+	float: left;
+}
+
+div.row {
+	margin-bottom: 30px;
+}
+
+div.col-5, div.col-7 {
+	padding-left: 18%;
+	padding-bottom: 5px;
+	text-align: left;
+	color: #5fb3c7;
+	font-weight: bolder;
+	font-size: 150%;
+}
+
+div.col-6 input {
+	width: 100%;
+	border: 2px solid #AAAAAA;
+}
+
+
+/* 게임 장르(태그) 선택 */
+div#genre-input {
+	width: 68%;
+	margin: 10px 100px auto auto;
+	padding: 2%; border : 3px solid #5fc8d7;
+	border-radius: 10px;
+	border: 3px solid #5fc8d7;
+}
+
+div.checkbox-group {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+input.form-check-input {
+	border: 2px solid #ffab40 !important;
+}
+
+input.form-check-input:checked {
+	background-color: #ffab40 !important;
+}
+
+label.form-check-label {
+	margin-right: 3%;
+}
+
+hr#reward-divide {
+	margin: 80px;
+	border-top: 3px solid #222222;
+}
+
+/* 약관동의 */
+button#terms-btn {
+	margin: 50px 30px 50px auto;
+	width: 200px;
+	height: 50px;
+	color: white;
+	font-weight: bolder;
+	font-size: 110%;
+}
+input#inputTermsYes {
+	margin-left: 50px;
+}
+
+/* 게임 업로드 */
+button#upload-btn {
+	margin: 50px;
+	width: 550px;
+	height: 80px;
+	color: white;
+	font-weight: bolder;
+	font-size: 170%;
+}
