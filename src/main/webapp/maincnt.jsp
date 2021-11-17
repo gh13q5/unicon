@@ -17,7 +17,7 @@
 <title>Hello, world!</title>
 </head>
 <body>
-<!-- search -->
+	<!-- search -->
 	<div class="input-group mb-3">
 		<div class="col-5">
 			<input type="text" class="form-control" placeholder="search"
@@ -29,7 +29,8 @@
 		</div>
 	</div>
 
-<!-- recommend -->
+	<!-- recommend -->
+	<p class="h2">Recommend Games</p>
 	<div id="carouselExampleDark" class="carousel carousel-dark slide"
 		data-bs-ride="carousel">
 
@@ -186,64 +187,65 @@
 	</div>
 
 	<!-- 일반 게임 -->
+	<p class="h2" align = "left">Entire Games</p>
 	<div class="row" align="center">
-					<div class="col">
-						<div class="card" style="width: 15rem;">
-							<img src="images/wallR.jpg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">game title</h5>
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-								<p class="card-text">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card" style="width: 15rem;">
-							<img src="images/wallR.jpg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">game title</h5>
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-								<p class="card-text">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card" style="width: 15rem;">
-							<img src="images/wallR.jpg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">game title</h5>
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-								<p class="card-text">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card" style="width: 15rem;">
-							<img src="images/wallR.jpg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">game title</h5>
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-								<p class="card-text">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</p>
-							</div>
-						</div>
-					</div>
+		<div class="col">
+			<div class="card" style="width: 15rem;">
+				<img src="images/wallR.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">game title</h5>
+					<p class="card-text">This is a wider card with supporting text
+						below as a natural lead-in to additional content. This content is
+						a little bit longer.</p>
+					<p class="card-text">
+						<small class="text-muted">Last updated 3 mins ago</small>
+					</p>
 				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card" style="width: 15rem;">
+				<img src="images/wallR.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">game title</h5>
+					<p class="card-text">This is a wider card with supporting text
+						below as a natural lead-in to additional content. This content is
+						a little bit longer.</p>
+					<p class="card-text">
+						<small class="text-muted">Last updated 3 mins ago</small>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card" style="width: 15rem;">
+				<img src="images/wallR.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">game title</h5>
+					<p class="card-text">This is a wider card with supporting text
+						below as a natural lead-in to additional content. This content is
+						a little bit longer.</p>
+					<p class="card-text">
+						<small class="text-muted">Last updated 3 mins ago</small>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card" style="width: 15rem;">
+				<img src="images/wallR.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">game title</h5>
+					<p class="card-text">This is a wider card with supporting text
+						below as a natural lead-in to additional content. This content is
+						a little bit longer.</p>
+					<p class="card-text">
+						<small class="text-muted">Last updated 3 mins ago</small>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
