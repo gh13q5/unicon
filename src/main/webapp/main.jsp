@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,9 +37,9 @@
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 
 								<div class="list-group">
-									<a href="<c:url value='/main/category'></c:url>"
+									<a href="<c:url value='/category'></c:url>"
 										class="list-group-item list-group-item-action active"
-										aria-current="true" > 서브메뉴1 </a> <a href="#"
+										aria-current="true"> 서브메뉴1 </a> <a href="#"
 										class="list-group-item list-group-item-action">서브메뉴2</a> <a
 										href="#" class="list-group-item list-group-item-action">서브메뉴3</a>
 									<a href="#" class="list-group-item list-group-item-action">서브메뉴4</a>
@@ -100,6 +100,9 @@
 							<button class="btn btn-outline-secondary" type="button"
 								id="button-addon2">search</button>
 						</div>
+						<div class="col" align="right" style="margin-right: 20px;">
+							<button type="button" class="btn btn-warning" onclick="location.href='<c:url value='/upload' /> ' ">게임 등록</button>
+						</div>
 					</div>
 
 					<!-- recommend -->
@@ -112,17 +115,18 @@
 								<div class="row" align="center">
 									<div class="col">
 										<div class="card" style="width: 15rem;">
-										<a href="<c:url value = '/reservation/game'></c:url>" style="text-decoration:none">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
+											<a href="<c:url value = '/game'></c:url>"
+												style="text-decoration: none"> <img
+												src="images/wallR.jpg" class="card-img-top" alt="...">
+												<div class="card-body">
+													<h5 class="card-title">game title</h5>
+													<p class="card-text">This is a wider card with
+														supporting text below as a natural lead-in to additional
+														content. This content is a little bit longer.</p>
+													<p class="card-text">
+														<small class="text-muted">Last updated 3 mins ago</small>
+													</p>
+												</div>
 											</a>
 										</div>
 									</div>
@@ -160,17 +164,18 @@
 								<div class="row" align="center">
 									<div class="col">
 										<div class="card" style="width: 15rem;">
-										<a href="<c:url value = '/reservation/game'></c:url>" style="text-decoration:none">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
+											<a href="<c:url value = '/game'></c:url>"
+												style="text-decoration: none"> <img
+												src="images/wallR.jpg" class="card-img-top" alt="...">
+												<div class="card-body">
+													<h5 class="card-title">game title</h5>
+													<p class="card-text">This is a wider card with
+														supporting text below as a natural lead-in to additional
+														content. This content is a little bit longer.</p>
+													<p class="card-text">
+														<small class="text-muted">Last updated 3 mins ago</small>
+													</p>
+												</div>
 											</a>
 										</div>
 									</div>
@@ -208,17 +213,18 @@
 								<div class="row" align="center">
 									<div class="col">
 										<div class="card" style="width: 15rem;">
-										<a href="<c:url value = '/reservation/game'></c:url>" style="text-decoration:none">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
+											<a href="<c:url value = '/game'></c:url>"
+												style="text-decoration: none"> <img
+												src="images/wallR.jpg" class="card-img-top" alt="...">
+												<div class="card-body">
+													<h5 class="card-title">game title</h5>
+													<p class="card-text">This is a wider card with
+														supporting text below as a natural lead-in to additional
+														content. This content is a little bit longer.</p>
+													<p class="card-text">
+														<small class="text-muted">Last updated 3 mins ago</small>
+													</p>
+												</div>
 											</a>
 										</div>
 									</div>
@@ -342,7 +348,7 @@
 								</div>
 								<div class="row mb-3">
 									<div class="col-sm-6" align="left">
-										<a href="<c:url value='/info/register'></c:url>">regist in</a>
+										<a href="<c:url value='/register'></c:url>">regist in</a>
 									</div>
 									<div class="col-sm-6">
 										<button type="submit" class="btn btn-primary">Sign in</button>
@@ -351,7 +357,7 @@
 							</form>
 						</div>
 					</div>
-				</div> 
+				</div>
 				<!-- 로그인 후 -->
 				<!-- <div class="col-2">
 					<div class="card border-warning mb-3" style="max-width: 18rem;">

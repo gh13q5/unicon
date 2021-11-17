@@ -34,8 +34,8 @@
 	</div>
 	<div id="contents" align="center">
 		<p id = singUpP>회원가입</p>
-		<img class = userImg src="./images/commonUserImg.png"></img>
-		<img class = userImg src="./images/companyUserImg.png"></img>
+		<img class = userImg src="./images/commonUserImg02.png"></img>
+		<img class = userImg src="./images/companyUserImg02.png"></img>
 	</div>
 	<div id="footer">
 		<hr>

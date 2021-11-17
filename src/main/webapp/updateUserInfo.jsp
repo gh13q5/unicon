@@ -241,7 +241,7 @@
 						<div id="makeItcenter" align="right">
 							<div class="col-auto">
 								<button type="button" class="btn btn-primary mb-3"
-									onclick="location.href='<c:url value='/info/userGameList'/>'">완료</button>
+									onclick="location.href='<c:url value='/userGameList'/>'">완료</button>
 							</div>
 						</div>
 						<br>
