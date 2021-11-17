@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -194,7 +195,8 @@
 									</div>
 								</div>
 							</div>
-							<button id="upload-btn" type="button" class="btn btn-warning">게임
+							<button id="upload-btn" type="button" class="btn btn-warning"
+								onclick="location.href='<c:url value='/game/upload'/>'">게임
 								등록</button>
 						</div>
 					</form>
