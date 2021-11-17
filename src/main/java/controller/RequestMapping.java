@@ -21,20 +21,20 @@ public class RequestMapping {
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장
     	
     	// main
-        mappings.put("/", new ForwardController("index.jsp"));
-        mappings.put("/main", new ForwardController("main.jsp"));
+        mappings.put("/", new ForwardController("/index.jsp"));
+        mappings.put("/main", new ForwardController("/main.jsp"));
         mappings.put("/main/search", new SearchController());
-        mappings.put("/main/gameRanking", new ForwardController("main.jsp"));
+        mappings.put("/main/gameRanking", new ForwardController("/main.jsp"));
         mappings.put("/main/category", new ViewCategoryController());
         mappings.put("/main/recommendation", new ViewRecommendationController());
         
         // info
-        mappings.put("/info/register", new ForwardController("chooseUserType.jsp"));
+        mappings.put("/info/register", new ForwardController("/chooseUserType.jsp"));
         mappings.put("/info/register/user", new RegisterController());
         mappings.put("/info/register/company", new RegisterController());
         mappings.put("/info/login", new LoginController());
         mappings.put("/info/logout", new LogoutController());
-        mappings.put("/info/userGameList", new ForwardController("mypage.jsp"));
+        mappings.put("/info/userGameList", new ForwardController("/mypage.jsp"));
         mappings.put("/info/updateRegister/user", new UpdateInfoController());
         mappings.put("/info/updateRegister/company", new UpdateInfoController());
         
@@ -49,7 +49,7 @@ public class RequestMapping {
         mappings.put("/game/remove", new DeleteGameController());
         
         // reservation
-        mappings.put("/reservation/game", new ForwardController("reservation.jsp"));
+        mappings.put("/reservation/game", new ForwardController("/reservation.jsp"));
         mappings.put("/reservation/reservate", new ReservateController());
         mappings.put("/reservation/cancle", new CancleReservationController());
         mappings.put("/reservation/reward", new SendRewardController());
