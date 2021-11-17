@@ -373,7 +373,7 @@
 							<div id="makeItcenter" align="right">
 								<div class="col-auto">
 									<button type="button" class="btn btn-primary mb-3"
-										onclick="location.href='<c:url value='/info/updateRegister/user/form'/>'">정보
+										onclick="location.href='<c:url value='/updateRegister/user/form'/>'">정보
 										수정</button>
 								</div>
 							</div>

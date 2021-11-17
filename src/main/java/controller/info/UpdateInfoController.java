@@ -59,6 +59,6 @@ public class UpdateInfoController implements Controller {
 
 		UserManager manager = UserManager.getInstance();
 		manager.update(updateUser);*/			
-        return "redirect:/main";			
+        return "redirect:/userGameList";			
     }
 }
