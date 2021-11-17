@@ -117,7 +117,7 @@
 					<div class="row" align="center">
 						<div class="col">
 							<div class="card" style="width: 15rem;">
-								<img src="images/wallR.jpg" class="card-img-top" alt="...">
+								<img src= "<c:url value='/resources/images/wallR.jpg' />" class="card-img-top" alt="...">
 								<div class="card-body">
 									<h5 class="card-title">game title</h5>
 									<p class="card-text">This is a wider card with supporting

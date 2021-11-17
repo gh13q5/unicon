@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -36,9 +37,9 @@
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 
 								<div class="list-group">
-									<a href="#"
+									<a href="<c:url value='/main/category'></c:url>"
 										class="list-group-item list-group-item-action active"
-										aria-current="true"> 서브메뉴1 </a> <a href="#"
+										aria-current="true" > 서브메뉴1 </a> <a href="#"
 										class="list-group-item list-group-item-action">서브메뉴2</a> <a
 										href="#" class="list-group-item list-group-item-action">서브메뉴3</a>
 									<a href="#" class="list-group-item list-group-item-action">서브메뉴4</a>
@@ -111,6 +112,7 @@
 								<div class="row" align="center">
 									<div class="col">
 										<div class="card" style="width: 15rem;">
+										<a href="<c:url value = '/reservation/game'></c:url>" style="text-decoration:none">
 											<img src="images/wallR.jpg" class="card-img-top" alt="...">
 											<div class="card-body">
 												<h5 class="card-title">game title</h5>
@@ -121,6 +123,7 @@
 													<small class="text-muted">Last updated 3 mins ago</small>
 												</p>
 											</div>
+											</a>
 										</div>
 									</div>
 									<div class="col">
@@ -157,6 +160,7 @@
 								<div class="row" align="center">
 									<div class="col">
 										<div class="card" style="width: 15rem;">
+										<a href="<c:url value = '/reservation/game'></c:url>" style="text-decoration:none">
 											<img src="images/wallR.jpg" class="card-img-top" alt="...">
 											<div class="card-body">
 												<h5 class="card-title">game title</h5>
@@ -167,6 +171,7 @@
 													<small class="text-muted">Last updated 3 mins ago</small>
 												</p>
 											</div>
+											</a>
 										</div>
 									</div>
 									<div class="col">
@@ -203,6 +208,7 @@
 								<div class="row" align="center">
 									<div class="col">
 										<div class="card" style="width: 15rem;">
+										<a href="<c:url value = '/reservation/game'></c:url>" style="text-decoration:none">
 											<img src="images/wallR.jpg" class="card-img-top" alt="...">
 											<div class="card-body">
 												<h5 class="card-title">game title</h5>
@@ -213,6 +219,7 @@
 													<small class="text-muted">Last updated 3 mins ago</small>
 												</p>
 											</div>
+											</a>
 										</div>
 									</div>
 									<div class="col">
@@ -320,7 +327,7 @@
 					</div>
 				</div>
 				<!-- 로그인 전 -->
-				<!-- <div class="col-2">
+				<div class="col-2">
 					<div class="card border-warning mb-3" style="max-width: 18rem;">
 						<div class="card-body">
 							<form>
@@ -335,7 +342,7 @@
 								</div>
 								<div class="row mb-3">
 									<div class="col-sm-6" align="left">
-										<a href="#">regist in</a>
+										<a href="<c:url value='/info/register'></c:url>">regist in</a>
 									</div>
 									<div class="col-sm-6">
 										<button type="submit" class="btn btn-primary">Sign in</button>
@@ -344,9 +351,9 @@
 							</form>
 						</div>
 					</div>
-				</div> -->
+				</div> 
 				<!-- 로그인 후 -->
-				<div class="col-2">
+				<!-- <div class="col-2">
 					<div class="card border-warning mb-3" style="max-width: 18rem;">
 						<div class="card-body">
 
@@ -374,7 +381,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
