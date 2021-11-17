@@ -26,8 +26,8 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) 
     	throws ServletException, IOException {
-    	logger.debug("Method : {}, Request URI : {}, ServletPath : {}", 
-    			request.getMethod(), request.getRequestURI(), request.getServletPath());
+    	logger.debug("Method : {}, Request URI : {}, ServletPath : {}, ContextPath : {} ", 
+    			request.getMethod(), request.getRequestURI(), request.getServletPath(), request.getContextPath());
     	String contextPath = request.getContextPath();
     	String servletPath = request.getServletPath();
     	
