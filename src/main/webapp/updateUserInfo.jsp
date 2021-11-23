@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -149,8 +148,7 @@
 									<p>닉네임</p>
 								</div>
 								<div class="col-4">
-									<input type="text" class="form-control" id="nickname"
-										data-rule-required="true" placeholder="별명" maxlength="15">
+									<input type="text" class="form-control" id="nickname" data-rule-required="true" placeholder="별명" maxlength="15">
 								</div>
 							</div>
 							<div class="form-group" id="email"></div>
@@ -159,9 +157,8 @@
 									<p>아이디</p>
 								</div>
 								<div class="col-4">
-									<input type="text" class="form-control onlyAlphabetAndNumber"
-										id="id" data-rule-required="true"
-										placeholder="10자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="10">
+									<input type="text" class="form-control onlyAlphabetAndNumber" id="id"
+									data-rule-required="true" placeholder="10자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="10">
 								</div>
 							</div>
 							<div class="form-group" id="email"></div>
@@ -170,9 +167,8 @@
 									<p>비밀번호</p>
 								</div>
 								<div class="col-4">
-									<input type="password" class="form-control" id="password"
-										name="excludeHangul" data-rule-required="true"
-										placeholder="10자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="30">
+									<input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true"
+									placeholder="10자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="30">
 								</div>
 							</div>
 							<div class="form-group" id="email"></div>
@@ -181,8 +177,7 @@
 									<p>Email</p>
 								</div>
 								<div class="col-4">
-									<input type="email" class="form-control" id="email"
-										data-rule-required="true" placeholder="이메일" maxlength="40">
+									<input type="email" class="form-control" id="email" data-rule-required="true" placeholder="이메일" maxlength="40">
 								</div>
 							</div>
 							<div class="form-group" id="phoneNumber">
@@ -191,9 +186,7 @@
 										<p>전화번호</p>
 									</div>
 									<div class="col-4">
-										<input type="tel" class="form-control onlyNumber"
-											id="phoneNumber" data-rule-required="true"
-											placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
+										<input type="tel" class="form-control onlyNumber" id="phoneNumber" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
 									</div>
 								</div>
 							</div>
@@ -203,9 +196,9 @@
 										<p>생년월일</p>
 									</div>
 									<div class="col-4">
-										<input type="date" class="form-control onlyNumber"
-											id="birthday" data-rule-required="true"
-											placeholder="생년월일 6자를 입력해주세요. 예)961204" maxlength="6">
+										<input type="date" class="form-control onlyNumber" id="birthday"
+										data-rule-required="true" placeholder="생년월일 6자를 입력해주세요. 예)961204"
+										maxlength="6">
 									</div>
 								</div>
 							</div>
@@ -240,9 +233,8 @@
 						<br>
 						<div id="makeItcenter" align="right">
 							<div class="col-auto">
-								<button type="button" class="btn btn-primary mb-3"
-									onclick="location.href='<c:url value='/userGameList'/>'">완료</button>
-							</div>
+    							<button type="button" class="btn btn-primary mb-3">완료</button>
+  							</div>
 						</div>
 						<br>
 					</div>

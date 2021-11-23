@@ -195,7 +195,7 @@
 									</div>
 								</div>
 							</div>
-							<button id="upload-btn" type="button" class="btn btn-warning" onclick="location.href='<c:url value='/main' /> ' ">게임
+							<button id="upload-btn" type="button" class="btn btn-warning">게임
 								등록</button>
 						</div>
 					</form>

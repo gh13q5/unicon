@@ -142,7 +142,7 @@
 								<div id="total-reservate-num" class="col-3">n명</div>
 							</div>
 						</div>
-						<button id="reservate" type="button" class="btn btn-warning" onclick="alert('예약되었습니다!');">사전예약</button>
+						<button id="reservate" type="button" class="btn btn-warning">사전예약</button>
 					</div>
 					<!-- 게임 소개 등 추가 설명 -->
 					<div id="game-more-inform" class="card text-center">

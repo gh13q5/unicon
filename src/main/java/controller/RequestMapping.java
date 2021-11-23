@@ -23,40 +23,37 @@ public class RequestMapping {
     	// main
         mappings.put("/", new ForwardController("/index.jsp"));
         mappings.put("/main", new ForwardController("/main.jsp"));
-        mappings.put("/search", new SearchController());
-        mappings.put("/gameRanking", new ForwardController("/main.jsp"));
-        mappings.put("/category", new ViewCategoryController());
-        mappings.put("/recommendation", new ViewRecommendationController());
+        mappings.put("/main/search", new SearchController());
+        mappings.put("/main/gameRanking", new ForwardController("/main.jsp"));
+        mappings.put("/main/category", new ViewCategoryController());
+        mappings.put("/main/recommendation", new ViewRecommendationController());
         
         // info
-        mappings.put("/register", new ForwardController("/chooseUserType.jsp"));
-        mappings.put("/register/user", new RegisterController());
-        mappings.put("/register/company", new RegisterController());
-        mappings.put("/login", new LoginController());
-        mappings.put("/logout", new LogoutController());
-        mappings.put("/userGameList", new ForwardController("/mypage.jsp"));
-        mappings.put("/updateRegister/user/form", new ViewUpdateUserInfoController());
-        mappings.put("/updateRegister/company/form", new ViewUpdateUserInfoController());
-        mappings.put("/updateRegister/user", new UpdateInfoController());
-        mappings.put("/updateRegister/company", new UpdateInfoController());
+        mappings.put("/info/register", new ForwardController("/chooseUserType.jsp"));
+        mappings.put("/info/register/user", new RegisterController());
+        mappings.put("/info/register/company", new RegisterController());
+        mappings.put("/info/login", new LoginController());
+        mappings.put("/info/logout", new LogoutController());
+        mappings.put("/info/userGameList", new ForwardController("/mypage.jsp"));
+        mappings.put("/info/updateRegister/user", new UpdateInfoController());
+        mappings.put("/info/updateRegister/company", new UpdateInfoController());
         
         // point
-        mappings.put("/pointShop", new ViewPointshopController());
-        mappings.put("/pointShop", new BuyItemController());
-        mappings.put("/addPoint", new AddPointController());
+        mappings.put("/point/pointShop", new ViewPointshopController());
+        mappings.put("/point/pointShop", new BuyItemController());
+        mappings.put("/point/addPoint", new AddPointController());
         
         // game
-        mappings.put("/upload", new ViewUploadGameController());
-        mappings.put("/upload/complete", new UploadGameController());
-        mappings.put("/edit", new UpdateGameController());
-        mappings.put("/remove", new DeleteGameController());
+        mappings.put("/game/upload", new UploadGameController());
+        mappings.put("/game/edit", new UpdateGameController());
+        mappings.put("/game/remove", new DeleteGameController());
         
         // reservation
-        mappings.put("/game", new ForwardController("/reservation.jsp"));
-        mappings.put("/reservate", new ReservateController());
-        mappings.put("/cancle", new CancleReservationController());
-        mappings.put("/reward", new SendRewardController());
-        mappings.put("/statistics", new StatisticUserController());
+        mappings.put("/reservation/game", new ForwardController("/reservation.jsp"));
+        mappings.put("/reservation/reservate", new ReservateController());
+        mappings.put("/reservation/cancle", new CancleReservationController());
+        mappings.put("/reservation/reward", new SendRewardController());
+        mappings.put("/reservation/statistics", new StatisticUserController());
         
         
         logger.info("Initialized Request Mapping!");

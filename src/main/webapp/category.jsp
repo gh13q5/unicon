@@ -95,7 +95,6 @@
 							<h1 class="display-5">Category Name</h1>
 						</div>
 						<div class="col" align="right" style="margin: 20px;">
-						
 							<button type="button" class="btn btn-warning">게임 등록</button>
 						</div>
 					</div>
@@ -118,8 +117,7 @@
 					<div class="row" align="center">
 						<div class="col">
 							<div class="card" style="width: 15rem;">
-								<a href="<c:url value = '/game'></c:url>" style="text-decoration:none">
-								<img src= "images/wallR.jpg" class="card-img-top" alt="...">
+								<img src= "<c:url value='/resources/images/wallR.jpg' />" class="card-img-top" alt="...">
 								<div class="card-body">
 									<h5 class="card-title">game title</h5>
 									<p class="card-text">This is a wider card with supporting
@@ -129,7 +127,6 @@
 										<small class="text-muted">Last updated 3 mins ago</small>
 									</p>
 								</div>
-								</a>
 							</div>
 						</div>
 						<div class="col">
@@ -328,7 +325,7 @@
 										<a href="#">regist in</a>
 									</div>
 									<div class="col-sm-6">
-										<button type="button" class="btn btn-primary" >Sign in</button>
+										<button type="submit" class="btn btn-primary">Sign in</button>
 									</div>
 								</div>
 							</form>

@@ -8,6 +8,6 @@ import controller.Controller;
 public class UploadGameController implements Controller{
 	 @Override
 	    public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-	        return "redirect:/main";
+	        return "url ¾²±â";
 	    }
 }

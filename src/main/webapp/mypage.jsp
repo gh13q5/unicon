@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -190,206 +189,202 @@
 									</div>
 								</div>
 							</div>
-							<div class="form-group" id="userCategorys" align="left">
-								<label for="chooseCategorys" class="col-lg-2 control-label">관심분야
-									(최소 1개 택)</label>
-								<div id="categoryBox" align="left">
-									<label><input type="checkbox" name="ganre1" value="0">게임장르
-										1rrrrrrrrrrrrr</label><br> <label><input type="checkbox"
-										name="ganre2" value="1">게임장르 2rrrr</label><br> <label><input
-										type="checkbox" name="ganre3" value="2">게임장르 3rr</label><br>
-									<label><input type="checkbox" name="ganre4" value="3">게임장르
-										4rrrrrrrrr</label><br> <label><input type="checkbox"
-										name="ganre5" value="4">게임장르 5rr</label><br> <label><input
-										type="checkbox" name="ganre6" value="5">게임장르 6</label><br>
-								</div>
-								<br>
-							</div>
+					</div>
+					<div class="form-group" id="userCategorys" align="left">
+						<label for="chooseCategorys" class="col-lg-2 control-label">관심분야
+							(최소 1개 택)</label>
+						<div id="categoryBox" align="left">
+							<label><input type="checkbox" name="ganre1" value="0">게임장르
+								1rrrrrrrrrrrrr</label><br> <label><input type="checkbox"
+								name="ganre2" value="1">게임장르 2rrrr</label><br> <label><input
+								type="checkbox" name="ganre3" value="2">게임장르 3rr</lalel><br>
+								<label><input type="checkbox" name="ganre4" value="3">게임장르
+									4rrrrrrrrr</label><br> <label><input type="checkbox"
+									name="ganre5" value="4">게임장르 5rr</label><br> <label><input
+									type="checkbox" name="ganre6" value="5">게임장르 6</label><br>
+						</div>
+						<br>
+					</div>
 
-							<div align="left">
-								<p>
-									<b>예약 게임 목록</b>
-								</p>
-
-							</div>
-							<!-- 예약 게임 -->
-							<div id="carouselExampleDark"
-								class="carousel carousel-dark slide" data-bs-ride="carousel"
-								data-bs-interval="false">
-
-								<div class="carousel-inner" style="margin: 10px; padding: 10px;">
-									<div class="carousel-item active">
-										<div class="row" align="center">
-											<div class="col">
-												<div class="card" style="width: 15rem;">
-													<img src="images/wallR.jpg" class="card-img-top" alt="...">
-													<div class="card-body">
-														<h5 class="card-title">game title</h5>
-														<p class="card-text">This is a wider card with
-															supporting text below as a natural lead-in to additional
-															content. This content is a little bit longer.</p>
-														<p class="card-text">
-															<small class="text-muted">Last updated 3 mins ago</small>
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col">
-												<div class="card" style="width: 15rem;">
-													<img src="images/wallR.jpg" class="card-img-top" alt="...">
-													<div class="card-body">
-														<h5 class="card-title">game title</h5>
-														<p class="card-text">This is a wider card with
-															supporting text below as a natural lead-in to additional
-															content. This content is a little bit longer.</p>
-														<p class="card-text">
-															<small class="text-muted">Last updated 3 mins ago</small>
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col">
-												<div class="card" style="width: 15rem;">
-													<img src="images/wallR.jpg" class="card-img-top" alt="...">
-													<div class="card-body">
-														<h5 class="card-title">game title</h5>
-														<p class="card-text">This is a wider card with
-															supporting text below as a natural lead-in to additional
-															content. This content is a little bit longer.</p>
-														<p class="card-text">
-															<small class="text-muted">Last updated 3 mins ago</small>
-														</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="carousel-item">
-										<div class="row" align="center">
-											<div class="col">
-												<div class="card" style="width: 15rem;">
-													<img src="images/wallR.jpg" class="card-img-top" alt="...">
-													<div class="card-body">
-														<h5 class="card-title">game title</h5>
-														<p class="card-text">This is a wider card with
-															supporting text below as a natural lead-in to additional
-															content. This content is a little bit longer.</p>
-														<p class="card-text">
-															<small class="text-muted">Last updated 3 mins ago</small>
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col">
-												<div class="card" style="width: 15rem;">
-													<img src="images/wallR.jpg" class="card-img-top" alt="...">
-													<div class="card-body">
-														<h5 class="card-title">game title</h5>
-														<p class="card-text">This is a wider card with
-															supporting text below as a natural lead-in to additional
-															content. This content is a little bit longer.</p>
-														<p class="card-text">
-															<small class="text-muted">Last updated 3 mins ago</small>
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col">
-												<div class="card" style="width: 15rem;">
-													<img src="images/wallR.jpg" class="card-img-top" alt="...">
-													<div class="card-body">
-														<h5 class="card-title">game title</h5>
-														<p class="card-text">This is a wider card with
-															supporting text below as a natural lead-in to additional
-															content. This content is a little bit longer.</p>
-														<p class="card-text">
-															<small class="text-muted">Last updated 3 mins ago</small>
-														</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="carousel-item">
-										<div class="row" align="center">
-											<div class="col">
-												<div class="card" style="width: 15rem;">
-													<img src="images/wallR.jpg" class="card-img-top" alt="...">
-													<div class="card-body">
-														<h5 class="card-title">game title</h5>
-														<p class="card-text">This is a wider card with
-															supporting text below as a natural lead-in to additional
-															content. This content is a little bit longer.</p>
-														<p class="card-text">
-															<small class="text-muted">Last updated 3 mins ago</small>
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col">
-												<div class="card" style="width: 15rem;">
-													<img src="images/wallR.jpg" class="card-img-top" alt="...">
-													<div class="card-body">
-														<h5 class="card-title">game title</h5>
-														<p class="card-text">This is a wider card with
-															supporting text below as a natural lead-in to additional
-															content. This content is a little bit longer.</p>
-														<p class="card-text">
-															<small class="text-muted">Last updated 3 mins ago</small>
-														</p>
-													</div>
-												</div>
-											</div>
-											<div class="col">
-												<div class="card" style="width: 15rem;">
-													<img src="images/wallR.jpg" class="card-img-top" alt="...">
-													<div class="card-body">
-														<h5 class="card-title">game title</h5>
-														<p class="card-text">This is a wider card with
-															supporting text below as a natural lead-in to additional
-															content. This content is a little bit longer.</p>
-														<p class="card-text">
-															<small class="text-muted">Last updated 3 mins ago</small>
-														</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<button class="carousel-control-prev" type="button"
-									data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Previous</span>
-								</button>
-								<button class="carousel-control-next" type="button"
-									data-bs-target="#carouselExampleDark" data-bs-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Next</span>
-								</button>
-							</div>
-							<!-- 끝 -->
-
-							<div id="makeItcenter" align="right">
-								<div class="col-auto">
-									<button type="button" class="btn btn-primary mb-3"
-										onclick="location.href='<c:url value='/updateRegister/user/form'/>'">정보
-										수정</button>
-								</div>
-							</div>
-							<br>
-
-						</form>
-
-
+					<div align="left">
+						<p>
+							<b>예약 게임 목록</b>
+						</p>
 
 					</div>
+					<!-- 예약 게임 -->
+					<div id="carouselExampleDark" class="carousel carousel-dark slide"
+						data-bs-ride="carousel" data-bs-interval="false">
+
+						<div class="carousel-inner" style="margin: 10px; padding: 10px;">
+							<div class="carousel-item active">
+								<div class="row" align="center">
+									<div class="col">
+										<div class="card" style="width: 15rem;">
+											<img src="images/wallR.jpg" class="card-img-top" alt="...">
+											<div class="card-body">
+												<h5 class="card-title">game title</h5>
+												<p class="card-text">This is a wider card with
+													supporting text below as a natural lead-in to additional
+													content. This content is a little bit longer.</p>
+												<p class="card-text">
+													<small class="text-muted">Last updated 3 mins ago</small>
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="card" style="width: 15rem;">
+											<img src="images/wallR.jpg" class="card-img-top" alt="...">
+											<div class="card-body">
+												<h5 class="card-title">game title</h5>
+												<p class="card-text">This is a wider card with
+													supporting text below as a natural lead-in to additional
+													content. This content is a little bit longer.</p>
+												<p class="card-text">
+													<small class="text-muted">Last updated 3 mins ago</small>
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="card" style="width: 15rem;">
+											<img src="images/wallR.jpg" class="card-img-top" alt="...">
+											<div class="card-body">
+												<h5 class="card-title">game title</h5>
+												<p class="card-text">This is a wider card with
+													supporting text below as a natural lead-in to additional
+													content. This content is a little bit longer.</p>
+												<p class="card-text">
+													<small class="text-muted">Last updated 3 mins ago</small>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="carousel-item">
+								<div class="row" align="center">
+									<div class="col">
+										<div class="card" style="width: 15rem;">
+											<img src="images/wallR.jpg" class="card-img-top" alt="...">
+											<div class="card-body">
+												<h5 class="card-title">game title</h5>
+												<p class="card-text">This is a wider card with
+													supporting text below as a natural lead-in to additional
+													content. This content is a little bit longer.</p>
+												<p class="card-text">
+													<small class="text-muted">Last updated 3 mins ago</small>
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="card" style="width: 15rem;">
+											<img src="images/wallR.jpg" class="card-img-top" alt="...">
+											<div class="card-body">
+												<h5 class="card-title">game title</h5>
+												<p class="card-text">This is a wider card with
+													supporting text below as a natural lead-in to additional
+													content. This content is a little bit longer.</p>
+												<p class="card-text">
+													<small class="text-muted">Last updated 3 mins ago</small>
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="card" style="width: 15rem;">
+											<img src="images/wallR.jpg" class="card-img-top" alt="...">
+											<div class="card-body">
+												<h5 class="card-title">game title</h5>
+												<p class="card-text">This is a wider card with
+													supporting text below as a natural lead-in to additional
+													content. This content is a little bit longer.</p>
+												<p class="card-text">
+													<small class="text-muted">Last updated 3 mins ago</small>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="carousel-item">
+								<div class="row" align="center">
+									<div class="col">
+										<div class="card" style="width: 15rem;">
+											<img src="images/wallR.jpg" class="card-img-top" alt="...">
+											<div class="card-body">
+												<h5 class="card-title">game title</h5>
+												<p class="card-text">This is a wider card with
+													supporting text below as a natural lead-in to additional
+													content. This content is a little bit longer.</p>
+												<p class="card-text">
+													<small class="text-muted">Last updated 3 mins ago</small>
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="card" style="width: 15rem;">
+											<img src="images/wallR.jpg" class="card-img-top" alt="...">
+											<div class="card-body">
+												<h5 class="card-title">game title</h5>
+												<p class="card-text">This is a wider card with
+													supporting text below as a natural lead-in to additional
+													content. This content is a little bit longer.</p>
+												<p class="card-text">
+													<small class="text-muted">Last updated 3 mins ago</small>
+												</p>
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="card" style="width: 15rem;">
+											<img src="images/wallR.jpg" class="card-img-top" alt="...">
+											<div class="card-body">
+												<h5 class="card-title">game title</h5>
+												<p class="card-text">This is a wider card with
+													supporting text below as a natural lead-in to additional
+													content. This content is a little bit longer.</p>
+												<p class="card-text">
+													<small class="text-muted">Last updated 3 mins ago</small>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button"
+							data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button"
+							data-bs-target="#carouselExampleDark" data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+					<!-- 끝 -->
+
+					<div id="makeItcenter" align="right">
+						<div class="col-auto">
+							<button type="button" class="btn btn-primary mb-3">정보 수정</button>
+						</div>
+					</div>
+					<br>
+
+					</form>
+
+
+
 				</div>
 			</div>
 		</div>
 	</div>
 	<div id="footer">블라블라</div>
-
 	<!-- Optional JavaScript; choose one of the two! -->
 
 	<!-- Option 1: Bootstrap Bundle with Popper -->
