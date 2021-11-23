@@ -14,7 +14,7 @@ public class Game {
 
 	private int company_id;
 
-	public Game() {
+	public Game() { 
 		super();
 	}
 	// not null인 field만 받는 생성자
