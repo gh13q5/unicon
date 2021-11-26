@@ -11,26 +11,27 @@ public class User {
 	private String email;
 	private String name;
 	private String phone_number;
-	private Date commId;
+	private Date birthDay;
 	private int gender;
-	private int interests;
+	//private int interests;
 	private int point;
 
 	public User() { }		// 奄沙 持失切
 	
-	public User(String userId, String password, String email, String name, String phone_number, Date commId, int gender,
-			int interests, int point) {
+	public User(String userId, String password, String email, String name, String phone_number, Date birthDay, int gender,
+			int point) {
+		super();
 		this.userId = userId;
 		this.password = password;
 		this.email = email;
 		this.name = name;
 		this.phone_number = phone_number;
-		this.commId = commId;
+		this.birthDay = birthDay;
 		this.gender = gender;
-		this.interests = interests;
+		//this.interests = interests;
 		this.point = point;
 	}//持失切
-
+	
 	//getters&setters
 	public String getUserId() {
 		return userId;
@@ -72,12 +73,12 @@ public class User {
 		this.phone_number = phone_number;
 	}
 
-	public Date getCommId() {
-		return commId;
+	public Date getBirthDay() {
+		return birthDay;
 	}
 
-	public void setCommId(Date commId) {
-		this.commId = commId;
+	public void setBirthDay(Date birthDay) {
+		this.birthDay = birthDay;
 	}
 
 	public int getGender() {
@@ -88,13 +89,13 @@ public class User {
 		this.gender = gender;
 	}
 
-	public int getInterests() {
-		return interests;
-	}
-
-	public void setInterests(int interests) {
-		this.interests = interests;
-	}
+//	public int getInterests() {
+//		return interests;
+//	}
+//
+//	public void setInterests(int interests) {
+//		this.interests = interests;
+//	}
 
 	public int getPoint() {
 		return point;
@@ -119,7 +120,6 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", password=" + password + ", email=" + email + ", name=" + name
-				+ ", phone_number=" + phone_number + ", commId=" + commId + ", gender=" + gender + ", interests="
-				+ interests + ", point=" + point + "]";
+				+ ", phone_number=" + phone_number + ", commId=" + birthDay + ", gender=" + gender + ", point=" + point + "]";
 	}	
 }
