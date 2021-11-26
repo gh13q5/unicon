@@ -1,47 +1,37 @@
 package model;
 
+import java.util.Date;
+
 /**
  * 사용자 관리를 위해 필요한 도메인 클래스. USERINFO 테이블과 대응됨
  */
 public class User {
 	private String userId;
 	private String password;
-	private String name;
 	private String email;
-	private String phone;
-	private int commId;
-	private String commName;
+	private String name;
+	private String phone_number;
+	private Date commId;
+	private int gender;
+	private int interests;
+	private int point;
 
 	public User() { }		// 기본 생성자
 	
-	public User(String userId, String password, String name, String email, String phone, int commId) {
+	public User(String userId, String password, String email, String name, String phone_number, Date commId, int gender,
+			int interests, int point) {
 		this.userId = userId;
 		this.password = password;
-		this.name = name;
 		this.email = email;
-		this.phone = phone;
+		this.name = name;
+		this.phone_number = phone_number;
 		this.commId = commId;
-	}
-	
-	public User(String userId, String password, String name, String email, String phone, int commId, String commName) {
-		this(userId, password, name, email, phone, commId);
-		this.commName = commName;
-	}
+		this.gender = gender;
+		this.interests = interests;
+		this.point = point;
+	}//생성자
 
-	public User(String userId, String name, String email, String phone) {
-		this.userId = userId;
-		this.name = name;
-		this.email = email;
-		this.phone = phone;		
-	}
-	
-	/*public void update(User updateUser) {
-        this.password = updateUser.password;
-        this.name = updateUser.name;
-        this.email = updateUser.email;
-        this.phone = updateUser.phone;
-    }*/
-	
+	//getters&setters
 	public String getUserId() {
 		return userId;
 	}
@@ -58,14 +48,6 @@ public class User {
 		this.password = password;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -74,30 +56,57 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getName() {
+		return name;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public int getCommId() {
+	public String getPhone_number() {
+		return phone_number;
+	}
+
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
+	}
+
+	public Date getCommId() {
 		return commId;
 	}
 
-	public void setCommId(int commId) {
+	public void setCommId(Date commId) {
 		this.commId = commId;
 	}
 
-	public String getCommName() {
-		return commName;
+	public int getGender() {
+		return gender;
 	}
 
-	public void setCommName(String commName) {
-		this.commName = commName;
+	public void setGender(int gender) {
+		this.gender = gender;
 	}
 
+	public int getInterests() {
+		return interests;
+	}
+
+	public void setInterests(int interests) {
+		this.interests = interests;
+	}
+
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
+	public boolean isSameUser(String userid) {
+        return this.userId.equals(userid);
+    }
 	
 	/* 비밀번호 검사 */
 	public boolean matchPassword(String password) {
@@ -106,14 +115,11 @@ public class User {
 		}
 		return this.password.equals(password);
 	}
-	
-	public boolean isSameUser(String userid) {
-        return this.userId.equals(userid);
-    }
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", password=" + password + ", name=" + name + ", email=" + email + ", phone="
-				+ phone + ", commId=" + commId + "]";
+		return "User [userId=" + userId + ", password=" + password + ", email=" + email + ", name=" + name
+				+ ", phone_number=" + phone_number + ", commId=" + commId + ", gender=" + gender + ", interests="
+				+ interests + ", point=" + point + "]";
 	}	
 }
