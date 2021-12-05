@@ -1,13 +1,15 @@
 package model;
 
+import java.util.Date;
+
 public class Game {
 	private int game_id;
 	private String title;
-	private String start_date;
-	private String end_date;
+	private Date start_date;
+	private Date end_date;
 	private String image_address;
 	private String description;
-	private String category;
+	private int category;
 	private String reward_image;
 	private String reward_text;
 	private int total_reservations;
@@ -18,7 +20,7 @@ public class Game {
 		super();
 	}
 	// not null인 field만 받는 생성자
-	public Game(int game_id, String title, String start_date, String end_date, String category, int total_reservations,
+	public Game(int game_id, String title, Date start_date, Date end_date, int category, int total_reservations,
 			int company_id) {
 		super();
 		this.game_id = game_id;
@@ -30,8 +32,8 @@ public class Game {
 		this.company_id = company_id;
 	}
 	// field 전부를 받는 생성자
-	public Game(int game_id, String title, String start_date, String end_date, String image_address, String description,
-			String category, String reward_image, String reward_text, int total_reservations, int company_id) {
+	public Game(int game_id, String title, Date start_date, Date end_date, String image_address, String description,
+			int category, String reward_image, String reward_text, int total_reservations, int company_id) {
 		super();
 		this.game_id = game_id;
 		this.title = title;
@@ -58,16 +60,16 @@ public class Game {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getStart_date() {
+	public Date getStart_date() {
 		return start_date;
 	}
-	public void setStart_date(String start_date) {
+	public void setStart_date(Date start_date) {
 		this.start_date = start_date;
 	}
-	public String getEnd_date() {
+	public Date getEnd_date() {
 		return end_date;
 	}
-	public void setEnd_date(String end_date) {
+	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
 	}
 	public String getImage_address() {
@@ -82,10 +84,10 @@ public class Game {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getCategory() {
+	public int getCategory() {
 		return category;
 	}
-	public void setCategory(String category) {
+	public void setCategory(int category) {
 		this.category = category;
 	}
 	public String getReward_image() {
