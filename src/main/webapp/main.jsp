@@ -37,7 +37,7 @@
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 
 								<div class="list-group">
-									<a href="<c:url value='/main/category'></c:url>"
+									<a href="<c:url value='/main/category'><c:param name='category' value='0' /></c:url>"
 										class="list-group-item list-group-item-action active"
 										aria-current="true" > 서브메뉴1 </a> <a href="#"
 										class="list-group-item list-group-item-action">서브메뉴2</a> <a

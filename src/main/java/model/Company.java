@@ -7,13 +7,14 @@ import java.util.Date;
  */
 public class Company {
 	private String companyId;
+	private String id;
 	private String password;
 	private String email;
 	private String name;
 	private String phone_number;
 	public Company() { }		// 기본 생성자
 	
-	public Company(String companyId, String password, String email, String name, String phone_number) {
+	public Company(String companyId, String id, String password, String email, String name, String phone_number) {
 		this.companyId = companyId;
 		this.password = password;
 		this.email = email;
@@ -78,6 +79,14 @@ public class Company {
 	public String toString() {
 		return "Company [companyId=" + companyId + ", password=" + password + ", email=" + email + ", name=" + name
 				+ ", phone_number=" + phone_number + "]";
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}	
 }
 
