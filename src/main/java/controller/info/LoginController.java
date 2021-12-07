@@ -49,7 +49,7 @@ public class LoginController implements Controller {
 				User userId = userManager.findUser(id);
 				
 				if (!userId.matchPassword(password)) {
-					throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
+					throw new PasswordMismatchException("password incorrect!");
 				}
 				
 			} else if(companyManager.findCompany(id) != null) { //화사유저인지 알아보기
@@ -57,11 +57,11 @@ public class LoginController implements Controller {
 				Company companyId = companyManager.findCompany(id);
 				
 				if (!companyId.matchPassword(password)) {
-					throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
+					throw new PasswordMismatchException("password incorrect!");
 				}
 				
 			} else {
-				throw new UserNotFoundException("입력하신 아이디는 존재하지 않습니다.");
+				throw new UserNotFoundException("id unexist");
 			}
 			return true;
 		}
