@@ -9,7 +9,7 @@ public class Game {
 	private Date end_date;
 	private String image_address;
 	private String description;
-	private int category;
+	private String category;
 	private String reward_image;
 	private String reward_text;
 	private int total_reservations;
@@ -20,7 +20,7 @@ public class Game {
 		super();
 	}
 	// not null인 field만 받는 생성자
-	public Game(int game_id, String title, Date start_date, Date end_date, int category, int total_reservations,
+	public Game(int game_id, String title, Date start_date, Date end_date, String category, int total_reservations,
 			int company_id) {
 		super();
 		this.game_id = game_id;
@@ -33,7 +33,7 @@ public class Game {
 	}
 	// field 전부를 받는 생성자
 	public Game(int game_id, String title, Date start_date, Date end_date, String image_address, String description,
-			int category, String reward_image, String reward_text, int total_reservations, int company_id) {
+			String category, String reward_image, String reward_text, int total_reservations, int company_id) {
 		super();
 		this.game_id = game_id;
 		this.title = title;
@@ -84,10 +84,10 @@ public class Game {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public int getCategory() {
+	public String getCategory() {
 		return category;
 	}
-	public void setCategory(int category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 	public String getReward_image() {

@@ -101,7 +101,7 @@ public class GameDAO {
 				Game game = new Game( // User 객체를 생성하여 학생 정보를 저장
 						Integer.parseInt(gameId), rs.getString("title"), rs.getDate("start_date"),
 						rs.getDate("end_date"), rs.getString("image_address"), rs.getString("description"),
-						rs.getInt("category"), rs.getString("reward_image"), rs.getString("reward_text"),
+						rs.getString("category"), rs.getString("reward_image"), rs.getString("reward_text"),
 						rs.getInt("total_reservations"), rs.getInt("company_id"));
 				return game;
 			}
@@ -128,7 +128,7 @@ public class GameDAO {
 				Game game = new Game( // Game 객체를 생성하여 현재 행의 정보를 저장
 						rs.getInt("game_id"), rs.getString("title"), rs.getDate("start_date"),
 						rs.getDate("end_date"), rs.getString("image_address"), rs.getString("description"),
-						rs.getInt("category"), rs.getString("reward_image"), rs.getString("reward_text"),
+						rs.getString("category"), rs.getString("reward_image"), rs.getString("reward_text"),
 						rs.getInt("total_reservations"), rs.getInt("company_id"));
 				gameList.add(game); // List에 Game 객체 저장
 			}
@@ -145,9 +145,9 @@ public class GameDAO {
 	/**
 	 * 카테고리에 해당하는 게임 정보를 검색하여 List에 저장 및 반환(예약가능)
 	 */
-	public List<Game> categoryGameList(int category) throws SQLException {
+	public List<Game> categoryGameList(String category) throws SQLException {
 		String sql = "SELECT game_id, title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations, company_id "
-				+ "FROM Game " + "WHERE category=? AND date(now()) >= date(start_date) AND date(now()) <= date(end_date) " ;
+				+ "FROM Game " + "WHERE category=? AND start_date <= (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) AND end_date >= (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) " ;
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { category }); // JDBCUtil에 query문 설정
 
 		try {
@@ -157,11 +157,98 @@ public class GameDAO {
 				Game game = new Game( // Game 객체를 생성하여 현재 행의 정보를 저장
 						rs.getInt("game_id"), rs.getString("title"), rs.getDate("start_date"),
 						rs.getDate("end_date"), rs.getString("image_address"), rs.getString("description"),
-						rs.getInt("category"), rs.getString("reward_image"), rs.getString("reward_text"),
+						rs.getString("category"), rs.getString("reward_image"), rs.getString("reward_text"),
 						rs.getInt("total_reservations"), rs.getInt("company_id"));
 				categorygameList.add(game); // List에 Game 객체 저장
 			}
 			return categorygameList;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+		return null;
+	}
+	
+	/**
+	 * 카테고리에 해당하는 게임 정보를 검색하여 List에 저장 및 반환(예약불가)
+	 */
+	public List<Game> endCategoryGameList(String category) throws SQLException {
+		String sql = "SELECT game_id, title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations, company_id "
+				+ "FROM Game " + "WHERE category=? AND end_date < (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) " ;
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { category }); // JDBCUtil에 query문 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			List<Game> categorygameList = new ArrayList<Game>(); // Game들의 리스트 생성
+			while (rs.next()) {
+				Game game = new Game( // Game 객체를 생성하여 현재 행의 정보를 저장
+						rs.getInt("game_id"), rs.getString("title"), rs.getDate("start_date"),
+						rs.getDate("end_date"), rs.getString("image_address"), rs.getString("description"),
+						rs.getString("category"), rs.getString("reward_image"), rs.getString("reward_text"),
+						rs.getInt("total_reservations"), rs.getInt("company_id"));
+				categorygameList.add(game); // List에 Game 객체 저장
+			}
+			return categorygameList;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+		return null;
+	}
+	
+	/**
+	 * 검색 키워드 에 해당하는 게임 정보를 검색하여 List에 저장 및 반환(예약가능)
+	 */
+	public List<Game> searchGameList(String keyWord) throws SQLException {
+		String sql = "SELECT game_id, title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations, company_id "
+				+ "FROM Game " + "WHERE title like ? AND start_date <= (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) AND end_date >= (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) " ;
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { keyWord }); // JDBCUtil에 query문 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			List<Game> searchGameList = new ArrayList<Game>(); // Game들의 리스트 생성
+			while (rs.next()) {
+				Game game = new Game( // Game 객체를 생성하여 현재 행의 정보를 저장
+						rs.getInt("game_id"), rs.getString("title"), rs.getDate("start_date"),
+						rs.getDate("end_date"), rs.getString("image_address"), rs.getString("description"),
+						rs.getString("category"), rs.getString("reward_image"), rs.getString("reward_text"),
+						rs.getInt("total_reservations"), rs.getInt("company_id"));
+				searchGameList.add(game); // List에 Game 객체 저장
+			}
+			return searchGameList;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+		return null;
+	}
+	
+	/**
+	 * 검색 키워드 에 해당하는 게임 정보를 검색하여 List에 저장 및 반환(예약가능)
+	 */
+	public List<Game> endsearchGameList(String keyWord) throws SQLException {
+		String sql = "SELECT game_id, title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations, company_id "
+				+ "FROM Game " + "WHERE title like ? AND end_date < (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) " ;
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { keyWord }); // JDBCUtil에 query문 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			List<Game> endsearchGameList = new ArrayList<Game>(); // Game들의 리스트 생성
+			while (rs.next()) {
+				Game game = new Game( // Game 객체를 생성하여 현재 행의 정보를 저장
+						rs.getInt("game_id"), rs.getString("title"), rs.getDate("start_date"),
+						rs.getDate("end_date"), rs.getString("image_address"), rs.getString("description"),
+						rs.getString("category"), rs.getString("reward_image"), rs.getString("reward_text"),
+						rs.getInt("total_reservations"), rs.getInt("company_id"));
+				endsearchGameList.add(game); // List에 Game 객체 저장
+			}
+			return endsearchGameList;
 
 		} catch (Exception ex) {
 			ex.printStackTrace();

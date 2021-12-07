@@ -15,10 +15,12 @@ public class ViewCategoryController implements Controller{
 	 @Override
 	    public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 	     
-		 int category = Integer.parseInt( req.getParameter("category"));
+		 String category = req.getParameter("category");
 		 //String order = req.getParameter("order");
 		 List<Game> categoryGameList = gameDAO.categoryGameList(category);
+		 List<Game> endCategoryGameList = gameDAO.endCategoryGameList(category);
 		 req.setAttribute("categoryGameList", categoryGameList);
+		 req.setAttribute("endGameList",endCategoryGameList);
 		 return "/category.jsp";
 	    }
 }

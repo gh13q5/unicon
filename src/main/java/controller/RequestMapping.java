@@ -22,7 +22,7 @@ public class RequestMapping {
     	
     	// main
         mappings.put("/", new ForwardController("/index.jsp"));
-        mappings.put("/main", new ForwardController("/main.jsp"));
+        mappings.put("/main", new ViewMainController());
         mappings.put("/search", new SearchController());
         mappings.put("/gameRanking", new ForwardController("/main.jsp"));
         mappings.put("/category", new ViewCategoryController());

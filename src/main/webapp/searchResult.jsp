@@ -122,9 +122,9 @@
 							</select>
 						</div>
 					</div>
-					<c:forEach var="Cgame" items="${categoryGameList}"
+					<c:forEach var="Sgame" items="${searchGameList}"
 						varStatus="status">
-						<c:choose>
+						<<c:choose>
 							<c:when test="${status.index % 4  eq 0}">
 								<div class="row" align="center">
 							</c:when>
@@ -139,14 +139,14 @@
 								<img src="images/wallR.jpg" class="card-img-top" alt="...">
 								<div class="card-body">
 									<h5 class="card-title">
-										<c:out value="${Cgame.title}"></c:out>
+										<c:out value="${Sgame.title}"></c:out>
 									</h5>
 									<p class="card-text">
-										<c:out value="${Cgame.description}"></c:out>
+										<c:out value="${Sgame.description}"></c:out>
 									</p>
 									<p class="card-text">
 										<small class="text-muted">~<c:out
-												value="${Cgame.end_date}"></c:out></small>
+												value="${Sgame.end_date}"></c:out></small>
 									</p>
 								</div>
 							</div>
@@ -180,7 +180,7 @@
 							</select>
 						</div>
 						
-						<c:forEach var="Egame" items="${endGameList}"
+						<c:forEach var="ESgame" items="${endsearchGameList}"
 						varStatus="status">
 						<c:choose>
 							<c:when test="${status.index % 4  eq 0}">
@@ -197,14 +197,14 @@
 								<img src="images/wallR.jpg" class="card-img-top" alt="...">
 								<div class="card-body">
 									<h5 class="card-title">
-										<c:out value="${Egame.title}"></c:out>
+										<c:out value="${ESgame.title}"></c:out>
 									</h5>
 									<p class="card-text">
-										<c:out value="${Egame.description}"></c:out>
+										<c:out value="${ESgame.description}"></c:out>
 									</p>
 									<p class="card-text">
 										<small class="text-muted">~<c:out
-												value="${Egame.end_date}"></c:out></small>
+												value="${ESgame.end_date}"></c:out></small>
 									</p>
 								</div>
 							</div>
