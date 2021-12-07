@@ -1,6 +1,7 @@
 package controller.info;
 
 import java.util.List;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import controller.Controller;
 import controller.info.UserSessionUtils;
 import model.service.UserManager;
-import model.Community;
 import model.User;
 
 public class UpdateUserController implements Controller {
@@ -21,6 +21,9 @@ public class UpdateUserController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
  
+    	 //받은 날짜를 date로 변환하는 함수
+        SimpleDateFormat userDate = new SimpleDateFormat("yyyy-MM-dd");
+        
     	if (request.getMethod().equals("GET")) {	
     		// GET request: 회원정보 수정 form 요청	
     		// 원래는 UpdateUserFormController가 처리하던 작업을 여기서 수행
@@ -54,7 +57,7 @@ public class UpdateUserController implements Controller {
     		request.getParameter("name"),
     		request.getParameter("email"),
     		request.getParameter("phone_number"),
-    		//Integer.parseInt(request.getParameter("birthday")),
+    		userDate.parse(request.getParameter("birthday")),
 			Integer.parseInt(request.getParameter("gender")),
 			Integer.parseInt(request.getParameter("point")));
 
