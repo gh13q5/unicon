@@ -24,18 +24,18 @@ public class LoginController implements Controller {
 
 		try {
 			
-			//usermanager ì•ˆì“°ê³  ë¡œê·¸ì¸
+			//usermanager ¾È¾²°í ·Î±×ÀÎ
 			login(id, password);
 	
-			// ì„¸ì…˜ì— ì‚¬ìš©ì ì´ì´ë”” ì €ì¥
+			// ¼¼¼Ç¿¡ »ç¿ëÀÚ ÀÌÀÌµğ ÀúÀå
 			HttpSession session = request.getSession();
             session.setAttribute(UserSessionUtils.USER_SESSION_KEY, id);
             
             return "redirect:/main.jsp";
             
-		} catch (Exception e) { // ì˜¤ë¥˜ì¡ê¸°
+		} catch (Exception e) { // ¿À·ùÀâ±â
 
-			request.setAttribute("ì˜¤ë¥˜", e);
+			request.setAttribute("¿À·ù", e);
             return "/main.jsp";			
 		}	
     }
@@ -44,7 +44,7 @@ public class LoginController implements Controller {
 			UserDAO userManager = new UserDAO();
 			CompanyDAO companyManager = new CompanyDAO();
 			
-			if(userManager.findUser(id) != null) { //ì¼ë°˜ìœ ì €ì¸ì§€ ì•Œì•„ë³´ê¸°
+			if(userManager.findUser(id) != null) { //ÀÏ¹İÀ¯ÀúÀÎÁö ¾Ë¾Æº¸±â
 				
 				User userId = userManager.findUser(id);
 				
@@ -52,7 +52,7 @@ public class LoginController implements Controller {
 					throw new PasswordMismatchException("password incorrect!");
 				}
 				
-			} else if(companyManager.findCompany(id) != null) { //í™”ì‚¬ìœ ì €ì¸ì§€ ì•Œì•„ë³´ê¸°
+			} else if(companyManager.findCompany(id) != null) { //È­»çÀ¯ÀúÀÎÁö ¾Ë¾Æº¸±â
 				
 				Company companyId = companyManager.findCompany(id);
 				

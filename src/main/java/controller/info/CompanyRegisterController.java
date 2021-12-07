@@ -20,7 +20,7 @@ public class CompanyRegisterController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
        	
-     // POST request (íšŒì›ì •ë³´ê°€ parameterë¡œ ì „ì†¡ë¨)
+     // POST request (È¸¿øÁ¤º¸°¡ parameter·Î Àü¼ÛµÊ)
        	Company company = new Company(
 			request.getParameter("companyId"),
 			request.getParameter("Id"),
@@ -33,9 +33,9 @@ public class CompanyRegisterController implements Controller {
 
 		try {
 			create(company);
-	        return "/welcome.jsp";	// ì„±ê³µ ì‹œ ì‚¬ìš©ì ë¦¬ìŠ¤íŠ¸ í™”ë©´ìœ¼ë¡œ redirect
+	        return "/welcome.jsp";	// ¼º°ø ½Ã »ç¿ëÀÚ ¸®½ºÆ® È­¸éÀ¸·Î redirect
 	        
-		} catch (ExistingUserException e) {	// ì˜ˆì™¸ ë°œìƒ ì‹œ íšŒì›ê°€ì… formìœ¼ë¡œ forwarding
+		} catch (ExistingUserException e) {	// ¿¹¿Ü ¹ß»ı ½Ã È¸¿ø°¡ÀÔ formÀ¸·Î forwarding
            request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("company", company);
