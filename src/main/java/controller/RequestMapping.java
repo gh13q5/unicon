@@ -18,11 +18,11 @@ public class RequestMapping {
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
-    	// 각 uri에 대응되는 controller 객체를 생성 및 저장
+    	// 각 uri에 대응되는 controller 객체를 생성 및 저장 
     	
     	// main
         mappings.put("/", new ForwardController("/index.jsp"));
-        mappings.put("/main", new ForwardController("/main.jsp"));
+        mappings.put("/main", new ViewMainController());
         mappings.put("/search", new SearchController());
         mappings.put("/gameRanking", new ForwardController("/main.jsp"));
         mappings.put("/category", new ViewCategoryController());
@@ -35,8 +35,8 @@ public class RequestMapping {
         mappings.put("/login", new LoginController());
         mappings.put("/logout", new LogoutController());
         mappings.put("/userGameList", new ForwardController("/mypage.jsp"));
-        mappings.put("/updateRegister/user", new UpdateInfoController());
-        mappings.put("/updateRegister/company", new UpdateInfoController());
+        mappings.put("/updateRegister/user", new UpdateUserController());
+        mappings.put("/updateRegister/company", new UpdateUserController());
         
         // point
         mappings.put("/pointShop", new ViewPointshopController());

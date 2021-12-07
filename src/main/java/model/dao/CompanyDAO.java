@@ -8,91 +8,91 @@ import java.util.List;
 import model.Company;
 
 /**
- * »ç¿ëÀÚ °ü¸®¸¦ À§ÇØ µ¥ÀÌÅÍº£ÀÌ½º ÀÛ¾÷À» Àü´ãÇÏ´Â DAO Å¬·¡½º USERINFO Å×ÀÌºí¿¡ »ç¿ëÀÚ Á¤º¸¸¦ Ãß°¡, ¼öÁ¤, »èÁ¦, °Ë»ö ¼öÇà
+ * ì‚¬ìš©ì ê´€ë¦¬ë¥¼ ìœ„í•´ ë°ì´í„°ë² ì´ìŠ¤ ì‘ì—…ì„ ì „ë‹´í•˜ëŠ” DAO í´ë˜ìŠ¤ USERINFO í…Œì´ë¸”ì— ì‚¬ìš©ì ì •ë³´ë¥¼ ì¶”ê°€, ìˆ˜ì •, ì‚­ì œ, ê²€ìƒ‰ ìˆ˜í–‰
  */
 public class CompanyDAO {
 	private JDBCUtil jdbcUtil = null;
 
 	public CompanyDAO() {
-		jdbcUtil = new JDBCUtil(); // JDBCUtil °´Ã¼ »ı¼º
+		jdbcUtil = new JDBCUtil(); // JDBCUtil ê°ì²´ ìƒì„±
 	}
 
 	/**
-	 * È¸»ç °ü¸® Å×ÀÌºí¿¡ »õ·Î¿î È¸»ç »ı¼º.
+	 * íšŒì‚¬ ê´€ë¦¬ í…Œì´ë¸”ì— ìƒˆë¡œìš´ íšŒì‚¬ ìƒì„±.
 	 */
 	public int create(Company company) throws SQLException {
 		String sql = "INSERT INTO COMPANY VALUES (?, ?, ?, ?, ?, ?)";
 		Object[] param = new Object[] { company.getCompanyId(), company.getId(), company.getPassword(),
 				company.getEmail(), company.getName(), company.getPhone_number() };
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil ¿¡ insert¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil ì— insertë¬¸ê³¼ ë§¤ê°œ ë³€ìˆ˜ ì„¤ì •
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // insert ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate(); // insert ë¬¸ ì‹¤í–‰
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ë°˜í™˜
 		}
 		return 0;
 	}
 
 	/**
-	 * ±âÁ¸ÀÇ È¸»ç Á¤º¸¸¦ ¼öÁ¤.
+	 * ê¸°ì¡´ì˜ íšŒì‚¬ ì •ë³´ë¥¼ ìˆ˜ì •.
 	 */
 	public int update(Company company) throws SQLException {
 		String sql = "UPDATE COMPANY " + "SET id=?, password=?, email=?, name=?, phone_number=? "
 				+ "WHERE company_id=?";
 		Object[] param = new Object[] { company.getId(), company.getPassword(), company.getEmail(), company.getName(),
 				company.getPhone_number() };
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil¿¡ update¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtilì— updateë¬¸ê³¼ ë§¤ê°œ ë³€ìˆ˜ ì„¤ì •
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // update ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate(); // update ë¬¸ ì‹¤í–‰
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ë°˜í™˜
 		}
 		return 0;
 	}
 
 	/**
-	 * È¸»ç ID¿¡ ÇØ´çÇÏ´Â È¸»ç »èÁ¦
+	 * íšŒì‚¬ IDì— í•´ë‹¹í•˜ëŠ” íšŒì‚¬ ì‚­ì œ
 	 */
 	public int remove(String companyId) throws SQLException {
 		String sql = "DELETE FROM COMPANY WHERE company_id=?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { companyId }); // JDBCUtil¿¡ delete¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { companyId }); // JDBCUtilì— deleteë¬¸ê³¼ ë§¤ê°œ ë³€ìˆ˜ ì„¤ì •
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // delete ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate(); // delete ë¬¸ ì‹¤í–‰
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ë°˜í™˜
 		}
 		return 0;
 	}
 
 	/**
-	 * ÁÖ¾îÁø È¸»ç ID¿¡ ÇØ´çÇÏ´Â È¸»ç Á¤º¸¸¦ µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ Ã£¾Æ Company µµ¸ŞÀÎ Å¬·¡½º¿¡ ÀúÀåÇÏ¿© ¹İÈ¯.
+	 * ì£¼ì–´ì§„ íšŒì‚¬ IDì— í•´ë‹¹í•˜ëŠ” íšŒì‚¬ ì •ë³´ë¥¼ ë°ì´í„°ë² ì´ìŠ¤ì—ì„œ ì°¾ì•„ Company ë„ë©”ì¸ í´ë˜ìŠ¤ì— ì €ì¥í•˜ì—¬ ë°˜í™˜.
 	 */
 	public Company findCompany(String companyId) throws SQLException {
 		String sql = "SELECT id, password, email, name, phone_number " + "FROM COMPANY " + "WHERE company_id=? ";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { companyId }); // JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { companyId }); // JDBCUtilì— queryë¬¸ê³¼ ë§¤ê°œ ë³€ìˆ˜ ì„¤ì •
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query ½ÇÇà
-			if (rs.next()) { // ÇĞ»ı Á¤º¸ ¹ß°ß
-				Company company = new Company( // Company °´Ã¼¸¦ »ı¼ºÇÏ¿© È¸»ç Á¤º¸¸¦ ÀúÀå
+			ResultSet rs = jdbcUtil.executeQuery(); // query ì‹¤í–‰
+			if (rs.next()) { // í•™ìƒ ì •ë³´ ë°œê²¬
+				Company company = new Company( // Company ê°ì²´ë¥¼ ìƒì„±í•˜ì—¬ íšŒì‚¬ ì •ë³´ë¥¼ ì €ì¥
 						companyId, rs.getString("id"), rs.getString("password"), rs.getString("email"),
 						rs.getString("name"), rs.getString("phone_number"));
 				return company;
@@ -100,8 +100,29 @@ public class CompanyDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ë°˜í™˜
 		}
 		return null;
 	}
+	/**
+	 * ì£¼ì–´ì§„ ì‚¬ìš©ì IDì— í•´ë‹¹í•˜ëŠ” ì‚¬ìš©ìê°€ ì¡´ì¬í•˜ëŠ”ì§€ ê²€ì‚¬ 
+	 */
+	public boolean existingCompany(String companyId) throws SQLException {
+		String sql = "SELECT count(*) FROM COMPANYINFO WHERE companyid=?";      
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {companyId});	// JDBCUtilì— queryë¬¸ê³¼ ë§¤ê°œ ë³€ìˆ˜ ì„¤ì •
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query ì‹¤í–‰
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				return (count == 1 ? true : false);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource ë°˜í™˜
+		}
+		return false;
+	}
+
 }

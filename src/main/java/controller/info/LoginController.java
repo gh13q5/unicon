@@ -1,35 +1,68 @@
-package controller.info;
+package controller.info; 
+
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
-import model.service.UserManager;
+import model.service.PasswordMismatchException;
+import model.service.UserNotFoundException;
+
+import model.Company;
+import model.User;
+import model.dao.CompanyDAO;
+import model.dao.UserDAO;
 
 public class LoginController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	String userId = request.getParameter("userId");
+    	
+    	String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		
+
 		try {
-			// ¸ğµ¨¿¡ ·Î±×ÀÎ Ã³¸®¸¦ À§ÀÓ
-			UserManager manager = UserManager.getInstance();
-			manager.login(userId, password);
+			
+			//usermanager ì•ˆì“°ê³  ë¡œê·¸ì¸
+			login(id, password);
 	
-			// ¼¼¼Ç¿¡ »ç¿ëÀÚ ÀÌÀÌµğ ÀúÀå
+			// ì„¸ì…˜ì— ì‚¬ìš©ì ì´ì´ë”” ì €ì¥
 			HttpSession session = request.getSession();
-            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
+            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, id);
             
-            return "redirect:/user/list";			
-		} catch (Exception e) {
-			/* UserNotFoundExceptionÀÌ³ª PasswordMismatchException ¹ß»ı ½Ã
-			 * ´Ù½Ã login formÀ» »ç¿ëÀÚ¿¡°Ô Àü¼ÛÇÏ°í ¿À·ù ¸Ş¼¼Áöµµ Ãâ·Â
-			 */
-            request.setAttribute("loginFailed", true);
-			request.setAttribute("exception", e);
-            return "/user/loginForm.jsp";			
+            return "redirect:/main.jsp";
+            
+		} catch (Exception e) { // ì˜¤ë¥˜ì¡ê¸°
+
+			request.setAttribute("ì˜¤ë¥˜", e);
+            return "/main.jsp";			
 		}	
     }
+	public boolean login(String id, String password) throws SQLException, UserNotFoundException, PasswordMismatchException {
+		
+			UserDAO userManager = new UserDAO();
+			CompanyDAO companyManager = new CompanyDAO();
+			
+			if(userManager.findUser(id) != null) { //ì¼ë°˜ìœ ì €ì¸ì§€ ì•Œì•„ë³´ê¸°
+				
+				User userId = userManager.findUser(id);
+				
+				if (!userId.matchPassword(password)) {
+					throw new PasswordMismatchException("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+				}
+				
+			} else if(companyManager.findCompany(id) != null) { //í™”ì‚¬ìœ ì €ì¸ì§€ ì•Œì•„ë³´ê¸°
+				
+				Company companyId = companyManager.findCompany(id);
+				
+				if (!companyId.matchPassword(password)) {
+					throw new PasswordMismatchException("ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+				}
+				
+			} else {
+				throw new UserNotFoundException("ì…ë ¥í•˜ì‹  ì•„ì´ë””ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+			}
+			return true;
+		}
 }

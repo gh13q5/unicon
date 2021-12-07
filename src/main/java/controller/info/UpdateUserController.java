@@ -1,6 +1,7 @@
 package controller.info;
 
 import java.util.List;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,15 +13,17 @@ import org.slf4j.LoggerFactory;
 import controller.Controller;
 import controller.info.UserSessionUtils;
 import model.service.UserManager;
-import model.Community;
 import model.User;
 
-public class UpdateInfoController implements Controller {
-    private static final Logger log = LoggerFactory.getLogger(UpdateInfoController.class);
+public class UpdateUserController implements Controller {
+    private static final Logger log = LoggerFactory.getLogger(UpdateUserController.class);
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
  
+    	 //받은 날짜를 date로 변환하는 함수
+        SimpleDateFormat userDate = new SimpleDateFormat("yyyy-MM-dd");
+        
     	if (request.getMethod().equals("GET")) {	
     		// GET request: 회원정보 수정 form 요청	
     		// 원래는 UpdateUserFormController가 처리하던 작업을 여기서 수행
@@ -36,11 +39,8 @@ public class UpdateInfoController implements Controller {
 			if (UserSessionUtils.isLoginUser(updateId, session) ||
 				UserSessionUtils.isLoginUser("admin", session)) {
 				// 현재 로그인한 사용자가 수정 대상 사용자이거나 관리자인 경우 -> 수정 가능
-								
-				List<Community> commList = manager.findCommunityList();	// 커뮤니티 리스트 검색
-				request.setAttribute("commList", commList);	
 				
-				return "/user/updateForm.jsp";   // 검색한 사용자 정보를 update form으로 전송     
+				return "/updateUserInfo.jsp";   // 검색한 사용자 정보를 update form으로 전송     
 			}    
 			
 			// else (수정 불가능한 경우) 사용자 보기 화면으로 오류 메세지를 전달
@@ -56,13 +56,15 @@ public class UpdateInfoController implements Controller {
     		request.getParameter("password"),
     		request.getParameter("name"),
     		request.getParameter("email"),
-    		request.getParameter("phone"),
-			Integer.parseInt(request.getParameter("commId")));
+    		request.getParameter("phone_number"),
+    		userDate.parse(request.getParameter("birthday")),
+			Integer.parseInt(request.getParameter("gender")),
+			Integer.parseInt(request.getParameter("point")));
 
     	log.debug("Update User : {}", updateUser);
 
 		UserManager manager = UserManager.getInstance();
 		manager.update(updateUser);			
-        return "redirect:/user/list";			
+        return "redirect:/mypage";			
     }
 }
