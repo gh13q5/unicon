@@ -37,12 +37,17 @@
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 
 								<div class="list-group">
-									<a href="<c:url value='/main/category'><c:param name='category' value='0' /></c:url>"
-										class="list-group-item list-group-item-action active"
-										aria-current="true" > 서브메뉴1 </a> <a href="#"
-										class="list-group-item list-group-item-action">서브메뉴2</a> <a
-										href="#" class="list-group-item list-group-item-action">서브메뉴3</a>
-									<a href="#" class="list-group-item list-group-item-action">서브메뉴4</a>
+									<a href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
+										class="list-group-item list-group-item-action"
+										aria-current="true" > 스포츠 </a> <a href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
+										class="list-group-item list-group-item-action">퍼즐</a> <a
+										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>" class="list-group-item list-group-item-action">롤플레잉</a>
+									<a href="<c:url value='/category'><c:param name='category' value='3' /></c:url>" class="list-group-item list-group-item-action">시뮬레이션</a>
+									<a href="<c:url value='/category'><c:param name='category' value='4' /></c:url>" class="list-group-item list-group-item-action">액션</a>
+									<a href="<c:url value='/category'><c:param name='category' value='5' /></c:url>" class="list-group-item list-group-item-action">음악</a>
+									<a href="<c:url value='/category'><c:param name='category' value='6' /></c:url>" class="list-group-item list-group-item-action">보드</a>
+									<a href="<c:url value='/category'><c:param name='category' value='7' /></c:url>" class="list-group-item list-group-item-action">FPS</a>
+								
 								</div>
 
 							</div>
@@ -91,16 +96,19 @@
 				</div>
 				<div class="col-8 border">
 					<!-- search -->
+					<form action="<c:url value='/search'>
+            			  </c:url>">
 					<div class="input-group mb-3">
 						<div class="col-5">
-							<input type="text" class="form-control" placeholder="search"
-								aria-label="search" aria-describedby="button-addon2">
+							<input type="text" class="form-control" name ="keyWord" placeholder="search"
+								aria-label="search" >
 						</div>
 						<div class="col-auto">
-							<button class="btn btn-outline-secondary" type="button"
-								id="button-addon2">search</button>
+							<button type="submit" class="btn btn-outline-secondary" 
+								>search</button>
 						</div>
 					</div>
+					</form>
 
 					<!-- recommend -->
 					<p class="h2">Recommend Games</p>
@@ -267,64 +275,45 @@
 
 					<!-- 일반 게임 -->
 					<p class="h2">Entire Games</p>
-					<div class="row" align="center">
-						<div class="col">
+					<c:forEach var="game" items="${entireGameList}"
+						varStatus="status">
+						<c:choose>
+							<c:when test="${status.index % 4  eq 0}">
+								<div class="row" align="center">
+							</c:when>
+							<%-- <c:when test="${status.count eq 0}">
+								<div class="row" align="center">
+							</c:when> --%>
+						</c:choose>
+						<%-- <a href="<c:url value='/game'>
+            			<c:param name='game_id' value='${Cgame.id}' /></c:url>"> --%>
+						 <div class="col"> 
 							<div class="card" style="width: 15rem;">
 								<img src="images/wallR.jpg" class="card-img-top" alt="...">
 								<div class="card-body">
-									<h5 class="card-title">game title</h5>
-									<p class="card-text">This is a wider card with supporting
-										text below as a natural lead-in to additional content. This
-										content is a little bit longer.</p>
+									<h5 class="card-title">
+										<c:out value="${game.title}"></c:out>
+									</h5>
 									<p class="card-text">
-										<small class="text-muted">Last updated 3 mins ago</small>
+										<c:out value="${game.description}"></c:out>
+									</p>
+									<p class="card-text">
+										<small class="text-muted">~<c:out
+												value="${game.end_date}"></c:out></small>
 									</p>
 								</div>
 							</div>
-						</div>
-						<div class="col">
-							<div class="card" style="width: 15rem;">
-								<img src="images/wallR.jpg" class="card-img-top" alt="...">
-								<div class="card-body">
-									<h5 class="card-title">game title</h5>
-									<p class="card-text">This is a wider card with supporting
-										text below as a natural lead-in to additional content. This
-										content is a little bit longer.</p>
-									<p class="card-text">
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="card" style="width: 15rem;">
-								<img src="images/wallR.jpg" class="card-img-top" alt="...">
-								<div class="card-body">
-									<h5 class="card-title">game title</h5>
-									<p class="card-text">This is a wider card with supporting
-										text below as a natural lead-in to additional content. This
-										content is a little bit longer.</p>
-									<p class="card-text">
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col">
-							<div class="card" style="width: 15rem;">
-								<img src="images/wallR.jpg" class="card-img-top" alt="...">
-								<div class="card-body">
-									<h5 class="card-title">game title</h5>
-									<p class="card-text">This is a wider card with supporting
-										text below as a natural lead-in to additional content. This
-										content is a little bit longer.</p>
-									<p class="card-text">
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</p>
-								</div>
-							</div>
-						</div>
-					</div>
+							<!-- </a> --> 
+						 </div> 
+						<c:choose>
+							<c:when test="${status.count % 4 eq 0}">
+				</div>
+				</c:when>
+				<c:when test="${status.last}">
+			</div>
+			</c:when>
+			</c:choose>
+			</c:forEach>
 				</div>
 				<!-- 로그인 전 -->
 				<div class="col-2">
