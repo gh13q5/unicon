@@ -20,7 +20,7 @@ public class CompanyDAO {
 	/**
 	 * 회사 관리 테이블에 새로운 회사 생성.
 	 */
-	public static int create(Company company) throws SQLException {
+	public int create(Company company) throws SQLException {
 		String sql = "INSERT INTO COMPANY VALUES (?, ?, ?, ?, ?, ?)";
 		Object[] param = new Object[] { company.getCompanyId(), company.getId(), company.getPassword(),
 				company.getEmail(), company.getName(), company.getPhone_number() };
@@ -85,7 +85,7 @@ public class CompanyDAO {
 	/**
 	 * 주어진 회사 ID에 해당하는 회사 정보를 데이터베이스에서 찾아 Company 도메인 클래스에 저장하여 반환.
 	 */
-	public static Company findCompany(String companyId) throws SQLException {
+	public Company findCompany(String companyId) throws SQLException {
 		String sql = "SELECT id, password, email, name, phone_number " + "FROM COMPANY " + "WHERE company_id=? ";
 		jdbcUtil.setSqlAndParameters(sql, new Object[] { companyId }); // JDBCUtil에 query문과 매개 변수 설정
 
@@ -107,7 +107,7 @@ public class CompanyDAO {
 	/**
 	 * 주어진 사용자 ID에 해당하는 사용자가 존재하는지 검사 
 	 */
-	public static boolean existingCompany(String companyId) throws SQLException {
+	public boolean existingCompany(String companyId) throws SQLException {
 		String sql = "SELECT count(*) FROM COMPANYINFO WHERE companyid=?";      
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {companyId});	// JDBCUtil에 query문과 매개 변수 설정
 
