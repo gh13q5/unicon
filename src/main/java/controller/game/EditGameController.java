@@ -19,45 +19,49 @@ public class EditGameController implements Controller{
 	    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		 
 		 if (request.getMethod().equals("GET")) {	
-	    		// GET request: íšŒì›ì •ë³´ ìˆ˜ì • form ìš”ì²­	
-	    		// ì›ë˜ëŠ” UpdateUserFormControllerê°€ ì²˜ë¦¬í•˜ë˜ ì‘ì—…ì„ ì—¬ê¸°ì„œ ìˆ˜í–‰
+	    		// GET request: È¸¿øÁ¤º¸ ¼öÁ¤ form ¿äÃ»	
+	    		// ¿ø·¡´Â UpdateUserFormController°¡ Ã³¸®ÇÏ´ø ÀÛ¾÷À» ¿©±â¼­ ¼öÇà
 	    		String id = request.getParameter("id");
 	    		UserDAO manager = new UserDAO();
 	    		
-	    		manager.findUser(id);	// ìˆ˜ì •í•˜ë ¤ëŠ” ì‚¬ìš©ì ì •ë³´ ê²€ìƒ‰
+	    		manager.findUser(id);	// ¼öÁ¤ÇÏ·Á´Â »ç¿ëÀÚ Á¤º¸ °Ë»ö
 				request.setAttribute("id", id);			
 
 				HttpSession session = request.getSession();
 				if (UserSessionUtils.isLoginUser(id, session) ||
 					UserSessionUtils.isLoginUser("admin", session)) {
-					// í˜„ì¬ ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ìˆ˜ì • ëŒ€ìƒ ì‚¬ìš©ìì´ê±°ë‚˜ ê´€ë¦¬ìì¸ ê²½ìš° -> ìˆ˜ì • ê°€ëŠ¥
+					// ÇöÀç ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ ¼öÁ¤ ´ë»ó »ç¿ëÀÚÀÌ°Å³ª °ü¸®ÀÚÀÎ °æ¿ì -> ¼öÁ¤ °¡´É
 					
-					return "/updateUserInfo.jsp";   // ê²€ìƒ‰í•œ ì‚¬ìš©ì ì •ë³´ë¥¼ update formìœ¼ë¡œ ì „ì†¡     
+					return "/updateUserInfo.jsp";   // °Ë»öÇÑ »ç¿ëÀÚ Á¤º¸¸¦ update formÀ¸·Î Àü¼Û     
 				}    
 				
-				// else (ìˆ˜ì • ë¶ˆê°€ëŠ¥í•œ ê²½ìš°) ì‚¬ìš©ì ë³´ê¸° í™”ë©´ìœ¼ë¡œ ì˜¤ë¥˜ ë©”ì„¸ì§€ë¥¼ ì „ë‹¬
+				// else (¼öÁ¤ ºÒ°¡´ÉÇÑ °æ¿ì) »ç¿ëÀÚ º¸±â È­¸éÀ¸·Î ¿À·ù ¸Ş¼¼Áö¸¦ Àü´Ş
 				request.setAttribute("updateFailed", true);
 				request.setAttribute("exception", 
-						new IllegalStateException("íƒ€ì¸ì˜ ì •ë³´ëŠ” ìˆ˜ì •í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));            
-				return "/user/view.jsp";	// ì‚¬ìš©ì ë³´ê¸° í™”ë©´ìœ¼ë¡œ ì´ë™ (forwarding)
+						new IllegalStateException("Å¸ÀÎÀÇ Á¤º¸´Â ¼öÁ¤ÇÒ ¼ö ¾ø½À´Ï´Ù."));            
+				return "/user/view.jsp";	// »ç¿ëÀÚ º¸±â È­¸éÀ¸·Î ÀÌµ¿ (forwarding)
 		    }	
 		 
-		//ë°›ì€ ë‚ ì§œë¥¼ dateë¡œ ë³€í™˜í•˜ëŠ” í•¨ìˆ˜
+		//¹ŞÀº ³¯Â¥¸¦ date·Î º¯È¯ÇÏ´Â ÇÔ¼ö
 	     SimpleDateFormat gameDate = new SimpleDateFormat("yyyy-MM-dd");
 		 
 		 Game game = new Game(
-				 Integer.parseInt(request.getParameter("gmae_id")),
+				 Integer.parseInt(request.getParameter("game_id")),
 				 request.getParameter("title"),
 				 gameDate.parse(request.getParameter("start_date")),
 				 gameDate.parse(request.getParameter("end_date")),
-				 Integer.parseInt(request.getParameter("category")),
-				 Integer.parseInt(request.getParameter("companyId")),
-				 0);
+				 request.getParameter("image_address"),
+				 request.getParameter("description"),
+				 request.getParameter("category"),
+				 request.getParameter("reward_image"),
+				 request.getParameter("reward_text"),
+				 Integer.parseInt(request.getParameter("total_reservations")),
+				 Integer.parseInt(request.getParameter("company_id")));
 
 				GameDAO manager = new GameDAO();
 				manager.update(game);
 				
-		        return "re/main.jsp";	// ì„±ê³µ ì‹œ ì‚¬ìš©ì ë¦¬ìŠ¤íŠ¸ í™”ë©´ìœ¼ë¡œ redirect
+		        return "redirect:/main.jsp";	// ¼º°ø ½Ã »ç¿ëÀÚ ¸®½ºÆ® È­¸éÀ¸·Î redirect
 
 	        
 	        
