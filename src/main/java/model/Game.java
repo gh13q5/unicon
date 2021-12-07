@@ -53,7 +53,7 @@ public class Game {
 	}
 	public void setGame_id(int game_id) {
 		this.game_id = game_id;
-	}
+	} 
 	public String getTitle() {
 		return title;
 	}

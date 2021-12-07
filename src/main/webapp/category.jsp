@@ -168,7 +168,7 @@
 						<div class="col" align="left" style="margin-left: 10px">
 							<h4>
 								<u>사전예약 종료</u>
-							</h4>
+							</h4> 
 						</div>
 						<div class="col-sm-2" align="right"
 							style="margin-right: 20px; margin-bottom: 10px;">

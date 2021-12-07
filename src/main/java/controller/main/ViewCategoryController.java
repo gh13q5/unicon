@@ -9,7 +9,7 @@ import controller.Controller;
 import model.Game;
 import model.dao.GameDAO;
 
-public class ViewCategoryController implements Controller{
+public class ViewCategoryController implements Controller{ 
 	
 	private GameDAO gameDAO = new GameDAO();
 	 @Override

@@ -303,7 +303,7 @@
 									</p>
 								</div>
 							</div>
-							<!-- </a> -->
+							<!-- </a> --> 
 						 </div> 
 						<c:choose>
 							<c:when test="${status.count % 4 eq 0}">

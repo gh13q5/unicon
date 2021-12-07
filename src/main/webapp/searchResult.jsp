@@ -216,7 +216,7 @@
 				</c:when>
 				<c:when test="${status.last}">
 			</div>
-			</c:when>
+			</c:when> 
 			</c:choose>
 			</c:forEach>
 						

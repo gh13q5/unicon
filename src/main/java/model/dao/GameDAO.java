@@ -14,7 +14,7 @@ import java.util.Date;
 public class GameDAO {
 	private JDBCUtil jdbcUtil = null;
 
-	public GameDAO() {
+	public GameDAO() { 
 		jdbcUtil = new JDBCUtil(); // JDBCUtil °´Ã¼ »ý¼º
 	}
 
