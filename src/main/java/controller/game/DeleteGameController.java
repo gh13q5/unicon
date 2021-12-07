@@ -25,30 +25,30 @@ public class DeleteGameController implements Controller {
 		
 		HttpSession session = request.getSession();	
 	
-		if ((UserSessionUtils.isLoginUser("admin", session) && 	// ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ê´€ë¦¬ìì´ê³  	
-			 !deleteId.equals("admin"))							// ì‚­ì œ ëŒ€ìƒì´ ì¼ë°˜ ì‚¬ìš©ìì¸ ê²½ìš°, 
-			   || 												// ë˜ëŠ” 
-			(!UserSessionUtils.isLoginUser("admin", session) &&  // ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ê´€ë¦¬ìê°€ ì•„ë‹ˆê³  
-			  UserSessionUtils.isLoginUser(CompanyId, session))) { // ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ê²Œì„ì‚¬ ì‚¬ìš©ìì¸ ê²½ìš°
+		if ((UserSessionUtils.isLoginUser("admin", session) && 	// ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ °ü¸®ÀÚÀÌ°í 	
+			 !deleteId.equals("admin"))							// »èÁ¦ ´ë»óÀÌ ÀÏ¹İ »ç¿ëÀÚÀÎ °æ¿ì, 
+			   || 												// ¶Ç´Â 
+			(!UserSessionUtils.isLoginUser("admin", session) &&  // ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ °ü¸®ÀÚ°¡ ¾Æ´Ï°í 
+			  UserSessionUtils.isLoginUser(CompanyId, session))) { // ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ °ÔÀÓ»ç »ç¿ëÀÚÀÎ °æ¿ì
 				
-			manager.remove(deleteId);				// ì‚¬ìš©ì ì •ë³´ ì‚­ì œ
-			if (UserSessionUtils.isLoginUser("admin", session))	// ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ê´€ë¦¬ì 	
-				return "redirect:/main";		// mainìœ¼ë¡œ ì´ë™
+			manager.remove(deleteId);				// »ç¿ëÀÚ Á¤º¸ »èÁ¦
+			if (UserSessionUtils.isLoginUser("admin", session))	// ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ °ü¸®ÀÚ 	
+				return "redirect:/main";		// mainÀ¸·Î ÀÌµ¿
 			else 									
-				return "redirect:/CompanyMypage";		// companyMypageë¡œ redirect
+				return "redirect:/CompanyMypage";		// companyMypage·Î redirect
 		}
 		
-		/* ì‚­ì œê°€ ë¶ˆê°€ëŠ¥í•œ ê²½ìš° */
+		/* »èÁ¦°¡ ºÒ°¡´ÉÇÑ °æ¿ì */
 	    
 		
-		manager.findCompany(deleteId);	// ì‚¬ìš©ì ì •ë³´ ê²€ìƒ‰
+		manager.findCompany(deleteId);	// »ç¿ëÀÚ Á¤º¸ °Ë»ö
 	    
 		request.setAttribute("company", manager);						
 		request.setAttribute("deleteFailed", true);
 		String msg = (UserSessionUtils.isLoginUser("admin", session)) 
-				   ? "ì‹œìŠ¤í…œ ê´€ë¦¬ì ì •ë³´ëŠ” ì‚­ì œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."		
-				   : "íƒ€ì¸ì˜ ì •ë³´ëŠ” ì‚­ì œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.";													
+				   ? "½Ã½ºÅÛ °ü¸®ÀÚ Á¤º¸´Â »èÁ¦ÇÒ ¼ö ¾ø½À´Ï´Ù."		
+				   : "Å¸ÀÎÀÇ Á¤º¸´Â »èÁ¦ÇÒ ¼ö ¾ø½À´Ï´Ù.";													
 		request.setAttribute("exception", new IllegalStateException(msg));            
-		return "/CompanyMypage.jsp";		// ì‚¬ìš©ì ë³´ê¸° í™”ë©´ìœ¼ë¡œ ì´ë™ (forwarding)	
+		return "/CompanyMypage.jsp";		// »ç¿ëÀÚ º¸±â È­¸éÀ¸·Î ÀÌµ¿ (forwarding)	
 	}
 }
