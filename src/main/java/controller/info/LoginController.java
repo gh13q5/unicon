@@ -41,17 +41,20 @@ public class LoginController implements Controller {
     }
 	public boolean login(String id, String password) throws SQLException, UserNotFoundException, PasswordMismatchException {
 		
-			if(UserDAO.findUser(id) != null) { //일반유저인지 알아보기
+			UserDAO userManager = new UserDAO();
+			CompanyDAO companyManager = new CompanyDAO();
+			
+			if(userManager.findUser(id) != null) { //일반유저인지 알아보기
 				
-				User userId = UserDAO.findUser(id);
+				User userId = userManager.findUser(id);
 				
 				if (!userId.matchPassword(password)) {
 					throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
 				}
 				
-			} else if(CompanyDAO.findCompany(id) != null) { //화사유저인지 알아보기
+			} else if(companyManager.findCompany(id) != null) { //화사유저인지 알아보기
 				
-				Company companyId = CompanyDAO.findCompany(id);
+				Company companyId = companyManager.findCompany(id);
 				
 				if (!companyId.matchPassword(password)) {
 					throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
