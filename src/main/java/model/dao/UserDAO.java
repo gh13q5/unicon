@@ -122,36 +122,36 @@ public class UserDAO {
 //	/**
 //	 * 전체 사용자 정보를 검색하여 List에 저장 및 반환
 //	 */
-//	public List<User> findUserList() throws SQLException {
-//        String sql = "SELECT userId, name, email, NVL(commId,0) AS commId, cName " 
-//        		   + "FROM USERINFO u LEFT OUTER JOIN Community c ON u.commId = c.cId "
-//        		   + "ORDER BY userId";
-//		jdbcUtil.setSqlAndParameters(sql, null);		// JDBCUtil에 query문 설정
-//					
-//		try {
-//			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
-//			List<User> userList = new ArrayList<User>();	// User들의 리스트 생성
-//			while (rs.next()) {
-//				User user = new User(			// User 객체를 생성하여 현재 행의 정보를 저장
-//					rs.getString("userId"),
-//					null,
-//					rs.getString("name"),
-//					rs.getString("email"),
-//					null,
-//					rs.getInt("commId"),
-//					rs.getString("cName"));
-//				userList.add(user);				// List에 User 객체 저장
-//			}		
-//			return userList;					
-//			
-//		} catch (Exception ex) {
-//			ex.printStackTrace();
-//		} finally {
-//			jdbcUtil.close();		// resource 반환
-//		}
-//		return null;
-//	}
-//	
+	public List<User> findUserList(int userId) throws SQLException {
+        String sql = " SELECT userId, password, email, name, phone_number, birthday, gender, point " 
+        		   + " FROM USER " + " WHERE userID=? ";
+        jdbcUtil.setSqlAndParameters(sql, new Object[] { userId }); // JDBCUtil에 query문 설정
+					
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();			// query 실행			
+			List<User> userList = new ArrayList<User>();	// User들의 리스트 생성
+			while (rs.next()) {
+				User user = new User(			// User 객체를 생성하여 현재 행의 정보를 저장
+					rs.getString("userId"),
+					rs.getString("password"),
+					rs.getString("email"),
+					rs.getString("name"),
+					rs.getString("phone_number"),
+					rs.getDate("birthday"),
+					rs.getInt("gender"),
+					rs.getInt("point"));
+				userList.add(user);				// List에 User 객체 저장
+			}		
+			return userList;					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close();		// resource 반환
+		}
+		return null;
+	}
+	
 //	/**
 //	 * 전체 사용자 정보를 검색한 후 현재 페이지와 페이지당 출력할 사용자 수를 이용하여
 //	 * 해당하는 사용자 정보만을 List에 저장하여 반환.
