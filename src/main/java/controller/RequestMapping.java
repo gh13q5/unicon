@@ -35,8 +35,8 @@ public class RequestMapping {
         mappings.put("/login", new LoginController());
         mappings.put("/logout", new LogoutController());
         mappings.put("/userGameList", new ForwardController("/mypage.jsp"));
-        mappings.put("/updateRegister/user", new UpdateInfoController());
-        mappings.put("/updateRegister/company", new UpdateInfoController());
+        mappings.put("/updateRegister/user", new UpdateUserController());
+        mappings.put("/updateRegister/company", new UpdateUserController());
         
         // point
         mappings.put("/pointShop", new ViewPointshopController());
