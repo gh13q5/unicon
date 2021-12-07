@@ -1,4 +1,4 @@
-package model.dao;
+vpackage model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ public class UserDAO {
 	/**
 	 * 사용자 관리 테이블에 새로운 사용자 생성.
 	 */
-	public static int create(User user) throws SQLException {
+	public int create(User user) throws SQLException {
 		String sql = "INSERT INTO USERINFO VALUES (?, ?, ?, ?, ?, ?, ?, ?)";		
 		Object[] param = new Object[] {user.getUserId(), user.getPassword(), 
 						user.getEmail(), user.getName(), user.getPhone_number(), user.getBirthDay(), user.getGender(), 
@@ -91,7 +91,7 @@ public class UserDAO {
 	 * 주어진 사용자 ID에 해당하는 사용자 정보를 데이터베이스에서 찾아 User 도메인 클래스에 
 	 * 저장하여 반환.
 	 */
-	public static User findUser(String userId) throws SQLException {
+	public User findUser(String userId) throws SQLException {
         String sql = "SELECT password, email, name, phone_number, birthday, gender, point "
         			+ "FROM COMMONUSER "
         			+ "WHERE userid=? ";              
@@ -242,7 +242,7 @@ public class UserDAO {
 	/**
 	 * 주어진 사용자 ID에 해당하는 사용자가 존재하는지 검사 
 	 */
-	public static boolean existingUser(String userId) throws SQLException {
+	public boolean existingUser(String userId) throws SQLException {
 		String sql = "SELECT count(*) FROM USERINFO WHERE userid=?";      
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {userId});	// JDBCUtil에 query문과 매개 변수 설정
 
