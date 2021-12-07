@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import controller.Controller;
 import controller.info.UserSessionUtils;
-import model.service.UserManager;
+import model.dao.UserDAO;
 import model.User;
 
 public class UpdateUserController implements Controller {
@@ -31,9 +31,10 @@ public class UpdateUserController implements Controller {
 
     		log.debug("UpdateForm Request : {}", updateId);
     		
-    		UserManager manager = UserManager.getInstance();
-			User user = manager.findUser(updateId);	// 수정하려는 사용자 정보 검색
-			request.setAttribute("user", user);			
+    		UserDAO userManager = new UserDAO();
+    		
+			User user = userManager.findUser(updateId);	// 수정하려는 사용자 정보 검색
+			request.setAttribute("user", user);
 
 			HttpSession session = request.getSession();
 			if (UserSessionUtils.isLoginUser(updateId, session) ||
@@ -62,9 +63,7 @@ public class UpdateUserController implements Controller {
 			Integer.parseInt(request.getParameter("point")));
 
     	log.debug("Update User : {}", updateUser);
-
-		UserManager manager = UserManager.getInstance();
-		manager.update(updateUser);			
+			
         return "redirect:/mypage";			
     }
 }
