@@ -54,7 +54,7 @@ public class UserRegisterController implements Controller {
 		UserDAO userManager = new UserDAO();
 		
 		if (userManager.existingUser(user.getUserId()) == true) {
-			throw new ExistingUserException(user.getUserId() + "는 존재하는 아이디입니다.");
+			throw new ExistingUserException(user.getUserId() + "is aleady exist.");
 		}
 		return userManager.create(user);
 	}

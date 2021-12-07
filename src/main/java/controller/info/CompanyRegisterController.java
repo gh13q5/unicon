@@ -47,7 +47,7 @@ public class CompanyRegisterController implements Controller {
     	CompanyDAO companyManager = new CompanyDAO();
     	
 		if (companyManager.existingCompany(company.getCompanyId()) == true) {
-			throw new ExistingUserException(company.getCompanyId() + "는 존재하는 아이디입니다.");
+			throw new ExistingUserException(company.getCompanyId() + "is aleady exist.");
 		}
 		return companyManager.create(company);
 	}

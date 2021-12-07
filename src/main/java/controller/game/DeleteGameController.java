@@ -1,4 +1,4 @@
-package controller.info;
+package controller.game;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,8 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import controller.Controller;
-import model.User;
-import model.service.UserManager;
+import controller.info.DeleteUserController;
+import controller.info.UserSessionUtils;
+import model.dao.CompanyDAO;
 
 public class DeleteGameController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(DeleteUserController.class);
@@ -18,9 +19,10 @@ public class DeleteGameController implements Controller {
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
 		String deleteId = request.getParameter("category");
 		String CompanyId = request.getParameter("companyId");
+		CompanyDAO manager = new CompanyDAO();
+		
     	log.debug("Delete Game : {}", deleteId);
-
-    	UserManager manager = UserManager.getInstance();		
+		
 		HttpSession session = request.getSession();	
 	
 		if ((UserSessionUtils.isLoginUser("admin", session) && 	// 로그인한 사용자가 관리자이고 	
@@ -37,8 +39,11 @@ public class DeleteGameController implements Controller {
 		}
 		
 		/* 삭제가 불가능한 경우 */
-		User user = manager.findUser(deleteId);	// 사용자 정보 검색
-		request.setAttribute("user", user);						
+	    
+		
+		manager.findCompany(deleteId);	// 사용자 정보 검색
+	    
+		request.setAttribute("company", manager);						
 		request.setAttribute("deleteFailed", true);
 		String msg = (UserSessionUtils.isLoginUser("admin", session)) 
 				   ? "시스템 관리자 정보는 삭제할 수 없습니다."		
