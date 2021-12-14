@@ -8,42 +8,43 @@ import model.Game;
 import java.util.Date;
 
 /**
- * µî·ÏµÈ °ÔÀÓ °ü¸®¸¦ À§ÇØ µ¥ÀÌÅÍº£ÀÌ½º ÀÛ¾÷À» Àü´ãÇÏ´Â DAO Å¬·¡½º GAME Å×ÀÌºí¿¡ °ÔÀÓ Á¤º¸¸¦ Ãß°¡, ¼öÁ¤, »èÁ¦, °Ë»ö ¼öÇà
+ * ë“±ë¡ëœ ê²Œì„ ê´€ë¦¬ë¥¼ ìœ„í•´ ë°ì´í„°ë² ì´ìŠ¤ ì‘ì—…ì„ ì „ë‹´í•˜ëŠ” DAO í´ë˜ìŠ¤ GAME í…Œì´ë¸”ì— ê²Œì„ ì •ë³´ë¥¼ ì¶”ê°€, ìˆ˜ì •, ì‚­ì œ, ê²€ìƒ‰ ìˆ˜í–‰
  */
 
 public class GameDAO {
 	private JDBCUtil jdbcUtil = null;
 
 	public GameDAO() { 
-		jdbcUtil = new JDBCUtil(); // JDBCUtil °´Ã¼ »ı¼º
+		jdbcUtil = new JDBCUtil(); // JDBCUtil ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 	}
 
 	/**
-	 * GAME Å×ÀÌºí¿¡ »õ·Î¿î °ÔÀÓ »ı¼º.
+	 * GAME í…Œì´ë¸”ì— ìƒˆë¡œìš´ ê²Œì„ ìƒì„±.
 	 */
 	public int create(Game game) throws SQLException {
-		String sql = "INSERT INTO Game VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		Object[] param = new Object[] { game.getGame_id(), game.getTitle(), new java.sql.Date(game.getStart_date().getTime()), 
-				new java.sql.Date(game.getEnd_date().getTime()),
+		String sql = "INSERT INTO Game "
+				+ "(title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations, company_id) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		Object[] param = new Object[] { game.getGame_id(), game.getTitle(), game.getStart_date(), game.getEnd_date(),
 				game.getImage_address(), game.getDescription(), game.getCategory(), game.getReward_image(),
 				game.getReward_text(), game.getTotal_reservations(), game.getCompany_id() };
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil ¿¡ insert¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil ï¿½ï¿½ insertï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // insert ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate(); // insert ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ï¿½ï¿½È¯
 		}
 		return 0;
 	}
 
 	/**
-	 * ±âÁ¸ÀÇ °ÔÀÓ Á¤º¸¸¦ ¼öÁ¤.
+	 * ê¸°ì¡´ì˜ ê²Œì„ ì •ë³´ë¥¼ ìˆ˜ì •.
 	 */
 	public int update(Game game) throws SQLException {
 		String sql = "UPDATE Game "
@@ -52,53 +53,53 @@ public class GameDAO {
 		Object[] param = new Object[] { game.getTitle(), game.getStart_date(), game.getEnd_date(),
 				game.getImage_address(), game.getDescription(), game.getCategory(), game.getReward_image(),
 				game.getReward_text(), game.getTotal_reservations() };
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil¿¡ update¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtilï¿½ï¿½ updateï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // update ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate(); // update ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ï¿½ï¿½È¯
 		}
 		return 0;
 	}
 
 	/**
-	 * game_id¿¡ ÇØ´çÇÏ´Â °ÔÀÓÀ» »èÁ¦.
+	 * game_idï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public int remove(String gameId) throws SQLException {
 		String sql = "DELETE FROM Game WHERE game_id=?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId }); // JDBCUtil¿¡ delete¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId }); // JDBCUtilï¿½ï¿½ deleteï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // delete ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate(); // delete ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ï¿½ï¿½È¯
 		}
 		return 0;
 	}
 
 	/**
-	 * ÁÖ¾îÁø game_id¿¡ ÇØ´çÇÏ´Â °ÔÀÓÀ» µ¥ÀÌÅÍº£ÀÌ½º¿¡¼­ Ã£¾Æ Game µµ¸ŞÀÎ Å¬·¡½º¿¡ ÀúÀåÇÏ¿© ¹İÈ¯.
+	 * ï¿½Ö¾ï¿½ï¿½ï¿½ game_idï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ Game ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½È¯.
 	 */
 	public Game findGame(String gameId) throws SQLException {
 		String sql = "SELECT  title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations, company_id "
 				+ "FROM Game " + "WHERE game_id=? ";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId }); // JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId }); // JDBCUtilï¿½ï¿½ queryï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query ½ÇÇà
-			if (rs.next()) { // ÇĞ»ı Á¤º¸ ¹ß°ß
-				Game game = new Game( // User °´Ã¼¸¦ »ı¼ºÇÏ¿© ÇĞ»ı Á¤º¸¸¦ ÀúÀå
+			ResultSet rs = jdbcUtil.executeQuery(); // query ï¿½ï¿½ï¿½ï¿½
+			if (rs.next()) { // ï¿½Ğ»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+				Game game = new Game( // User ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ğ»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						Integer.parseInt(gameId), rs.getString("title"), rs.getDate("start_date"),
 						rs.getDate("end_date"), rs.getString("image_address"), rs.getString("description"),
 						rs.getString("category"), rs.getString("reward_image"), rs.getString("reward_text"),
@@ -108,165 +109,165 @@ public class GameDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
 
 	/**
-	 * ÀüÃ¼ °ÔÀÓ Á¤º¸¸¦ °Ë»öÇÏ¿© List¿¡ ÀúÀå ¹× ¹İÈ¯
+	 * ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ï¿ï¿½ Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯
 	 */
 	public List<Game> findGameList() throws SQLException {
 		String sql = "SELECT game_id, title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations, company_id "
 				+ "FROM Game " + "ORDER BY game_id";
-		jdbcUtil.setSqlAndParameters(sql, null); // JDBCUtil¿¡ query¹® ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, null); // JDBCUtilï¿½ï¿½ queryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query ½ÇÇà
-			List<Game> gameList = new ArrayList<Game>(); // GameµéÀÇ ¸®½ºÆ® »ı¼º
+			ResultSet rs = jdbcUtil.executeQuery(); // query ï¿½ï¿½ï¿½ï¿½
+			List<Game> gameList = new ArrayList<Game>(); // Gameï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			while (rs.next()) {
-				Game game = new Game( // Game °´Ã¼¸¦ »ı¼ºÇÏ¿© ÇöÀç ÇàÀÇ Á¤º¸¸¦ ÀúÀå
+				Game game = new Game( // Game ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						rs.getInt("game_id"), rs.getString("title"), rs.getDate("start_date"),
 						rs.getDate("end_date"), rs.getString("image_address"), rs.getString("description"),
 						rs.getString("category"), rs.getString("reward_image"), rs.getString("reward_text"),
 						rs.getInt("total_reservations"), rs.getInt("company_id"));
-				gameList.add(game); // List¿¡ Game °´Ã¼ ÀúÀå
+				gameList.add(game); // Listï¿½ï¿½ Game ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			}
 			return gameList;
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
 
 	/**
-	 * Ä«Å×°í¸®¿¡ ÇØ´çÇÏ´Â °ÔÀÓ Á¤º¸¸¦ °Ë»öÇÏ¿© List¿¡ ÀúÀå ¹× ¹İÈ¯(¿¹¾à°¡´É)
+	 * Ä«ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ï¿ï¿½ Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯(ï¿½ï¿½ï¿½à°¡ï¿½ï¿½)
 	 */
 	public List<Game> categoryGameList(String category) throws SQLException {
 		String sql = "SELECT game_id, title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations, company_id "
 				+ "FROM Game " + "WHERE category=? AND start_date <= (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) AND end_date >= (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) " ;
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { category }); // JDBCUtil¿¡ query¹® ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { category }); // JDBCUtilï¿½ï¿½ queryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query ½ÇÇà
-			List<Game> categorygameList = new ArrayList<Game>(); // GameµéÀÇ ¸®½ºÆ® »ı¼º
+			ResultSet rs = jdbcUtil.executeQuery(); // query ï¿½ï¿½ï¿½ï¿½
+			List<Game> categorygameList = new ArrayList<Game>(); // Gameï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			while (rs.next()) {
-				Game game = new Game( // Game °´Ã¼¸¦ »ı¼ºÇÏ¿© ÇöÀç ÇàÀÇ Á¤º¸¸¦ ÀúÀå
+				Game game = new Game( // Game ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						rs.getInt("game_id"), rs.getString("title"), rs.getDate("start_date"),
 						rs.getDate("end_date"), rs.getString("image_address"), rs.getString("description"),
 						rs.getString("category"), rs.getString("reward_image"), rs.getString("reward_text"),
 						rs.getInt("total_reservations"), rs.getInt("company_id"));
-				categorygameList.add(game); // List¿¡ Game °´Ã¼ ÀúÀå
+				categorygameList.add(game); // Listï¿½ï¿½ Game ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			}
 			return categorygameList;
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
 	
 	/**
-	 * Ä«Å×°í¸®¿¡ ÇØ´çÇÏ´Â °ÔÀÓ Á¤º¸¸¦ °Ë»öÇÏ¿© List¿¡ ÀúÀå ¹× ¹İÈ¯(¿¹¾àºÒ°¡)
+	 * Ä«ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ï¿ï¿½ Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯(ï¿½ï¿½ï¿½ï¿½Ò°ï¿½)
 	 */
 	public List<Game> endCategoryGameList(String category) throws SQLException {
 		String sql = "SELECT game_id, title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations, company_id "
 				+ "FROM Game " + "WHERE category=? AND end_date < (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) " ;
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { category }); // JDBCUtil¿¡ query¹® ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { category }); // JDBCUtilï¿½ï¿½ queryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query ½ÇÇà
-			List<Game> categorygameList = new ArrayList<Game>(); // GameµéÀÇ ¸®½ºÆ® »ı¼º
+			ResultSet rs = jdbcUtil.executeQuery(); // query ï¿½ï¿½ï¿½ï¿½
+			List<Game> categorygameList = new ArrayList<Game>(); // Gameï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			while (rs.next()) {
-				Game game = new Game( // Game °´Ã¼¸¦ »ı¼ºÇÏ¿© ÇöÀç ÇàÀÇ Á¤º¸¸¦ ÀúÀå
+				Game game = new Game( // Game ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						rs.getInt("game_id"), rs.getString("title"), rs.getDate("start_date"),
 						rs.getDate("end_date"), rs.getString("image_address"), rs.getString("description"),
 						rs.getString("category"), rs.getString("reward_image"), rs.getString("reward_text"),
 						rs.getInt("total_reservations"), rs.getInt("company_id"));
-				categorygameList.add(game); // List¿¡ Game °´Ã¼ ÀúÀå
+				categorygameList.add(game); // Listï¿½ï¿½ Game ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			}
 			return categorygameList;
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
 	
 	/**
-	 * °Ë»ö Å°¿öµå ¿¡ ÇØ´çÇÏ´Â °ÔÀÓ Á¤º¸¸¦ °Ë»öÇÏ¿© List¿¡ ÀúÀå ¹× ¹İÈ¯(¿¹¾à°¡´É)
+	 * ï¿½Ë»ï¿½ Å°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ï¿ï¿½ Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯(ï¿½ï¿½ï¿½à°¡ï¿½ï¿½)
 	 */
 	public List<Game> searchGameList(String keyWord) throws SQLException {
 		String sql = "SELECT game_id, title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations, company_id "
 				+ "FROM Game " + "WHERE title like ? AND start_date <= (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) AND end_date >= (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) " ;
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { keyWord }); // JDBCUtil¿¡ query¹® ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { keyWord }); // JDBCUtilï¿½ï¿½ queryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query ½ÇÇà
-			List<Game> searchGameList = new ArrayList<Game>(); // GameµéÀÇ ¸®½ºÆ® »ı¼º
+			ResultSet rs = jdbcUtil.executeQuery(); // query ï¿½ï¿½ï¿½ï¿½
+			List<Game> searchGameList = new ArrayList<Game>(); // Gameï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			while (rs.next()) {
-				Game game = new Game( // Game °´Ã¼¸¦ »ı¼ºÇÏ¿© ÇöÀç ÇàÀÇ Á¤º¸¸¦ ÀúÀå
+				Game game = new Game( // Game ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						rs.getInt("game_id"), rs.getString("title"), rs.getDate("start_date"),
 						rs.getDate("end_date"), rs.getString("image_address"), rs.getString("description"),
 						rs.getString("category"), rs.getString("reward_image"), rs.getString("reward_text"),
 						rs.getInt("total_reservations"), rs.getInt("company_id"));
-				searchGameList.add(game); // List¿¡ Game °´Ã¼ ÀúÀå
+				searchGameList.add(game); // Listï¿½ï¿½ Game ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			}
 			return searchGameList;
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
 	
 	/**
-	 * °Ë»ö Å°¿öµå ¿¡ ÇØ´çÇÏ´Â °ÔÀÓ Á¤º¸¸¦ °Ë»öÇÏ¿© List¿¡ ÀúÀå ¹× ¹İÈ¯(¿¹¾à°¡´É)
+	 * ï¿½Ë»ï¿½ Å°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ï¿ï¿½ Listï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½È¯(ï¿½ï¿½ï¿½à°¡ï¿½ï¿½)
 	 */
 	public List<Game> endsearchGameList(String keyWord) throws SQLException {
 		String sql = "SELECT game_id, title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations, company_id "
 				+ "FROM Game " + "WHERE title like ? AND end_date < (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) " ;
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { keyWord }); // JDBCUtil¿¡ query¹® ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { keyWord }); // JDBCUtilï¿½ï¿½ queryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query ½ÇÇà
-			List<Game> endsearchGameList = new ArrayList<Game>(); // GameµéÀÇ ¸®½ºÆ® »ı¼º
+			ResultSet rs = jdbcUtil.executeQuery(); // query ï¿½ï¿½ï¿½ï¿½
+			List<Game> endsearchGameList = new ArrayList<Game>(); // Gameï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 			while (rs.next()) {
-				Game game = new Game( // Game °´Ã¼¸¦ »ı¼ºÇÏ¿© ÇöÀç ÇàÀÇ Á¤º¸¸¦ ÀúÀå
+				Game game = new Game( // Game ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 						rs.getInt("game_id"), rs.getString("title"), rs.getDate("start_date"),
 						rs.getDate("end_date"), rs.getString("image_address"), rs.getString("description"),
 						rs.getString("category"), rs.getString("reward_image"), rs.getString("reward_text"),
 						rs.getInt("total_reservations"), rs.getInt("company_id"));
-				endsearchGameList.add(game); // List¿¡ Game °´Ã¼ ÀúÀå
+				endsearchGameList.add(game); // Listï¿½ï¿½ Game ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
 			}
 			return endsearchGameList;
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ï¿½ï¿½È¯
 		}
 		return null;
 	}
 
 	/**
-	 * ÁÖ¾îÁø game_id¿¡ ÇØ´çÇÏ´Â °ÔÀÓÀÌ Á¸ÀçÇÏ´ÂÁö °Ë»ç
+	 * ï¿½Ö¾ï¿½ï¿½ï¿½ game_idï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
 	 */
 	public boolean existingGame(String gameId) throws SQLException {
 		String sql = "SELECT count(*) FROM Game WHERE game_id=?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId }); // JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId }); // JDBCUtilï¿½ï¿½ queryï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query ½ÇÇà
+			ResultSet rs = jdbcUtil.executeQuery(); // query ï¿½ï¿½ï¿½ï¿½
 			if (rs.next()) {
 				int count = rs.getInt(1);
 				return (count == 1 ? true : false);
@@ -274,7 +275,7 @@ public class GameDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ï¿½ï¿½È¯
 		}
 		return false;
 	}

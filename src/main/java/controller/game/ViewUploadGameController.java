@@ -1,15 +1,20 @@
-package controller.reservation;
+package controller.game;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
-import model.Reservation;
-import model.dao.ReservationDAO;
+import model.Game;
+import model.Genre;
+import model.dao.GenreDAO;
 
-public class CancleReservationController implements Controller {
+public class ViewUploadGameController implements Controller {
 
-	ReservationDAO reservationDAO = new ReservationDAO();
+	GenreDAO genreDAO = new GenreDAO();
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -22,19 +27,15 @@ public class CancleReservationController implements Controller {
 		 */
 
 		// String gameId = req.getParameter("gameId");
-		String gameId = "1"; // 임시
-		String userId = "0"; // 임시
+		ArrayList<Genre> genreList = new ArrayList<>();
 
 		try {
-			// 나중에 Login 구현되면 그 안으로 들어갈 예정
-			boolean isReservate = reservationDAO.isReservate(gameId, userId); // DB에서 user가 게임 예약한 기록 확인
-			if (isReservate) {
-				int result = reservationDAO.removeByUserIdAndGameId(gameId, userId);
-			}
+			genreList = (ArrayList<Genre>) genreDAO.findGenreList();
 		} catch (Exception e) {
 			return "redirect:/";
 		}
 
-		return "redirect:/game"; // 게임 예약 페이지로 이동
+		req.setAttribute("genreList", genreList);
+		return "/uploadGame.jsp"; // 일단은 메인 페이지로 이동
 	}
 }
