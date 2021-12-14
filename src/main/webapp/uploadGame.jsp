@@ -95,7 +95,7 @@
 					<div id="upload-title">게임 등록</div>
 					<!-- 게임 등록 form -->
 					<form action="/unicon/upload" id="upload-form" role="form"
-						method="POST">
+						enctype="multipart/form-data" method="POST">
 						<div id="form-container" class="container">
 							<!-- 게임 이름 입력 -->
 							<div class="row">
@@ -120,17 +120,20 @@
 									<label for="image01"> <img
 										src="images/image_upload.jpg" class="image-upload-icon"
 										alt="...">
-									</label> <input type="file" class="form-control" id="image01">
-									<label for="image02"> <img
+									</label> <input type="file" class="form-control" id="image01"
+										name="image01"> <label for="image02"> <img
 										src="images/image_upload.jpg" class="image-upload-icon"
 										alt="...">
-									</label><input type="file" class="form-control" id="image02"> <label
-										for="image03"> <img src="images/image_upload.jpg"
-										class="image-upload-icon" alt="...">
-									</label><input type="file" class="form-control" id="image03"> <label
-										for="image04"> <img src="images/image_upload.jpg"
-										class="image-upload-icon" alt="...">
-									</label> <input type="file" class="form-control" id="image04">
+									</label><input type="file" class="form-control" id="image02"
+										name="image02"> <label for="image03"> <img
+										src="images/image_upload.jpg" class="image-upload-icon"
+										alt="...">
+									</label><input type="file" class="form-control" id="image03"
+										name="image03"> <label for="image04"> <img
+										src="images/image_upload.jpg" class="image-upload-icon"
+										alt="...">
+									</label> <input type="file" class="form-control" id="image04"
+										name="image04">
 								</div>
 							</div>
 							<!-- 게임 소개글 입력 -->
