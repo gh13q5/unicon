@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,12 +18,12 @@
 <!-- CSS -->
 <link rel="stylesheet" href="css/reservation.css">
 
-<title>Âò²Ç - °ÔÀÓ ¿¹¾à</title>
+<title>ì°œê½ - ê²Œìž„ ì˜ˆì•½</title>
 </head>
 <body>
 	<div id="header" align="center">
 		<h1>
-			<br>Âò²Ç
+			<br>ì°œê½
 		</h1>
 		<hr>
 		<div class="container-fluid">
@@ -32,7 +34,7 @@
 							<h2 class="accordion-header" id="headingOne">
 								<button class="accordion-button" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseOne"
-									aria-expanded="true" aria-controls="collapseOne">¸Þ´º1</button>
+									aria-expanded="true" aria-controls="collapseOne">ë©”ë‰´1</button>
 							</h2>
 							<div id="collapseOne" class="accordion-collapse collapse show"
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -40,10 +42,10 @@
 								<div class="list-group">
 									<a href="#"
 										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Þ´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Þ´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º4</a>
+										aria-current="true"> ì„œë¸Œë©”ë‰´1 </a> <a href="#"
+										class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´2</a> <a
+										href="#" class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´3</a>
+									<a href="#" class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´4</a>
 								</div>
 
 							</div>
@@ -52,7 +54,7 @@
 							<h2 class="accordion-header" id="headingTwo">
 								<button class="accordion-button collapsed" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-									aria-expanded="false" aria-controls="collapseTwo">¸Þ´º2</button>
+									aria-expanded="false" aria-controls="collapseTwo">ë©”ë‰´2</button>
 							</h2>
 							<div id="collapseTwo" class="accordion-collapse collapse"
 								aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -60,10 +62,10 @@
 								<div class="list-group">
 									<a href="#"
 										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Þ´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Þ´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º4</a>
+										aria-current="true"> ì„œë¸Œë©”ë‰´1 </a> <a href="#"
+										class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´2</a> <a
+										href="#" class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´3</a>
+									<a href="#" class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´4</a>
 								</div>
 							</div>
 						</div>
@@ -72,7 +74,7 @@
 								<button class="accordion-button collapsed" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseThree"
 									aria-expanded="false" aria-controls="collapseThree">
-									¸Þ´º3</button>
+									ë©”ë‰´3</button>
 							</h2>
 							<div id="collapseThree" class="accordion-collapse collapse"
 								aria-labelledby="headingThree"
@@ -81,21 +83,21 @@
 								<div class="list-group">
 									<a href="#"
 										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Þ´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Þ´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º4</a>
+										aria-current="true"> ì„œë¸Œë©”ë‰´1 </a> <a href="#"
+										class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´2</a> <a
+										href="#" class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´3</a>
+									<a href="#" class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´4</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-8" align="left" style="padding: 50px;">
-					<!-- ÀÛ¼º ´Ù ÇÏ¸é ¸Þ´º¶û ¾ÆÀÌµðÃ¢Àº ¾ø¾ÖµÎ±â -->
-					<h1 id="title">°ÔÀÓ ÀÌ¸§</h1>
-					<h5 id="company-title">°³¹ß»ç ÀÌ¸§</h5>
+					<!-- ìž‘ì„± ë‹¤ í•˜ë©´ ë©”ë‰´ëž‘ ì•„ì´ë””ì°½ì€ ì—†ì• ë‘ê¸° -->
+					<h1 id="title">${game.title}</h1>
+					<h5 id="company-title">${company.name}</h5>
 					<hr>
-					<!-- ÀÌ¹ÌÁö ½½¶óÀÌµå -->
+					<!-- ì´ë¯¸ì§€ ìŠ¬ë¼ì´ë“œ -->
 					<div id="game-image-carousel" class="carousel slide"
 						data-bs-ride="carousel">
 						<div class="carousel-indicators">
@@ -130,21 +132,31 @@
 						</button>
 					</div>
 					<div id="game-tag">
-						<button type="button" class="btn btn-warning">#°ÔÀÓÅÂ±×01</button>
-						<button type="button" class="btn btn-warning">#°ÔÀÓÅÂ±×02</button>
-						<button type="button" class="btn btn-warning">#°ÔÀÓÅÂ±×03</button>
+						<c:forEach var="tag" items="${genreList}">
+							<button type="button" class="btn btn-warning">#${tag.name}</button>
+						</c:forEach>
 					</div>
-					<!-- ¿¹¾àÀÚ Åë°è ¹× ¿¹¾à ¹öÆ° -->
+					<!-- ì˜ˆì•½ìž í†µê³„ ë° ì˜ˆì•½ ë²„íŠ¼ -->
 					<div id="reservation-status">
 						<div id="total-reservate" class="container">
 							<div class="row">
-								<div id="total-reservate-text" class="col-9">¿¹¾à ÇöÈ²</div>
-								<div id="total-reservate-num" class="col-3">n¸í</div>
+								<div id="total-reservate-text" class="col-9">ì˜ˆì•½ í˜„í™©</div>
+								<div id="total-reservate-num" class="col-3">${game.total_reservations}ëª…</div>
 							</div>
 						</div>
-						<button id="reservate" type="button" class="btn btn-warning">»çÀü¿¹¾à</button>
+						<c:choose>
+							<c:when test="${reservate eq true}">
+								<button id="reservate" type="button" class="btn btn-warning"
+									onClick="deleteReservation()">ì˜ˆì•½ì·¨ì†Œ</button>
+							</c:when>
+							<c:otherwise>
+								<button id="reservate" type="button" class="btn btn-warning"
+									onClick="isLogin()">ì‚¬ì „ì˜ˆì•½</button>
+							</c:otherwise>
+						</c:choose>
+						<button id="reservate" type="button" class="btn btn-warning">ì‚¬ì „ì˜ˆì•½</button>
 					</div>
-					<!-- °ÔÀÓ ¼Ò°³ µî Ãß°¡ ¼³¸í -->
+					<!-- ê²Œìž„ ì†Œê°œ ë“± ì¶”ê°€ ì„¤ëª… -->
 					<div id="game-more-inform" class="card text-center">
 						<div class="card-header">
 							<ul id="myTab" class="nav nav-tabs card-header-tabs"
@@ -153,31 +165,29 @@
 										id="description-tab" class="nav-link active"
 										data-bs-toggle="tab" data-bs-target="#description"
 										type="button" role="tab" aria-controls="description"
-										aria-selected="true">°ÔÀÓ ¼Ò°³</button></li>
+										aria-selected="true">ê²Œìž„ ì†Œê°œ</button></li>
 								<li id="reward-title" class="nav-item" role="presentation"><button
 										id="reward-tab" class="nav-link" data-bs-toggle="tab"
 										data-bs-target="#reward" type="button" role="tab"
-										aria-controls="reward" aria-selected="false">»çÀü ¿¹¾à º¸»ó</button></li>
+										aria-controls="reward" aria-selected="false">ì‚¬ì „ ì˜ˆì•½ ë³´ìƒ</button></li>
 								<li id="statistics-title" class="nav-item" role="presentation"><button
 										id="statistics-tab" class="nav-link" data-bs-toggle="tab"
 										data-bs-target="#statistics" type="button" role="tab"
-										aria-controls="statistics" aria-selected="false">¿¹¾àÀÚ
-										Åë°è</button></li>
+										aria-controls="statistics" aria-selected="false">ì˜ˆì•½ìž
+										í†µê³„</button></li>
 							</ul>
 						</div>
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="description"
 								role="tabpannel" aria-labelledby="description-tab">
-								<h5 class="card-title">(°ÔÀÓ ¼Ò°³±Û ¿¹½Ã : ÇÃ·¹ÀÌ ½ºÅä¾î 'µå·¡°ï ÇÃ¶óÀÌÆ®' ¹ßÃé)</h5>
+								<h5 class="card-title">${game.title }</h5>
 								<br>
-								<p class="card-text">
-									µå·¡°ï ÇÃ¶óÀÌÆ®´Â ¾Õ¿¡ ³õÀÎ ÀûµéÀ» ¸¶¹ýÀ¸·Î Á¦¾ÐÇØ ´õ ¸Ö¸® ³¯¾Æ°¡´Â °ÔÀÓÀÔ´Ï´Ù.<br>18Á¾ÀÇ Ä³¸¯ÅÍ¿Í
-									300¿© Á¾ÀÇ »õ³¢¿ë°ú ÇÔ²², ÇÑ¼ÕÀ¸·Î º¸½º¸¦ ¹°¸®ÃÄº¸¼¼¿ä!
-								</p>
+								<p class="card-text">${game.description}</p>
 							</div>
 							<div class="tab-pane fade" id="reward" role="tabpannel"
 								aria-labelledby="reward-tab">
 								<img src="images/sample03.jpg" class="d-block w-100" alt="...">
+								<br> ${game.reward_text}
 							</div>
 							<div class="tab-pane fade" id="statistics" role="tabpannel"
 								aria-labelledby="statistics-tab">
@@ -218,8 +228,9 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
-	<!-- navbar ÅÇ ½ºÅ©¸³Æ® -->
+	<!-- navbar íƒ­ ìŠ¤í¬ë¦½íŠ¸ -->
 	<script>
+		// ê²Œìž„ ì†Œê°œ - ë³´ìƒ - ì˜ˆì•½ìž í†µê³„ íƒ­ í´ë¦­ ì‹œ
 		var triggerTabList = [].slice.call(document
 				.querySelectorAll('#myTab button'))
 		triggerTabList.forEach(function(triggerEl) {
@@ -230,6 +241,32 @@
 				tabTrigger.show()
 			})
 		})
+	</script>
+	<script>
+		// ê²Œìž„ ì˜ˆì•½ ë²„íŠ¼ í´ë¦­ ì‹œ
+		function isLogin(){ 
+			<%-- var login = '<%=(String) request.getAttribute("login")%>'; --%>
+			
+			// ë¡œê·¸ì¸ êµ¬í˜„ ì „ ìž„ì‹œë¡œ ëº´ë‘ 
+			alert('ì˜ˆì•½ë˜ì—ˆìŠµë‹ˆë‹¤!');
+			const gameId = '${game.game_id}';
+			location.href = '/unicon/reservate?gameId=' + gameId;
+			/* if (login === 'true') { // ë¡œê·¸ì¸ ë˜ì–´ìžˆëŠ” ê²½ìš°
+				alert('ì˜ˆì•½ë˜ì—ˆìŠµë‹ˆë‹¤!');
+				const gameId = '${game.game_id}';
+				location.href = '/resevate?gameId='
+						+ gameId;
+			} else { // ë¡œê·¸ì¸ ë˜ì–´ìžˆì§€ ì•Šì€ ê²½ìš°
+				alert('ë¡œê·¸ì¸ì´ í•„ìš”í•©ë‹ˆë‹¤!');
+			} */ 
+		}
+		
+		function deleteReservation(){
+			// ë¡œê·¸ì¸ êµ¬í˜„ ì „ ìž„ì‹œë¡œ ëº´ë‘ 
+			alert('ì˜ˆì•½ì´ ì·¨ì†Œë˜ì—ˆìŠµë‹ˆë‹¤!');
+			const gameId = '${game.game_id}';
+			location.href = '/unicon/cancle?gameId=' + gameId;
+		}
 	</script>
 </body>
 </html>

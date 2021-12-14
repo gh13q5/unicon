@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -94,21 +94,23 @@
 				<div class="col-8" align="center" style="padding: 50px;">
 					<div id="upload-title">게임 등록</div>
 					<!-- 게임 등록 form -->
-					<form id="upload-form">
+					<form action="/unicon/upload" id="upload-form" role="form"
+						method="POST">
 						<div id="form-container" class="container">
 							<!-- 게임 이름 입력 -->
 							<div class="row">
 								<div id="name-label" class="col-4">게임 이름</div>
 								<div id="name-input" class="col-6">
-									<input type="text" class="form-control" id="name">
+									<input type="text" class="form-control" id="name" name="title">
 								</div>
 							</div>
 							<!-- 예약 기간 입력 -->
 							<div class="row">
 								<div id="period-label" class="col-4">예약 기간</div>
 								<div id="period-input" class="col-6">
-									<input type="date" class="form-control" id="start-period">
-									~ <input type="date" class="form-control" id="end-period">
+									<input type="date" class="form-control" id="start-period"
+										name="start_date"> ~ <input type="date"
+										class="form-control" id="end-period" name="end_date">
 								</div>
 							</div>
 							<!-- 홍보 이미지 업로드 -->
@@ -135,7 +137,8 @@
 							<div id="description-row" class="row">
 								<div id="description-label" class="col">게임 소개글</div>
 								<div id="description-input">
-									<textarea class="form-control" id="description" rows="8"></textarea>
+									<textarea class="form-control" id="description" rows="8"
+										name="description"></textarea>
 								</div>
 							</div>
 							<!-- 게임 장르 체크박스  -->
@@ -143,28 +146,24 @@
 								<div id="genre-label" class="col">게임 장르 (최소 1개 이상)</div>
 								<div id="genre-input">
 									<div class="checkbox-group">
-										<input class="form-check-input" type="checkbox" value=""
-											id="genre01"> <label class="form-check-label"
-											for="genre01">게임장르01</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre02"> <label
-											class="form-check-label" for="genre02">게임장르02</label> <input
-											class="form-check-input" type="checkbox" value=""
-											id="genre03"> <label class="form-check-label"
-											for="genre03">게임장르03</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre04"> <label
-											class="form-check-label" for="genre04">게임장르04</label>
-									</div>
-									<div class="checkbox-group">
-										<input class="form-check-input" type="checkbox" value=""
-											id="genre05"> <label class="form-check-label"
-											for="genre05">게임장르05</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre06"> <label
-											class="form-check-label" for="genre06">게임장르06</label> <input
-											class="form-check-input" type="checkbox" value=""
-											id="genre07"> <label class="form-check-label"
-											for="genre07">게임장르07</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre08"> <label
-											class="form-check-label" for="genre08">게임장르08</label>
+										<c:forEach var="tag" items="${genreList}" varStatus="status">
+											<c:choose>
+												<c:when
+													test="${(status.index % 4) eq 0 and status.index ne 0}">
+													<br>
+													<input class="form-check-input" type="checkbox"
+														value="${tag.genre_id }" id="${tag.genre_id }"
+														name="tag[]">
+													<label class="form-check-label" for="${tag.genre_id }">${tag.name }</label>
+												</c:when>
+												<c:otherwise>
+													<input class="form-check-input" type="checkbox"
+														value="${tag.genre_id }" id="${tag.genre_id }"
+														name="tag[]">
+													<label class="form-check-label" for="${tag.genre_id }">${tag.name }</label>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
 									</div>
 								</div>
 							</div>
@@ -173,7 +172,8 @@
 							<div id="reward-description-row" class="row">
 								<div id="reward-description-label" class="col">사전예약 보상 목록</div>
 								<div id="reward-description-input">
-									<textarea class="form-control" id="reward-description" rows="8"></textarea>
+									<textarea class="form-control" id="reward-description" rows="8"
+										name="reward_text"></textarea>
 									<!-- 게임 보상 이미지 업로드 -->
 									<div id="reward-image-input" style="margin-top: 10px;">
 										<label for="reward-image01"> <img
@@ -195,7 +195,7 @@
 									</div>
 								</div>
 							</div>
-							<button id="upload-btn" type="button" class="btn btn-warning">게임
+							<button id="upload-btn" type="submit" class="btn btn-warning">게임
 								등록</button>
 						</div>
 					</form>

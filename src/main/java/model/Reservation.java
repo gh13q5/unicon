@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Reservation {
 
+	private int reservation_id;
 	private Date reservation_date;
 	private int game_id;
 	private int user_id;
@@ -11,7 +12,8 @@ public class Reservation {
 	//»ı¼ºÀÚ
 	public Reservation() {}
 	
-	public Reservation(Date reservation_date, int game_id, int user_id) {
+	public Reservation(int reservation_id, Date reservation_date, int game_id, int user_id) {
+		this.reservation_id = reservation_id;
 		this.reservation_date = reservation_date;
 		this.game_id = game_id;
 		this.user_id = user_id;
@@ -40,6 +42,14 @@ public class Reservation {
 
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
+	}
+
+	public int getReservation_id() {
+		return reservation_id;
+	}
+
+	public void setReservation_id(int reservation_id) {
+		this.reservation_id = reservation_id;
 	}
 	
 }
