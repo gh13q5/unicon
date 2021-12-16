@@ -8,111 +8,111 @@ import java.util.List;
 import model.Company;
 
 /**
- * 사용자 관리를 위해 데이터베이스 작업을 전담하는 DAO 클래스 USERINFO 테이블에 사용자 정보를 추가, 수정, 삭제, 검색 수행
+ * �궗�슜�옄 愿�由щ�� �쐞�빐 �뜲�씠�꽣踰좎씠�뒪 �옉�뾽�쓣 �쟾�떞�븯�뒗 DAO �겢�옒�뒪 USERINFO �뀒�씠釉붿뿉 �궗�슜�옄 �젙蹂대�� 異붽�, �닔�젙, �궘�젣, 寃��깋 �닔�뻾
  */
 public class CompanyDAO {
 	private JDBCUtil jdbcUtil = null;
 
 	public CompanyDAO() {
-		jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성
+		jdbcUtil = new JDBCUtil(); // JDBCUtil 媛앹껜 �깮�꽦
 	}
 
 	/**
-	 * 회사 관리 테이블에 새로운 회사 생성.
+	 * �쉶�궗 愿�由� �뀒�씠釉붿뿉 �깉濡쒖슫 �쉶�궗 �깮�꽦.
 	 */
 	public int create(Company company) throws SQLException {
 		String sql = "INSERT INTO COMPANY VALUES (?, ?, ?, ?, ?, ?)";
 		Object[] param = new Object[] { company.getCompanyId(), company.getId(), company.getPassword(),
 				company.getEmail(), company.getName(), company.getPhone_number() };
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil �뿉 insert臾멸낵 留ㅺ컻 蹂��닔 �꽕�젙
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // insert 문 실행
+			int result = jdbcUtil.executeUpdate(); // insert 臾� �떎�뻾
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 반환
+			jdbcUtil.close(); // resource 諛섑솚
 		}
 		return 0;
 	}
 
 	/**
-	 * 기존의 회사 정보를 수정.
+	 * 湲곗〈�쓽 �쉶�궗 �젙蹂대�� �닔�젙.
 	 */
 	public int update(Company company) throws SQLException {
 		String sql = "UPDATE COMPANY " + "SET id=?, password=?, email=?, name=?, phone_number=? "
 				+ "WHERE company_id=?";
-		Object[] param = new Object[] { company.getId(), company.getPassword(), company.getEmail(), company.getName(),
+		Object[] param = new Object[] {  company.getCompanyId(), company.getId(), company.getPassword(), company.getEmail(), company.getName(),
 				company.getPhone_number() };
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil에 update문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil�뿉 update臾멸낵 留ㅺ컻 蹂��닔 �꽕�젙
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // update 문 실행
+			int result = jdbcUtil.executeUpdate(); // update 臾� �떎�뻾
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 반환
+			jdbcUtil.close(); // resource 諛섑솚
 		}
 		return 0;
 	}
 
 	/**
-	 * 회사 ID에 해당하는 회사 삭제
+	 * �쉶�궗 ID�뿉 �빐�떦�븯�뒗 �쉶�궗 �궘�젣
 	 */
 	public int remove(String companyId) throws SQLException {
-		String sql = "DELETE FROM COMPANY WHERE company_id=?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { companyId }); // JDBCUtil에 delete문과 매개 변수 설정
+		String sql = "DELETE FROM COMPANY WHERE company_Id=?";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { companyId }); // JDBCUtil�뿉 delete臾멸낵 留ㅺ컻 蹂��닔 �꽕�젙
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // delete 문 실행
+			int result = jdbcUtil.executeUpdate(); // delete 臾� �떎�뻾
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 반환
+			jdbcUtil.close(); // resource 諛섑솚
 		}
 		return 0;
 	}
 
 	/**
-	 * 주어진 회사 ID에 해당하는 회사 정보를 데이터베이스에서 찾아 Company 도메인 클래스에 저장하여 반환.
+	 * 二쇱뼱吏� �쉶�궗 ID�뿉 �빐�떦�븯�뒗 �쉶�궗 �젙蹂대�� �뜲�씠�꽣踰좎씠�뒪�뿉�꽌 李얠븘 Company �룄硫붿씤 �겢�옒�뒪�뿉 ���옣�븯�뿬 諛섑솚.
 	 */
-	public Company findCompany(String companyId) throws SQLException {
-		String sql = "SELECT id, password, email, name, phone_number " + "FROM COMPANY " + "WHERE company_id=? ";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { companyId }); // JDBCUtil에 query문과 매개 변수 설정
+	public Company findCompany(String id) throws SQLException {
+		String sql = "SELECT company_Id, password, email, name, phone_number " + "FROM COMPANY " + "WHERE id=? ";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { id }); // JDBCUtil�뿉 query臾멸낵 留ㅺ컻 蹂��닔 �꽕�젙
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
-			if (rs.next()) { // 학생 정보 발견
-				Company company = new Company( // Company 객체를 생성하여 회사 정보를 저장
-						companyId, rs.getString("id"), rs.getString("password"), rs.getString("email"),
+			ResultSet rs = jdbcUtil.executeQuery(); // query �떎�뻾
+			if (rs.next()) { // �븰�깮 �젙蹂� 諛쒓껄
+				Company company = new Company( // Company 媛앹껜瑜� �깮�꽦�븯�뿬 �쉶�궗 �젙蹂대�� ���옣
+						rs.getInt("company_Id"), rs.getString("id"), rs.getString("password"), rs.getString("email"),
 						rs.getString("name"), rs.getString("phone_number"));
 				return company;
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource 반환
+			jdbcUtil.close(); // resource 諛섑솚
 		}
 		return null;
 	}
 	/**
-	 * 주어진 사용자 ID에 해당하는 사용자가 존재하는지 검사 
+	 * 二쇱뼱吏� �궗�슜�옄 ID�뿉 �빐�떦�븯�뒗 �궗�슜�옄媛� 議댁옱�븯�뒗吏� 寃��궗 
 	 */
-	public boolean existingCompany(String companyId) throws SQLException {
-		String sql = "SELECT count(*) FROM COMPANYINFO WHERE companyid=?";      
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {companyId});	// JDBCUtil에 query문과 매개 변수 설정
+	public boolean existingCompany(int i) throws SQLException {
+		String sql = "SELECT count(*) FROM COMPANY WHERE company_Id=?";      
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {i});	// JDBCUtil�뿉 query臾멸낵 留ㅺ컻 蹂��닔 �꽕�젙
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			ResultSet rs = jdbcUtil.executeQuery();		// query �떎�뻾
 			if (rs.next()) {
 				int count = rs.getInt(1);
 				return (count == 1 ? true : false);
@@ -120,9 +120,8 @@ public class CompanyDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close();		// resource 반환
+			jdbcUtil.close();		// resource 諛섑솚
 		}
 		return false;
 	}
-
 }
