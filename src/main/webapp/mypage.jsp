@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,53 +16,8 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 
-<style>
-#singUpP {
-	font-size: 25px;
-	width: 300px;
-	hight: 80px;
-	padding: 15px;
-	margin: 50px;
-	border-style: solid;
-	border-width: 2px;
-}
-
-.input-form {
-	max-width: 680px;
-	margin-top: 80px;
-	padding: 32px;
-	background: #fff;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
-}
-
-#makeItcenter, #userCategorys {
-	width: 500px;
-}
-
-.form-group {
-	white-space: nowrap;
-}
-
-#categoryBox {
-	hight: 400px;
-	padding: 15px;
-	border-style: solid;
-	border-width: 2px;
-}
-
-.haveMargin {
-	margin-top: 50px;
-}
-
-#finishButton {
-	margin-top: 100px;
-}
-</style>
+<!-- CSS -->
+<link rel="stylesheet" href="css/mypage.css">
 
 <title>myPage</title>
 </head>
@@ -141,11 +98,14 @@
 
 					<div id=contents align="center">
 						<p id=singUpP>회원 정보</p>
+						
+						<c:set var="user" value="${requestScope.User}"/>
+						
 						<form class="form-horizontal" role="form" method="post">
 							<div id="makeItcenter" align="left">
 								<div class="form-group" id="userNameID">
 									<p>
-										<b>닉네임</b> <span style="color: gray">아이디</span>
+										<b>${user.name}</b> <span style="color: gray">${user.userId}</span>
 									</p>
 
 								</div>
@@ -153,29 +113,29 @@
 							<div class="form-group" id="email"></div>
 							<div class="row justify-content-center">
 								<div class="col-4">
-									<p>Email</p>
+									<p class="informaton">Email</p>
 								</div>
 								<div class="col-4">
-									<p>abcde1234@gmail.com</p>
+									<p>${user.email}</p>
 								</div>
 							</div>
 							<div class="form-group" id="phoneNumber">
 								<div class="row justify-content-center">
 									<div class="col-4">
-										<p>전화번호</p>
+										<p class="informaton">전화번호</p>
 									</div>
 									<div class="col-4">
-										<p>010-0000-0000</p>
+										<p>${user.phone_number}</p>
 									</div>
 								</div>
 							</div>
 							<div class="form-group" id="birthday">
 								<div class="row justify-content-center">
 									<div class="col-4">
-										<p>생년월일</p>
+										<p class="informaton">생년월일</p>
 									</div>
 									<div class="col-4">
-										<p>000000</p>
+										<p>${user.birthday}</p>
 									</div>
 								</div>
 							</div>
@@ -185,27 +145,49 @@
 										<p>성별</p>
 									</div>
 									<div class="col-4">
-										<p>여</p>
+										<p>
+										<c:if test="${user.gender eq 0}">
+											<c:out value="남성" />
+										</c:if>
+										<c:if test="${user.gender eq 1}">
+											<c:out value="여성" />
+										</c:if>
+										<c:if test="${user.gender eq 2}">
+											<c:out value="기타" />
+										</c:if>
+										</p>
 									</div>
 								</div>
 							</div>
 					</div>
-					<div class="form-group" id="userCategorys" align="left">
-						<label for="chooseCategorys" class="col-lg-2 control-label">관심분야
-							(최소 1개 택)</label>
-						<div id="categoryBox" align="left">
-							<label><input type="checkbox" name="ganre1" value="0">게임장르
-								1rrrrrrrrrrrrr</label><br> <label><input type="checkbox"
-								name="ganre2" value="1">게임장르 2rrrr</label><br> <label><input
-								type="checkbox" name="ganre3" value="2">게임장르 3rr</lalel><br>
-								<label><input type="checkbox" name="ganre4" value="3">게임장르
-									4rrrrrrrrr</label><br> <label><input type="checkbox"
-									name="ganre5" value="4">게임장르 5rr</label><br> <label><input
-									type="checkbox" name="ganre6" value="5">게임장르 6</label><br>
-						</div>
-						<br>
-					</div>
+					<!-- 게임 장르 체크박스  -->
+							<div id="genre-row" class="row">
+								<div id="genre-label" class="col">관심 분야</div>
+								<div id="genre-input">
+									<div class="checkbox-group">
+										<c:forEach var="tag" items="${genreList}" varStatus="status">
+											<c:choose>
+												<c:when
+													test="${(status.index % 4) eq 0 and status.index ne 0}">
+													<br>
+													<input class="form-check-input" type="checkbox"
+														value="${tag.genre_id }" id="${tag.genre_id }"
+														name="tag[]">
+													<label class="form-check-label" for="${tag.genre_id }">${tag.name }</label>
+												</c:when>
+												<c:otherwise>
+													<input class="form-check-input" type="checkbox"
+														value="${tag.genre_id }" id="${tag.genre_id }"
+														name="tag[]">
+													<label class="form-check-label" for="${tag.genre_id }">${tag.name }</label>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+									</div>
+								</div>
+							</div>
 
+					<br>
 					<div align="left">
 						<p>
 							<b>예약 게임 목록</b>
@@ -371,7 +353,7 @@
 
 					<div id="makeItcenter" align="right">
 						<div class="col-auto">
-							<button type="button" class="btn btn-primary mb-3">정보 수정</button>
+							<input type="button" class="btn btn-primary mb-3" value="정보 수정" onClick="#">
 						</div>
 					</div>
 					<br>
