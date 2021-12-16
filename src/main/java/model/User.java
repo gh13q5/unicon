@@ -3,10 +3,11 @@ package model;
 import java.util.Date;
 
 /**
- * »ç¿ëÀÚ °ü¸®¸¦ À§ÇØ ÇÊ¿äÇÑ µµ¸ŞÀÎ Å¬·¡½º. USERINFO Å×ÀÌºí°ú ´ëÀÀµÊ
+ * ì‚¬ìš©ì ê´€ë¦¬ë¥¼ ìœ„í•´ í•„ìš”í•œ ë„ë©”ì¸ í´ë˜ìŠ¤. USERINFO í…Œì´ë¸”ê³¼ ëŒ€ì‘ë¨
  */
 public class User {
-	private String userId;
+	private int userId;
+	private String id;
 	private String password;
 	private String email;
 	private String name;
@@ -16,12 +17,13 @@ public class User {
 	//private int interests;
 	private int point;
 
-	public User() { }		// ±âº» »ı¼ºÀÚ
+	public User() { }		// ê¸°ë³¸ ìƒì„±ì
 	
-	public User(String userId, String password, String email, String name, String phone_number, Date birthDay, int gender,
+	public User(int userId, String id, String password, String email, String name, String phone_number, Date birthDay, int gender,
 			int point) {
 		super();
 		this.userId = userId;
+		this.id = id;
 		this.password = password;
 		this.email = email;
 		this.name = name;
@@ -30,15 +32,22 @@ public class User {
 		this.gender = gender;
 		//this.interests = interests;
 		this.point = point;
-	}//»ı¼ºÀÚ
+	}//ìƒì„±ì
 	
 	//getters&setters
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getPassword() {
@@ -105,11 +114,11 @@ public class User {
 		this.point = point;
 	}
 
-	public boolean isSameUser(String userid) {
-        return this.userId.equals(userid);
+	public boolean isSameUser(int userid) {
+        return this.userId == userid;
     }
 	
-	/* ºñ¹Ğ¹øÈ£ °Ë»ç */
+	/* ë¹„ë°€ë²ˆí˜¸ ê²€ì‚¬ */
 	public boolean matchPassword(String password) {
 		if (password == null) {
 			return false;
@@ -119,7 +128,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", password=" + password + ", email=" + email + ", name=" + name
+		return "User [userId=" + userId + ",id=" + id + ", password=" + password + ", email=" + email + ", name=" + name
 				+ ", phone_number=" + phone_number + ", commId=" + birthDay + ", gender=" + gender + ", point=" + point + "]";
 	}	
 }
