@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,12 +17,12 @@
 <!-- CSS -->
 <link rel="stylesheet" href="css/registerForm.css">
 
-<title>Âò²Ç - È¸¿ø°¡ÀÔ</title>
+<title>ì°œê½ - íšŒì›ê°€ìž…</title>
 </head>
 <body>
 	<div id="header" align="center">
 		<h1>
-			<br>Âò²Ç
+			<br>ì°œê½
 		</h1>
 		<hr>
 	</div>
@@ -29,65 +30,67 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col" align="center" style="padding: 50px;">
-					<div id="registerForm-title">È¸¿ø°¡ÀÔ</div>
-					<!-- È¸¿ø°¡ÀÔ form -->
-					<form id="registerForm-form">
+					<div id="registerForm-title">íšŒì›ê°€ìž…</div>
+					<!-- íšŒì›ê°€ìž… form -->
+					<form id="registerForm-form" action="<c:url value='/register_company'/>" method="post">
 						<div id="form-container" class="container">
-							<!-- È¸¿øÁ¤º¸ ÀÔ·Â -->
+							<!-- íšŒì›ì •ë³´ ìž…ë ¥ -->
+							
 							<div class="row">
-								<div id="id-label" class="col-5">¾ÆÀÌµð</div>
+								<div id="id-label" class="col-5">ì•„ì´ë””</div>
 								<div id="id-input" class="col-6">
-									<input type="text" class="form-control onlyAlphabetAndNumber"
+									<input name="id" type="text" class="form-control onlyAlphabetAndNumber"
 										id="id" data-rule-required="true"
-										placeholder="10ÀÚÀÌ³»ÀÇ ¾ËÆÄºª, ¼ýÀÚ¸¸ ÀÔ·Â °¡´ÉÇÕ´Ï´Ù." maxlength="10">
+										placeholder="10ìžì´ë‚´ì˜ ì•ŒíŒŒë²³, ìˆ«ìžë§Œ ìž…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤." maxlength="10">
 								</div>
 							</div>
 							<div class="row">
-								<div id="passward-label" class="col-5">ºñ¹Ð¹øÈ£</div>
+								<div id="passward-label" class="col-5">ë¹„ë°€ë²ˆí˜¸</div>
 								<div id="passward-input" class="col-6">
-									<input type="password" class="form-control" id="password"
-										name="excludeHangul" data-rule-required="true"
-										placeholder="10ÀÚÀÌ³»ÀÇ ¾ËÆÄºª, ¼ýÀÚ¸¸ ÀÔ·Â °¡´ÉÇÕ´Ï´Ù." maxlength="10">
+									<input name="passward" type="password" class="form-control" id="password"
+											 data-rule-required="true"
+										placeholder="10ìžì´ë‚´ì˜ ì•ŒíŒŒë²³, ìˆ«ìžë§Œ ìž…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤." maxlength="10">
 								</div>
 							</div>
 							<div class="row">
-								<div id="passwardCheck-label" class="col-5">ºñ¹Ð¹øÈ£ È®ÀÎ</div>
+								<div id="passwardCheck-label" class="col-5">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</div>
 								<div id="passwardCheck-input" class="col-6">
-									<input type="password" class="form-control" id="passwordCheck"
-										data-rule-required="true" placeholder="ºñ¹Ð¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä."
+									<input name="passwardCheck" type="password" class="form-control" id="passwordCheck"
+										data-rule-required="true" placeholder="ë¹„ë°€ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ìž…ë ¥í•´ì£¼ì„¸ìš”."
 										maxlength="10">
 								</div>
 							</div>
 							<div class="row">
-								<div id="companyName-label" class="col-5">È¸»ç¸í</div>
+								<div id="companyName-label" class="col-5">íšŒì‚¬ëª…</div>
 								<div id="companyName-input" class="col-6">
-									<input type="text" class="form-control" id="companyName"
-										data-rule-required="true" placeholder="10ÀÚ ÀÌ³»·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä."
+									<input name="name" type="text" class="form-control" id="companyName"
+										data-rule-required="true" placeholder="10ìž ì´ë‚´ë¡œ ìž…ë ¥í•´ ì£¼ì„¸ìš”."
 										maxlength="10">
 								</div>
 							</div>
 							<div class="row">
-								<div id="email-label" class="col-5">´ã´çÀÚ ÀÌ¸ÞÀÏ</div>
+								<div id="email-label" class="col-5">ë‹´ë‹¹ìž ì´ë©”ì¼</div>
 								<div id="email-input" class="col-6">
-									<input type="email" class="form-control" id="email"
-										data-rule-required="true" placeholder="ÀÌ¸ÞÀÏÀ» ÀÔ·ÂÇÏ¼¼¿ä."
+									<input name="email" type="email" class="form-control" id="email"
+										data-rule-required="true" placeholder="ì´ë©”ì¼ì„ ìž…ë ¥í•˜ì„¸ìš”."
 										maxlength="40">
 								</div>
 							</div>
 							<div class="row">
-								<div id="phoneNumber-label" class="col-5">´ã´çÀÚ ÀüÈ­¹øÈ£</div>
+								<div id="phoneNumber-label" class="col-5">ë‹´ë‹¹ìž ì „í™”ë²ˆí˜¸</div>
 								<div id="phoneNumber-input" class="col-6">
-									<input type="tel" class="form-control onlyNumber"
+									<input name="phone_number" type="tel" class="form-control onlyNumber"
 										id="phoneNumber" data-rule-required="true"
-										placeholder="-¸¦ Á¦¿ÜÇÏ°í ¼ýÀÚ¸¸ ÀÔ·ÂÇÏ¼¼¿ä." maxlength="11">
+										placeholder="-ë¥¼ ì œì™¸í•˜ê³  ìˆ«ìžë§Œ ìž…ë ¥í•˜ì„¸ìš”." maxlength="11">
 								</div>
 							</div>
 							<hr id="terms-divide">
-							<button id="terms-btn" type="button" class="btn btn-warning">¾à°ü
-								Àü¹® º¸±â</button>
-							¾à°üÀ» ÀÐ°í ³»¿ë¿¡ µ¿ÀÇÇÏ¿´½À´Ï´Ù. <input type="radio" id="inputTermsYes"
-								name="inputTermsYes" value="Y" checked> µ¿ÀÇÇÕ´Ï´Ù.
-							<button id="submit-btn" type="button" class="btn btn-warning">È¸¿ø°¡ÀÔ</button>
+							<button onclick="window.open('readme.jsp')" id="terms-btn" type="button" class="btn btn-warning">ì•½ê´€
+								ì „ë¬¸ ë³´ê¸°</button>
+							ì•½ê´€ì„ ì½ê³  ë‚´ìš©ì— ë™ì˜í•˜ì˜€ìŠµë‹ˆë‹¤. 
+							<input type="radio" id="inputTermsYes"
+								name="inputTermsYes" value="Y"> ë™ì˜í•©ë‹ˆë‹¤.
+							<button id="submit-btn" type="submit" class="btn btn-warning">íšŒì›ê°€ìž…</button>
 						</div>
 					</form>
 				</div>
@@ -97,16 +100,16 @@
 	<div id="footer">
 		<hr class="haveMargin">
 		<p class="text-center" align="center">
-			<small><strong>¾÷Ã¼¸í : UNI-CON</strong></small><br> <small>´ëÇ¥
-				: ½ÉÇØ¸² ¹ÚÁÖÈñ ÃÖ°¡Èñ Á¶¼ö ¤ý ÁÖ¼Ò : µ¿´ö¿©ÀÚ ´ëÇÐ±³ ¤ý »ç¾÷ÀÚµî·Ï¹øÈ£:123-12-12345 ¤ý ÀüÈ­ :
-				02-123-1234</small><br> <small>Copyright¨Ï Âò²Ç - ÂòÇÏ°í ²ÇÂ¥ º¸»ó ¹ÞÀÚ! .</small>
+			<small><strong>ì—…ì²´ëª… : UNI-CON</strong></small><br> <small>ëŒ€í‘œ
+				: ì‹¬í•´ë¦¼ ë°•ì£¼í¬ ìµœê°€í¬ ì¡°ìˆ˜ ã† ì£¼ì†Œ : ë™ë•ì—¬ìž ëŒ€í•™êµ ã† ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸:123-12-12345 ã† ì „í™” :
+				02-123-1234</small><br> <small>Copyrightâ“’ ì°œê½ - ì°œí•˜ê³  ê½ì§œ ë³´ìƒ ë°›ìž! .</small>
 		</p>
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
-	<!-- °ÔÀÓ ÀÌ¹ÌÁö ¾÷·Îµå ½ºÅ©¸³Æ® -->
+	<!-- ê²Œìž„ ì´ë¯¸ì§€ ì—…ë¡œë“œ ìŠ¤í¬ë¦½íŠ¸ -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
