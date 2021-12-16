@@ -12,6 +12,7 @@ import controller.Controller;
 import model.Company;
 import model.dao.CompanyDAO;
 import model.service.ExistingUserException;
+import model.service.PasswordMismatchException;
 
 
 public class CompanyRegisterController implements Controller {
@@ -20,26 +21,30 @@ public class CompanyRegisterController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
        	
-     // POST request (È¸¿øÁ¤º¸°¡ parameter·Î Àü¼ÛµÊ)
+     // POST request (íšŒì›ì •ë³´ê°€ parameterë¡œ ì „ì†¡ë¨)
        	Company company = new Company(
-			request.getParameter("companyId"),
-			request.getParameter("Id"),
+			0,
+			request.getParameter("id"),
 			request.getParameter("password"),
 			request.getParameter("email"),
 			request.getParameter("name"),
 			request.getParameter("phone_number"));
+       	
 		
-        log.debug("Create User : {}", company);
+        log.debug("Create Company : {}", company);
 
 		try {
+			if(request.getParameter("password") != request.getParameter("passwordCheck") || request.getParameter("inputTermsYes") != "Y") {
+				return "redirect:/companyRegisterForm.jsp";
+			}
 			create(company);
-	        return "/welcome.jsp";	// ¼º°ø ½Ã »ç¿ëÀÚ ¸®½ºÆ® È­¸éÀ¸·Î redirect
+	        return "redirect:/welcome.jsp";	// ì„±ê³µ ì‹œ ì‚¬ìš©ì ë¦¬ìŠ¤íŠ¸ í™”ë©´ìœ¼ë¡œ redirect
 	        
-		} catch (ExistingUserException e) {	// ¿¹¿Ü ¹ß»ı ½Ã È¸¿ø°¡ÀÔ formÀ¸·Î forwarding
+		} catch (ExistingUserException e) {	// ì˜ˆì™¸ ë°œìƒ ì‹œ íšŒì›ê°€ì… formìœ¼ë¡œ forwarding
            request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("company", company);
-			return "/companyRegisterForm.jsp";
+			return "redirect:/companyRegisterForm.jsp";
 		}
     }
     public int create(Company company) throws SQLException, ExistingUserException {
