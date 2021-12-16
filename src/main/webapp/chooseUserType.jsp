@@ -17,26 +17,30 @@
 <!-- CSS -->
 <link rel="stylesheet" href="css/chooseUserType.css">
 
-<title>��� - �̿��� ����</title>
+<title>찜꽁 - 이용자 선택</title>
 
 </head>
 <body>
 	<div id="header" align="center">
 		<h1>
-			<br>���
+			<br>찜꽁
 		</h1>
 		<hr>
 	</div>
 	<div id="contents" align="center">
-		<div id=chooseUserType-title>ȸ������</div>
-		<img class=userImg src="./images/commonUserImg.png"></img> <img
-			class=userImg src="./images/companyUserImg.png"></img>
+		<div id=chooseUserType-title>회원가입</div>
+		<a href=userRegisterForm.jsp>
+			<img class=userImg src="./images/commonUserImg.png"></img> 
+		</a>	
+		<a href=companyRegisterForm.jsp> 
+			<img class=userImg src="./images/companyUserImg.png"></img>
+		</a>
 	</div>
 	<div id="footer">
 		<hr>
 		<p class="text-center" align="center">
-			<small><strong>��ü��</strong></small><br> <small>��ǥ : ȫ�浿
-				�� �ּ� : ��Ÿ� �� ����ڵ�Ϲ�ȣ:123-12-12345 �� ��ȭ : 02-123-1234</small><br> <small>Copyright��
+			<small><strong>업체명</strong></small><br> <small>대표 : 홍길동
+				ㆍ 주소 : 사거리 ㆍ 사업자등록번호:123-12-12345 ㆍ 전화 : 02-123-1234</small><br> <small>Copyrightⓒ
 				test.com All rights reserved.</small>
 		</p>
 	</div>
