@@ -1,0 +1,93 @@
+@charset "EUC-KR";
+
+#singUpP {
+	font-size: 25px;
+	width: 300px;
+	hight: 80px;
+	padding: 15px;
+	margin: 50px;
+	border-style: solid;
+	border-width: 2px;
+}
+
+.input-form {
+	max-width: 680px;
+	margin-top: 80px;
+	padding: 32px;
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+}
+
+#makeItcenter, #userCategorys {
+	width: 500px;
+}
+
+.form-group {
+	white-space: nowrap;
+}
+
+#categoryBox {
+	hight: 400px;
+	padding: 15px;
+	border-style: solid;
+	border-width: 2px;
+}
+
+.haveMargin {
+	margin-top: 50px;
+}
+
+#finishButton {
+	margin-top: 100px;
+}
+
+/* uploadGame.css */
+
+/* 게임 소개글 + 보상 목록 */
+div#description-row, div#genre-row, div#reward-description-row {
+	justify-content: center;
+}
+
+/* 홍보 이미지 업로드 + 보상 이미지 업로드 */
+div#image-label, div#description-label, div#genre-label, div#reward-description-label
+	{
+	padding-left: 18%;
+	padding-right: 20%;
+	padding-bottom: 5px;
+	text-align: left;
+	color: #5fb3c7;
+	font-weight: bolder;
+	font-size: 150%;
+	padding-bottom: 5px;
+}
+
+/* 게임 장르(태그) 선택 */
+div#genre-input {
+	width: 68%;
+	margin-top: 10px;
+	padding: 2%; border : 3px solid #5fc8d7;
+	border-radius: 10px;
+	border: 3px solid #5fc8d7;
+}
+
+div.checkbox-group {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+input.form-check-input {
+	border: 2px solid #ffab40 !important;
+}
+
+input.form-check-input:checked {
+	background-color: #ffab40 !important;
+}
+
+label.form-check-label {
+	margin-right: 3%;
+}
