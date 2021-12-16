@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%> 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
@@ -101,7 +101,7 @@
 		<hr class="haveMargin">
 		<p class="text-center" align="center">
 			<small><strong>업체명 : UNI-CON</strong></small><br> <small>대표
-				: 심해림 박주희 최가희 조수 ㆍ 주소 : 동덕여자 대학교 ㆍ 사업자등록번호:123-12-12345 ㆍ 전화 :
+				: 심해림 박주희 최가희 조수빈 ㆍ 주소 : 동덕여자 대학교 ㆍ 사업자등록번호:123-12-12345 ㆍ 전화 :
 				02-123-1234</small><br> <small>Copyrightⓒ 찜꽁 - 찜하고 꽁짜 보상 받자! .</small>
 		</p>
 	</div>

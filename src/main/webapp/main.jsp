@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
@@ -285,7 +285,8 @@
 
 					<!-- 일반 게임 -->
 					<p class="h2">Entire Games</p>
-					<c:forEach var="game" items="${entireGameList}" varStatus="status">
+					<c:forEach var="game" items="${entireGameList}"
+						varStatus="status">
 						<c:choose>
 							<c:when test="${status.index % 4  eq 0}">
 								<div class="row" align="center">
@@ -294,26 +295,28 @@
 								<div class="row" align="center">
 							</c:when> --%>
 						</c:choose>
-						<%-- <a href="<c:url value='/game'>
-            			<c:param name='game_id' value='${Cgame.id}' /></c:url>"> --%>
-						<div class="col">
-							<div class="card" style="width: 15rem;">
+						 <div class="col"> 
+						 <a href="<c:url value='/game'>
+            			<c:param name='game_id' value='${game.game_id}' /></c:url>" style="color:black; text-decoration:none;"> 
+							<div class="card" style= "width: 15rem; margin:5px;">
 								<img src="images/wallR.jpg" class="card-img-top" alt="...">
 								<div class="card-body">
 									<h5 class="card-title">
 										<c:out value="${game.title}"></c:out>
 									</h5>
+									<div style="height: 10rem; overflow: hidden;">
 									<p class="card-text">
 										<c:out value="${game.description}"></c:out>
 									</p>
+									</div>
 									<p class="card-text">
 										<small class="text-muted">~<c:out
 												value="${game.end_date}"></c:out></small>
 									</p>
 								</div>
 							</div>
-							<!-- </a> -->
-						</div>
+							 </a>
+						 </div> 
 						<c:choose>
 							<c:when test="${status.count % 4 eq 0}">
 				</div>
@@ -412,5 +415,3 @@
 	</script>
 </body>
 </html>
-
-

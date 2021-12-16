@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%> 
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,126 +16,126 @@
 <!-- CSS -->
 <link rel="stylesheet" href="css/registerForm.css">
 
-<title>Âò²Ç - È¸¿ø°¡ÀÔ</title>
+<title>ì°œê½ - íšŒì›ê°€ìž…</title>
 </head>
 <body>
 	<div id="header" align="center">
 		<div id="header" align="center">
 			<h1>
-				<br>Âò²Ç
+				<br>ì°œê½
 			</h1>
 			<hr>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col" align="center" style="padding: 50px;">
-					<div id="registerForm-title">È¸¿ø°¡ÀÔ</div>
-					<!-- È¸¿ø°¡ÀÔ form -->
-					<form id="registerForm-form">
+					<div id="registerForm-title">íšŒì›ê°€ìž…</div>
+					<!-- íšŒì›ê°€ìž… form -->
+					<form id="registerForm-form" action="<c:url value='/register_user'/>" method="post">
 						<div id="form-container" class="container">
-							<!-- È¸¿ø Á¤º¸ ÀÔ·Â -->
+							<!-- íšŒì› ì •ë³´ ìž…ë ¥ -->
 							<div class="row">
-								<div id="id-label" class="col-5">¾ÆÀÌµð</div>
+								<div id="id-label" class="col-5">ì•„ì´ë””</div>
 								<div id="id-input" class="col-6">
-									<input type="text" class="form-control onlyAlphabetAndNumber"
+									<input name="id" type="text" class="form-control onlyAlphabetAndNumber"
 										id="id" data-rule-required="true"
-										placeholder="10ÀÚÀÌ³»ÀÇ ¾ËÆÄºª, ¼ýÀÚ¸¸ ÀÔ·Â °¡´ÉÇÕ´Ï´Ù." maxlength="10">
+										placeholder="10ìžì´ë‚´ì˜ ì•ŒíŒŒë²³, ìˆ«ìžë§Œ ìž…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤." maxlength="10">
 								</div>
 							</div>
 							<div class="row">
-								<div id="passward-label" class="col-5">ºñ¹Ð¹øÈ£</div>
+								<div id="passward-label" class="col-5">ë¹„ë°€ë²ˆí˜¸</div>
 								<div id="passward-input" class="col-6">
 									<input type="password" class="form-control" id="password"
-										name="excludeHangul" data-rule-required="true"
-										placeholder="10ÀÚÀÌ³»ÀÇ ¾ËÆÄºª, ¼ýÀÚ¸¸ ÀÔ·Â °¡´ÉÇÕ´Ï´Ù." maxlength="10">
+										name="passward" data-rule-required="true"
+										placeholder="10ìžì´ë‚´ì˜ ì•ŒíŒŒë²³, ìˆ«ìžë§Œ ìž…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤." maxlength="10">
 								</div>
 							</div>
 							<div class="row">
-								<div id="passwardCheck-label" class="col-5">ºñ¹Ð¹øÈ£ È®ÀÎ</div>
+								<div id="passwardCheck-label" class="col-5">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</div>
 								<div id="passwardCheck-input" class="col-6">
-									<input type="password" class="form-control" id="passwordCheck"
-										data-rule-required="true" placeholder="ºñ¹Ð¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä."
+									<input name="passwardCheck" type="password" class="form-control" id="passwordCheck"
+										data-rule-required="true" placeholder="ë¹„ë°€ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ìž…ë ¥í•´ì£¼ì„¸ìš”."
 										maxlength="10">
 								</div>
 							</div>
 							<div class="row">
-								<div id="nickname-label" class="col-5">´Ð³×ÀÓ</div>
+								<div id="nickname-label" class="col-5">ë‹‰ë„¤ìž„</div>
 								<div id="nickname-input" class="col-6">
-									<input type="text" class="form-control" id="nickname"
-										data-rule-required="true" placeholder="10ÀÚ ÀÌ³»·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä."
+									<input name="name" type="text" class="form-control" id="nickname"
+										data-rule-required="true" placeholder="10ìž ì´ë‚´ë¡œ ìž…ë ¥í•´ ì£¼ì„¸ìš”."
 										maxlength="10">
 								</div>
 							</div>
 							<div class="row">
-								<div id="email-label" class="col-5">ÀÌ¸ÞÀÏ</div>
+								<div id="email-label" class="col-5">ì´ë©”ì¼</div>
 								<div id="email-input" class="col-6">
-									<input type="email" class="form-control" id="email"
-										data-rule-required="true" placeholder="ÀÌ¸ÞÀÏÀ» ÀÔ·ÂÇÏ¼¼¿ä."
+									<input name="email" type="email" class="form-control" id="email"
+										data-rule-required="true" placeholder="ì´ë©”ì¼ì„ ìž…ë ¥í•˜ì„¸ìš”."
 										maxlength="40">
 								</div>
 							</div>
 							<div class="row">
-								<div id="phoneNumber-label" class="col-5">ÀüÈ­¹øÈ£</div>
+								<div id="phoneNumber-label" class="col-5">ì „í™”ë²ˆí˜¸</div>
 								<div id="phoneNumber-input" class="col-6">
-									<input type="tel" class="form-control onlyNumber"
+									<input name="phone_number" type="tel" class="form-control onlyNumber"
 										id="phoneNumber" data-rule-required="true"
-										placeholder="-¸¦ Á¦¿ÜÇÏ°í ¼ýÀÚ¸¸ ÀÔ·ÂÇÏ¼¼¿ä." maxlength="11">
+										placeholder="-ë¥¼ ì œì™¸í•˜ê³  ìˆ«ìžë§Œ ìž…ë ¥í•˜ì„¸ìš”." maxlength="11">
 								</div>
 							</div>
 							<div class="row">
-								<div id="birthday-label" class="col-5">»ý³â¿ùÀÏ</div>
+								<div id="birthday-label" class="col-5">ìƒë…„ì›”ì¼</div>
 								<div id="birthday-input" class="col-6">
-									<input type="date" class="form-control onlyNumber"
+									<input name="birthday" type="date" class="form-control onlyNumber"
 										id="birthday" data-rule-required="true"
-										placeholder="»ý³â¿ùÀÏ 6ÀÚ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä. ¿¹)961204" maxlength="6">
+										placeholder="ìƒë…„ì›”ì¼ 6ìžë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”. ì˜ˆ)961204" maxlength="6">
 								</div>
 							</div>
 							<div class="row">
-								<div id="gender-label" class="col-5">¼ºº°</div>
+								<div id="gender-label" class="col-5">ì„±ë³„</div>
 								<div id="gender-input" class="col-6">
-									<select class="form-control" id="gender">
-										<option value="M">³²</option>
-										<option value="F">¿©</option>
-										<option value="B">±× ¿Ü</option>
+									<select name="gender" class="form-control" id="gender">
+										<option value="M">ë‚¨</option>
+										<option value="F">ì—¬</option>
+										<option value="B">ê·¸ ì™¸</option>
 									</select>
 								</div>
 							</div>
-							<!-- °ÔÀÓ Àå¸£ Ã¼Å©¹Ú½º  -->
-							<div id="genre-label" class="col-7">°ü½É ºÐ¾ß (ÃÖ¼Ò 1°³ ÀÌ»ó)</div>
+							<!-- ê²Œìž„ ìž¥ë¥´ ì²´í¬ë°•ìŠ¤  -->
+							<!--<div id="genre-label" class="col-7">ê´€ì‹¬ ë¶„ì•¼ (ìµœì†Œ 1ê°œ ì´ìƒ)</div>
 							<div id="genre-row" class="row">
 								<div id="genre-input">
 									<div class="checkbox-group">
-										<input class="form-check-input" type="checkbox" value=""
+										<input name="genre01" class="form-check-input" type="checkbox" value="Y"
 											id="genre01"> <label class="form-check-label"
-											for="genre01">°ÔÀÓÀå¸£01</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre02"> <label
-											class="form-check-label" for="genre02">°ÔÀÓÀå¸£02</label> <input
-											class="form-check-input" type="checkbox" value=""
+											for="genre01">ê²Œìž„ìž¥ë¥´01</label> <input  name="genre02" class="form-check-input"
+											type="checkbox" value="Y" id="genre02"> <label
+											class="form-check-label" for="genre02">ê²Œìž„ìž¥ë¥´02</label> <input  name="genre03"
+											class="form-check-input" type="checkbox" value="Y"
 											id="genre03"> <label class="form-check-label"
-											for="genre03">°ÔÀÓÀå¸£03</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre04"> <label
-											class="form-check-label" for="genre04">°ÔÀÓÀå¸£04</label>
+											for="genre03">ê²Œìž„ìž¥ë¥´03</label> <input  name="genre04"class="form-check-input"
+											type="checkbox" value="Y" id="genre04"> <label
+											class="form-check-label" for="genre04">ê²Œìž„ìž¥ë¥´04</label>
 									</div>
 									<div class="checkbox-group">
-										<input class="form-check-input" type="checkbox" value=""
+										<input name="genre05" class="form-check-input" type="checkbox" value="Y"
 											id="genre05"> <label class="form-check-label"
-											for="genre05">°ÔÀÓÀå¸£05</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre06"> <label
-											class="form-check-label" for="genre06">°ÔÀÓÀå¸£06</label> <input
-											class="form-check-input" type="checkbox" value=""
+											for="genre05">ê²Œìž„ìž¥ë¥´05</label> <input  name="genre06" class="form-check-input"
+											type="checkbox" value="Y" id="genre06"> <label
+											class="form-check-label" for="genre06">ê²Œìž„ìž¥ë¥´06</label> <input name="genre07"
+											class="form-check-input" type="checkbox" value="Y"
 											id="genre07"> <label class="form-check-label"
-											for="genre07">°ÔÀÓÀå¸£07</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre08"> <label
-											class="form-check-label" for="genre08">°ÔÀÓÀå¸£08</label>
+											for="genre07">ê²Œìž„ìž¥ë¥´07</label> <input  name="genre08"class="form-check-input"
+											type="checkbox" value="Y" id="genre08"> <label
+											class="form-check-label" for="genre08">ê²Œìž„ìž¥ë¥´08</label>
 									</div>
 								</div>
-							</div>
+							</div>-->
 							<hr id="terms-divide">
-							<button id="terms-btn" type="button" class="btn btn-warning">¾à°ü
-								Àü¹® º¸±â</button>
-							¾à°üÀ» ÀÐ°í ³»¿ë¿¡ µ¿ÀÇÇÏ¿´½À´Ï´Ù. <input type="radio" id="inputTermsYes"
-								name="inputTermsYes" value="Y" checked> µ¿ÀÇÇÕ´Ï´Ù.
-							<button id="submit-btn" type="button" class="btn btn-warning">°¡ÀÔÇÏ±â</button>
+							<button onclick="window.open('readme.jsp')" id="terms-btn" type="button" class="btn btn-warning">ì•½ê´€
+								ì „ë¬¸ ë³´ê¸°</button>
+							ì•½ê´€ì„ ì½ê³  ë‚´ìš©ì— ë™ì˜í•˜ì˜€ìŠµë‹ˆë‹¤. <input type="radio" id="inputTermsYes"
+								name="inputTermsYes" value="Y"> ë™ì˜í•©ë‹ˆë‹¤.
+							<button id="submit-btn"  type="submit" class="btn btn-warning">ê°€ìž…í•˜ê¸°</button>
 						</div>
 					</form>
 				</div>
@@ -145,41 +145,16 @@
 	<div id="footer">
 		<hr class="haveMargin">
 		<p class="text-center" align="center">
-			<small><strong>¾÷Ã¼¸í : UNI-CON</strong></small><br> <small>´ëÇ¥
-				: ½ÉÇØ¸² ¹ÚÁÖÈñ ÃÖ°¡Èñ Á¶¼ö ¤ý ÁÖ¼Ò : µ¿´ö¿©ÀÚ ´ëÇÐ±³ ¤ý »ç¾÷ÀÚµî·Ï¹øÈ£:123-12-12345 ¤ý ÀüÈ­ :
-				02-123-1234</small><br> <small>Copyright¨Ï Âò²Ç - ÂòÇÏ°í ²ÇÂ¥ º¸»ó ¹ÞÀÚ! .</small>
+			<small><strong>ì—…ì²´ëª… : UNI-CON</strong></small><br> <small>ëŒ€í‘œ
+				: ì‹¬í•´ë¦¼ ë°•ì£¼í¬ ìµœê°€í¬ ì¡°ìˆ˜ë¹ˆ ã† ì£¼ì†Œ : ë™ë•ì—¬ìž ëŒ€í•™êµ ã† ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸:123-12-12345 ã† ì „í™” :
+				02-123-1234</small><br> <small>Copyrightâ“’ ì°œê½ - ì°œí•˜ê³  ê½ì§œ ë³´ìƒ ë°›ìž! .</small>
 		</p>
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
-	<!-- °ÔÀÓ ÀÌ¹ÌÁö ¾÷·Îµå ½ºÅ©¸³Æ® -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script>
-		function readURL(input) {
-			var id = $(input).attr("id");
 
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
 
-				reader.onload = function(e) {
-					$('label[for="' + id + '"] .image-upload-icon').attr('src',
-							e.target.result).show();
-				}
-
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-
-		$("input[id^='image']").change(function() {
-			readURL(this);
-		});
-
-		$("input[id^='reward-image']").change(function() {
-			readURL(this);
-		});
-	</script>
 </body>
 </html>
