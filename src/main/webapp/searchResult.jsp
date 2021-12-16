@@ -131,7 +131,7 @@
 						</c:choose>
 						<div class="col">
 							 <a href="<c:url value='/game'>
-            			<c:param name='game_id' value='${Sgame.game_id}' /></c:url>" style=" color:black; text-decoration:none;"> 
+            			<c:param name='gameId' value='${Sgame.game_id}' /></c:url>" style=" color:black; text-decoration:none;"> 
 							<div class="card" style= "width: 15rem; margin:5px;">
 								<img src="images/wallR.jpg" class="card-img-top" alt="...">
 								<div class="card-body">
