@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import model.Game;
 import model.Reservation;
+import model.dao.GameDAO;
 import model.dao.ReservationDAO;
 
 public class ReservateController implements Controller {
 
 	ReservationDAO reservationDAO = new ReservationDAO();
+	GameDAO gameDAO = new GameDAO();
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
@@ -27,6 +30,8 @@ public class ReservateController implements Controller {
 		// String gameId = req.getParameter("gameId");
 		String gameId = "1"; // 임시
 		String userId = "0";	// 임시
+		
+		Game game = gameDAO.findGame(gameId);
 
 		try {
 			Date now = new Date();
@@ -35,13 +40,16 @@ public class ReservateController implements Controller {
 			java.sql.Date date = java.sql.Date.valueOf(formattedDate);
 			
 			Reservation reservation = new Reservation(0, date, Integer.parseInt(gameId), Integer.parseInt(userId));
+			reservationDAO.create(reservation);	// 예약 정보 추가
 			
-			int result = reservationDAO.create(reservation);	// 예약 정보 추가
+			int total_reservate = game.getTotal_reservations();
+			gameDAO.updateReservate(gameId, total_reservate + 1);
+			
 			System.out.println("예약 정보 추가 완료");
 		} catch (Exception e) {
 			return "redirect:/";
 		}
 
-		return "redirect:/game"; // 게임 예약 페이지로 이동
+		return "redirect:/game?gameId=" + gameId; // 게임 예약 페이지로 이동
 	}
 }

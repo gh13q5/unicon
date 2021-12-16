@@ -46,7 +46,8 @@ public class RequestMapping {
         // game
         mappings.put("/viewUpload", new ViewUploadGameController());
         mappings.put("/upload", new UploadGameController());
-        mappings.put("/edit", new UpdateGameController());
+        mappings.put("/viewEdit", new ViewEditGameController());
+        mappings.put("/edit", new EditGameController());
         mappings.put("/remove", new DeleteGameController());
         
         // reservation

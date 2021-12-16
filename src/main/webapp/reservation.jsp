@@ -110,15 +110,24 @@
 								data-bs-slide-to="2" aria-label="Slide 3"></button>
 						</div>
 						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<img src="images/sample01.jpg" class="d-block w-100" alt="...">
-							</div>
-							<div class="carousel-item">
-								<img src="images/sample02.jpg" class="d-block w-100" alt="...">
-							</div>
-							<div class="carousel-item">
-								<img src="images/sample03.jpg" class="d-block w-100" alt="...">
-							</div>
+							<c:forEach var="image" items="${imageList}" varStatus="status">
+								<c:choose>
+									<c:when test="${status.first }">
+										<div class="carousel-item active">
+											<img
+												src="<c:url value='/images/${game.company_id}/${image}' />"
+												class="d-block w-100" alt="...">
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="carousel-item">
+											<img
+												src="<c:url value='/images/${game.company_id}/${image}' />"
+												class="d-block w-100" alt="...">
+										</div>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
 						</div>
 						<button class="carousel-control-prev" type="button"
 							data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -186,7 +195,12 @@
 							</div>
 							<div class="tab-pane fade" id="reward" role="tabpannel"
 								aria-labelledby="reward-tab">
-								<img src="images/sample03.jpg" class="d-block w-100" alt="...">
+								<c:forEach var="rewardImage" items="${rewardImageList}">
+									<img
+										src="<c:url value='/images/${game.company_id}/${rewardImage}' />"
+										class="d-block w-100">
+									<br>
+								</c:forEach>
 								<br> ${game.reward_text}
 							</div>
 							<div class="tab-pane fade" id="statistics" role="tabpannel"
