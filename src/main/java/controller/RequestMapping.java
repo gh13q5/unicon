@@ -14,11 +14,11 @@ import controller.reservation.*;
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
     
-    // °¢ ¿äÃ» uri¿¡ ´ëÇÑ controller °´Ã¼¸¦ ÀúÀåÇÒ HashMap »ı¼º
+    // ê° ìš”ì²­ uriì— ëŒ€í•œ controller ê°ì²´ë¥¼ ì €ì¥í•  HashMap ìƒì„±
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
-    	// °¢ uri¿¡ ´ëÀÀµÇ´Â controller °´Ã¼¸¦ »ı¼º ¹× ÀúÀå 
+    	// ê° uriì— ëŒ€ì‘ë˜ëŠ” controller ê°ì²´ë¥¼ ìƒì„± ë° ì €ì¥ 
     	
     	// main
         mappings.put("/", new ForwardController("/index.jsp"));
@@ -30,13 +30,12 @@ public class RequestMapping {
         
         // info
         mappings.put("/register", new ForwardController("/chooseUserType.jsp"));
-        mappings.put("/register/user", new UserRegisterController());
-        mappings.put("/register/company", new CompanyRegisterController());
+        mappings.put("/register_user", new UserRegisterController());
+        mappings.put("/register_company", new CompanyRegisterController());
         mappings.put("/login", new LoginController());
         mappings.put("/logout", new LogoutController());
         mappings.put("/userGameList", new ForwardController("/mypage.jsp"));
-        mappings.put("/updateRegister/user", new UpdateUserController());
-        mappings.put("/updateRegister/company", new UpdateUserController());
+        mappings.put("/updateRegister", new UpdateUserController());
         
         // point
         mappings.put("/pointShop", new ViewPointshopController());
@@ -44,13 +43,12 @@ public class RequestMapping {
         mappings.put("/addPoint", new AddPointController());
         
         // game
-        mappings.put("/viewUpload", new ViewUploadGameController());
         mappings.put("/upload", new UploadGameController());
         mappings.put("/edit", new UpdateGameController());
         mappings.put("/remove", new DeleteGameController());
         
         // reservation
-        mappings.put("/game", new ViewReservationController());
+        //mappings.put("/game", new ViewReservationController());
         mappings.put("/reservate", new ReservateController());
         mappings.put("/cancle", new CancleReservationController());
         mappings.put("/reward", new SendRewardController());
@@ -61,7 +59,7 @@ public class RequestMapping {
     }
 
     public Controller findController(String uri) {	
-    	// ÁÖ¾îÁø uri¿¡ ´ëÀÀµÇ´Â controller °´Ã¼¸¦ Ã£¾Æ ¹İÈ¯
+    	// ì£¼ì–´ì§„ uriì— ëŒ€ì‘ë˜ëŠ” controller ê°ì²´ë¥¼ ì°¾ì•„ ë°˜í™˜
         return mappings.get(uri);
     }
 }
