@@ -3,34 +3,39 @@ package model;
 import java.util.Date;
 
 /**
- * »ç¿ëÀÚ °ü¸®¸¦ À§ÇØ ÇÊ¿äÇÑ µµ¸ŞÀÎ Å¬·¡½º. COMPANYINFO Å×ÀÌºí°ú ´ëÀÀµÊ
+ * ì‚¬ìš©ì ê´€ë¦¬ë¥¼ ìœ„í•´ í•„ìš”í•œ ë„ë©”ì¸ í´ë˜ìŠ¤. COMPANYINFO í…Œì´ë¸”ê³¼ ëŒ€ì‘ë¨
  */
 public class Company {
-	private String companyId;
+	private int companyId; //ë²ˆì§¸
 	private String id;
 	private String password;
 	private String email;
 	private String name;
 	private String phone_number;
-	public Company() { }		// ±âº» »ı¼ºÀÚ
+	public Company() { }		// ê¸°ë³¸ ìƒì„±ì
 	
-	public Company(String companyId, String id, String password, String email, String name, String phone_number) {
+	public Company(int companyId, String id, String password, String email, String name, String phone_number) {
 		this.companyId = companyId;
+		this.id = id;
 		this.password = password;
 		this.email = email;
 		this.name = name;
 		this.phone_number = phone_number;
-	}//»ı¼ºÀÚ
+	}//ìƒì„±ì
 
 	//getters&setters
-	public String getCompanyId() {
+	public int getCompanyId() {
 		return companyId;
 	}
-
-	public void setCompanyId(String companyId) {
+	public void setCompanyId(int companyId) {
 		this.companyId = companyId;
 	}
-
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getPassword() {
 		return password;
 	}
@@ -63,11 +68,11 @@ public class Company {
 		this.phone_number = phone_number;
 	}
 
-	public boolean isSameCompany(String companyid) {
-        return this.companyId.equals(companyid);
+	public boolean isSameCompany(int companyid) {
+        return this.companyId == companyid;
     }
 	
-	/* ºñ¹Ğ¹øÈ£ °Ë»ç */
+	/* ë¹„ë°€ë²ˆí˜¸ ê²€ì‚¬ */
 	public boolean matchPassword(String password) {
 		if (password == null) {
 			return false;
@@ -80,13 +85,5 @@ public class Company {
 		return "Company [companyId=" + companyId + ", password=" + password + ", email=" + email + ", name=" + name
 				+ ", phone_number=" + phone_number + "]";
 	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}	
 }
 
