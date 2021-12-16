@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,7 +20,7 @@
 <body>
 	<div id="header" align="center">
 		<h1>
-			<br>Âò²Ç
+			<br>ì°œê½
 		</h1>
 		<hr>
 		<div class="container-fluid">
@@ -31,23 +31,31 @@
 							<h2 class="accordion-header" id="headingOne">
 								<button class="accordion-button" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseOne"
-									aria-expanded="true" aria-controls="collapseOne">¸Ş´º1</button>
+									aria-expanded="true" aria-controls="collapseOne">ë©”ë‰´1</button>
 							</h2>
 							<div id="collapseOne" class="accordion-collapse collapse show"
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 
 								<div class="list-group">
-									<a href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
+									<a
+										href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
 										class="list-group-item list-group-item-action"
-										aria-current="true" > ½ºÆ÷Ã÷ </a> <a href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
-										class="list-group-item list-group-item-action">ÆÛÁñ</a> <a
-										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>" class="list-group-item list-group-item-action">·ÑÇÃ·¹À×</a>
-									<a href="<c:url value='/category'><c:param name='category' value='3' /></c:url>" class="list-group-item list-group-item-action">½Ã¹Ä·¹ÀÌ¼Ç</a>
-									<a href="<c:url value='/category'><c:param name='category' value='4' /></c:url>" class="list-group-item list-group-item-action">¾×¼Ç</a>
-									<a href="<c:url value='/category'><c:param name='category' value='5' /></c:url>" class="list-group-item list-group-item-action">À½¾Ç</a>
-									<a href="<c:url value='/category'><c:param name='category' value='6' /></c:url>" class="list-group-item list-group-item-action">º¸µå</a>
-									<a href="<c:url value='/category'><c:param name='category' value='7' /></c:url>" class="list-group-item list-group-item-action">FPS</a>
-								
+										aria-current="true"> ìŠ¤í¬ì¸  </a> <a
+										href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
+										class="list-group-item list-group-item-action">í¼ì¦</a> <a
+										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>"
+										class="list-group-item list-group-item-action">ë¡¤í”Œë ˆì‰</a> <a
+										href="<c:url value='/category'><c:param name='category' value='3' /></c:url>"
+										class="list-group-item list-group-item-action">ì‹œë®¬ë ˆì´ì…˜</a> <a
+										href="<c:url value='/category'><c:param name='category' value='4' /></c:url>"
+										class="list-group-item list-group-item-action">ì•¡ì…˜</a> <a
+										href="<c:url value='/category'><c:param name='category' value='5' /></c:url>"
+										class="list-group-item list-group-item-action">ìŒì•…</a> <a
+										href="<c:url value='/category'><c:param name='category' value='6' /></c:url>"
+										class="list-group-item list-group-item-action">ë³´ë“œ</a> <a
+										href="<c:url value='/category'><c:param name='category' value='7' /></c:url>"
+										class="list-group-item list-group-item-action">FPS</a>
+
 								</div>
 
 							</div>
@@ -56,7 +64,7 @@
 							<h2 class="accordion-header" id="headingTwo">
 								<button class="accordion-button collapsed" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-									aria-expanded="false" aria-controls="collapseTwo">¸Ş´º2</button>
+									aria-expanded="false" aria-controls="collapseTwo">ë©”ë‰´2</button>
 							</h2>
 							<div id="collapseTwo" class="accordion-collapse collapse"
 								aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -64,10 +72,10 @@
 								<div class="list-group">
 									<a href="#"
 										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Ş´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Ş´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Ş´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Ş´º4</a>
+										aria-current="true"> ì„œë¸Œë©”ë‰´1 </a> <a href="#"
+										class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´2</a> <a
+										href="#" class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´3</a>
+									<a href="#" class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´4</a>
 								</div>
 							</div>
 						</div>
@@ -76,7 +84,7 @@
 								<button class="accordion-button collapsed" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseThree"
 									aria-expanded="false" aria-controls="collapseThree">
-									¸Ş´º3</button>
+									ë©”ë‰´3</button>
 							</h2>
 							<div id="collapseThree" class="accordion-collapse collapse"
 								aria-labelledby="headingThree"
@@ -85,10 +93,10 @@
 								<div class="list-group">
 									<a href="/category.jsp"
 										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Ş´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Ş´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Ş´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Ş´º4</a>
+										aria-current="true"> ì„œë¸Œë©”ë‰´1 </a> <a href="#"
+										class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´2</a> <a
+										href="#" class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´3</a>
+									<a href="#" class="list-group-item list-group-item-action">ì„œë¸Œë©”ë‰´4</a>
 								</div>
 							</div>
 						</div>
@@ -98,16 +106,15 @@
 					<!-- search -->
 					<form action="<c:url value='/search'>
             			  </c:url>">
-					<div class="input-group mb-3">
-						<div class="col-5">
-							<input type="text" class="form-control" name ="keyWord" placeholder="search"
-								aria-label="search" >
+						<div class="input-group mb-3">
+							<div class="col-5">
+								<input type="text" class="form-control" name="keyWord"
+									placeholder="search" aria-label="search">
+							</div>
+							<div class="col-auto">
+								<button type="submit" class="btn btn-outline-secondary">search</button>
+							</div>
 						</div>
-						<div class="col-auto">
-							<button type="submit" class="btn btn-outline-secondary" 
-								>search</button>
-						</div>
-					</div>
 					</form>
 
 					<!-- recommend -->
@@ -120,17 +127,18 @@
 								<div class="row" align="center">
 									<div class="col">
 										<div class="card" style="width: 15rem;">
-										<a href="<c:url value = '/reservation/game'></c:url>" style="text-decoration:none">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
+											<a href="<c:url value = '/reservation/game'></c:url>"
+												style="text-decoration: none"> <img
+												src="images/wallR.jpg" class="card-img-top" alt="...">
+												<div class="card-body">
+													<h5 class="card-title">game title</h5>
+													<p class="card-text">This is a wider card with
+														supporting text below as a natural lead-in to additional
+														content. This content is a little bit longer.</p>
+													<p class="card-text">
+														<small class="text-muted">Last updated 3 mins ago</small>
+													</p>
+												</div>
 											</a>
 										</div>
 									</div>
@@ -168,17 +176,18 @@
 								<div class="row" align="center">
 									<div class="col">
 										<div class="card" style="width: 15rem;">
-										<a href="<c:url value = '/reservation/game'></c:url>" style="text-decoration:none">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
+											<a href="<c:url value = '/reservation/game'></c:url>"
+												style="text-decoration: none"> <img
+												src="images/wallR.jpg" class="card-img-top" alt="...">
+												<div class="card-body">
+													<h5 class="card-title">game title</h5>
+													<p class="card-text">This is a wider card with
+														supporting text below as a natural lead-in to additional
+														content. This content is a little bit longer.</p>
+													<p class="card-text">
+														<small class="text-muted">Last updated 3 mins ago</small>
+													</p>
+												</div>
 											</a>
 										</div>
 									</div>
@@ -216,17 +225,18 @@
 								<div class="row" align="center">
 									<div class="col">
 										<div class="card" style="width: 15rem;">
-										<a href="<c:url value = '/reservation/game'></c:url>" style="text-decoration:none">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
+											<a href="<c:url value = '/reservation/game'></c:url>"
+												style="text-decoration: none"> <img
+												src="images/wallR.jpg" class="card-img-top" alt="...">
+												<div class="card-body">
+													<h5 class="card-title">game title</h5>
+													<p class="card-text">This is a wider card with
+														supporting text below as a natural lead-in to additional
+														content. This content is a little bit longer.</p>
+													<p class="card-text">
+														<small class="text-muted">Last updated 3 mins ago</small>
+													</p>
+												</div>
 											</a>
 										</div>
 									</div>
@@ -273,10 +283,9 @@
 						</button>
 					</div>
 
-					<!-- ÀÏ¹İ °ÔÀÓ -->
+					<!-- ì¼ë°˜ ê²Œì„ -->
 					<p class="h2">Entire Games</p>
-					<c:forEach var="game" items="${entireGameList}"
-						varStatus="status">
+					<c:forEach var="game" items="${entireGameList}" varStatus="status">
 						<c:choose>
 							<c:when test="${status.index % 4  eq 0}">
 								<div class="row" align="center">
@@ -287,7 +296,7 @@
 						</c:choose>
 						<%-- <a href="<c:url value='/game'>
             			<c:param name='game_id' value='${Cgame.id}' /></c:url>"> --%>
-						 <div class="col"> 
+						<div class="col">
 							<div class="card" style="width: 15rem;">
 								<img src="images/wallR.jpg" class="card-img-top" alt="...">
 								<div class="card-body">
@@ -303,8 +312,8 @@
 									</p>
 								</div>
 							</div>
-							<!-- </a> --> 
-						 </div> 
+							<!-- </a> -->
+						</div>
 						<c:choose>
 							<c:when test="${status.count % 4 eq 0}">
 				</div>
@@ -314,71 +323,63 @@
 			</c:when>
 			</c:choose>
 			</c:forEach>
-				</div>
-				<!-- ·Î±×ÀÎ Àü -->
-				<div class="col-2">
-					<div class="card border-warning mb-3" style="max-width: 18rem;">
-						<div class="card-body">
-							<form>
-								<div class="row mb-3">
+		</div>
+		<!-- ë¡œê·¸ì¸ ì°½ -->
+		<div class="col-2">
+			<div class="card border-warning mb-3" style="max-width: 18rem;">
+				<div class="card-body">
+					<!-- ë¡œê·¸ì¸ ì „ -->
+					<c:if test="${sessionScope.id==null}">
+					<form action="<c:url value='/login'/>" method="POST">
+							<div class="row mb-3">
 
-									<input type="email" class="form-control" id="inputEmail3"
-										placeholder="ID">
+								<input name=id type="text" class="form-control" id="id" placeholder="ID">
+							</div>
+							<div class="row mb-3">
+								<input name=passward type="password" class="form-control" id="passward"
+									placeholder="PW">
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-6" align="left">
+									<a href="chooseUserType.jsp">regist in</a>
 								</div>
-								<div class="row mb-3">
-									<input type="password" class="form-control" id="inputPassword3"
-										placeholder="PW">
+								<div class="col-sm-6">
+									<button type="submit" class="btn btn-primary">Sign
+										in</button>
 								</div>
-								<div class="row mb-3">
-									<div class="col-sm-6" align="left">
-										<a href="<c:url value='/info/register'></c:url>">regist in</a>
-									</div>
-									<div class="col-sm-6">
-										<button type="submit" class="btn btn-primary">Sign in</button>
-									</div>
-								</div>
+							</div>
 							</form>
-						</div>
-					</div>
-				</div> 
-				<!-- ·Î±×ÀÎ ÈÄ -->
-				<!-- <div class="col-2">
-					<div class="card border-warning mb-3" style="max-width: 18rem;">
-						<div class="card-body">
-
+						</c:if>
+						<!-- ë¡œê·¸ì¸ í›„ -->
+						<c:if test='${sessionScope.id!=null}'>
+						<form action="<c:url value='/logout'/>" method="POST">
 							<div class="row mb-3">
 								<p class="h5" align="left">
-									<u>username</u> ´Ô
+									<u>${sessionScope.id}</u> ë‹˜
 								</p>
 							</div>
 							<div class="row mb-3">
-								<p class="h5" align="left">
-									º¸À¯: <u>9999</u>point
-								</p>
+								<a href=mypage.jsp>
+									<button class="btn btn-primary">MY PAGE</button>
+								</a>
 							</div>
-							<div class="row mb-3">
-								<button type="submit" class="btn btn-primary">MY PAGE</button>
+							<div class="col-sm-4" align="right">
+								<a href="#"> logout</a>
 							</div>
-							<div class="row mb-3">
-								<div class="col-sm-7" align="left">
-									<button type="submit" class="btn btn-primary">Æ÷ÀÎÆ® ÃæÀü</button>
-								</div>
-								<div class="col-sm-4" align="right">
-									<a href="#">logout</a>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</div> -->
+							</form>
+							</c:if>
+					
+				</div>
 			</div>
 		</div>
+	</div>
+	</div>
 	</div>
 	<div id="footer">
 		<hr class="haveMargin">
 		<p class="text-center" align="center">
-			<small><strong>¾÷Ã¼¸í</strong></small><br> <small>´ëÇ¥ : È«±æµ¿
-				¤ı ÁÖ¼Ò : »ç°Å¸® ¤ı »ç¾÷ÀÚµî·Ï¹øÈ£:123-12-12345 ¤ı ÀüÈ­ : 02-123-1234</small><br> <small>Copyright¨Ï
+			<small><strong>ì—…ì²´ëª…</strong></small><br> <small>ëŒ€í‘œ : í™ê¸¸ë™
+				ã† ì£¼ì†Œ : ì‚¬ê±°ë¦¬ ã† ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸:123-12-12345 ã† ì „í™” : 02-123-1234</small><br> <small>Copyrightâ“’
 				test.com All rights reserved.</small>
 		</p>
 	</div>
@@ -395,6 +396,20 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+	<script>
+		function login_() {
+			if (id == "") {
+				alert("ì‚¬ìš©ì ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì‹­ì‹œìš”.");
+				return false;
+			}
+			if (passward == "") {
+				alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹­ì‹œìš”.");
+				return false;
+			}
+			LoginController.submit();
+			
+		}
+	</script>
 </body>
 </html>
 
