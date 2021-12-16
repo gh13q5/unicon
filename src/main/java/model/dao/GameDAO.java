@@ -48,11 +48,11 @@ public class GameDAO {
 	 */
 	public int update(Game game) throws SQLException {
 		String sql = "UPDATE Game "
-				+ "SET title=?, start_date=?, end_date=?, image_address=?, description=?, category=?, reward_image=?, reward_text=?, total_reservations=? "
+				+ "SET title=?, start_date=?, end_date=?, image_address=?, description=?, category=?, reward_image=?, reward_text=? "
 				+ "WHERE game_id=?";
 		Object[] param = new Object[] { game.getTitle(), game.getStart_date(), game.getEnd_date(),
 				game.getImage_address(), game.getDescription(), game.getCategory(), game.getReward_image(),
-				game.getReward_text(), game.getTotal_reservations() };
+				game.getReward_text(), game.getGame_id() };
 		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil占쏙옙 update占쏙옙占쏙옙 占신곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙
 
 		try {
@@ -278,6 +278,26 @@ public class GameDAO {
 			jdbcUtil.close(); // resource 占쏙옙환
 		}
 		return false;
+	}
+	
+	public int updateReservate(String gameId, int total_reservate) throws SQLException {
+		String sql = "UPDATE Game "
+				+ "SET total_reservations=? "
+				+ "WHERE game_id=?";
+		Object[] param = new Object[] { total_reservate, gameId };
+		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil占쏙옙 update占쏙옙占쏙옙 占신곤옙 占쏙옙占쏙옙 占쏙옙占쏙옙
+
+		try {
+			int result = jdbcUtil.executeUpdate(); // update 占쏙옙 占쏙옙占쏙옙
+			return result;
+		} catch (Exception ex) {
+			jdbcUtil.rollback();
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.commit();
+			jdbcUtil.close(); // resource 占쏙옙환
+		}
+		return 0;
 	}
 
 }

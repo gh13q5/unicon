@@ -35,21 +35,30 @@ public class ViewReservationController implements Controller {
 		 * "redirect:/user/login/form"; // login form 요청으로 redirect }
 		 */
 
-		// String gameId = req.getParameter("gameId");
-		String gameId = "1"; // 임시
-		String userId = "0";	//임시
+		String gameId = req.getParameter("gameId");
+		String userId = "0"; // 임시
+
 		Game game = null;
 		Company company = null;
+
 		ArrayList<Genre> genreList = new ArrayList<>();
+		String[] imageList = null;
+		String[] rewardImageList = null;
 
 		try {
 			game = gameDAO.findGame(gameId); // 게임 정보 검색
 			company = companyDAO.findCompany(String.valueOf(game.getCompany_id()));
 
-			// 게임의 장르 태그 리스트 생성
-			String[] tagList = String.valueOf(game.getCategory()).split(",");
-			for (int i = 0; i < tagList.length; i++)
+			// 게임의 장르 태그 리스트, 이미지 주소 리스트, 리워드 이미지 주소 리스트 생성
+			System.out.println(game.getCategory());
+			String[] tagList = game.getCategory().split(",");
+			for (int i = 0; i < tagList.length; i++) {
 				genreList.add(genreDAO.findGenre(tagList[i]));
+				System.out.println(genreList.get(i));
+			}
+
+			imageList = game.getImage_address().split(",");
+			rewardImageList = game.getReward_image().split(",");
 
 			// 나중에 Login 구현되면 그 안으로 들어갈 예정
 			boolean isReservate = reservationDAO.isReservate(gameId, userId); // DB에서 user가 게임 예약한 기록 확인
@@ -61,9 +70,14 @@ public class ViewReservationController implements Controller {
 			return "redirect:/";
 		}
 
+		req.setAttribute("gameId", gameId);
 		req.setAttribute("game", game);
 		req.setAttribute("company", company);
+
 		req.setAttribute("genreList", genreList);
+		req.setAttribute("imageList", imageList);
+		req.setAttribute("rewardImageList", rewardImageList);
+
 		return "/reservation.jsp"; // 게임 예약 페이지로 이동
 	}
 }

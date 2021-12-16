@@ -182,19 +182,20 @@
 										<label for="reward-image01"> <img
 											src="images/image_upload.jpg" class="image-upload-icon"
 											alt="...">
-										</label> <input type="file" class="form-control" id="reward-image01">
-										<label for="reward-image02"> <img
-											src="images/image_upload.jpg" class="image-upload-icon"
+										</label> <input type="file" class="form-control" id="reward-image01"
+											name="reward-image01"> <label for="reward-image02">
+											<img src="images/image_upload.jpg" class="image-upload-icon"
 											alt="...">
-										</label><input type="file" class="form-control" id="reward-image02">
-										<label for="reward-image03"> <img
-											src="images/image_upload.jpg" class="image-upload-icon"
+										</label><input type="file" class="form-control" id="reward-image02"
+											name="reward-image02"> <label for="reward-image03">
+											<img src="images/image_upload.jpg" class="image-upload-icon"
 											alt="...">
-										</label><input type="file" class="form-control" id="reward-image03">
-										<label for="reward-image04"> <img
-											src="images/image_upload.jpg" class="image-upload-icon"
+										</label><input type="file" class="form-control" id="reward-image03"
+											name="reward-image03"> <label for="reward-image04">
+											<img src="images/image_upload.jpg" class="image-upload-icon"
 											alt="...">
-										</label> <input type="file" class="form-control" id="reward-image04">
+										</label> <input type="file" class="form-control" id="reward-image04"
+											name="reward-image04">
 									</div>
 								</div>
 							</div>

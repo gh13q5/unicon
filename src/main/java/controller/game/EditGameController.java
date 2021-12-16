@@ -1,69 +1,206 @@
 package controller.game;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import controller.Controller;
-import controller.info.UserSessionUtils;
-
 import model.Game;
+import model.Reservation;
+import model.User;
 import model.dao.GameDAO;
-import model.dao.UserDAO;
 
+import org.apache.commons.fileupload.*;
+import org.apache.commons.fileupload.disk.*;
+import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
+import org.apache.commons.fileupload.servlet.*;
 
-public class EditGameController implements Controller{
-	 @Override
-	    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		 
-		 if (request.getMethod().equals("GET")) {	
-	    		// GET request: 회원정보 수정 form 요청	
-	    		// 원래는 UpdateUserFormController가 처리하던 작업을 여기서 수행
-	    		String id = request.getParameter("id");
-	    		UserDAO manager = new UserDAO();
-	    		
-	    		manager.findUser(id);	// 수정하려는 사용자 정보 검색
-				request.setAttribute("id", id);			
+public class EditGameController implements Controller {
 
-				HttpSession session = request.getSession();
-				if (UserSessionUtils.isLoginUser(id, session) ||
-					UserSessionUtils.isLoginUser("admin", session)) {
-					// 현재 로그인한 사용자가 수정 대상 사용자이거나 관리자인 경우 -> 수정 가능
-					
-					return "/updateUserInfo.jsp";   // 검색한 사용자 정보를 update form으로 전송     
-				}    
-				
-				// else (수정 불가능한 경우) 사용자 보기 화면으로 오류 메세지를 전달
-				request.setAttribute("updateFailed", true);
-				request.setAttribute("exception", 
-						new IllegalStateException("타인의 정보는 수정할 수 없습니다."));            
-				return "/user/view.jsp";	// 사용자 보기 화면으로 이동 (forwarding)
-		    }	
-		 
-		//받은 날짜를 date로 변환하는 함수
-	     SimpleDateFormat gameDate = new SimpleDateFormat("yyyy-MM-dd");
-		 
-		 Game game = new Game(
-				 Integer.parseInt(request.getParameter("game_id")),
-				 request.getParameter("title"),
-				 gameDate.parse(request.getParameter("start_date")),
-				 gameDate.parse(request.getParameter("end_date")),
-				 request.getParameter("image_address"),
-				 request.getParameter("description"),
-				 request.getParameter("category"),
-				 request.getParameter("reward_image"),
-				 request.getParameter("reward_text"),
-				 Integer.parseInt(request.getParameter("total_reservations")),
-				 Integer.parseInt(request.getParameter("company_id")));
+	GameDAO gameDAO = new GameDAO();
 
-				GameDAO manager = new GameDAO();
-				manager.update(game);
-				
-		        return "redirect:/main.jsp";	// 성공 시 사용자 리스트 화면으로 redirect
+	@Override
+	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-	        
-	        
-	    }
+		// 로그인 여부 확인
+		// 후에 취합했을 때 주석 풀 예정 -> 로그인 안 했으면 다시 게임 예약 페이지로 돌아감!
+		/*
+		 * if (!UserSessionUtils.hasLogined(req.getSession())) { return
+		 * "redirect:/user/login/form"; // login form 요청으로 redirect }
+		 */
+
+		String gameId = req.getParameter("gameId");
+		String companyId = "1"; // 임시
+		Game originGame = gameDAO.findGame(gameId);
+
+		String title = null;
+
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		java.sql.Date start_date = null;
+		java.sql.Date end_date = null;
+
+		String[] image_path_list = originGame.getImage_address().split(",");
+		String image_path = "";
+
+		String description = null;
+
+		ArrayList<String> tagList = new ArrayList<>();
+		String tag = "";
+
+		String[] reward_image_list = originGame.getReward_image().split(",");
+		String reward_image_path = "";
+		String reward_text = null;
+
+		// 게임 이미지 파일 업로드
+		// 전송된 데이터의 인코드 타입이 multipart 인지 여부를 체크하고, 아니라면 파일 전송 처리 X
+		boolean check = ServletFileUpload.isMultipartContent(req);
+		if (check) {
+			// 파일 전송 포함 상태
+			ServletContext context = req.getServletContext();
+			String path = context.getRealPath("/images/" + companyId);
+			File dir = new File(path);
+
+			System.out.println("파일 지정 완료 : " + dir.getPath());
+
+			if (!dir.exists())
+				dir.mkdir();
+
+			System.out.println("파일 경로 생성 완료");
+			try {
+				// 게임 이미지 파일 전송
+				DiskFileItemFactory factory = new DiskFileItemFactory();
+				factory.setSizeThreshold(10 * 1024); // 10kb씩 메모리에 데이터를 읽어 들인다.
+				factory.setRepository(dir);
+
+				System.out.println("factory 지정 완료");
+
+				ServletFileUpload upload = new ServletFileUpload(factory);
+				upload.setSizeMax(10 * 1024 * 1024); // 업로드 최대 용량은 10MB
+				upload.setHeaderEncoding("utf-8");
+
+				System.out.println("upload 지정 완료");
+
+				// upload 객체에 전송되어 온 모든 데이터를 Collection 객체에 담는다.
+				List<FileItem> items = (List<FileItem>) upload.parseRequest(req);
+				for (int i = 0; i < items.size(); i++) {
+					FileItem item = (FileItem) items.get(i);
+					String value = item.getString("utf-8");
+
+					// 일반 폼 데이터라면?
+					if (item.isFormField()) {
+						System.out.println("formField 데이터 가져오기 시작");
+						if (item.getFieldName().equals("title"))
+							title = value;
+						else if (item.getFieldName().equals("start_date")) {
+							Date originStartDate = transFormat.parse(value);
+							String formattedStartDate = transFormat.format(originStartDate);
+							start_date = java.sql.Date.valueOf(formattedStartDate);
+							System.out.println("start_date 가져오기 완료");
+						} else if (item.getFieldName().equals("end_date")) {
+							Date originEndDate = transFormat.parse(value);
+							String formattedEndDate = transFormat.format(originEndDate);
+							end_date = java.sql.Date.valueOf(formattedEndDate);
+						} else if (item.getFieldName().equals("description"))
+							description = value;
+						else if (item.getFieldName().equals("tag[]")) {
+							// test라 태그가 1개 들어온다고 가정하고 작성했음 -> 나중에 수정!
+							System.out.println("태그 가져오기 시작" + value);
+							tagList.add(value);
+						} else if (item.getFieldName().equals("reward_text"))
+							reward_text = value;
+					} else {
+						// 파일 데이터라면?
+						System.out.println("파일 데이터 가져오기 시작");
+						if (item.getFieldName().equals("image01") || item.getFieldName().equals("image02")
+								|| item.getFieldName().equals("image03") || item.getFieldName().equals("image04")) {
+							String file_path = item.getName();
+
+							// 파일이 넘어오지 않았으면 패스
+							if (file_path == null || file_path.trim().length() == 0)
+								continue;
+
+							System.out.println("파일 경로 : " + file_path);
+
+							File file = new File(dir, file_path);
+							System.out.println("파일 경로 및 생성 완료");
+							item.write(file);
+
+							
+							if (item.getFieldName().equals("image01"))
+								image_path_list[0] = file_path;
+							else if (item.getFieldName().equals("image02"))
+								image_path_list[1] = file_path;
+							else if (item.getFieldName().equals("image03"))
+								image_path_list[2] = file_path;
+							else if (item.getFieldName().equals("image04"))
+								image_path_list[3] = file_path;
+							
+
+							System.out.println("이미지 저장 완료");
+						} else if (item.getFieldName().equals("reward-image01")
+								|| item.getFieldName().equals("reward-image02")
+								|| item.getFieldName().equals("reward-image03")
+								|| item.getFieldName().equals("reward-image04")) {
+							// 후에 image02랑 reward01도 추가
+							String file_path = item.getName();
+
+							// 파일이 넘어오지 않았으면 패스
+							if (file_path == null || file_path.trim().length() == 0)
+								continue;
+
+							System.out.println("파일 경로 : " + file_path);
+
+							File file = new File(dir, file_path);
+							System.out.println("파일 경로 및 생성 완료");
+							item.write(file);
+							
+							if (item.getFieldName().equals("reward-image01"))
+								reward_image_list[0] = file_path;
+							else if (item.getFieldName().equals("reward-image02"))
+								reward_image_list[0] = file_path;
+							else if (item.getFieldName().equals("reward-image03"))
+								reward_image_list[0] = file_path;
+							else if (item.getFieldName().equals("reward-image04"))
+								reward_image_list[0] = file_path;
+							
+							System.out.println("리워드 이미지 저장 완료");
+						}
+					}
+				}
+				System.out.println("for문 종료");
+
+				// 태그 및 이미지 주소 리스트 문자열 하나로 압축
+				for (int i = 0; i < tagList.size(); i++) {
+					if (i != 0)
+						tag += ",";
+					tag += tagList.get(i);
+				}
+				for (int i = 0; i < image_path_list.length; i++) {
+					if (i != 0)
+						image_path += ",";
+					image_path += image_path_list[i];
+				}
+				for (int i = 0; i < reward_image_list.length; i++) {
+					if (i != 0)
+						reward_image_path += ",";
+					reward_image_path += reward_image_list[i];
+				}
+
+				Game newGame = new Game(Integer.parseInt(gameId), title, start_date, end_date, image_path, description, tag, reward_image_path,
+						reward_text, 0, Integer.parseInt(companyId));
+				gameDAO.update(newGame);
+				System.out.println("게임 수정 완료");
+			} catch (Exception e) {
+				return "redirect:/viewEdit?gameId=" + gameId;
+			}
+		}
+
+		return "redirect:/"; // 일단은 메인 페이지로 이동
+	}
 }
