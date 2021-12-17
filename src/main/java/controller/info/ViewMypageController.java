@@ -38,6 +38,12 @@ public class ViewMypageController implements Controller {
 		
 		String session_Id = UserSessionUtils.getLoginUserId(req.getSession());
 		
+		// Company User인 경우, company Mypage로 redirect
+		if(companyDAO.existingCompany(session_Id)) {
+			Company company = companyDAO.findCompany(session_Id);
+			return "redirect:/companyMypage";
+		}
+		
 			User user = userDAO.findUser(session_Id);
 			int user_id = user.getUserId();
 			
@@ -49,12 +55,7 @@ public class ViewMypageController implements Controller {
 			req.setAttribute("findUserInterestsList", findUserInterestsList);
 			req.setAttribute("findGenreList", findGenreList);
 			req.setAttribute("findrv", findReservationListByUserId);
-		
-//		else {
-//			Company com = companyDAO.findCompany(session_Id);
-//			req.setAttribute("findUser", com);
-//		}
-//		
+
 		return "/mypage.jsp";
 	}
 

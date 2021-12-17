@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+div.col.upload {
+	width: 100%;
+	margin: 2%;
+	overflow: hidden;
+}
+
+div.card.upload, div.row.upload {
+	width: 40%;
+	float: left; /*가로 정렬을 하기위한 float*/
+}

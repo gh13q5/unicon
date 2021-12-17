@@ -14,11 +14,11 @@ import controller.reservation.*;
 public class RequestMapping {
     private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
     
-    // 각 요청 uri에 대한 controller 객체를 저장할 HashMap 생성
+    // 媛� �슂泥� uri�뿉 ���븳 controller 媛앹껜瑜� ���옣�븷 HashMap �깮�꽦
     private Map<String, Controller> mappings = new HashMap<String, Controller>();
 
     public void initMapping() {
-    	// 각 uri에 대응되는 controller 객체를 생성 및 저장 
+    	// 媛� uri�뿉 ���쓳�릺�뒗 controller 媛앹껜瑜� �깮�꽦 諛� ���옣 
     	
     	// main
         mappings.put("/", new ForwardController("/index.jsp"));
@@ -28,6 +28,7 @@ public class RequestMapping {
         mappings.put("/category", new ViewCategoryController());
         mappings.put("/recommendation", new ViewRecommendationController());
         mappings.put("/mypage", new ViewMypageController());
+        mappings.put("/companyMypage", new ViewCompanyMyPageController());
         
         // info
         mappings.put("/register", new ForwardController("/chooseUserType.jsp"));
@@ -65,7 +66,7 @@ public class RequestMapping {
     }
 
     public Controller findController(String uri) {	
-    	// 주어진 uri에 대응되는 controller 객체를 찾아 반환
+    	// 二쇱뼱吏� uri�뿉 ���쓳�릺�뒗 controller 媛앹껜瑜� 李얠븘 諛섑솚
         return mappings.get(uri);
     }
 }
