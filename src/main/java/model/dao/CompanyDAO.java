@@ -113,8 +113,8 @@ public class CompanyDAO {
 			ResultSet rs = jdbcUtil.executeQuery(); // query �뜝�럥堉꾢뜝�럥六�
 			if (rs.next()) { // �뜝�럥由겼뜝�럡臾� �뜝�럩�젧�솻洹⑥삕 �뛾�룇裕꾤뙼占�
 				Company company = new Company( // Company �뤆�룇鍮섊뙼�뮁紐닷뜝占� �뜝�럡臾멨뜝�럡�뎽�뜝�럥由��뜝�럥�뿰 �뜝�럩�뤂�뜝�럡�뀬 �뜝�럩�젧�솻洹ｏ옙�뜝�룞�삕 �뜝�룞�삕�뜝�럩�궋
-						rs.getInt("id"), rs.getString("password"), rs.getString("email"),
-						rs.getString("name"), rs.getString("phone_number"), companyId);
+						Integer.parseInt(companyId), rs.getString("id"), rs.getString("password"), rs.getString("email"),
+						rs.getString("name"), rs.getString("phone_number"));
 				return company;
 			}
 		} catch (Exception ex) {
