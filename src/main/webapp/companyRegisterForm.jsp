@@ -35,7 +35,7 @@
 				<div class="col" align="center" style="padding: 50px;">
 					<div id="registerForm-title">회원가입</div>
 					<!-- 회원가입 form -->
-					<form id="registerForm-form" action="<c:url value='/register_company'/>" method="post">
+					<form id="registerForm-form"  method="post" action="<c:url value='/register/company'/>">
 						<div id="form-container" class="container">
 							<!-- 회원정보 입력 -->
 							

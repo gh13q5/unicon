@@ -37,11 +37,11 @@ public class CompanyManager {
 		return compMan;
 	}
 	
-	public int create(User user) throws SQLException, ExistingUserException {
-		if (companyDAO.existingUser(user.getUserId()) == true) {
-			throw new ExistingUserException(user.getUserId() + "는 존재하는 아이디입니다.");
+	public int create(Company company) throws SQLException, ExistingUserException {
+		if (companyDAO.existingCompany(company.getId()) == true) {
+			throw new ExistingUserException(company.getId() + "는 존재하는 아이디입니다.");
 		}
-		return companyDAO.create(user);
+		return companyDAO.create(company);
 	}
 
 //	public int update(User user) throws SQLException, UserNotFoundException {
@@ -78,7 +78,7 @@ public class CompanyManager {
 		return company;
 	}
 
-	public List<User> findUserList() throws SQLException {
+	public List<Company> findUserList() throws SQLException {
 			return companyDAO.findUserList();
 	}
 	
