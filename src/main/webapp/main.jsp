@@ -325,9 +325,8 @@
 								<p align="left">안녕하세요! o(^^)o</p>
 							</div>
 							<div class="row mb-3">
-								<a href=mypage.jsp>
-									<button class="btn btn-warning" id="mypage-button">MY
-										PAGE</button>
+								<a href="<c:url value = '/mypage'/>">
+									<button class="btn btn-primary">MY PAGE</button>
 								</a>
 							</div>
 							<div class="col-sm-4" align="right">
