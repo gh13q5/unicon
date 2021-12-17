@@ -66,7 +66,6 @@ public class ViewReservationController implements Controller {
 			company = companyDAO.findCompany(String.valueOf(game.getCompany_id()));
 
 			// 게임의 장르 태그 리스트, 이미지 주소 리스트, 리워드 이미지 주소 리스트 생성
-			System.out.println(game.getCategory());
 			String[] tagList = game.getCategory().split(",");
 			for (int i = 0; i < tagList.length; i++) {
 				genreList.add(genreDAO.findGenre(tagList[i]));
