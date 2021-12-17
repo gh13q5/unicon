@@ -370,7 +370,7 @@
 								</p>
 							</div>
 							<div class="row mb-3">
-								<a href=mypage.jsp>
+								<a href="<c:url value = '/mypage'/>">
 									<button class="btn btn-primary">MY PAGE</button>
 								</a>
 							</div>
