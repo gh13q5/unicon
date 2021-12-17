@@ -21,7 +21,7 @@ public class CancleReservationController implements Controller {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		// 로그인 여부 확인
-		// 로그인 안 했으면 메인 페이지로 돌아감!
+		// 로그인 안 했으면 메인 페이지로 돌아감! 
 		String gameId = req.getParameter("gameId");
 		String userId = null;
 

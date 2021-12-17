@@ -37,7 +37,7 @@ public class ViewReservationController implements Controller {
 		req.setAttribute("reservate", "false");
 
 		// 로그인 여부 확인
-		// 로그인 및 이미 예약한 게임인지 확인
+		// 로그인 및 이미 예약한 게임인지 확인 
 		if (UserSessionUtils.hasLogined(req.getSession())) {
 			req.setAttribute("isLogin", "true");
 			String session_Id = UserSessionUtils.getLoginUserId(req.getSession());

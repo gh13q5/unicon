@@ -21,7 +21,7 @@ public class ViewMainController implements Controller{
 	 @Override
 	    public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		 HttpSession session = req.getSession();
-//		String userID = UserSessionUtils.getLoginUserId(session);
+//		String userID = UserSessionUtils.getLoginUserId(session); 
 		 
 		 if (UserSessionUtils.hasLogined(req.getSession())) {
 			 	//HttpSession session = req.getSession();

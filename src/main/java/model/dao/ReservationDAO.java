@@ -16,7 +16,7 @@ public class ReservationDAO {
 	private JDBCUtil jdbcUtil = null;
 
 	public ReservationDAO() {
-		jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성
+		jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성 
 	}
 
 	// 예약 정보 추가

@@ -28,7 +28,7 @@ public class ViewEditGameController implements Controller {
 		String companyId = null;
 		req.setAttribute("isLogin", "false");
 
-		// 로그인 여부 확인
+		// 로그인 여부 확인 
 		if (UserSessionUtils.hasLogined(req.getSession())) {
 			req.setAttribute("isLogin", "true");
 			String session_Id = UserSessionUtils.getLoginUserId(req.getSession());

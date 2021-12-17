@@ -133,7 +133,7 @@ public class CompanyDAO {
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {id});	// JDBCUtil�뜝�럥�뱺 query占쎈닱筌롫챶沅� 嶺뚮씞�걝�뚳옙 �솻洹⑥삕�뜝�럥�빢 �뜝�럡�맟�뜝�럩�젧
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query �뜝�럥堉꾢뜝�럥六�
+			ResultSet rs = jdbcUtil.executeQuery();		// query �뜝�럥堉꾢뜝�럥六� 
 			if (rs.next()) {
 				int count = rs.getInt(1);
 				return (count == 1 ? true : false);
