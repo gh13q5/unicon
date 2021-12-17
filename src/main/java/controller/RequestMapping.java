@@ -27,6 +27,7 @@ public class RequestMapping {
         mappings.put("/gameRanking", new ForwardController("/main.jsp"));
         mappings.put("/category", new ViewCategoryController());
         mappings.put("/recommendation", new ViewRecommendationController());
+        mappings.put("/mypage", new ViewMypageController());
         
         // info
         mappings.put("/register", new ForwardController("/chooseUserType.jsp"));
