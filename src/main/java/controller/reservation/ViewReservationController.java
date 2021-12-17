@@ -63,7 +63,7 @@ public class ViewReservationController implements Controller {
 
 		try {
 			game = gameDAO.findGame(gameId); // 게임 정보 검색
-			company = companyDAO.findCompany(String.valueOf(game.getCompany_id()));
+			company = companyDAO.findCompanyByCompanyId(String.valueOf(game.getCompany_id()));
 
 			// 게임의 장르 태그 리스트, 이미지 주소 리스트, 리워드 이미지 주소 리스트 생성
 			String[] tagList = game.getCategory().split(",");
