@@ -381,7 +381,6 @@
 					</c:if>
 					<!-- 로그인 후 -->
 					<c:if test="${!empty userId}">
-						<form>
 							<div class="row mb-3">
 								<p class="h4" align="left">
 									<u>${userObj.name}</u> 님
@@ -397,7 +396,6 @@
 							<div class="col-sm-4" align="right">
 								<a href=" <c:url value= '/logout'/>" id="logout-link"> 로그아웃</a>
 							</div>
-						</form>
 					</c:if>
 
 				</div>

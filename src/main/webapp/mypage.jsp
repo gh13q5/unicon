@@ -178,160 +178,47 @@
 
 					</div>
 					<!-- 예약 게임 -->
-					<div id="carouselExampleDark" class="carousel carousel-dark slide"
-						data-bs-ride="carousel" data-bs-interval="false">
-
-						<div class="carousel-inner" style="margin: 10px; padding: 10px;">
-							<div class="carousel-item active">
+					<c:forEach var="Rgame" items="${findrv}" varStatus="status">
+					<c:choose>
+						<c:when test="${status.index % 4  eq 0}">
+							<div class="row" align="center">
+						</c:when>
+						<%-- <c:when test="${status.count eq 0}">
 								<div class="row" align="center">
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="carousel-item">
-								<div class="row" align="center">
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="carousel-item">
-								<div class="row" align="center">
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
+							</c:when> --%>
+					</c:choose>
+					<%-- <a href="<c:url value='/game'>
+            			<c:param name='game_id' value='${Cgame.id}' /></c:url>"> --%>
+					<div class="col">
+						<div class="card" style="width: 15rem;">
+							<c:set var="image" value="${fn:split(Rgame.image_address,',')}" />
+							<img
+								src="<c:url value='/images/${Rgame.company_id}/${image[0]}' />"
+								class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">
+									<c:out value="${Rgame.title}"></c:out>
+								</h5>
+								<p class="card-text">
+									<c:out value="${Rgame.description}" escapeXml="false"></c:out>
+								</p>
+								<p class="card-text">
+									<small class="text-muted">~<c:out
+											value="${Rgame.end_date}"></c:out></small>
+								</p>
 							</div>
 						</div>
-						<button class="carousel-control-prev" type="button"
-							data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Previous</span>
-						</button>
-						<button class="carousel-control-next" type="button"
-							data-bs-target="#carouselExampleDark" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Next</span>
-						</button>
+						<!-- </a> -->
 					</div>
+					<c:choose>
+						<c:when test="${status.count % 4 eq 0}">
+			</div>
+			</c:when>
+			<c:when test="${status.last}">
+		</div>
+		</c:when>
+		</c:choose>
+		</c:forEach>
 					<!-- 끝 -->
 
 					<div id="makeItcenter" align="right">

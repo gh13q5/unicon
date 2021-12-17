@@ -50,7 +50,7 @@
 							<div class="row">
 								<div id="passward-label" class="col-5">비밀번호</div>
 								<div id="passward-input" class="col-6">
-									<input name="passward" type="password" class="form-control" id="password"
+									<input name="password" type="password" class="form-control" id="password"
 											 data-rule-required="true"
 										placeholder="10자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="10">
 								</div>
@@ -58,7 +58,7 @@
 							<div class="row">
 								<div id="passwardCheck-label" class="col-5">비밀번호 확인</div>
 								<div id="passwardCheck-input" class="col-6">
-									<input name="passwardCheck" type="password" class="form-control" id="passwordCheck"
+									<input name="passwordCheck" type="password" class="form-control" id="passwordCheck"
 										data-rule-required="true" placeholder="비밀번호를 다시 입력해주세요."
 										maxlength="10">
 								</div>
@@ -112,32 +112,6 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
-	<!-- 게임 이미지 업로드 스크립트 -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script>
-		function readURL(input) {
-			var id = $(input).attr("id");
 
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-
-				reader.onload = function(e) {
-					$('label[for="' + id + '"] .image-upload-icon').attr('src',
-							e.target.result).show();
-				}
-
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-
-		$("input[id^='image']").change(function() {
-			readURL(this);
-		});
-
-		$("input[id^='reward-image']").change(function() {
-			readURL(this);
-		});
-	</script>
 </body>
 </html>

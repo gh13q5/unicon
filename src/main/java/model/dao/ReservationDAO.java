@@ -16,132 +16,133 @@ public class ReservationDAO {
 	private JDBCUtil jdbcUtil = null;
 
 	public ReservationDAO() {
-		jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성 
+		jdbcUtil = new JDBCUtil(); // JDBCUtil 媛앹껜 �깮�꽦 
 	}
 
-	// 예약 정보 추가
+	// �삁�빟 �젙蹂� 異붽�
 	public int create(Reservation reservation) throws SQLException {
 		String sql = "INSERT INTO Reservation (reservation_date, game_id, user_id) VALUES (?, ?, ?)";
 		Object[] param = new Object[] { reservation.getReservation_date(), reservation.getGame_id(),
 				reservation.getUser_id() };
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil 에 insert문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil �뿉 insert臾멸낵 留ㅺ컻 蹂��닔 �꽕�젙
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // insert 문 실행
+			int result = jdbcUtil.executeUpdate(); // insert 臾� �떎�뻾
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 반환
+			jdbcUtil.close(); // resource 諛섑솚
 		}
 		return 0;
 	}
 
-	// userId로 예약 정보 삭제
+	// userId濡� �삁�빟 �젙蹂� �궘�젣
 	public int removeByUserId(String userId) throws SQLException {
 		String sql = "DELETE FROM Reservation WHERE user_id=?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { userId }); // JDBCUtil에 delete문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { userId }); // JDBCUtil�뿉 delete臾멸낵 留ㅺ컻 蹂��닔 �꽕�젙
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // delete 문 실행
+			int result = jdbcUtil.executeUpdate(); // delete 臾� �떎�뻾
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 반환
+			jdbcUtil.close(); // resource 諛섑솚
 		}
 		return 0;
 	}
 
-	// gameId로 예약 정보 삭제
+	// gameId濡� �삁�빟 �젙蹂� �궘�젣
 	public int removeByGameId(String gameId) throws SQLException {
 		String sql = "DELETE FROM Reservation WHERE game_id=?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId }); // JDBCUtil에 delete문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId }); // JDBCUtil�뿉 delete臾멸낵 留ㅺ컻 蹂��닔 �꽕�젙
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // delete 문 실행
+			int result = jdbcUtil.executeUpdate(); // delete 臾� �떎�뻾
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 반환
+			jdbcUtil.close(); // resource 諛섑솚
 		}
 		return 0;
 	}
 
-	// gameId와 userId로 예약 정보 삭제
+	// gameId�� userId濡� �삁�빟 �젙蹂� �궘�젣
 	public int removeByUserIdAndGameId(String gameId, String userId) throws SQLException {
 		String sql = "DELETE FROM Reservation WHERE game_id=? AND user_id=?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId, userId }); // JDBCUtil에 delete문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId, userId }); // JDBCUtil�뿉 delete臾멸낵 留ㅺ컻 蹂��닔 �꽕�젙
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // delete 문 실행
+			int result = jdbcUtil.executeUpdate(); // delete 臾� �떎�뻾
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource 반환
+			jdbcUtil.close(); // resource 諛섑솚
 		}
 		return 0;
 	}
 
 	public int findReservateById(String gameId, String userId) throws SQLException {
 		String sql = "SELECT reservation_id " + "FROM Reservation " + "WHERE game_id=? AND user_id=? ";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId, userId }); // JDBCUtil�뜝�룞�삕 query�뜝�룞�삕�뜝�룞�삕 �뜝�떊怨ㅼ삕
-																			// �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId, userId }); // JDBCUtil占쎈쐻占쎈짗占쎌굲 query占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈뻿�ⓦ끉�굲
+																			// 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲 占쎈쐻占쎈짗占쎌굲占쎈쐻占쎈짗占쎌굲
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			ResultSet rs = jdbcUtil.executeQuery(); // query �떎�뻾
 			int find = 0;
-			if (rs.next()) { // 정보 발견
+			if (rs.next()) { // �젙蹂� 諛쒓껄
 				find++;
 			}
 			return find;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource �뜝�룞�삕�솚
+			jdbcUtil.close(); // resource 占쎈쐻占쎈짗占쎌굲占쎌넎
 		}
 		return 0;
 	}
 
-	// 주어진 userId에 해당하는 예약 정보 List를 데이터베이스에서 찾아 도메인 클래스에 저장하여 반환
-	public List<Reservation> findReservationListByUserId(int userId) throws SQLException {
-		String sql = "SELECT reservation_id, reservation_date, game_id " + "FROM Reservation " + "WHERE user_id=? ";
+	// 二쇱뼱吏� userId�뿉 �빐�떦�븯�뒗 �삁�빟 �젙蹂� List瑜� �뜲�씠�꽣踰좎씠�뒪�뿉�꽌 李얠븘 �룄硫붿씤 �겢�옒�뒪�뿉 ���옣�븯�뿬 諛섑솚
+	public List<Game> findReservationListByUserId(int userId) throws SQLException {
+		String sql = "SELECT game_id, title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations, company_id " + "FROM GAME G " + "WHERE G.game_id IN " + "(SELECT rv.game_id " + "FROM Reservation rv " + "WHERE rv.user_id=? ) ";
 
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { userId }); // JDBCUtil에 query문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { userId }); // JDBCUtil�뿉 query臾멸낵 留ㅺ컻 蹂��닔 �꽕�젙
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
-			List<Reservation> reservationList = new ArrayList<Reservation>();
+			ResultSet rs = jdbcUtil.executeQuery(); // query �떎�뻾
+			List<Game> reservationList = new ArrayList<Game>();
 			while (rs.next()) {
-				Reservation reservation = new Reservation( // Reservation 객체를 생성하여 저장
-						rs.getInt("reservation_id"), rs.getDate("reservation_date"), rs.getInt("game_id"), userId);
-				reservationList.add(reservation);
+				Game game = new Game( // Reservation 媛앹껜瑜� �깮�꽦�븯�뿬 ���옣
+						rs.getInt("game_id"),rs.getString("title"),rs.getDate("start_date"),rs.getDate("end_date"),rs.getString("image_address"),rs.getString("description"),rs.getString("category"), rs.getString("reward_image"), rs.getString("reward_text"),
+						rs.getInt("total_reservations"), rs.getInt("company_id"));
+				reservationList.add(game);
 			}
 			return reservationList;
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource 반환
+			jdbcUtil.close(); // resource 諛섑솚
 		}
 		return null;
 	}
 
 	/**
-	 * 해당 User가 예약한 게임인지 확인
+	 * �빐�떦 User媛� �삁�빟�븳 寃뚯엫�씤吏� �솗�씤
 	 */
 	public boolean isReservate(String gameId, String userId) throws SQLException {
 		String sql = "SELECT count(*) " + "FROM Reservation " + "WHERE game_id=? AND user_id=? ";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId, userId }); // JDBCUtil에 query문과 매개 변수 설정
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId, userId }); // JDBCUtil�뿉 query臾멸낵 留ㅺ컻 蹂��닔 �꽕�젙
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();
@@ -152,7 +153,7 @@ public class ReservationDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource 반환
+			jdbcUtil.close(); // resource 諛섑솚
 		}
 		return false;
 	}
