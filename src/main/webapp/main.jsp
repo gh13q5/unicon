@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="controller.info.UserSessionUtils"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,16 +17,17 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="css/main.css">
 
-<title>Hello, world!</title>
+<title>ì°œê½</title>
 </head>
 <body>
 	<div id="header" align="center">
-		<h1>
-			<br>Âò²Ç
-		</h1>
-		<hr>
-		<div class="container-fluid">
+		<a href="<c:url value='/main'></c:url>"> <img
+			src="images/title_logo.png" id="title-logo">
+		</a>
+		<hr id="title-bar">
+		<div class="container-fluid" style="margin-top: 2%;">
 			<div class="row">
 				<div class="col-2">
 					<div class="accordion" id="accordionExample">
@@ -31,252 +35,276 @@
 							<h2 class="accordion-header" id="headingOne">
 								<button class="accordion-button" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseOne"
-									aria-expanded="true" aria-controls="collapseOne">¸Ş´º1</button>
+									aria-expanded="true" aria-controls="collapseOne">ì¹´í…Œê³ ë¦¬</button>
 							</h2>
 							<div id="collapseOne" class="accordion-collapse collapse show"
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-
 								<div class="list-group">
-									<a href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
-										class="list-group-item list-group-item-action"
-										aria-current="true" > ½ºÆ÷Ã÷ </a> <a href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
-										class="list-group-item list-group-item-action">ÆÛÁñ</a> <a
-										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>" class="list-group-item list-group-item-action">·ÑÇÃ·¹À×</a>
-									<a href="<c:url value='/category'><c:param name='category' value='3' /></c:url>" class="list-group-item list-group-item-action">½Ã¹Ä·¹ÀÌ¼Ç</a>
-									<a href="<c:url value='/category'><c:param name='category' value='4' /></c:url>" class="list-group-item list-group-item-action">¾×¼Ç</a>
-									<a href="<c:url value='/category'><c:param name='category' value='5' /></c:url>" class="list-group-item list-group-item-action">À½¾Ç</a>
-									<a href="<c:url value='/category'><c:param name='category' value='6' /></c:url>" class="list-group-item list-group-item-action">º¸µå</a>
-									<a href="<c:url value='/category'><c:param name='category' value='7' /></c:url>" class="list-group-item list-group-item-action">FPS</a>
-								
-								</div>
-
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingTwo">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-									aria-expanded="false" aria-controls="collapseTwo">¸Ş´º2</button>
-							</h2>
-							<div id="collapseTwo" class="accordion-collapse collapse"
-								aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Ş´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Ş´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Ş´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Ş´º4</a>
-								</div>
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingThree">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseThree"
-									aria-expanded="false" aria-controls="collapseThree">
-									¸Ş´º3</button>
-							</h2>
-							<div id="collapseThree" class="accordion-collapse collapse"
-								aria-labelledby="headingThree"
-								data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="/category.jsp"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Ş´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Ş´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Ş´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Ş´º4</a>
+									<c:forEach var="genre" items="${genreList}" varStatus="status">
+										<a
+											href="<c:url value='/category'><c:param name='category' value='${genre.genre_id }' /></c:url>"
+											class="list-group-item list-group-item-action"
+											aria-current="true"> ${genre.name } </a>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-8 border">
+				<div class="col-8">
 					<!-- search -->
 					<form action="<c:url value='/search'>
             			  </c:url>">
-					<div class="input-group mb-3">
-						<div class="col-5">
-							<input type="text" class="form-control" name ="keyWord" placeholder="search"
-								aria-label="search" >
+						<div class="input-group mb-3" id="search-div">
+							<div class="col-5">
+								<input type="text" class="form-control" name="keyWord"
+									placeholder="search" aria-label="search">
+							</div>
+							<div class="col-auto">
+								<button type="submit" class="btn btn-info" id="search-button">search</button>
+							</div>
+							<div class="col" align="right">
+								<button type="button" class="btn btn-warning"
+									onclick="isLogin()" id="upload-button">ê²Œì„ ë“±ë¡</button>
+							</div>
 						</div>
-						<div class="col-auto">
-							<button type="submit" class="btn btn-outline-secondary" 
-								>search</button>
-						</div>
-					</div>
 					</form>
 
 					<!-- recommend -->
-					<p class="h2">Recommend Games</p>
-					<div id="carouselExampleDark" class="carousel carousel-dark slide"
-						data-bs-ride="carousel">
-
-						<div class="carousel-inner" style="margin: 10px; padding: 10px;">
-							<div class="carousel-item active">
-								<div class="row" align="center">
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-										<a href="<c:url value = '/reservation/game'></c:url>" style="text-decoration:none">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
+					<!-- ë¡œê·¸ì¸ ë˜ì–´ ìˆìœ¼ë©´ ê´€ì‹¬ì‚¬ì— ë§ì¶° ê²Œì„ì„ ì¶”ì²œ -->
+					<c:if test="${!empty userId}">
+						<p class="h2" style="margin-top: 2%;">&lt; ì¶”ì²œ ê²Œì„ &gt;</p>
+						<div id="carouselExampleDark" class="carousel carousel-dark slide"
+							data-bs-ride="carousel">
+							<div class="carousel-inner" style="margin: 10px; padding: 10px;">
+								<c:forEach var="recommend" items="${recommendList }" step="3"
+									varStatus="status">
+									<c:choose>
+										<c:when test="${status.first }">
+											<div class="carousel-item active">
+												<div class="row" align="center">
+													<div class="col">
+														<a
+															href="<c:url value='/game'>
+            			<c:param name='gameId' value='${recommend.game_id}' /></c:url>"
+															class="card-link">
+															<div class="card recommend"
+																style="width: 14rem; height: 20rem;">
+																<c:set var="image"
+																	value="${fn:split(recommend.image_address,',')}" />
+																<img
+																	src="<c:url value='/images/${recommend.company_id}/${image[0]}' />"
+																	class="card-img-top" alt="...">
+																<div class="card-body">
+																	<h5 class="card-title">
+																		<c:out value="${recommend.title}"></c:out>
+																	</h5>
+																	<div class="card-body">
+																		<p class="card-text">
+																			<c:out value="${recommend.description}"
+																				escapeXml="false"></c:out>
+																		</p>
+																	</div>
+																	<p class="card-date">
+																		<small class="text-muted">~<c:out
+																				value="${recommend.end_date}"></c:out></small>
+																	</p>
+																</div>
+															</div>
+														</a>
+													</div>
+													<div class="col">
+														<a
+															href="<c:url value='/game'>
+            			<c:param name='gameId' value='${recommendList[status.index + 1].game_id}' /></c:url>"
+															class="card-link">
+															<div class="card recommend"
+																style="width: 14rem; height: 20rem;">
+																<c:set var="image"
+																	value="${fn:split(recommendList[status.index + 1].image_address,',')}" />
+																<img
+																	src="<c:url value='/images/${recommendList[status.index + 1].company_id}/${image[0]}' />"
+																	class="card-img-top" alt="...">
+																<div class="card-body">
+																	<h5 class="card-title">
+																		<c:out
+																			value="${recommendList[status.index + 1].title}"></c:out>
+																	</h5>
+																	<div class="card-body">
+																		<p class="card-text">
+																			<c:out
+																				value="${recommendList[status.index + 1].description}"
+																				escapeXml="false"></c:out>
+																		</p>
+																	</div>
+																	<p class="card-date">
+																		<small class="text-muted">~<c:out
+																				value="${recommendList[status.index + 1].end_date}"></c:out></small>
+																	</p>
+																</div>
+															</div>
+														</a>
+													</div>
+													<div class="col">
+														<a
+															href="<c:url value='/game'>
+            			<c:param name='gameId' value='${recommendList[status.index + 2].game_id}' /></c:url>"
+															class="card-link">
+															<div class="card recommend"
+																style="width: 14rem; height: 20rem;">
+																<c:set var="image"
+																	value="${fn:split(recommendList[status.index + 2].image_address,',')}" />
+																<img
+																	src="<c:url value='/images/${recommendList[status.index + 2].company_id}/${image[0]}' />"
+																	class="card-img-top" alt="...">
+																<div class="card-body">
+																	<h5 class="card-title">
+																		<c:out
+																			value="${recommendList[status.index + 2].title}"></c:out>
+																	</h5>
+																	<div class="card-body">
+																		<p class="card-text">
+																			<c:out
+																				value="${recommendList[status.index + 2].description}"
+																				escapeXml="false"></c:out>
+																		</p>
+																	</div>
+																	<p class="card-date">
+																		<small class="text-muted">~<c:out
+																				value="${recommendList[status.index + 2].end_date}"></c:out></small>
+																	</p>
+																</div>
+															</div>
+														</a>
+													</div>
+												</div>
 											</div>
-											</a>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
+										</c:when>
+										<c:otherwise>
+											<div class="carousel-item">
+												<div class="row" align="center">
+													<div class="col">
+														<a
+															href="<c:url value='/game'>
+            			<c:param name='gameId' value='${recommend.game_id}' /></c:url>"
+															class="card-link">
+															<div class="card recommend" style="width: 14rem; height: 20rem;">
+																<c:set var="image"
+																	value="${fn:split(recommend.image_address,',')}" />
+																<img
+																	src="<c:url value='/images/${recommend.company_id}/${image[0]}' />"
+																	class="card-img-top" alt="...">
+																<div class="card-body">
+																	<h5 class="card-title">
+																		<c:out value="${recommend.title}"></c:out>
+																	</h5>
+																	<div class="card-body">
+																		<p class="card-text">
+																			<c:out value="${recommend.description}"
+																				escapeXml="false"></c:out>
+																		</p>
+																	</div>
+																	<p class="card-date">
+																		<small class="text-muted">~<c:out
+																				value="${recommend.end_date}"></c:out></small>
+																	</p>
+																</div>
+															</div>
+														</a>
+													</div>
+													<div class="col">
+														<a
+															href="<c:url value='/game'>
+            			<c:param name='gameId' value='${recommendList[status.index + 1].game_id}' /></c:url>"
+															class="card-link">
+															<div class="card recommend" style="width: 14rem; height: 20rem;">
+																<c:set var="image"
+																	value="${fn:split(recommendList[status.index + 1].image_address,',')}" />
+																<img
+																	src="<c:url value='/images/${recommendList[status.index + 1].company_id}/${image[0]}' />"
+																	class="card-img-top" alt="...">
+																<div class="card-body">
+																	<h5 class="card-title">
+																		<c:out
+																			value="${recommendList[status.index + 1].title}"></c:out>
+																	</h5>
+																	<div class="card-body">
+																		<p class="card-text">
+																			<c:out
+																				value="${recommendList[status.index + 1].description}"
+																				escapeXml="false"></c:out>
+																		</p>
+																	</div>
+																	<p class="card-date">
+																		<small class="text-muted">~<c:out
+																				value="${recommendList[status.index + 1].end_date}"></c:out></small>
+																	</p>
+																</div>
+															</div>
+														</a>
+													</div>
+													<div class="col">
+														<a
+															href="<c:url value='/game'>
+            			<c:param name='gameId' value='${recommendList[status.index + 2].game_id}' /></c:url>"
+															class="card-link">
+															<div class="card recommend" style="width: 14rem; height: 20rem;">
+																<c:set var="image"
+																	value="${fn:split(recommendList[status.index + 2].image_address,',')}" />
+																<img
+																	src="<c:url value='/images/${recommendList[status.index + 2].company_id}/${image[0]}' />"
+																	class="card-img-top" alt="...">
+																<div class="card-body">
+																	<h5 class="card-title">
+																		<c:out
+																			value="${recommendList[status.index + 2].title}"></c:out>
+																	</h5>
+																	<div class="card-body">
+																		<p class="card-text">
+																			<c:out
+																				value="${recommendList[status.index + 2].description}"
+																				escapeXml="false"></c:out>
+																		</p>
+																	</div>
+																	<p class="card-date">
+																		<small class="text-muted">~<c:out
+																				value="${recommendList[status.index + 2].end_date}"></c:out></small>
+																	</p>
+																</div>
+															</div>
+														</a>
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
 							</div>
-							<div class="carousel-item">
-								<div class="row" align="center">
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-										<a href="<c:url value = '/reservation/game'></c:url>" style="text-decoration:none">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-											</a>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="carousel-item">
-								<div class="row" align="center">
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-										<a href="<c:url value = '/reservation/game'></c:url>" style="text-decoration:none">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-											</a>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							<button class="carousel-control-prev" type="button"
+								data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button"
+								data-bs-target="#carouselExampleDark" data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
 						</div>
-						<button class="carousel-control-prev" type="button"
-							data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Previous</span>
-						</button>
-						<button class="carousel-control-next" type="button"
-							data-bs-target="#carouselExampleDark" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Next</span>
-						</button>
-					</div>
+					</c:if>
 
-					<!-- ÀÏ¹İ °ÔÀÓ -->
-					<p class="h2">Entire Games</p>
-					<c:forEach var="game" items="${entireGameList}"
-						varStatus="status">
+					<!-- ë¡œê·¸ì¸ ì „ -->
+					<c:if test="${empty userId}">
+						<p class="h2" style="margin-top: 2%;">&lt; ì°œê½ê³¼ í•¨ê»˜ ë” ë§ì€ ì¶”ì²œ ê²Œì„ì„
+							ë°›ì•„ë³´ì„¸ìš”! &gt;</p>
+						<p>íšŒì›ê°€ì… í›„, ê´€ì‹¬ì‚¬ì— ë§ëŠ” ì¶”ì²œ ê²Œì„ì„ ë°”ë¡œ í™•ì¸í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.</p>
+					</c:if>
+
+
+					<!-- ì¼ë°˜ ê²Œì„ -->
+					<p class="h2" style="margin-top: 5%; margin-bottom: 3%;">&lt;
+						ì „ì²´ ê²Œì„ ëª©ë¡ &gt;</p>
+					<c:forEach var="game" items="${entireGameList}" varStatus="status">
 						<c:choose>
 							<c:when test="${status.index % 4  eq 0}">
 								<div class="row" align="center">
@@ -285,26 +313,33 @@
 								<div class="row" align="center">
 							</c:when> --%>
 						</c:choose>
-						<%-- <a href="<c:url value='/game'>
-            			<c:param name='game_id' value='${Cgame.id}' /></c:url>"> --%>
-						 <div class="col"> 
-							<div class="card" style="width: 15rem;">
-								<img src="images/wallR.jpg" class="card-img-top" alt="...">
-								<div class="card-body">
-									<h5 class="card-title">
-										<c:out value="${game.title}"></c:out>
-									</h5>
-									<p class="card-text">
-										<c:out value="${game.description}"></c:out>
-									</p>
-									<p class="card-text">
-										<small class="text-muted">~<c:out
-												value="${game.end_date}"></c:out></small>
-									</p>
+						<div class="col">
+							<a
+								href="<c:url value='/game'>
+            			<c:param name='gameId' value='${game.game_id}' /></c:url>"
+								class="card-link">
+								<div class="card game">
+									<c:set var="image" value="${fn:split(game.image_address,',')}" />
+									<img
+										src="<c:url value='/images/${game.company_id}/${image[0]}' />"
+										class="card-img-top" alt="...">
+									<div class="card-body">
+										<h5 class="card-title">
+											<c:out value="${game.title}"></c:out>
+										</h5>
+										<div class="card-body">
+											<p class="card-text">
+												<c:out value="${game.description}" escapeXml="false"></c:out>
+											</p>
+										</div>
+										<p class="card-date">
+											<small class="text-muted">~<c:out
+													value="${game.end_date}"></c:out></small>
+										</p>
+									</div>
 								</div>
-							</div>
-							<!-- </a> --> 
-						 </div> 
+							</a>
+						</div>
 						<c:choose>
 							<c:when test="${status.count % 4 eq 0}">
 				</div>
@@ -314,71 +349,66 @@
 			</c:when>
 			</c:choose>
 			</c:forEach>
+		</div>
+		<!-- ë¡œê·¸ì¸ ì°½ -->
+		<div class="col-2">
+			<div class="card border-warning mb-3" style="max-width: 18rem;">
+				<div class="card-body" id="login-body">
+					<!-- ë¡œê·¸ì¸ ì „ -->
+					<c:if test="${loginFailed}">
+							${exception}
+					</c:if>
+					<c:if test="${empty userId}">
+						<form action="<c:url value='/login'/>" method="POST">
+							<div class="row mb-3">
+
+								<input name=id type="text" class="form-control" id="id"
+									placeholder="ID">
+							</div>
+							<div class="row mb-3">
+								<input name=password type="password" class="form-control"
+									id="password" placeholder="PW">
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-6" align="left">
+									<a href="chooseUserType.jsp" id="register-link">íšŒì›ê°€ì…</a>
+								</div>
+								<div class="col-sm-6">
+									<button type="submit" class="btn btn-warning" id="login-button">ë¡œê·¸ì¸</button>
+								</div>
+							</div>
+						</form>
+					</c:if>
+					<!-- ë¡œê·¸ì¸ í›„ -->
+					<c:if test="${!empty userId}">
+							<div class="row mb-3">
+								<p class="h4" align="left">
+									<u>${userObj.name}</u> ë‹˜
+								</p>
+								<p align="left">ì•ˆë…•í•˜ì„¸ìš”! o(^^)o</p>
+							</div>
+							<div class="row mb-3">
+								<a href="<c:url value = '/mypage'/>">
+									<button class="btn btn-warning" id="mypage-button">MY
+										PAGE</button>
+								</a>
+							</div>
+							<div class="col-sm-4" align="right">
+								<a href=" <c:url value= '/logout'/>" id="logout-link"> ë¡œê·¸ì•„ì›ƒ</a>
+							</div>
+					</c:if>
+
 				</div>
-				<!-- ·Î±×ÀÎ Àü -->
-				<div class="col-2">
-					<div class="card border-warning mb-3" style="max-width: 18rem;">
-						<div class="card-body">
-							<form>
-								<div class="row mb-3">
-
-									<input type="email" class="form-control" id="inputEmail3"
-										placeholder="ID">
-								</div>
-								<div class="row mb-3">
-									<input type="password" class="form-control" id="inputPassword3"
-										placeholder="PW">
-								</div>
-								<div class="row mb-3">
-									<div class="col-sm-6" align="left">
-										<a href="<c:url value='/info/register'></c:url>">regist in</a>
-									</div>
-									<div class="col-sm-6">
-										<button type="submit" class="btn btn-primary">Sign in</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div> 
-				<!-- ·Î±×ÀÎ ÈÄ -->
-				<!-- <div class="col-2">
-					<div class="card border-warning mb-3" style="max-width: 18rem;">
-						<div class="card-body">
-
-							<div class="row mb-3">
-								<p class="h5" align="left">
-									<u>username</u> ´Ô
-								</p>
-							</div>
-							<div class="row mb-3">
-								<p class="h5" align="left">
-									º¸À¯: <u>9999</u>point
-								</p>
-							</div>
-							<div class="row mb-3">
-								<button type="submit" class="btn btn-primary">MY PAGE</button>
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-7" align="left">
-									<button type="submit" class="btn btn-primary">Æ÷ÀÎÆ® ÃæÀü</button>
-								</div>
-								<div class="col-sm-4" align="right">
-									<a href="#">logout</a>
-								</div>
-
-							</div>
-						</div>
-					</div>
-				</div> -->
 			</div>
 		</div>
+	</div>
+	</div>
 	</div>
 	<div id="footer">
 		<hr class="haveMargin">
 		<p class="text-center" align="center">
-			<small><strong>¾÷Ã¼¸í</strong></small><br> <small>´ëÇ¥ : È«±æµ¿
-				¤ı ÁÖ¼Ò : »ç°Å¸® ¤ı »ç¾÷ÀÚµî·Ï¹øÈ£:123-12-12345 ¤ı ÀüÈ­ : 02-123-1234</small><br> <small>Copyright¨Ï
+			<small><strong>íŒ€ëª…</strong></small><br> <small>íŒ€ :
+				UNI-CON ã† ì†Œì† : ë™ë•ì—¬ìëŒ€í•™êµ ã† ì „í™” : 02-123-1234</small><br> <small>Copyrightâ“’
 				test.com All rights reserved.</small>
 		</p>
 	</div>
@@ -395,7 +425,30 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+	<script>
+		function login_() {
+			if (id == "") {
+				alert("ì‚¬ìš©ì ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì‹­ì‹œìš”.");
+				return false;
+			}
+			if (passward == "") {
+				alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹­ì‹œìš”.");
+				return false;
+			}
+			LoginController.submit();
+		}
+		 // ê²Œì„ ì˜ˆì•½ ë²„íŠ¼ í´ë¦­ ì‹œ
+			function isLogin() {
+				var user = '<%=(String) session.getAttribute(UserSessionUtils.USER_SESSION_KEY)%>
+		';
+
+			alert(user);
+			if (user === null) {
+				alert('ë¡œê·¸ì¸ì´ í•„ìš”í•©ë‹ˆë‹¤!');
+			} else {
+				location.href = '/unicon/viewUpload';
+			}
+		}
+	</script>
 </body>
 </html>
-
-

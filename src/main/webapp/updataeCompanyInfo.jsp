@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Bootstrap CSS -->
+<link rel="stylesheet" href="css/main.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -66,10 +67,10 @@
 </head>
 <body>
 	<div id="header" align="center">
-		<h1>
-			<br>찜꽁
-		</h1>
-		<hr>
+		<a href="<c:url value='/main'></c:url>"> <img
+			src="images/title_logo.png" id="title-logo">
+		</a>
+		<hr id="title-bar">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-2">
@@ -78,60 +79,34 @@
 							<h2 class="accordion-header" id="headingOne">
 								<button class="accordion-button" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseOne"
-									aria-expanded="true" aria-controls="collapseOne">메뉴1</button>
+									aria-expanded="true" aria-controls="collapseOne">카테고리</button>
 							</h2>
 							<div id="collapseOne" class="accordion-collapse collapse show"
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 
 								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> 서브메뉴1 </a> <a href="#"
-										class="list-group-item list-group-item-action">서브메뉴2</a> <a
-										href="#" class="list-group-item list-group-item-action">서브메뉴3</a>
-									<a href="#" class="list-group-item list-group-item-action">서브메뉴4</a>
+
+									<a
+										href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
+										class="list-group-item list-group-item-action"
+										aria-current="true"> 스포츠 </a> <a
+										href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
+										class="list-group-item list-group-item-action">퍼즐</a> <a
+										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>"
+										class="list-group-item list-group-item-action">롤플레잉</a> <a
+										href="<c:url value='/category'><c:param name='category' value='3' /></c:url>"
+										class="list-group-item list-group-item-action">시뮬레이션</a> <a
+										href="<c:url value='/category'><c:param name='category' value='4' /></c:url>"
+										class="list-group-item list-group-item-action">액션</a> <a
+										href="<c:url value='/category'><c:param name='category' value='5' /></c:url>"
+										class="list-group-item list-group-item-action">음악</a> <a
+										href="<c:url value='/category'><c:param name='category' value='6' /></c:url>"
+										class="list-group-item list-group-item-action">보드</a> <a
+										href="<c:url value='/category'><c:param name='category' value='7' /></c:url>"
+										class="list-group-item list-group-item-action">FPS</a>
+
 								</div>
 
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingTwo">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-									aria-expanded="false" aria-controls="collapseTwo">메뉴2</button>
-							</h2>
-							<div id="collapseTwo" class="accordion-collapse collapse"
-								aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> 서브메뉴1 </a> <a href="#"
-										class="list-group-item list-group-item-action">서브메뉴2</a> <a
-										href="#" class="list-group-item list-group-item-action">서브메뉴3</a>
-									<a href="#" class="list-group-item list-group-item-action">서브메뉴4</a>
-								</div>
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingThree">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseThree"
-									aria-expanded="false" aria-controls="collapseThree">
-									메뉴3</button>
-							</h2>
-							<div id="collapseThree" class="accordion-collapse collapse"
-								aria-labelledby="headingThree"
-								data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> 서브메뉴1 </a> <a href="#"
-										class="list-group-item list-group-item-action">서브메뉴2</a> <a
-										href="#" class="list-group-item list-group-item-action">서브메뉴3</a>
-									<a href="#" class="list-group-item list-group-item-action">서브메뉴4</a>
-								</div>
 							</div>
 						</div>
 					</div>

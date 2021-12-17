@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="controller.info.UserSessionUtils"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,21 +17,17 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<!-- CSS -->
-<link rel="stylesheet" href="css/uploadGame.css">
+<link rel="stylesheet" href="css/main.css">
 
-<title>Âò²Ç - °ÔÀÓ Á¤º¸ ¼öÁ¤</title>
+<title>ì°œê½</title>
 </head>
 <body>
-	<!-- ****************************** -->
-	<!-- uploadGame¿¡¼­ placeHolder µîÀ» Ãß°¡ -->
-	<!-- ****************************** -->
 	<div id="header" align="center">
-		<h1>
-			<br>Âò²Ç
-		</h1>
-		<hr>
-		<div class="container-fluid">
+		<a href="<c:url value='/main'></c:url>"> <img
+			src="images/title_logo.png" id="title-logo">
+		</a>
+		<hr id="title-bar">
+		<div class="container-fluid" style="margin-top: 2%;">
 			<div class="row">
 				<div class="col-2">
 					<div class="accordion" id="accordionExample">
@@ -35,209 +35,247 @@
 							<h2 class="accordion-header" id="headingOne">
 								<button class="accordion-button" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseOne"
-									aria-expanded="true" aria-controls="collapseOne">¸Þ´º1</button>
+									aria-expanded="true" aria-controls="collapseOne">ì¹´í…Œê³ ë¦¬</button>
 							</h2>
 							<div id="collapseOne" class="accordion-collapse collapse show"
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 
 								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Þ´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Þ´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º4</a>
+
+									<a
+										href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
+										class="list-group-item list-group-item-action"
+										aria-current="true"> ìŠ¤í¬ì¸  </a> <a
+										href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
+										class="list-group-item list-group-item-action">í¼ì¦</a> <a
+										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>"
+										class="list-group-item list-group-item-action">ë¡¤í”Œë ˆìž‰</a> <a
+										href="<c:url value='/category'><c:param name='category' value='3' /></c:url>"
+										class="list-group-item list-group-item-action">ì‹œë®¬ë ˆì´ì…˜</a> <a
+										href="<c:url value='/category'><c:param name='category' value='4' /></c:url>"
+										class="list-group-item list-group-item-action">ì•¡ì…˜</a> <a
+										href="<c:url value='/category'><c:param name='category' value='5' /></c:url>"
+										class="list-group-item list-group-item-action">ìŒì•…</a> <a
+										href="<c:url value='/category'><c:param name='category' value='6' /></c:url>"
+										class="list-group-item list-group-item-action">ë³´ë“œ</a> <a
+										href="<c:url value='/category'><c:param name='category' value='7' /></c:url>"
+										class="list-group-item list-group-item-action">FPS</a>
+
 								</div>
 
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingTwo">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-									aria-expanded="false" aria-controls="collapseTwo">¸Þ´º2</button>
-							</h2>
-							<div id="collapseTwo" class="accordion-collapse collapse"
-								aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Þ´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Þ´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º4</a>
-								</div>
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingThree">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseThree"
-									aria-expanded="false" aria-controls="collapseThree">
-									¸Þ´º3</button>
-							</h2>
-							<div id="collapseThree" class="accordion-collapse collapse"
-								aria-labelledby="headingThree"
-								data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Þ´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Þ´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º4</a>
-								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-8" align="center" style="padding: 50px;">
-					<div id="upload-title">°ÔÀÓ Á¤º¸ ¼öÁ¤</div>
-					<!-- °ÔÀÓ Á¤º¸ ¼öÁ¤ form -->
-					<form id="upload-form">
+					<div id="upload-title">ê²Œìž„ ë“±ë¡</div>
+					<!-- ê²Œìž„ ë“±ë¡ form -->
+					<form action="/unicon/edit?gameId=${game.game_id }" id="upload-form" role="form"
+						enctype="multipart/form-data" method="POST">
 						<div id="form-container" class="container">
-							<!-- °ÔÀÓ ÀÌ¸§ ÀÔ·Â -->
+							<!-- ê²Œìž„ ì´ë¦„ ìž…ë ¥ -->
 							<div class="row">
-								<div id="name-label" class="col-4">°ÔÀÓ ÀÌ¸§</div>
+								<div id="name-label" class="col-4">ê²Œìž„ ì´ë¦„</div>
 								<div id="name-input" class="col-6">
-									<input type="text" class="form-control" id="name"
-										placeholder="¼öÁ¤ Àü°ÔÀÓ ÀÌ¸§">
+									<input type="text" class="form-control" id="name" name="title"
+										value="${game.title }">
 								</div>
 							</div>
-							<!-- ¿¹¾à ±â°£ ÀÔ·Â -->
+							<!-- ì˜ˆì•½ ê¸°ê°„ ìž…ë ¥ -->
 							<div class="row">
-								<div id="period-label" class="col-4">¿¹¾à ±â°£</div>
+								<div id="period-label" class="col-4">ì˜ˆì•½ ê¸°ê°„</div>
 								<div id="period-input" class="col-6">
-									<input type="date" class="form-control" id="start-period">
-									~ <input type="date" class="form-control" id="end-period">
+									<input type="date" class="form-control" id="start-period"
+										name="start_date" value="${game.start_date }"> ~ <input
+										type="date" class="form-control" id="end-period"
+										name="end_date" value="${game.end_date }">
 								</div>
 							</div>
-							<!-- È«º¸ ÀÌ¹ÌÁö ¾÷·Îµå -->
+							<!-- í™ë³´ ì´ë¯¸ì§€ ì—…ë¡œë“œ -->
 							<div class="row">
-								<div id="image-label" class="col">È«º¸ ÀÌ¹ÌÁö (ÃÖ´ë 4°³)</div>
+								<div id="image-label" class="col">í™ë³´ ì´ë¯¸ì§€ (ìµœëŒ€ 4ê°œ)</div>
 								<div id="image-input">
-									<label for="image01"> <img
-										src="images/image_upload.jpg" class="image-upload-icon"
-										alt="...">
-									</label> <input type="file" class="form-control" id="image01">
-									<label for="image02"> <img
-										src="images/image_upload.jpg" class="image-upload-icon"
-										alt="...">
-									</label><input type="file" class="form-control" id="image02"> <label
-										for="image03"> <img src="images/image_upload.jpg"
-										class="image-upload-icon" alt="...">
-									</label><input type="file" class="form-control" id="image03"> <label
-										for="image04"> <img src="images/image_upload.jpg"
-										class="image-upload-icon" alt="...">
-									</label> <input type="file" class="form-control" id="image04">
+									<c:forEach var="image" items="${imageList}" varStatus="status">
+										<c:choose>
+											<c:when test="${(status.last) and (status.index < 3) }">
+												<c:forEach var="idx" begin="${status.index + 2 }" end="4">
+													<label for="image0${idx }"> <img
+														src="images/image_upload.jpg" class="image-upload-icon"
+														alt="...">
+													</label>
+													<input type="file" class="form-control" id="image0${idx }"
+														name="image0${idx }">
+												</c:forEach>
+											</c:when>
+											<c:otherwise>
+												<label for="image0${status.index + 1}"> <img
+													src="<c:url value='/images/${game.company_id}/${image}' />"
+													class="image-upload-icon" alt="...">
+												</label>
+												<input type="file" class="form-control"
+													id="image0${status.index + 1 }"
+													name="image0${status.index + 1 }"
+													value="<c:url value='/images/${game.company_id}/${image}' />">
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
 								</div>
 							</div>
-							<!-- °ÔÀÓ ¼Ò°³±Û ÀÔ·Â -->
+							<!-- ê²Œìž„ ì†Œê°œê¸€ ìž…ë ¥ -->
 							<div id="description-row" class="row">
-								<div id="description-label" class="col">°ÔÀÓ ¼Ò°³±Û</div>
+								<div id="description-label" class="col">ê²Œìž„ ì†Œê°œê¸€</div>
 								<div id="description-input">
 									<textarea class="form-control" id="description" rows="8"
-										placeholder="¼öÁ¤ Àü°ÔÀÓ ¼Ò°³±Û"></textarea>
+										name="description">${game.description }</textarea>
 								</div>
 							</div>
-							<!-- °ÔÀÓ Àå¸£ Ã¼Å©¹Ú½º  -->
+							<!-- ê²Œìž„ ìž¥ë¥´ ì²´í¬ë°•ìŠ¤  -->
 							<div id="genre-row" class="row">
-								<div id="genre-label" class="col">°ÔÀÓ Àå¸£ (ÃÖ¼Ò 1°³ ÀÌ»ó)</div>
+								<div id="genre-label" class="col">ê²Œìž„ ìž¥ë¥´ (ìµœì†Œ 1ê°œ ì´ìƒ)</div>
 								<div id="genre-input">
 									<div class="checkbox-group">
-										<input class="form-check-input" type="checkbox" value=""
-											id="genre01"> <label class="form-check-label"
-											for="genre01">°ÔÀÓÀå¸£01</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre02"> <label
-											class="form-check-label" for="genre02">°ÔÀÓÀå¸£02</label> <input
-											class="form-check-input" type="checkbox" value=""
-											id="genre03"> <label class="form-check-label"
-											for="genre03">°ÔÀÓÀå¸£03</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre04"> <label
-											class="form-check-label" for="genre04">°ÔÀÓÀå¸£04</label>
-									</div>
-									<div class="checkbox-group">
-										<input class="form-check-input" type="checkbox" value=""
-											id="genre05"> <label class="form-check-label"
-											for="genre05">°ÔÀÓÀå¸£05</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre06"> <label
-											class="form-check-label" for="genre06">°ÔÀÓÀå¸£06</label> <input
-											class="form-check-input" type="checkbox" value=""
-											id="genre07"> <label class="form-check-label"
-											for="genre07">°ÔÀÓÀå¸£07</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre08"> <label
-											class="form-check-label" for="genre08">°ÔÀÓÀå¸£08</label>
+										<c:forEach var="tag" items="${genreList}" varStatus="status">
+											<c:choose>
+												<c:when
+													test="${(status.index % 4) eq 0 and status.index ne 0}">
+													<br>
+													<input class="form-check-input" type="checkbox"
+														value="${tag.genre_id }" id="${tag.genre_id }"
+														name="tag[]">
+													<label class="form-check-label" for="${tag.genre_id }">${tag.name }</label>
+												</c:when>
+												<c:otherwise>
+													<input class="form-check-input" type="checkbox"
+														value="${tag.genre_id }" id="${tag.genre_id }"
+														name="tag[]">
+													<label class="form-check-label" for="${tag.genre_id }">${tag.name }</label>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
 									</div>
 								</div>
 							</div>
-							<!-- °ÔÀÓ º¸»ó ÀÔ·Â -->
+							<!-- ê²Œìž„ ë³´ìƒ ìž…ë ¥ -->
 							<hr id="reward-divide">
 							<div id="reward-description-row" class="row">
-								<div id="reward-description-label" class="col">»çÀü¿¹¾à º¸»ó ¸ñ·Ï</div>
+								<div id="reward-description-label" class="col">ì‚¬ì „ì˜ˆì•½ ë³´ìƒ ëª©ë¡</div>
 								<div id="reward-description-input">
 									<textarea class="form-control" id="reward-description" rows="8"
-										placeholder="¼öÁ¤ Àü º¸»ó ¸ñ·Ï"></textarea>
-									<!-- °ÔÀÓ º¸»ó ÀÌ¹ÌÁö ¾÷·Îµå -->
+										name="reward_text">${game.reward_text }</textarea>
+									<!-- ê²Œìž„ ë³´ìƒ ì´ë¯¸ì§€ ì—…ë¡œë“œ -->
 									<div id="reward-image-input" style="margin-top: 10px;">
-										<label for="reward-image01"> <img
-											src="images/image_upload.jpg" class="image-upload-icon"
-											alt="...">
-										</label> <input type="file" class="form-control" id="reward-image01">
-										<label for="reward-image02"> <img
-											src="images/image_upload.jpg" class="image-upload-icon"
-											alt="...">
-										</label><input type="file" class="form-control" id="reward-image02">
-										<label for="reward-image03"> <img
-											src="images/image_upload.jpg" class="image-upload-icon"
-											alt="...">
-										</label><input type="file" class="form-control" id="reward-image03">
-										<label for="reward-image04"> <img
-											src="images/image_upload.jpg" class="image-upload-icon"
-											alt="...">
-										</label> <input type="file" class="form-control" id="reward-image04">
+										<c:forEach var="rewardImage" items="${rewardImageList}"
+											varStatus="status">
+											<c:choose>
+												<c:when test="${(status.last) and (status.index < 3) }">
+													<c:forEach var="idx" begin="${status.index + 2 }" end="4">
+														<label for="reward-image0${idx }"> <img
+															src="images/image_upload.jpg" class="image-upload-icon"
+															alt="...">
+														</label>
+														<input type="file" class="form-control"
+															id="reward-image0${idx }" name="reward-image0${idx }">
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<label for="reward-image0${status.index + 1}"> <img
+														src="<c:url value='/images/${game.company_id}/${rewardImage}' />"
+														class="image-upload-icon" alt="...">
+													</label>
+													<input type="file" class="form-control"
+														id="reward-image0${status.index + 1 }"
+														name="reward-image0${status.index + 1 }"
+														value="<c:url value='/images/${game.company_id}/${image}' />">
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
 									</div>
 								</div>
 							</div>
-							<button id="upload-btn" type="button" class="btn btn-warning">¼öÁ¤
-								¹× °ÔÀÓ Àçµî·Ï</button>
+							<button id="upload-btn" type="submit" class="btn btn-warning">ê²Œìž„
+								ìˆ˜ì •</button>
 						</div>
 					</form>
 				</div>
-				<div class="col-2">
-					<div class="card border-warning mb-3" style="max-width: 18rem;">
-						<div class="card-body">
-							<form>
-								<div class="row mb-3">
+						<!-- ë¡œê·¸ì¸ ì°½ -->
+		<div class="col-2">
+			<div class="card border-warning mb-3" style="max-width: 18rem;">
+				<div class="card-body" id="login-body">
+					<!-- ë¡œê·¸ì¸ ì „ -->
+					<c:if test="${loginFailed}">
+							${exception}
+					</c:if>
+					<c:if test="${empty userId}">
+						<form action="<c:url value='/login'/>" method="POST">
+							<div class="row mb-3">
 
-									<input type="email" class="form-control" id="inputEmail3"
-										placeholder="ID">
+								<input name=id type="text" class="form-control" id="id"
+									placeholder="ID">
+							</div>
+							<div class="row mb-3">
+								<input name=password type="password" class="form-control"
+									id="password" placeholder="PW">
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-6" align="left">
+									<a href="chooseUserType.jsp" id="register-link">íšŒì›ê°€ìž…</a>
 								</div>
-								<div class="row mb-3">
-									<input type="password" class="form-control" id="inputPassword3"
-										placeholder="PW">
+								<div class="col-sm-6">
+									<button type="submit" class="btn btn-warning" id="login-button">ë¡œê·¸ì¸</button>
 								</div>
-								<div class="row mb-3">
-									<div class="col-sm-6" align="left">
-										<a href="#">regist in</a>
-									</div>
-									<div class="col-sm-6">
-										<button type="submit" class="btn btn-primary">Sign in</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
+							</div>
+						</form>
+					</c:if>
+					<!-- ë¡œê·¸ì¸ í›„ -->
+					<c:if test="${!empty userId}">
+							<div class="row mb-3">
+								<p class="h4" align="left">
+									<u>${userObj.name}</u> ë‹˜
+								</p>
+								<p align="left">ì•ˆë…•í•˜ì„¸ìš”! o(^^)o</p>
+							</div>
+							<div class="row mb-3">
+								<a href="<c:url value = '/mypage'/>">
+									<button class="btn btn-warning" id="mypage-button">MY PAGE</button>
+								</a>
+							</div>
+							<div class="col-sm-4" align="right">
+								<a href=" <c:url value= '/logout'/>" id="logout-link"> ë¡œê·¸ì•„ì›ƒ</a>
+							</div>
+					</c:if>
+
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
+	</div>
+	<div id="footer">
+		<hr class="haveMargin">
+		<p class="text-center" align="center">
+			<small><strong>íŒ€ëª…</strong></small><br> <small>íŒ€ :
+				UNI-CON ã† ì†Œì† : ë™ë•ì—¬ìžëŒ€í•™êµ ã† ì „í™” : 02-123-1234</small><br> <small>Copyrightâ“’
+				test.com All rights reserved.</small>
+		</p>
+	</div>
+	<!-- Optional JavaScript; choose one of the two! -->
+
+	<!-- Option 1: Bootstrap Bundle with Popper -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
-	<!-- °ÔÀÓ ÀÌ¹ÌÁö ¾÷·Îµå ½ºÅ©¸³Æ® -->
+
+	<!-- Option 2: Separate Popper and Bootstrap JS -->
+	<!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+	<!-- ê²Œìž„ ì´ë¯¸ì§€ ì—…ë¡œë“œ ìŠ¤í¬ë¦½íŠ¸ -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>

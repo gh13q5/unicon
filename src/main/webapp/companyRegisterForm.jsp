@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%> 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="controller.info.UserSessionUtils"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,81 +17,83 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<!-- CSS -->
-<link rel="stylesheet" href="css/registerForm.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/reservation.css">
 
-<title>Âò²Ç - È¸¿ø°¡ÀÔ</title>
+<title>ì°œê½</title>
 </head>
 <body>
 	<div id="header" align="center">
-		<h1>
-			<br>Âò²Ç
-		</h1>
-		<hr>
+		<a href="<c:url value='/main'></c:url>"> <img
+			src="images/title_logo.png" id="title-logo">
+		</a>
+		<hr id="title-bar">
 	</div>
 	<div id="header" align="center">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col" align="center" style="padding: 50px;">
-					<div id="registerForm-title">È¸¿ø°¡ÀÔ</div>
-					<!-- È¸¿ø°¡ÀÔ form -->
-					<form id="registerForm-form">
+					<div id="registerForm-title">íšŒì›ê°€ì…</div>
+					<!-- íšŒì›ê°€ì… form -->
+					<form id="registerForm-form" action="<c:url value='/register_company'/>" method="post">
 						<div id="form-container" class="container">
-							<!-- È¸¿øÁ¤º¸ ÀÔ·Â -->
+							<!-- íšŒì›ì •ë³´ ì…ë ¥ -->
+							
 							<div class="row">
-								<div id="id-label" class="col-5">¾ÆÀÌµğ</div>
+								<div id="id-label" class="col-5">ì•„ì´ë””</div>
 								<div id="id-input" class="col-6">
-									<input type="text" class="form-control onlyAlphabetAndNumber"
+									<input name="id" type="text" class="form-control onlyAlphabetAndNumber"
 										id="id" data-rule-required="true"
-										placeholder="10ÀÚÀÌ³»ÀÇ ¾ËÆÄºª, ¼ıÀÚ¸¸ ÀÔ·Â °¡´ÉÇÕ´Ï´Ù." maxlength="10">
+										placeholder="10ìì´ë‚´ì˜ ì•ŒíŒŒë²³, ìˆ«ìë§Œ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤." maxlength="10">
 								</div>
 							</div>
 							<div class="row">
-								<div id="passward-label" class="col-5">ºñ¹Ğ¹øÈ£</div>
+								<div id="passward-label" class="col-5">ë¹„ë°€ë²ˆí˜¸</div>
 								<div id="passward-input" class="col-6">
-									<input type="password" class="form-control" id="password"
-										name="excludeHangul" data-rule-required="true"
-										placeholder="10ÀÚÀÌ³»ÀÇ ¾ËÆÄºª, ¼ıÀÚ¸¸ ÀÔ·Â °¡´ÉÇÕ´Ï´Ù." maxlength="10">
+									<input name="password" type="password" class="form-control" id="password"
+											 data-rule-required="true"
+										placeholder="10ìì´ë‚´ì˜ ì•ŒíŒŒë²³, ìˆ«ìë§Œ ì…ë ¥ ê°€ëŠ¥í•©ë‹ˆë‹¤." maxlength="10">
 								</div>
 							</div>
 							<div class="row">
-								<div id="passwardCheck-label" class="col-5">ºñ¹Ğ¹øÈ£ È®ÀÎ</div>
+								<div id="passwardCheck-label" class="col-5">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</div>
 								<div id="passwardCheck-input" class="col-6">
-									<input type="password" class="form-control" id="passwordCheck"
-										data-rule-required="true" placeholder="ºñ¹Ğ¹øÈ£¸¦ ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä."
+									<input name="passwordCheck" type="password" class="form-control" id="passwordCheck"
+										data-rule-required="true" placeholder="ë¹„ë°€ë²ˆí˜¸ë¥¼ ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”."
 										maxlength="10">
 								</div>
 							</div>
 							<div class="row">
-								<div id="companyName-label" class="col-5">È¸»ç¸í</div>
+								<div id="companyName-label" class="col-5">íšŒì‚¬ëª…</div>
 								<div id="companyName-input" class="col-6">
-									<input type="text" class="form-control" id="companyName"
-										data-rule-required="true" placeholder="10ÀÚ ÀÌ³»·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä."
+									<input name="name" type="text" class="form-control" id="companyName"
+										data-rule-required="true" placeholder="10ì ì´ë‚´ë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”."
 										maxlength="10">
 								</div>
 							</div>
 							<div class="row">
-								<div id="email-label" class="col-5">´ã´çÀÚ ÀÌ¸ŞÀÏ</div>
+								<div id="email-label" class="col-5">ë‹´ë‹¹ì ì´ë©”ì¼</div>
 								<div id="email-input" class="col-6">
-									<input type="email" class="form-control" id="email"
-										data-rule-required="true" placeholder="ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇÏ¼¼¿ä."
+									<input name="email" type="email" class="form-control" id="email"
+										data-rule-required="true" placeholder="ì´ë©”ì¼ì„ ì…ë ¥í•˜ì„¸ìš”."
 										maxlength="40">
 								</div>
 							</div>
 							<div class="row">
-								<div id="phoneNumber-label" class="col-5">´ã´çÀÚ ÀüÈ­¹øÈ£</div>
+								<div id="phoneNumber-label" class="col-5">ë‹´ë‹¹ì ì „í™”ë²ˆí˜¸</div>
 								<div id="phoneNumber-input" class="col-6">
-									<input type="tel" class="form-control onlyNumber"
+									<input name="phone_number" type="tel" class="form-control onlyNumber"
 										id="phoneNumber" data-rule-required="true"
-										placeholder="-¸¦ Á¦¿ÜÇÏ°í ¼ıÀÚ¸¸ ÀÔ·ÂÇÏ¼¼¿ä." maxlength="11">
+										placeholder="-ë¥¼ ì œì™¸í•˜ê³  ìˆ«ìë§Œ ì…ë ¥í•˜ì„¸ìš”." maxlength="11">
 								</div>
 							</div>
 							<hr id="terms-divide">
-							<button id="terms-btn" type="button" class="btn btn-warning">¾à°ü
-								Àü¹® º¸±â</button>
-							¾à°üÀ» ÀĞ°í ³»¿ë¿¡ µ¿ÀÇÇÏ¿´½À´Ï´Ù. <input type="radio" id="inputTermsYes"
-								name="inputTermsYes" value="Y" checked> µ¿ÀÇÇÕ´Ï´Ù.
-							<button id="submit-btn" type="button" class="btn btn-warning">È¸¿ø°¡ÀÔ</button>
+							<button onclick="window.open('readme.jsp')" id="terms-btn" type="button" class="btn btn-warning">ì•½ê´€
+								ì „ë¬¸ ë³´ê¸°</button>
+							ì•½ê´€ì„ ì½ê³  ë‚´ìš©ì— ë™ì˜í•˜ì˜€ìŠµë‹ˆë‹¤. 
+							<input type="radio" id="inputTermsYes"
+								name="inputTermsYes" value="Y"> ë™ì˜í•©ë‹ˆë‹¤.
+							<button id="submit-btn" type="submit" class="btn btn-warning">íšŒì›ê°€ì…</button>
 						</div>
 					</form>
 				</div>
@@ -97,41 +103,15 @@
 	<div id="footer">
 		<hr class="haveMargin">
 		<p class="text-center" align="center">
-			<small><strong>¾÷Ã¼¸í : UNI-CON</strong></small><br> <small>´ëÇ¥
-				: ½ÉÇØ¸² ¹ÚÁÖÈñ ÃÖ°¡Èñ Á¶¼ö ¤ı ÁÖ¼Ò : µ¿´ö¿©ÀÚ ´ëÇĞ±³ ¤ı »ç¾÷ÀÚµî·Ï¹øÈ£:123-12-12345 ¤ı ÀüÈ­ :
-				02-123-1234</small><br> <small>Copyright¨Ï Âò²Ç - ÂòÇÏ°í ²ÇÂ¥ º¸»ó ¹ŞÀÚ! .</small>
+			<small><strong>ì—…ì²´ëª… : UNI-CON</strong></small><br> <small>ëŒ€í‘œ
+				: ì‹¬í•´ë¦¼ ë°•ì£¼í¬ ìµœê°€í¬ ì¡°ìˆ˜ë¹ˆ ã† ì£¼ì†Œ : ë™ë•ì—¬ì ëŒ€í•™êµ ã† ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸:123-12-12345 ã† ì „í™” :
+				02-123-1234</small><br> <small>Copyrightâ“’ ì°œê½ - ì°œí•˜ê³  ê½ì§œ ë³´ìƒ ë°›ì! .</small>
 		</p>
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
-	<!-- °ÔÀÓ ÀÌ¹ÌÁö ¾÷·Îµå ½ºÅ©¸³Æ® -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script>
-		function readURL(input) {
-			var id = $(input).attr("id");
 
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-
-				reader.onload = function(e) {
-					$('label[for="' + id + '"] .image-upload-icon').attr('src',
-							e.target.result).show();
-				}
-
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-
-		$("input[id^='image']").change(function() {
-			readURL(this);
-		});
-
-		$("input[id^='reward-image']").change(function() {
-			readURL(this);
-		});
-	</script>
 </body>
 </html>

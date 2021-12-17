@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="controller.info.UserSessionUtils"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,36 +11,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
 <!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<!-- CSS -->
-<link rel="stylesheet" href="css/chooseUserType.css">
+<link rel="stylesheet" href="css/main.css">
 
-<title>Âò²Ç - ÀÌ¿ëÀÚ ¼±ÅÃ</title>
+<title>ì°œê½</title>
 
 </head>
 <body>
 	<div id="header" align="center">
-		<h1>
-			<br>Âò²Ç
-		</h1>
-		<hr>
+		<a href="<c:url value='/main'></c:url>"> <img
+			src="images/title_logo.png" id="title-logo">
+		</a>
+		<hr id="title-bar">
 	</div>
 	<div id="contents" align="center">
-		<div id=chooseUserType-title>È¸¿ø°¡ÀÔ</div>
-		<img class=userImg src="./images/commonUserImg.png"></img> <img
-			class=userImg src="./images/companyUserImg.png"></img>
+		<div id=chooseUserType-title>íšŒì›ê°€ìž…</div>
+		<a href ="<c:url value="/userregister"></c:url>">
+			<img class=userImg src="./images/commonUserImg.png"></img> 
+		</a>	
+		<a href="<c:url value="/companyregister"></c:url>"> 
+			<img class=userImg src="./images/companyUserImg.png"></img>
+		</a>
 	</div>
 	<div id="footer">
 		<hr>
 		<p class="text-center" align="center">
-			<small><strong>¾÷Ã¼¸í</strong></small><br> <small>´ëÇ¥ : È«±æµ¿
-				¤ý ÁÖ¼Ò : »ç°Å¸® ¤ý »ç¾÷ÀÚµî·Ï¹øÈ£:123-12-12345 ¤ý ÀüÈ­ : 02-123-1234</small><br> <small>Copyright¨Ï
+			<small><strong>ì—…ì²´ëª…</strong></small><br> <small>ëŒ€í‘œ : í™ê¸¸ë™
+				ã† ì£¼ì†Œ : ì‚¬ê±°ë¦¬ ã† ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸:123-12-12345 ã† ì „í™” : 02-123-1234</small><br> <small>Copyrightâ“’
 				test.com All rights reserved.</small>
 		</p>
 	</div>

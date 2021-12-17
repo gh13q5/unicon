@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="controller.info.UserSessionUtils"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,16 +17,17 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="css/main.css">
 
-<title>Hello, world!</title>
+<title>ì°œê½</title>
 </head>
 <body>
 	<div id="header" align="center">
-		<h1>
-			<br>Âò²Ç
-		</h1>
-		<hr>
-		<div class="container-fluid">
+		<a href="<c:url value='/main'></c:url>"> <img
+			src="images/title_logo.png" id="title-logo">
+		</a>
+		<hr id="title-bar">
+		<div class="container-fluid" style="margin-top: 2%;">
 			<div class="row">
 				<div class="col-2">
 					<div class="accordion" id="accordionExample">
@@ -31,85 +35,53 @@
 							<h2 class="accordion-header" id="headingOne">
 								<button class="accordion-button" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseOne"
-									aria-expanded="true" aria-controls="collapseOne">Ä«Å×°í¸®º° º¸±â</button>
+									aria-expanded="true" aria-controls="collapseOne">ì¹´í…Œê³ ë¦¬</button>
 							</h2>
 							<div id="collapseOne" class="accordion-collapse collapse show"
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-								
+
 								<div class="list-group">
-								
-									<a href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
+
+									<a
+										href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
 										class="list-group-item list-group-item-action"
-										aria-current="true" > ½ºÆ÷Ã÷ </a> <a href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
-										class="list-group-item list-group-item-action">ÆÛÁñ</a> <a
-										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>" class="list-group-item list-group-item-action">·ÑÇÃ·¹À×</a>
-									<a href="<c:url value='/category'><c:param name='category' value='3' /></c:url>" class="list-group-item list-group-item-action">½Ã¹Ä·¹ÀÌ¼Ç</a>
-									<a href="<c:url value='/category'><c:param name='category' value='4' /></c:url>" class="list-group-item list-group-item-action">¾×¼Ç</a>
-									<a href="<c:url value='/category'><c:param name='category' value='5' /></c:url>" class="list-group-item list-group-item-action">À½¾Ç</a>
-									<a href="<c:url value='/category'><c:param name='category' value='6' /></c:url>" class="list-group-item list-group-item-action">º¸µå</a>
-									<a href="<c:url value='/category'><c:param name='category' value='7' /></c:url>" class="list-group-item list-group-item-action">FPS</a>
-								
+										aria-current="true"> ìŠ¤í¬ì¸  </a> <a
+										href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
+										class="list-group-item list-group-item-action">í¼ì¦</a> <a
+										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>"
+										class="list-group-item list-group-item-action">ë¡¤í”Œë ˆì‰</a> <a
+										href="<c:url value='/category'><c:param name='category' value='3' /></c:url>"
+										class="list-group-item list-group-item-action">ì‹œë®¬ë ˆì´ì…˜</a> <a
+										href="<c:url value='/category'><c:param name='category' value='4' /></c:url>"
+										class="list-group-item list-group-item-action">ì•¡ì…˜</a> <a
+										href="<c:url value='/category'><c:param name='category' value='5' /></c:url>"
+										class="list-group-item list-group-item-action">ìŒì•…</a> <a
+										href="<c:url value='/category'><c:param name='category' value='6' /></c:url>"
+										class="list-group-item list-group-item-action">ë³´ë“œ</a> <a
+										href="<c:url value='/category'><c:param name='category' value='7' /></c:url>"
+										class="list-group-item list-group-item-action">FPS</a>
+
 								</div>
 
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingTwo">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-									aria-expanded="false" aria-controls="collapseTwo">¸Ş´º2</button>
-							</h2>
-							<div id="collapseTwo" class="accordion-collapse collapse"
-								aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Ş´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Ş´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Ş´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Ş´º4</a>
-								</div>
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingThree">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseThree"
-									aria-expanded="false" aria-controls="collapseThree">
-									¸Ş´º3</button>
-							</h2>
-							<div id="collapseThree" class="accordion-collapse collapse"
-								aria-labelledby="headingThree"
-								data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Ş´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Ş´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Ş´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Ş´º4</a>
-								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-8 border">
-					<!-- ÀÏ¹İ °ÔÀÓ -->
+					<!-- ì¼ë°˜ ê²Œì„ -->
 					<div class="row">
 						<div class="col" align="left" style="margin-top: 10px;">
 							<h1 class="display-5">Category Name</h1>
 						</div>
 						<div class="col" align="right" style="margin: 20px;">
-							<button type="button" class="btn btn-warning">°ÔÀÓ µî·Ï</button>
+							<button type="button" onclick="isLogin()" class="btn btn-warning">ê²Œì„ ë“±ë¡</button>
 						</div>
 					</div>
 					<hr />
 					<div class="row">
 						<div class="col" align="left">
 							<h4>
-								<u>»çÀü¿¹¾à ÁøÇà Áß</u>
+								<u>ì‚¬ì „ì˜ˆì•½ ì§„í–‰ ì¤‘</u>
 							</h4>
 						</div>
 						<div class="col-sm-2" align="right"
@@ -122,35 +94,36 @@
 							</select>
 						</div>
 					</div>
-					<c:forEach var="Sgame" items="${searchGameList}"
-						varStatus="status">
-						<<c:choose>
+					<c:forEach var="Sgame" items="${searchGameList}" varStatus="status">
+						<c:choose>
 							<c:when test="${status.index % 4  eq 0}">
 								<div class="row" align="center">
 							</c:when>
-							<%-- <c:when test="${status.count eq 0}">
-								<div class="row" align="center">
-							</c:when> --%>
 						</c:choose>
-						<%-- <a href="<c:url value='/game'>
-            			<c:param name='game_id' value='${Cgame.id}' /></c:url>"> --%>
 						<div class="col">
-							<div class="card" style="width: 15rem;">
-								<img src="images/wallR.jpg" class="card-img-top" alt="...">
-								<div class="card-body">
-									<h5 class="card-title">
-										<c:out value="${Sgame.title}"></c:out>
-									</h5>
-									<p class="card-text">
-										<c:out value="${Sgame.description}"></c:out>
-									</p>
-									<p class="card-text">
-										<small class="text-muted">~<c:out
-												value="${Sgame.end_date}"></c:out></small>
-									</p>
+							<a
+								href="<c:url value='/game'>
+            			<c:param name='gameId' value='${Sgame.game_id}' /></c:url>"
+								style="color: black; text-decoration: none;">
+								<div class="card" style="width: 15rem; margin: 5px;">
+									<c:set var="image" value="${fn:split(Sgame.image_address,',')}" />
+									<img
+										src="<c:url value='/images/${Sgame.company_id}/${image[0]}' />"
+										class="card-img-top" alt="...">
+									<div class="card-body">
+										<h5 class="card-title">
+											<c:out value="${Sgame.title}"></c:out>
+										</h5>
+										<p class="card-text">
+											<c:out value="${Sgame.description}" escapeXml="false"></c:out>
+										</p>
+										<p class="card-text">
+											<small class="text-muted">~<c:out
+													value="${Sgame.end_date}"></c:out></small>
+										</p>
+									</div>
 								</div>
-							</div>
-							<!-- </a> -->
+							</a>
 						</div>
 						<c:choose>
 							<c:when test="${status.count % 4 eq 0}">
@@ -161,116 +134,171 @@
 			</c:when>
 			</c:choose>
 			</c:forEach>
-					<div>
-						<br>
-					</div>
-					<div class="row">
-						<div class="col" align="left" style="margin-left: 10px">
-							<h4>
-								<u>»çÀü¿¹¾à Á¾·á</u>
-							</h4>
-						</div>
-						<div class="col-sm-2" align="right"
-							style="margin-right: 20px; margin-bottom: 10px;">
-							<select class="form-select" aria-label="Default select example">
-								<option selected>Open this select menu</option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
-							</select>
-						</div>
-						
-						<c:forEach var="ESgame" items="${endsearchGameList}"
-						varStatus="status">
-						<c:choose>
-							<c:when test="${status.index % 4  eq 0}">
-								<div class="row" align="center">
-							</c:when>
-							<%-- <c:when test="${status.count eq 0}">
+			<div>
+				<br>
+			</div>
+			<div class="row">
+				<div class="col" align="left" style="margin-left: 10px">
+					<h4>
+						<u>ì‚¬ì „ì˜ˆì•½ ì¢…ë£Œ</u>
+					</h4>
+				</div>
+				<div class="col-sm-2" align="right"
+					style="margin-right: 20px; margin-bottom: 10px;">
+					<select class="form-select" aria-label="Default select example">
+						<option selected>Open this select menu</option>
+						<option value="1">One</option>
+						<option value="2">Two</option>
+						<option value="3">Three</option>
+					</select>
+				</div>
+
+				<c:forEach var="ESgame" items="${endsearchGameList}"
+					varStatus="status">
+					<c:choose>
+						<c:when test="${status.index % 4  eq 0}">
+							<div class="row" align="center">
+						</c:when>
+						<%-- <c:when test="${status.count eq 0}">
 								<div class="row" align="center">
 							</c:when> --%>
-						</c:choose>
-						<%-- <a href="<c:url value='/game'>
+					</c:choose>
+					<%-- <a href="<c:url value='/game'>
             			<c:param name='game_id' value='${Cgame.id}' /></c:url>"> --%>
-						<div class="col">
-							<div class="card" style="width: 15rem;">
-								<img src="images/wallR.jpg" class="card-img-top" alt="...">
-								<div class="card-body">
-									<h5 class="card-title">
-										<c:out value="${ESgame.title}"></c:out>
-									</h5>
-									<p class="card-text">
-										<c:out value="${ESgame.description}"></c:out>
-									</p>
-									<p class="card-text">
-										<small class="text-muted">~<c:out
-												value="${ESgame.end_date}"></c:out></small>
-									</p>
+					<div class="col">
+						<div class="card" style="width: 15rem;">
+							<c:set var="image" value="${fn:split(ESgame.image_address,',')}" />
+							<img
+								src="<c:url value='/images/${ESgame.company_id}/${image[0]}' />"
+								class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">
+									<c:out value="${ESgame.title}"></c:out>
+								</h5>
+								<p class="card-text">
+									<c:out value="${ESgame.description}" escapeXml="false"></c:out>
+								</p>
+								<p class="card-text">
+									<small class="text-muted">~<c:out
+											value="${ESgame.end_date}"></c:out></small>
+								</p>
+							</div>
+						</div>
+						<!-- </a> -->
+					</div>
+					<c:choose>
+						<c:when test="${status.count % 4 eq 0}">
+			</div>
+			</c:when>
+			<c:when test="${status.last}">
+		</div>
+		</c:when>
+		</c:choose>
+		</c:forEach>
+
+	</div>
+	</div>
+	
+	<div class="col-2">
+			<div class="card border-warning mb-3" style="max-width: 18rem;">
+				<div class="card-body" id="login-body">
+					<!-- ë¡œê·¸ì¸ ì „ -->
+					<c:if test="${loginFailed}">
+							${exception}
+					</c:if>
+					<c:if test="${empty userId}">
+						<form action="<c:url value='/login'/>" method="POST">
+							<div class="row mb-3">
+
+								<input name=id type="text" class="form-control" id="id"
+									placeholder="ID">
+							</div>
+							<div class="row mb-3">
+								<input name=password type="password" class="form-control"
+									id="password" placeholder="PW">
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-6" align="left">
+									<a href="chooseUserType.jsp" id="register-link">íšŒì›ê°€ì…</a>
+								</div>
+								<div class="col-sm-6">
+									<button type="submit" class="btn btn-warning" id="login-button">ë¡œê·¸ì¸</button>
 								</div>
 							</div>
-							<!-- </a> -->
-						</div>
-						<c:choose>
-							<c:when test="${status.count % 4 eq 0}">
-				</div>
-				</c:when>
-				<c:when test="${status.last}">
-			</div>
-			</c:when> 
-			</c:choose>
-			</c:forEach>
-						
-					</div>
-				</div>
-				<div class="col-2">
-					<div class="card border-warning mb-3" style="max-width: 18rem;">
-						<div class="card-body">
-							<form>
-								<div class="row mb-3">
+						</form>
+					</c:if>
+					<!-- ë¡œê·¸ì¸ í›„ -->
+					<c:if test="${!empty userId}">
+							<div class="row mb-3">
+								<p class="h4" align="left">
+									<u>${userObj.name}</u> ë‹˜
+								</p>
+								<p align="left">ì•ˆë…•í•˜ì„¸ìš”! o(^^)o</p>
+							</div>
+							<div class="row mb-3">
+								<a href="<c:url value = '/mypage'/>">
+									<button class="btn btn-warning" id="mypage-button">MY PAGE</button>
+								</a>
+							</div>
+							<div class="col-sm-4" align="right">
+								<a href=" <c:url value= '/logout'/>" id="logout-link"> ë¡œê·¸ì•„ì›ƒ</a>
+							</div>
+					</c:if>
 
-									<input type="email" class="form-control" id="inputEmail3"
-										placeholder="ID">
-								</div>
-								<div class="row mb-3">
-									<input type="password" class="form-control" id="inputPassword3"
-										placeholder="PW">
-								</div>
-								<div class="row mb-3">
-									<div class="col-sm-6" align="left">
-										<a href="#">regist in</a>
-									</div>
-									<div class="col-sm-6">
-										<button type="submit" class="btn btn-primary">Sign in</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
+	</div>
 	<div id="footer">
 		<hr class="haveMargin">
 		<p class="text-center" align="center">
-			<small><strong>¾÷Ã¼¸í</strong></small><br> <small>´ëÇ¥ : È«±æµ¿
-				¤ı ÁÖ¼Ò : »ç°Å¸® ¤ı »ç¾÷ÀÚµî·Ï¹øÈ£:123-12-12345 ¤ı ÀüÈ­ : 02-123-1234</small><br> <small>Copyright¨Ï
+			<small><strong>íŒ€ëª…</strong></small><br> <small>íŒ€ :
+				UNI-CON ã† ì†Œì† : ë™ë•ì—¬ìëŒ€í•™êµ ã† ì „í™” : 02-123-1234</small><br> <small>Copyrightâ“’
 				test.com All rights reserved.</small>
 		</p>
-		<!-- Optional JavaScript; choose one of the two! -->
+	</div>
+	<!-- Optional JavaScript; choose one of the two! -->
 
-		<!-- Option 1: Bootstrap Bundle with Popper -->
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-			crossorigin="anonymous"></script>
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
 
-		<!-- Option 2: Separate Popper and Bootstrap JS -->
-		<!--
+	<!-- Option 2: Separate Popper and Bootstrap JS -->
+	<!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+    
+    <script>
+		function login_() {
+			if (id == "") {
+				alert("ì‚¬ìš©ì ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì‹­ì‹œìš”.");
+				return false;
+			}
+			if (passward == "") {
+				alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹­ì‹œìš”.");
+				return false;
+			}
+			LoginController.submit();
+		}
+		 // ê²Œì„ ì˜ˆì•½ ë²„íŠ¼ í´ë¦­ ì‹œ
+			function isLogin() {
+				var user = '<%=(String) session.getAttribute(UserSessionUtils.USER_SESSION_KEY)%>';
+
+			alert(user);
+			if (user === null) {
+				alert('ë¡œê·¸ì¸ì´ í•„ìš”í•©ë‹ˆë‹¤!');
+			} else {
+				location.href = '/unicon/viewUpload';
+			}
+		}
+	</script>
 </body>
+
 </html>
 
 

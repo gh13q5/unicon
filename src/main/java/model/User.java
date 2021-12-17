@@ -3,10 +3,11 @@ package model;
 import java.util.Date;
 
 /**
- * »ç¿ëÀÚ °ü¸®¸¦ À§ÇØ ÇÊ¿äÇÑ µµ¸ŞÀÎ Å¬·¡½º. USERINFO Å×ÀÌºí°ú ´ëÀÀµÊ
+ * ï¿½ê¶—ï¿½ìŠœï¿½ì˜„ æ„¿ï¿½ç”±Ñ‰ï¿½ï¿½ ï¿½ìï¿½ë¹ ï¿½ë¸˜ï¿½ìŠ‚ï¿½ë¸³ ï¿½ë£„ï§ë¶¿ì”¤ ï¿½ê²¢ï¿½ì˜’ï¿½ë’ª. USERINFO ï¿½ë€’ï¿½ì” é‡‰ë¶½ë‚µ ï¿½ï¿½ï¿½ì“³ï¿½ë§–
  */
 public class User {
-	private String userId;
+	private int userId;
+	private String id;
 	private String password;
 	private String email;
 	private String name;
@@ -16,12 +17,10 @@ public class User {
 	//private int interests;
 	private int point;
 
-	public User() { }		// ±âº» »ı¼ºÀÚ
-	
-	public User(String userId, String password, String email, String name, String phone_number, Date birthDay, int gender,
+	public User(String id, String password, String email, String name, String phone_number, Date birthDay, int gender,
 			int point) {
 		super();
-		this.userId = userId;
+		this.id = id;
 		this.password = password;
 		this.email = email;
 		this.name = name;
@@ -30,15 +29,37 @@ public class User {
 		this.gender = gender;
 		//this.interests = interests;
 		this.point = point;
-	}//»ı¼ºÀÚ
+	}		// æ¹²ê³•ë‚¯ ï¿½ê¹®ï¿½ê½¦ï¿½ì˜„
+	
+	public User(int userId, String id, String password, String email, String name, String phone_number, Date birthDay, int gender,
+			int point) {
+		super();
+		this.userId = userId;
+		this.id = id;
+		this.password = password;
+		this.email = email;
+		this.name = name;
+		this.phone_number = phone_number;
+		this.birthDay = birthDay;
+		this.gender = gender;
+		//this.interests = interests;
+		this.point = point;
+	}//ï¿½ê¹®ï¿½ê½¦ï¿½ì˜„
 	
 	//getters&setters
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getPassword() {
@@ -105,11 +126,11 @@ public class User {
 		this.point = point;
 	}
 
-	public boolean isSameUser(String userid) {
-        return this.userId.equals(userid);
+	public boolean isSameUser(int userid) {
+        return this.userId == userid;
     }
 	
-	/* ºñ¹Ğ¹øÈ£ °Ë»ç */
+	/* é®ê¾¨ï¿½è¸°ëŠìƒ‡ å¯ƒï¿½ï¿½ê¶— */
 	public boolean matchPassword(String password) {
 		if (password == null) {
 			return false;
@@ -119,7 +140,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", password=" + password + ", email=" + email + ", name=" + name
-				+ ", phone_number=" + phone_number + ", commId=" + birthDay + ", gender=" + gender + ", point=" + point + "]";
+		return "User [userId=" + userId + ",id=" + id + ", password=" + password + ", email=" + email + ", name=" + name
+				+ ", phone_number=" + phone_number + ", birthDay=" + birthDay + ", gender=" + gender + ", point=" + point + "]";
 	}	
 }

@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="controller.info.UserSessionUtils"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,64 +17,18 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+	<link rel="stylesheet" href="css/mypage.css">
+<link rel="stylesheet" href="css/main.css">
 
-<style>
-#singUpP {
-	font-size: 25px;
-	width: 300px;
-	hight: 80px;
-	padding: 15px;
-	margin: 50px;
-	border-style: solid;
-	border-width: 2px;
-}
-
-.input-form {
-	max-width: 680px;
-	margin-top: 80px;
-	padding: 32px;
-	background: #fff;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
-}
-
-#makeItcenter, #userCategorys {
-	width: 500px;
-}
-
-.form-group {
-	white-space: nowrap;
-}
-
-#categoryBox {
-	hight: 400px;
-	padding: 15px;
-	border-style: solid;
-	border-width: 2px;
-}
-
-.haveMargin {
-	margin-top: 50px;
-}
-
-#finishButton {
-	margin-top: 100px;
-}
-</style>
-
-<title>myPage</title>
+<title>Ï∞úÍΩÅ</title>
 </head>
 <body>
 	<div id="header" align="center">
-		<h1>
-			<br>¬Ú≤«
-		</h1>
-		<hr>
-		<div class="container-fluid">
+		<a href="<c:url value='/main'></c:url>"> <img
+			src="images/title_logo.png" id="title-logo">
+		</a>
+		<hr id="title-bar">
+		<div class="container-fluid" style="margin-top: 2%;">
 			<div class="row">
 				<div class="col-2">
 					<div class="accordion" id="accordionExample">
@@ -78,60 +36,34 @@
 							<h2 class="accordion-header" id="headingOne">
 								<button class="accordion-button" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseOne"
-									aria-expanded="true" aria-controls="collapseOne">∏ﬁ¥∫1</button>
+									aria-expanded="true" aria-controls="collapseOne">Ïπ¥ÌÖåÍ≥†Î¶¨</button>
 							</h2>
 							<div id="collapseOne" class="accordion-collapse collapse show"
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 
 								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> º≠∫Í∏ﬁ¥∫1 </a> <a href="#"
-										class="list-group-item list-group-item-action">º≠∫Í∏ﬁ¥∫2</a> <a
-										href="#" class="list-group-item list-group-item-action">º≠∫Í∏ﬁ¥∫3</a>
-									<a href="#" class="list-group-item list-group-item-action">º≠∫Í∏ﬁ¥∫4</a>
+
+									<a
+										href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
+										class="list-group-item list-group-item-action"
+										aria-current="true"> Ïä§Ìè¨Ï∏† </a> <a
+										href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
+										class="list-group-item list-group-item-action">ÌçºÏ¶ê</a> <a
+										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>"
+										class="list-group-item list-group-item-action">Î°§ÌîåÎ†àÏûâ</a> <a
+										href="<c:url value='/category'><c:param name='category' value='3' /></c:url>"
+										class="list-group-item list-group-item-action">ÏãúÎÆ¨Î†àÏù¥ÏÖò</a> <a
+										href="<c:url value='/category'><c:param name='category' value='4' /></c:url>"
+										class="list-group-item list-group-item-action">Ïï°ÏÖò</a> <a
+										href="<c:url value='/category'><c:param name='category' value='5' /></c:url>"
+										class="list-group-item list-group-item-action">ÏùåÏïÖ</a> <a
+										href="<c:url value='/category'><c:param name='category' value='6' /></c:url>"
+										class="list-group-item list-group-item-action">Î≥¥Îìú</a> <a
+										href="<c:url value='/category'><c:param name='category' value='7' /></c:url>"
+										class="list-group-item list-group-item-action">FPS</a>
+
 								</div>
 
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingTwo">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-									aria-expanded="false" aria-controls="collapseTwo">∏ﬁ¥∫2</button>
-							</h2>
-							<div id="collapseTwo" class="accordion-collapse collapse"
-								aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> º≠∫Í∏ﬁ¥∫1 </a> <a href="#"
-										class="list-group-item list-group-item-action">º≠∫Í∏ﬁ¥∫2</a> <a
-										href="#" class="list-group-item list-group-item-action">º≠∫Í∏ﬁ¥∫3</a>
-									<a href="#" class="list-group-item list-group-item-action">º≠∫Í∏ﬁ¥∫4</a>
-								</div>
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingThree">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseThree"
-									aria-expanded="false" aria-controls="collapseThree">
-									∏ﬁ¥∫3</button>
-							</h2>
-							<div id="collapseThree" class="accordion-collapse collapse"
-								aria-labelledby="headingThree"
-								data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> º≠∫Í∏ﬁ¥∫1 </a> <a href="#"
-										class="list-group-item list-group-item-action">º≠∫Í∏ﬁ¥∫2</a> <a
-										href="#" class="list-group-item list-group-item-action">º≠∫Í∏ﬁ¥∫3</a>
-									<a href="#" class="list-group-item list-group-item-action">º≠∫Í∏ﬁ¥∫4</a>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -140,12 +72,15 @@
 
 
 					<div id=contents align="center">
-						<p id=singUpP>»∏ø¯ ¡§∫∏</p>
+						<p id=singUpP>ÌöåÏõê Ï†ïÎ≥¥</p>
+						
+						<%-- <c:set var="user" value="${findUserList}"/> --%>
+						
 						<form class="form-horizontal" role="form" method="post">
 							<div id="makeItcenter" align="left">
 								<div class="form-group" id="userNameID">
 									<p>
-										<b>¥–≥◊¿”</b> <span style="color: gray">æ∆¿Ãµ</span>
+										<b>${findUser.name}</b> <span style="color: gray">${findUser.id}</span>
 									</p>
 
 								</div>
@@ -153,225 +88,142 @@
 							<div class="form-group" id="email"></div>
 							<div class="row justify-content-center">
 								<div class="col-4">
-									<p>Email</p>
+									<p class="informaton">Email</p>
 								</div>
 								<div class="col-4">
-									<p>abcde1234@gmail.com</p>
+									<p>${findUser.email}</p>
 								</div>
 							</div>
 							<div class="form-group" id="phoneNumber">
 								<div class="row justify-content-center">
 									<div class="col-4">
-										<p>¿¸»≠π¯»£</p>
+										<p class="informaton">Ï†ÑÌôîÎ≤àÌò∏</p>
 									</div>
 									<div class="col-4">
-										<p>010-0000-0000</p>
+										<p>${findUser.phone_number}</p>
 									</div>
 								</div>
 							</div>
 							<div class="form-group" id="birthday">
 								<div class="row justify-content-center">
 									<div class="col-4">
-										<p>ª˝≥‚ø˘¿œ</p>
+										<p class="informaton">ÏÉùÎÖÑÏõîÏùº</p>
 									</div>
 									<div class="col-4">
-										<p>000000</p>
+										<p>${findUser.birthDay}</p>
 									</div>
 								</div>
 							</div>
 							<div class="form-group" id="gender">
 								<div class="row justify-content-center">
 									<div class="col-4">
-										<p>º∫∫∞</p>
+										<p>ÏÑ±Î≥Ñ</p>
 									</div>
 									<div class="col-4">
-										<p>ø©</p>
+										<p>
+										<c:if test="${findUser.gender eq 0}">
+											<c:out value="ÎÇ®ÏÑ±" />
+										</c:if>
+										<c:if test="${findUser.gender eq 1}">
+											<c:out value="Ïó¨ÏÑ±" />
+										</c:if>
+										<c:if test="${findUser.gender eq 2}">
+											<c:out value="Í∏∞ÌÉÄ" />
+										</c:if>
+										</p>
 									</div>
 								</div>
 							</div>
 					</div>
-					<div class="form-group" id="userCategorys" align="left">
-						<label for="chooseCategorys" class="col-lg-2 control-label">∞¸Ω…∫–æﬂ
-							(√÷º“ 1∞≥ ≈√)</label>
-						<div id="categoryBox" align="left">
-							<label><input type="checkbox" name="ganre1" value="0">∞‘¿”¿Â∏£
-								1rrrrrrrrrrrrr</label><br> <label><input type="checkbox"
-								name="ganre2" value="1">∞‘¿”¿Â∏£ 2rrrr</label><br> <label><input
-								type="checkbox" name="ganre3" value="2">∞‘¿”¿Â∏£ 3rr</lalel><br>
-								<label><input type="checkbox" name="ganre4" value="3">∞‘¿”¿Â∏£
-									4rrrrrrrrr</label><br> <label><input type="checkbox"
-									name="ganre5" value="4">∞‘¿”¿Â∏£ 5rr</label><br> <label><input
-									type="checkbox" name="ganre6" value="5">∞‘¿”¿Â∏£ 6</label><br>
-						</div>
-						<br>
-					</div>
+					<!-- Í≤åÏûÑ Ïû•Î•¥ Ï≤¥ÌÅ¨Î∞ïÏä§  -->
+							<div id="genre-row" class="row">
+								<div id="genre-label" class="col">Í¥ÄÏã¨ Î∂ÑÏïº</div>
+								<div id="genre-input">
+									<div class="checkbox-group">
+									 <c:set var = "str" value = "${findUserInterestsList}"/>
+										<c:forEach var="tag" items="${findGenreList}" varStatus="status">
+											<c:choose>
+												<c:when
+													test="${status.index % 4 eq 0 and status.index ne 0}">
+													<br>
+													</c:when>
+													</c:choose>
+													
+													<c:set var = "ckd" value = "${tag.genre_id}"/>
+													<c:choose>
+													 <c:when test = "${fn:contains(str, ckd)}">
+													 	<input class="form-check-input" type="checkbox"
+															value='<c:out value="${tag.genre_id}"/>' id ="'<c:out value="${tag.genre_id}"/>'"
+															name="tag[]"  checked="checked">
+														<label class="form-check-label" for='<c:out value="${tag.genre_id}"/>'><c:out value="${tag.name}"/></label>
+													 </c:when>
+													 <c:otherwise>
+													 	<input class="form-check-input" type="checkbox"
+															value='<c:out value="${tag.genre_id}"/>' id ="'<c:out value="${tag.genre_id}"/>'"
+															name="tag[]">
+														<label class="form-check-label" for='<c:out value="${tag.genre_id}"/>'><c:out value="${tag.name}"/></label>
+													 </c:otherwise>
+													 </c:choose>
+													
+										</c:forEach>
+									</div>
+								</div>
+							</div>
 
+					<br>
 					<div align="left">
 						<p>
-							<b>øπæ‡ ∞‘¿” ∏Ò∑œ</b>
+							<b>ÏòàÏïΩ Í≤åÏûÑ Î™©Î°ù</b>
 						</p>
 
 					</div>
-					<!-- øπæ‡ ∞‘¿” -->
-					<div id="carouselExampleDark" class="carousel carousel-dark slide"
-						data-bs-ride="carousel" data-bs-interval="false">
-
-						<div class="carousel-inner" style="margin: 10px; padding: 10px;">
-							<div class="carousel-item active">
+					<!-- ÏòàÏïΩ Í≤åÏûÑ -->
+					<c:forEach var="Rgame" items="${findrv}" varStatus="status">
+					<c:choose>
+						<c:when test="${status.index % 4  eq 0}">
+							<div class="row" align="center">
+						</c:when>
+						<%-- <c:when test="${status.count eq 0}">
 								<div class="row" align="center">
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="carousel-item">
-								<div class="row" align="center">
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="carousel-item">
-								<div class="row" align="center">
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
+							</c:when> --%>
+					</c:choose>
+					<%-- <a href="<c:url value='/game'>
+            			<c:param name='game_id' value='${Cgame.id}' /></c:url>"> --%>
+					<div class="col">
+						<div class="card" style="width: 15rem;">
+							<c:set var="image" value="${fn:split(Rgame.image_address,',')}" />
+							<img
+								src="<c:url value='/images/${Rgame.company_id}/${image[0]}' />"
+								class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">
+									<c:out value="${Rgame.title}"></c:out>
+								</h5>
+								<p class="card-text">
+									<c:out value="${Rgame.description}" escapeXml="false"></c:out>
+								</p>
+								<p class="card-text">
+									<small class="text-muted">~<c:out
+											value="${Rgame.end_date}"></c:out></small>
+								</p>
 							</div>
 						</div>
-						<button class="carousel-control-prev" type="button"
-							data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Previous</span>
-						</button>
-						<button class="carousel-control-next" type="button"
-							data-bs-target="#carouselExampleDark" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Next</span>
-						</button>
+						<!-- </a> -->
 					</div>
-					<!-- ≥° -->
+					<c:choose>
+						<c:when test="${status.count % 4 eq 0}">
+			</div>
+			</c:when>
+			<c:when test="${status.last}">
+		</div>
+		</c:when>
+		</c:choose>
+		</c:forEach>
+					<!-- ÎÅù -->
 
 					<div id="makeItcenter" align="right">
 						<div class="col-auto">
-							<button type="button" class="btn btn-primary mb-3">¡§∫∏ ºˆ¡§</button>
+							<input type="button" class="btn btn-primary mb-3" value="Ï†ïÎ≥¥ ÏàòÏ†ï" onClick="#">
 						</div>
 					</div>
 					<br>
@@ -384,7 +236,14 @@
 			</div>
 		</div>
 	</div>
-	<div id="footer">∫Ì∂Û∫Ì∂Û</div>
+<div id="footer">
+		<hr class="haveMargin">
+		<p class="text-center" align="center">
+			<small><strong>ÌåÄÎ™Ö</strong></small><br> <small>ÌåÄ :
+				UNI-CON „Üç ÏÜåÏÜç : ÎèôÎçïÏó¨ÏûêÎåÄÌïôÍµê „Üç Ï†ÑÌôî : 02-123-1234</small><br> <small>Copyright‚ìí
+				test.com All rights reserved.</small>
+		</p>
+	</div>
 	<!-- Optional JavaScript; choose one of the two! -->
 
 	<!-- Option 1: Bootstrap Bundle with Popper -->

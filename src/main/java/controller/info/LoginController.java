@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Controller;
+import model.service.CompanyManager;
 import model.service.PasswordMismatchException;
+import model.service.UserManager;
 import model.service.UserNotFoundException;
 
 import model.Company;
@@ -16,53 +18,49 @@ import model.dao.CompanyDAO;
 import model.dao.UserDAO;
 
 public class LoginController implements Controller {
-    @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	
-    	String id = request.getParameter("id");
-		String password = request.getParameter("password");
-
-		try {
+	private UserDAO userDAO = new UserDAO();
+	private CompanyDAO companyDAO = new CompanyDAO();
+	 @Override
+	    public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	    	String id = request.getParameter("id");
+			String password = request.getParameter("password");
 			
-			//usermanager ¾È¾²°í ·Î±×ÀÎ
-			login(id, password);
-	
-			// ¼¼¼Ç¿¡ »ç¿ëÀÚ ÀÌÀÌµğ ÀúÀå
-			HttpSession session = request.getSession();
-            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, id);
-            
-            return "redirect:/main.jsp";
-            
-		} catch (Exception e) { // ¿À·ùÀâ±â
-
-			request.setAttribute("¿À·ù", e);
-            return "/main.jsp";			
-		}	
-    }
-	public boolean login(String id, String password) throws SQLException, UserNotFoundException, PasswordMismatchException {
+			try {
+				// ëª¨ë¸ì— ë¡œê·¸ì¸ ì²˜ë¦¬ë¥¼ ìœ„ì„
+				if(userDAO.existingUser(id)) {
+				UserManager manager = UserManager.getInstance();
+				manager.login(id, password);
 		
-			UserDAO userManager = new UserDAO();
-			CompanyDAO companyManager = new CompanyDAO();
-			
-			if(userManager.findUser(id) != null) { //ÀÏ¹İÀ¯ÀúÀÎÁö ¾Ë¾Æº¸±â
+				UserDAO userDAO = new UserDAO();
+				User user = userDAO.findUser(id);
 				
-				User userId = userManager.findUser(id);
-				
-				if (!userId.matchPassword(password)) {
-					throw new PasswordMismatchException("password incorrect!");
+				// ì„¸ì…˜ì— ì‚¬ìš©ì ì´ì´ë”” ì €ì¥
+				HttpSession session = request.getSession();
+	            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, String.valueOf(user.getId()));
+	            session.setAttribute("userObj", user);
 				}
-				
-			} else if(companyManager.findCompany(id) != null) { //È­»çÀ¯ÀúÀÎÁö ¾Ë¾Æº¸±â
-				
-				Company companyId = companyManager.findCompany(id);
-				
-				if (!companyId.matchPassword(password)) {
-					throw new PasswordMismatchException("password incorrect!");
+				else {
+					if(companyDAO.existingCompany(id)) {
+					CompanyManager manager = CompanyManager.getInstance();
+					manager.login(id, password);
+					
+					CompanyDAO companyDAO = new CompanyDAO();
+					Company company = companyDAO.findCompany(id);
+					
+					HttpSession session = request.getSession();
+		            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, String.valueOf(company.getId()));
+		            session.setAttribute("userObj", company);
 				}
-				
-			} else {
-				throw new UserNotFoundException("id unexist");
-			}
-			return true;
-		}
-}
+					
+				}
+	            return "redirect:/main";
+			} catch (Exception e) {
+				/* UserNotFoundExceptionì´ë‚˜ PasswordMismatchException ë°œìƒ ì‹œ
+				 * ë‹¤ì‹œ login formì„ ì‚¬ìš©ìì—ê²Œ ì „ì†¡í•˜ê³  ì˜¤ë¥˜ ë©”ì„¸ì§€ë„ ì¶œë ¥
+				 */
+	            request.setAttribute("loginFailed", true);
+				request.setAttribute("exception", e);
+	            return "/main.jsp";			
+			}	
+	    }
+	}

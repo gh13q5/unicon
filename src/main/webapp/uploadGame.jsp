@@ -1,6 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="controller.info.UserSessionUtils"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,18 +17,18 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<!-- CSS -->
-<link rel="stylesheet" href="css/uploadGame.css">
+	<link rel="stylesheet" href="css/uploadGame.css">
+<link rel="stylesheet" href="css/main.css">
 
-<title>бР╡г - ╟тюс ╣Н╥о</title>
+<title>Л╟°Й╫│</title>
 </head>
 <body>
 	<div id="header" align="center">
-		<h1>
-			<br>бР╡г
-		</h1>
-		<hr>
-		<div class="container-fluid">
+		<a href="<c:url value='/main'></c:url>"> <img
+			src="images/title_logo.png" id="title-logo">
+		</a>
+		<hr id="title-bar">
+		<div class="container-fluid" style="margin-top: 2%;">
 			<div class="row">
 				<div class="col-2">
 					<div class="accordion" id="accordionExample">
@@ -33,206 +36,224 @@
 							<h2 class="accordion-header" id="headingOne">
 								<button class="accordion-button" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseOne"
-									aria-expanded="true" aria-controls="collapseOne">╦ч╢╨1</button>
+									aria-expanded="true" aria-controls="collapseOne">Л╧╢М┘▄ЙЁ═К╕╛</button>
 							</h2>
 							<div id="collapseOne" class="accordion-collapse collapse show"
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 
 								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> ╪╜╨Й╦ч╢╨1 </a> <a href="#"
-										class="list-group-item list-group-item-action">╪╜╨Й╦ч╢╨2</a> <a
-										href="#" class="list-group-item list-group-item-action">╪╜╨Й╦ч╢╨3</a>
-									<a href="#" class="list-group-item list-group-item-action">╪╜╨Й╦ч╢╨4</a>
+
+									<a
+										href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
+										class="list-group-item list-group-item-action"
+										aria-current="true"> Л┼╓М▐╛Л╦═ </a> <a
+										href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
+										class="list-group-item list-group-item-action">М█╪Л╕░</a> <a
+										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>"
+										class="list-group-item list-group-item-action">К║╓М■▄К═┬Л·┴</a> <a
+										href="<c:url value='/category'><c:param name='category' value='3' /></c:url>"
+										class="list-group-item list-group-item-action">Л▀°К╝╛К═┬Л²╢Л┘≤</a> <a
+										href="<c:url value='/category'><c:param name='category' value='4' /></c:url>"
+										class="list-group-item list-group-item-action">Л∙║Л┘≤</a> <a
+										href="<c:url value='/category'><c:param name='category' value='5' /></c:url>"
+										class="list-group-item list-group-item-action">Л²▄Л∙┘</a> <a
+										href="<c:url value='/category'><c:param name='category' value='6' /></c:url>"
+										class="list-group-item list-group-item-action">КЁ╢К⌠°</a> <a
+										href="<c:url value='/category'><c:param name='category' value='7' /></c:url>"
+										class="list-group-item list-group-item-action">FPS</a>
+
 								</div>
 
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingTwo">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-									aria-expanded="false" aria-controls="collapseTwo">╦ч╢╨2</button>
-							</h2>
-							<div id="collapseTwo" class="accordion-collapse collapse"
-								aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> ╪╜╨Й╦ч╢╨1 </a> <a href="#"
-										class="list-group-item list-group-item-action">╪╜╨Й╦ч╢╨2</a> <a
-										href="#" class="list-group-item list-group-item-action">╪╜╨Й╦ч╢╨3</a>
-									<a href="#" class="list-group-item list-group-item-action">╪╜╨Й╦ч╢╨4</a>
-								</div>
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingThree">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseThree"
-									aria-expanded="false" aria-controls="collapseThree">
-									╦ч╢╨3</button>
-							</h2>
-							<div id="collapseThree" class="accordion-collapse collapse"
-								aria-labelledby="headingThree"
-								data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> ╪╜╨Й╦ч╢╨1 </a> <a href="#"
-										class="list-group-item list-group-item-action">╪╜╨Й╦ч╢╨2</a> <a
-										href="#" class="list-group-item list-group-item-action">╪╜╨Й╦ч╢╨3</a>
-									<a href="#" class="list-group-item list-group-item-action">╪╜╨Й╦ч╢╨4</a>
-								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-8" align="center" style="padding: 50px;">
-					<div id="upload-title">╟тюс ╣Н╥о</div>
-					<!-- ╟тюс ╣Н╥о form -->
-					<form id="upload-form">
+					<div id="upload-title">Й╡▄Л·└ К⌠╠К║²</div>
+					<!-- Й╡▄Л·└ К⌠╠К║² form -->
+					<form action="/unicon/upload" id="upload-form" role="form"
+						enctype="multipart/form-data" method="POST">
 						<div id="form-container" class="container">
-							<!-- ╟тюс юл╦╖ ют╥б -->
+							<!-- Й╡▄Л·└ Л²╢К╕└ Л·┘К═╔ -->
 							<div class="row">
-								<div id="name-label" class="col-4">╟тюс юл╦╖</div>
+								<div id="name-label" class="col-4">Й╡▄Л·└ Л²╢К╕└</div>
 								<div id="name-input" class="col-6">
-									<input type="text" class="form-control" id="name">
+									<input type="text" class="form-control" id="name" name="title">
 								</div>
 							</div>
-							<!-- ©╧╬Ю ╠Б╟ё ют╥б -->
+							<!-- Л≤┬Л∙╫ Й╦╟Й╟└ Л·┘К═╔ -->
 							<div class="row">
-								<div id="period-label" class="col-4">©╧╬Ю ╠Б╟ё</div>
+								<div id="period-label" class="col-4">Л≤┬Л∙╫ Й╦╟Й╟└</div>
 								<div id="period-input" class="col-6">
-									<input type="date" class="form-control" id="start-period">
-									~ <input type="date" class="form-control" id="end-period">
+									<input type="date" class="form-control" id="start-period"
+										name="start_date"> ~ <input type="date"
+										class="form-control" id="end-period" name="end_date">
 								</div>
 							</div>
-							<!-- х╚╨╦ юл╧лаЖ ╬В╥н╣Е -->
+							<!-- М≥█КЁ╢ Л²╢К╞╦Л╖─ Л≈┘К║°К⌠° -->
 							<div class="row">
-								<div id="image-label" class="col">х╚╨╦ юл╧лаЖ (цж╢К 4╟Ё)</div>
+								<div id="image-label" class="col">М≥█КЁ╢ Л²╢К╞╦Л╖─ (Л╣°К▄─ 4Й╟°)</div>
 								<div id="image-input">
 									<label for="image01"> <img
 										src="images/image_upload.jpg" class="image-upload-icon"
 										alt="...">
-									</label> <input type="file" class="form-control" id="image01">
-									<label for="image02"> <img
+									</label> <input type="file" class="form-control" id="image01"
+										name="image01"> <label for="image02"> <img
 										src="images/image_upload.jpg" class="image-upload-icon"
 										alt="...">
-									</label><input type="file" class="form-control" id="image02"> <label
-										for="image03"> <img src="images/image_upload.jpg"
-										class="image-upload-icon" alt="...">
-									</label><input type="file" class="form-control" id="image03"> <label
-										for="image04"> <img src="images/image_upload.jpg"
-										class="image-upload-icon" alt="...">
-									</label> <input type="file" class="form-control" id="image04">
+									</label><input type="file" class="form-control" id="image02"
+										name="image02"> <label for="image03"> <img
+										src="images/image_upload.jpg" class="image-upload-icon"
+										alt="...">
+									</label><input type="file" class="form-control" id="image03"
+										name="image03"> <label for="image04"> <img
+										src="images/image_upload.jpg" class="image-upload-icon"
+										alt="...">
+									</label> <input type="file" class="form-control" id="image04"
+										name="image04">
 								</div>
 							</div>
-							<!-- ╟тюс ╪р╟Ё╠ш ют╥б -->
+							<!-- Й╡▄Л·└ Л├▄Й╟°Й╦─ Л·┘К═╔ -->
 							<div id="description-row" class="row">
-								<div id="description-label" class="col">╟тюс ╪р╟Ё╠ш</div>
+								<div id="description-label" class="col">Й╡▄Л·└ Л├▄Й╟°Й╦─</div>
 								<div id="description-input">
-									<textarea class="form-control" id="description" rows="8"></textarea>
+									<textarea class="form-control" id="description" rows="8"
+										name="description"></textarea>
 								</div>
 							</div>
-							<!-- ╟тюс юЕ╦ё ц╪е╘╧з╫╨  -->
+							<!-- Й╡▄Л·└ Л·╔К╔╢ Л╡╢М│╛К╟∙Л┼╓  -->
 							<div id="genre-row" class="row">
-								<div id="genre-label" class="col">╟тюс юЕ╦ё (цж╪р 1╟Ё юл╩С)</div>
+								<div id="genre-label" class="col">Й╡▄Л·└ Л·╔К╔╢ (Л╣°Л├▄ 1Й╟° Л²╢Л┐│)</div>
 								<div id="genre-input">
 									<div class="checkbox-group">
-										<input class="form-check-input" type="checkbox" value=""
-											id="genre01"> <label class="form-check-label"
-											for="genre01">╟тюсюЕ╦ё01</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre02"> <label
-											class="form-check-label" for="genre02">╟тюсюЕ╦ё02</label> <input
-											class="form-check-input" type="checkbox" value=""
-											id="genre03"> <label class="form-check-label"
-											for="genre03">╟тюсюЕ╦ё03</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre04"> <label
-											class="form-check-label" for="genre04">╟тюсюЕ╦ё04</label>
-									</div>
-									<div class="checkbox-group">
-										<input class="form-check-input" type="checkbox" value=""
-											id="genre05"> <label class="form-check-label"
-											for="genre05">╟тюсюЕ╦ё05</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre06"> <label
-											class="form-check-label" for="genre06">╟тюсюЕ╦ё06</label> <input
-											class="form-check-input" type="checkbox" value=""
-											id="genre07"> <label class="form-check-label"
-											for="genre07">╟тюсюЕ╦ё07</label> <input class="form-check-input"
-											type="checkbox" value="" id="genre08"> <label
-											class="form-check-label" for="genre08">╟тюсюЕ╦ё08</label>
+										<c:forEach var="tag" items="${genreList}" varStatus="status">
+											<c:choose>
+												<c:when
+													test="${(status.index % 4) eq 0 and status.index ne 0}">
+													<br>
+													<input class="form-check-input" type="checkbox"
+														value="${tag.genre_id }" id="${tag.genre_id }"
+														name="tag[]">
+													<label class="form-check-label" for="${tag.genre_id }">${tag.name }</label>
+												</c:when>
+												<c:otherwise>
+													<input class="form-check-input" type="checkbox"
+														value="${tag.genre_id }" id="${tag.genre_id }"
+														name="tag[]">
+													<label class="form-check-label" for="${tag.genre_id }">${tag.name }</label>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
 									</div>
 								</div>
 							</div>
-							<!-- ╟тюс ╨╦╩С ют╥б -->
+							<!-- Й╡▄Л·└ КЁ╢Л┐│ Л·┘К═╔ -->
 							<hr id="reward-divide">
 							<div id="reward-description-row" class="row">
-								<div id="reward-description-label" class="col">╩ГюЭ©╧╬Ю ╨╦╩С ╦Я╥о</div>
+								<div id="reward-description-label" class="col">Л┌╛Л═└Л≤┬Л∙╫ КЁ╢Л┐│ К╙╘К║²</div>
 								<div id="reward-description-input">
-									<textarea class="form-control" id="reward-description" rows="8"></textarea>
-									<!-- ╟тюс ╨╦╩С юл╧лаЖ ╬В╥н╣Е -->
+									<textarea class="form-control" id="reward-description" rows="8"
+										name="reward_text"></textarea>
+									<!-- Й╡▄Л·└ КЁ╢Л┐│ Л²╢К╞╦Л╖─ Л≈┘К║°К⌠° -->
 									<div id="reward-image-input" style="margin-top: 10px;">
 										<label for="reward-image01"> <img
 											src="images/image_upload.jpg" class="image-upload-icon"
 											alt="...">
-										</label> <input type="file" class="form-control" id="reward-image01">
-										<label for="reward-image02"> <img
-											src="images/image_upload.jpg" class="image-upload-icon"
+										</label> <input type="file" class="form-control" id="reward-image01"
+											name="reward-image01"> <label for="reward-image02">
+											<img src="images/image_upload.jpg" class="image-upload-icon"
 											alt="...">
-										</label><input type="file" class="form-control" id="reward-image02">
-										<label for="reward-image03"> <img
-											src="images/image_upload.jpg" class="image-upload-icon"
+										</label><input type="file" class="form-control" id="reward-image02"
+											name="reward-image02"> <label for="reward-image03">
+											<img src="images/image_upload.jpg" class="image-upload-icon"
 											alt="...">
-										</label><input type="file" class="form-control" id="reward-image03">
-										<label for="reward-image04"> <img
-											src="images/image_upload.jpg" class="image-upload-icon"
+										</label><input type="file" class="form-control" id="reward-image03"
+											name="reward-image03"> <label for="reward-image04">
+											<img src="images/image_upload.jpg" class="image-upload-icon"
 											alt="...">
-										</label> <input type="file" class="form-control" id="reward-image04">
+										</label> <input type="file" class="form-control" id="reward-image04"
+											name="reward-image04">
 									</div>
 								</div>
 							</div>
-							<button id="upload-btn" type="button" class="btn btn-warning">╟тюс
-								╣Н╥о</button>
+							<button id="upload-btn" type="submit" class="btn btn-warning">Й╡▄Л·└
+								К⌠╠К║²</button>
 						</div>
 					</form>
 				</div>
 				<div class="col-2">
-					<div class="card border-warning mb-3" style="max-width: 18rem;">
-						<div class="card-body">
-							<form>
-								<div class="row mb-3">
+			<div class="card border-warning mb-3" style="max-width: 18rem;">
+				<div class="card-body" id="login-body">
+					<!-- К║°Й╥╦Л²╦ Л═└ -->
+					<c:if test="${loginFailed}">
+							${exception}
+					</c:if>
+					<c:if test="${empty userId}">
+						<form action="<c:url value='/login'/>" method="POST">
+							<div class="row mb-3">
 
-									<input type="email" class="form-control" id="inputEmail3"
-										placeholder="ID">
+								<input name=id type="text" class="form-control" id="id"
+									placeholder="ID">
+							</div>
+							<div class="row mb-3">
+								<input name=password type="password" class="form-control"
+									id="password" placeholder="PW">
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-6" align="left">
+									<a href="chooseUserType.jsp" id="register-link">М ▄Л⌡░Й╟─Л·┘</a>
 								</div>
-								<div class="row mb-3">
-									<input type="password" class="form-control" id="inputPassword3"
-										placeholder="PW">
+								<div class="col-sm-6">
+									<button type="submit" class="btn btn-warning" id="login-button">К║°Й╥╦Л²╦</button>
 								</div>
-								<div class="row mb-3">
-									<div class="col-sm-6" align="left">
-										<a href="#">regist in</a>
-									</div>
-									<div class="col-sm-6">
-										<button type="submit" class="btn btn-primary">Sign in</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
+							</div>
+						</form>
+					</c:if>
+					<!-- К║°Й╥╦Л²╦ М⌡└ -->
+					<c:if test="${!empty userId}">
+							<div class="row mb-3">
+								<p class="h4" align="left">
+									<u>${userObj.name}</u> К▀≤
+								</p>
+								<p align="left">Л∙┬К┘∙М∙≤Л└╦Л ■! o(^^)o</p>
+							</div>
+							<div class="row mb-3">
+								<a href="<c:url value = '/mypage'/>">
+									<button class="btn btn-warning" id="mypage-button">MY PAGE</button>
+								</a>
+							</div>
+							<div class="col-sm-4" align="right">
+								<a href=" <c:url value= '/logout'/>" id="logout-link"> К║°Й╥╦Л∙└Л⌡┐</a>
+					</c:if>
+
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
+	</div>
+	<div id="footer">
+		<hr class="haveMargin">
+		<p class="text-center" align="center">
+			<small><strong>М▄─К╙┘</strong></small><br> <small>М▄─ :
+				UNI-CON Ц├█ Л├▄Л├█ : К▐≥К█∙Л≈╛Л·░К▄─М∙≥Й╣░ Ц├█ Л═└М≥■ : 02-123-1234</small><br> <small>CopyrightБ⌠▓
+				test.com All rights reserved.</small>
+		</p>
+	</div>
+	<!-- Optional JavaScript; choose one of the two! -->
+
+	<!-- Option 1: Bootstrap Bundle with Popper -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
-	<!-- ╟тюс юл╧лаЖ ╬В╥н╣Е ╫╨е╘╦Ёф╝ -->
+
+	<!-- Option 2: Separate Popper and Bootstrap JS -->
+	<!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+	<!-- Й╡▄Л·└ Л²╢К╞╦Л╖─ Л≈┘К║°К⌠° Л┼╓М│╛К╕╫М┼╦ -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>

@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'CookieRun-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	padding: 3%; min-width : 1200px;
+	font-family: 'CookieRun-Regular';
+	min-width: 1200px;
+}
+
+img#title-logo {
+	width: 10%;
+	height: 10%;
+}
+
+hr#title-bar {
+	margin: 1%;
+	border-top: 3px solid #222222;
+}
+
+/* 아코디언 버튼 (좌측 메뉴) */
+button.accordion-button {
+	background-color: #5ec8d6;
+}
+
+button.accordion-button:not(.collapsed ){
+	background-color: #5ec8d6;
+	color: white;
+}
+
+/* 검색어 및 게임 등록 (중앙 상단 부분) */
+div#search-div {
+	padding: 3%;
+}
+
+button#search-button:hover {
+	color: white;
+}
+
+button#search-button:not(:disabled ){
+	background-color: #5ec8d6;
+}
+
+button#upload-button:hover {
+	color: white;
+}
+
+button#upload-button:not(:disabled ){
+	background-color: #ffab40;
+}
+
+/* 로그인 부분 (우측) */
+div#login-body {
+	background-color: #ffab40;
+}
+
+input#id, input#password {
+	width: 90%;
+	margin-left: 5%;
+}
+
+a#register-link {
+	color: black;
+}
+
+a#register-link:hover {
+	color: white;
+}
+
+button#login-button:hover {
+	color: white;
+}
+
+button#login-button:not(:disabled ){
+	width: 75px;
+	background-color: #5ec8d6;
+}
+
+button#mypage-button:hover {
+	color: white;
+}
+
+button#mypage-button:not(:disabled ){
+	width: 100%;
+	background-color: #5ec8d6;
+}
+
+a#logout-link {
+	color: black;
+}
+
+a#logout-link:hover {
+	color: white;
+}
+
+/* 카드 이미지 */
+a.card-link{
+	color: black;
+	text-decoration: none;
+}
+div.card.game{
+	width: 12rem;
+	height: 25rem;
+	margin: 2%;
+	margin-bottom:5%;
+}
+h5.card-title{
+	height:10%;
+}
+div.card-body{
+	height:80%;
+	white-space: normal;
+	overflow: hidden;
+}
+p.card-date{
+	height:10%;
+}

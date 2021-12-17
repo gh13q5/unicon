@@ -114,4 +114,12 @@ public class Game {
 	public void setCompany_id(int company_id) {
 		this.company_id = company_id;
 	}
+	@Override
+	public String toString() {
+		return "Game [game_id=" + game_id + ", title=" + title + ", start_date=" + start_date + ", end_date=" + end_date
+				+ ", image_address=" + image_address + ", description=" + description + ", category=" + category
+				+ ", reward_image=" + reward_image + ", reward_text=" + reward_text + ", total_reservations="
+				+ total_reservations + ", company_id=" + company_id + "]";
+	}
+	
 }

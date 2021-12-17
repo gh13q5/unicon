@@ -12,13 +12,12 @@ import controller.info.UserSessionUtils;
 import model.Company;
 import model.Game;
 import model.Genre;
+import model.User;
 import model.dao.CompanyDAO;
-import model.dao.GameDAO;
 import model.dao.GenreDAO;
 
-public class ViewEditGameController implements Controller {
+public class ViewUploadGameController implements Controller {
 
-	GameDAO gameDAO = new GameDAO();
 	GenreDAO genreDAO = new GenreDAO();
 	CompanyDAO companyDAO = new CompanyDAO();
 
@@ -43,34 +42,15 @@ public class ViewEditGameController implements Controller {
 			return "redirect:/";
 		}
 
-		String gameId = req.getParameter("gameId");
-		Game game = null;
-
 		ArrayList<Genre> genreList = new ArrayList<>();
-		
-		String[] tagList = null;
-		String[] imageList = null;
-		String[] rewardImageList = null;
 
 		try {
-			game = gameDAO.findGame(gameId);
 			genreList = (ArrayList<Genre>) genreDAO.findGenreList();
-
-			// 태그 및 이미지 리스트 생성
-			tagList = game.getCategory().split(",");
-			imageList = game.getImage_address().split(",");
-			rewardImageList = game.getReward_image().split(",");
-
 		} catch (Exception e) {
 			return "redirect:/";
 		}
 
-		req.setAttribute("game", game);
 		req.setAttribute("genreList", genreList);
-		
-		req.setAttribute("tagList", tagList);
-		req.setAttribute("imageList", imageList);
-		req.setAttribute("rewardImageList", rewardImageList);
-		return "/editGame.jsp"; // 일단은 메인 페이지로 이동
+		return "/uploadGame.jsp"; // 일단은 메인 페이지로 이동
 	}
 }

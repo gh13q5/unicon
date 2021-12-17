@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.Community;
 import model.User;
+import model.Company;
 import model.dao.CommunityDAO;
 import model.dao.UserDAO;
 import model.dao.CompanyDAO;
@@ -16,31 +17,31 @@ import model.dao.CompanyDAO;
  * 비지니스 로직이 복잡한 경우에는 비지니스 로직만을 전담하는 클래스를 
  * 별도로 둘 수 있다.
  */
-public class UserManager {
-	private static UserManager userMan = new UserManager();
-	private UserDAO userDAO;
+public class CompanyManager {
+	private static CompanyManager compMan = new CompanyManager();
+	private CompanyDAO companyDAO;
 	//private CommunityDAO commDAO;
 	private UserAnalysis userAanlysis;
 
-	private UserManager() {
+	private CompanyManager() {
 		try {
-			userDAO = new UserDAO();
+			companyDAO = new CompanyDAO();
 			//commDAO = new CommunityDAO();
-			userAanlysis = new UserAnalysis(userDAO);
+			//userAanlysis = new UserAnalysis(companyDAO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}			
 	}
 	
-	public static UserManager getInstance() {
-		return userMan;
+	public static CompanyManager getInstance() {
+		return compMan;
 	}
 	
 	public int create(User user) throws SQLException, ExistingUserException {
-		if (userDAO.existingUser(user.getId()) == true) {
-			throw new ExistingUserException(user.getId() + "는 존재하는 아이디입니다.");
+		if (companyDAO.existingUser(user.getUserId()) == true) {
+			throw new ExistingUserException(user.getUserId() + "는 존재하는 아이디입니다.");
 		}
-		return userDAO.create(user);
+		return companyDAO.create(user);
 	}
 
 //	public int update(User user) throws SQLException, UserNotFoundException {
@@ -67,33 +68,33 @@ public class UserManager {
 //		return userDAO.remove(userId);
 //	}
 
-	public User findUser(String userId)
+	public Company findUser(String userId)
 		throws SQLException, UserNotFoundException {
-		User user = userDAO.findUser(userId);
+		Company company = companyDAO.findCompany(userId);
 		
-		if (user == null) {
+		if (company == null) {
 			throw new UserNotFoundException(userId + "는 존재하지 않는 아이디입니다.");
 		}		
-		return user;
+		return company;
 	}
 
 	public List<User> findUserList() throws SQLException {
-			return userDAO.findUserList();
+			return companyDAO.findUserList();
 	}
 	
 	public List<User> findUserList(int currentPage, int countPerPage)
 		throws SQLException {
-		return userDAO.findUserList(currentPage, countPerPage);
+		return companyDAO.findUserList(currentPage, countPerPage);
 	}
 
 	public boolean login(String userId, String password)
 		throws SQLException, UserNotFoundException, PasswordMismatchException {
-		User user = findUser(userId);
+		Company comm = findUser(userId);
 		
 //		UserDAO userDAO = new UserDAO();
 //		User user = userDAO.findUser(userId);
 
-		if (!user.matchPassword(password)) {
+		if (!comm.matchPassword(password)) {
 			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
 		}
 		return true;
@@ -114,10 +115,10 @@ public class UserManager {
 	public Community findCommunity(int commId) throws SQLException {
 		Community comm = commDAO.findCommunity(commId); 
 		
-		List<User> memberList = userDAO.findUsersInCommunity(commId);
+		List<User> memberList = companyDAO.findUsersInCommunity(commId);
 		comm.setMemberList(memberList);
 		
-		int numOfMembers = userDAO.getNumberOfUsersInCommunity(commId);
+		int numOfMembers = companyDAO.getNumberOfUsersInCommunity(commId);
 		comm.setNumOfMembers(numOfMembers);
 		return comm;
 	}
@@ -127,10 +128,10 @@ public class UserManager {
 	}
 	
 	public List<User> findCommunityMembers(int commId) throws SQLException {
-		return userDAO.findUsersInCommunity(commId);
+		return companyDAO.findUsersInCommunity(commId);
 	}
 
-	public UserDAO getUserDAO() {
-		return this.userDAO;
+	public CompanyDAO getCompanyDAO() {
+		return this.companyDAO;
 	}
 }
