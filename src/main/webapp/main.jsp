@@ -7,7 +7,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Required meta tags --> 
+<!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -26,8 +26,8 @@
 		<a href="<c:url value='/main'></c:url>"> <img
 			src="images/title_logo.png" id="title-logo">
 		</a>
-		<hr>
-		<div class="container-fluid">
+		<hr id="title-bar">
+		<div class="container-fluid" style="margin-top: 2%;">
 			<div class="row">
 				<div class="col-2">
 					<div class="accordion" id="accordionExample">
@@ -52,27 +52,27 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-8 border">
+				<div class="col-8">
 					<!-- search -->
 					<form action="<c:url value='/search'>
             			  </c:url>">
-						<div class="input-group mb-3">
+						<div class="input-group mb-3" id="search-div">
 							<div class="col-5">
 								<input type="text" class="form-control" name="keyWord"
 									placeholder="search" aria-label="search">
 							</div>
 							<div class="col-auto">
-								<button type="submit" class="btn btn-outline-secondary">search</button>
+								<button type="submit" class="btn btn-info" id="search-button">search</button>
 							</div>
-							<div class="col" align="right" style="margin: 20px;">
+							<div class="col" align="right">
 								<button type="button" class="btn btn-warning"
-									onclick="isLogin()">게임 등록</button>
+									onclick="isLogin()" id="upload-button">게임 등록</button>
 							</div>
 						</div>
 					</form>
 
 					<!-- recommend -->
-					<p class="h2">Recommend Games</p>
+					<p class="h2" style="margin-top: 2%;">&lt; 추천 게임 &gt;</p>
 					<div id="carouselExampleDark" class="carousel carousel-dark slide"
 						data-bs-ride="carousel">
 
@@ -238,7 +238,8 @@
 					</div>
 
 					<!-- 일반 게임 -->
-					<p class="h2">Entire Games</p>
+					<p class="h2" style="margin-top: 5%; margin-bottom: 3%;">&lt;
+						전체 게임 목록 &gt;</p>
 					<c:forEach var="game" items="${entireGameList}" varStatus="status">
 						<c:choose>
 							<c:when test="${status.index % 4  eq 0}">
@@ -252,8 +253,8 @@
 							<a
 								href="<c:url value='/game'>
             			<c:param name='gameId' value='${game.game_id}' /></c:url>"
-								style="color: black; text-decoration: none;">
-								<div class="card" style="width: 13rem; margin: 5px;">
+								class="card-link">
+								<div class="card game">
 									<c:set var="image" value="${fn:split(game.image_address,',')}" />
 									<img
 										src="<c:url value='/images/${game.company_id}/${image[0]}' />"
@@ -262,12 +263,12 @@
 										<h5 class="card-title">
 											<c:out value="${game.title}"></c:out>
 										</h5>
-										<div style="height: 10rem; overflow: hidden;">
+										<div class="card-body">
 											<p class="card-text">
 												<c:out value="${game.description}" escapeXml="false"></c:out>
 											</p>
 										</div>
-										<p class="card-text">
+										<p class="card-date">
 											<small class="text-muted">~<c:out
 													value="${game.end_date}"></c:out></small>
 										</p>
@@ -288,7 +289,7 @@
 		<!-- 로그인 창 -->
 		<div class="col-2">
 			<div class="card border-warning mb-3" style="max-width: 18rem;">
-				<div class="card-body">
+				<div class="card-body" id="login-body">
 					<!-- 로그인 전 -->
 					<c:if test="${loginFailed}">
 							${exception}
@@ -306,10 +307,10 @@
 							</div>
 							<div class="row mb-3">
 								<div class="col-sm-6" align="left">
-									<a href="chooseUserType.jsp">regist in</a>
+									<a href="chooseUserType.jsp" id="register-link">회원가입</a>
 								</div>
 								<div class="col-sm-6">
-									<button type="submit" class="btn btn-primary">Sign in</button>
+									<button type="submit" class="btn btn-warning" id="login-button">로그인</button>
 								</div>
 							</div>
 						</form>
@@ -318,17 +319,19 @@
 					<c:if test="${!empty userId}">
 						<form>
 							<div class="row mb-3">
-								<p class="h5" align="left">
+								<p class="h4" align="left">
 									<u>${userObj.name}</u> 님
 								</p>
+								<p align="left">안녕하세요! o(^^)o</p>
 							</div>
 							<div class="row mb-3">
 								<a href=mypage.jsp>
-									<button class="btn btn-primary">MY PAGE</button>
+									<button class="btn btn-warning" id="mypage-button">MY
+										PAGE</button>
 								</a>
 							</div>
 							<div class="col-sm-4" align="right">
-								<a href=" <c:url value= '/logout'/>"> logout</a>
+								<a href=" <c:url value= '/logout'/>" id="logout-link"> 로그아웃</a>
 							</div>
 						</form>
 					</c:if>
@@ -342,8 +345,8 @@
 	<div id="footer">
 		<hr class="haveMargin">
 		<p class="text-center" align="center">
-			<small><strong>업체명</strong></small><br> <small>대표 : 홍길동
-				ㆍ 주소 : 사거리 ㆍ 사업자등록번호:123-12-12345 ㆍ 전화 : 02-123-1234</small><br> <small>Copyrightⓒ
+			<small><strong>팀명</strong></small><br> <small>팀 :
+				UNI-CON ㆍ 소속 : 동덕여자대학교 ㆍ 전화 : 02-123-1234</small><br> <small>Copyrightⓒ
 				test.com All rights reserved.</small>
 		</p>
 	</div>
@@ -374,8 +377,7 @@
 		}
 		 // 게임 예약 버튼 클릭 시
 			function isLogin() {
-				var user = '<%=(String) session.getAttribute(UserSessionUtils.USER_SESSION_KEY)%>
-		';
+				var user = '<%=(String) session.getAttribute(UserSessionUtils.USER_SESSION_KEY)%>';
 
 			alert(user);
 			if (user === null) {
