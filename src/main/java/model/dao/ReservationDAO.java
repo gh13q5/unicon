@@ -2,6 +2,8 @@ package model.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Reservation;
 
@@ -14,7 +16,7 @@ public class ReservationDAO {
 	private JDBCUtil jdbcUtil = null;
 
 	public ReservationDAO() {
-		jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성
+		jdbcUtil = new JDBCUtil(); // JDBCUtil 객체 생성 
 	}
 
 	// 예약 정보 추가
@@ -90,16 +92,16 @@ public class ReservationDAO {
 		}
 		return 0;
 	}
-	
+
 	public int findReservateById(String gameId, String userId) throws SQLException {
-		String sql = "SELECT reservation_id "
-				+ "FROM Reservation " + "WHERE game_id=? AND user_id=? ";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId, userId }); // JDBCUtil�뜝�룞�삕 query�뜝�룞�삕�뜝�룞�삕 �뜝�떊怨ㅼ삕 �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+		String sql = "SELECT reservation_id " + "FROM Reservation " + "WHERE game_id=? AND user_id=? ";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId, userId }); // JDBCUtil�뜝�룞�삕 query�뜝�룞�삕�뜝�룞�삕 �뜝�떊怨ㅼ삕
+																			// �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
+			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
 			int find = 0;
-			if (rs.next()) {						//  정보 발견
+			if (rs.next()) { // 정보 발견
 				find++;
 			}
 			return find;
@@ -109,6 +111,29 @@ public class ReservationDAO {
 			jdbcUtil.close(); // resource �뜝�룞�삕�솚
 		}
 		return 0;
+	}
+
+	// 주어진 userId에 해당하는 예약 정보 List를 데이터베이스에서 찾아 도메인 클래스에 저장하여 반환
+	public List<Reservation> findReservationListByUserId(int userId) throws SQLException {
+		String sql = "SELECT reservation_id, reservation_date, game_id " + "FROM Reservation " + "WHERE user_id=? ";
+
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { userId }); // JDBCUtil에 query문과 매개 변수 설정
+		try {
+			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			List<Reservation> reservationList = new ArrayList<Reservation>();
+			while (rs.next()) {
+				Reservation reservation = new Reservation( // Reservation 객체를 생성하여 저장
+						rs.getInt("reservation_id"), rs.getDate("reservation_date"), rs.getInt("game_id"), userId);
+				reservationList.add(reservation);
+			}
+			return reservationList;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+		return null;
 	}
 
 	/**

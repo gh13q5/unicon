@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	
+	min-width: 1000px;
+	font-family: 'CookieRun-Regular';
+}
+
+img#title-logo {
+	width: 10%;
+	height: 10%;
+	margin-top: 2%;
+}

@@ -128,12 +128,12 @@ public class CompanyDAO {
 	/**
 	 * �썒�슣�닔�젆源띿�ゅ뜝占� �뜝�럡�뀬�뜝�럩�뮔�뜝�럩�겱 ID�뜝�럥�뱺 �뜝�럥�돵�뜝�럥堉ｅ뜝�럥由��뜝�럥裕� �뜝�럡�뀬�뜝�럩�뮔�뜝�럩�겱�뤆�룊�삕 �댖怨뺣샍占쎌궨�뜝�럥由��뜝�럥裕됬춯�쉻�삕 �뇦猿볦삕�뜝�럡�뀬 
 	 */
-	public boolean existingCompany(int i) throws SQLException {
-		String sql = "SELECT count(*) FROM COMPANY WHERE company_Id=?";      
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {i});	// JDBCUtil�뜝�럥�뱺 query占쎈닱筌롫챶沅� 嶺뚮씞�걝�뚳옙 �솻洹⑥삕�뜝�럥�빢 �뜝�럡�맟�뜝�럩�젧
+	public boolean existingCompany(String id) throws SQLException {
+		String sql = "SELECT count(*) FROM COMPANY WHERE id=?";      
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {id});	// JDBCUtil�뜝�럥�뱺 query占쎈닱筌롫챶沅� 嶺뚮씞�걝�뚳옙 �솻洹⑥삕�뜝�럥�빢 �뜝�럡�맟�뜝�럩�젧
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery();		// query �뜝�럥堉꾢뜝�럥六�
+			ResultSet rs = jdbcUtil.executeQuery();		// query �뜝�럥堉꾢뜝�럥六� 
 			if (rs.next()) {
 				int count = rs.getInt(1);
 				return (count == 1 ? true : false);

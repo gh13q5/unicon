@@ -8,25 +8,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import controller.info.UserSessionUtils;
+import model.Company;
 import model.Game;
 import model.Genre;
+import model.User;
+import model.dao.CompanyDAO;
 import model.dao.GenreDAO;
 
 public class ViewUploadGameController implements Controller {
 
 	GenreDAO genreDAO = new GenreDAO();
+	CompanyDAO companyDAO = new CompanyDAO();
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-		// 로그인 여부 확인
-		// 후에 취합했을 때 주석 풀 예정 -> 로그인 안 했으면 다시 게임 예약 페이지로 돌아감!
-		/*
-		 * if (!UserSessionUtils.hasLogined(req.getSession())) { return
-		 * "redirect:/user/login/form"; // login form 요청으로 redirect }
-		 */
+		String companyId = null;
+		req.setAttribute("isLogin", "false");
 
-		// String gameId = req.getParameter("gameId");
+		// 로그인 여부 확인 
+		if (UserSessionUtils.hasLogined(req.getSession())) {
+			req.setAttribute("isLogin", "true");
+			String session_Id = UserSessionUtils.getLoginUserId(req.getSession());
+
+			if (companyDAO.existingCompany(session_Id)) {
+				Company company = companyDAO.findCompany(session_Id);
+				companyId = String.valueOf(company.getCompanyId());
+			} else {
+				return "redirect:/";
+			}
+		} else {
+			return "redirect:/";
+		}
+
 		ArrayList<Genre> genreList = new ArrayList<>();
 
 		try {

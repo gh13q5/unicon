@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
+import controller.info.UserSessionUtils;
+import model.Company;
 import model.Game;
 import model.Reservation;
 import model.User;
+import model.dao.CompanyDAO;
 import model.dao.GameDAO;
 
 import org.apache.commons.fileupload.*;
@@ -24,19 +27,30 @@ import org.apache.commons.fileupload.servlet.*;
 public class EditGameController implements Controller {
 
 	GameDAO gameDAO = new GameDAO();
+	CompanyDAO companyDAO = new CompanyDAO();
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 
-		// 로그인 여부 확인
-		// 후에 취합했을 때 주석 풀 예정 -> 로그인 안 했으면 다시 게임 예약 페이지로 돌아감!
-		/*
-		 * if (!UserSessionUtils.hasLogined(req.getSession())) { return
-		 * "redirect:/user/login/form"; // login form 요청으로 redirect }
-		 */
+		String companyId = null;
+		req.setAttribute("isLogin", "false");
+
+		// 로그인 여부 확인 
+		if (UserSessionUtils.hasLogined(req.getSession())) {
+			req.setAttribute("isLogin", "true");
+			String session_Id = UserSessionUtils.getLoginUserId(req.getSession());
+
+			if (companyDAO.existingCompany(session_Id)) {
+				Company company = companyDAO.findCompany(session_Id);
+				companyId = String.valueOf(company.getCompanyId());
+			} else {
+				return "redirect:/";
+			}
+		} else {
+			return "redirect:/";
+		}
 
 		String gameId = req.getParameter("gameId");
-		String companyId = "1"; // 임시
 		Game originGame = gameDAO.findGame(gameId);
 
 		String title = null;
@@ -131,7 +145,6 @@ public class EditGameController implements Controller {
 							System.out.println("파일 경로 및 생성 완료");
 							item.write(file);
 
-							
 							if (item.getFieldName().equals("image01"))
 								image_path_list[0] = file_path;
 							else if (item.getFieldName().equals("image02"))
@@ -140,7 +153,6 @@ public class EditGameController implements Controller {
 								image_path_list[2] = file_path;
 							else if (item.getFieldName().equals("image04"))
 								image_path_list[3] = file_path;
-							
 
 							System.out.println("이미지 저장 완료");
 						} else if (item.getFieldName().equals("reward-image01")
@@ -159,7 +171,7 @@ public class EditGameController implements Controller {
 							File file = new File(dir, file_path);
 							System.out.println("파일 경로 및 생성 완료");
 							item.write(file);
-							
+
 							if (item.getFieldName().equals("reward-image01"))
 								reward_image_list[0] = file_path;
 							else if (item.getFieldName().equals("reward-image02"))
@@ -168,7 +180,7 @@ public class EditGameController implements Controller {
 								reward_image_list[0] = file_path;
 							else if (item.getFieldName().equals("reward-image04"))
 								reward_image_list[0] = file_path;
-							
+
 							System.out.println("리워드 이미지 저장 완료");
 						}
 					}
@@ -192,8 +204,8 @@ public class EditGameController implements Controller {
 					reward_image_path += reward_image_list[i];
 				}
 
-				Game newGame = new Game(Integer.parseInt(gameId), title, start_date, end_date, image_path, description, tag, reward_image_path,
-						reward_text, 0, Integer.parseInt(companyId));
+				Game newGame = new Game(Integer.parseInt(gameId), title, start_date, end_date, image_path, description,
+						tag, reward_image_path, reward_text, 0, Integer.parseInt(companyId));
 				gameDAO.update(newGame);
 				System.out.println("게임 수정 완료");
 			} catch (Exception e) {
