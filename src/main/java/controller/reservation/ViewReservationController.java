@@ -16,11 +16,13 @@ import model.dao.CompanyDAO;
 import model.dao.GameDAO;
 import model.dao.GenreDAO;
 import model.dao.ReservationDAO;
+import model.dao.UserDAO;
 import model.service.UserManager;
 import model.service.UserNotFoundException;
 
 public class ViewReservationController implements Controller {
 
+	UserDAO userDAO = new UserDAO();
 	GameDAO gameDAO = new GameDAO();
 	CompanyDAO companyDAO = new CompanyDAO();
 	GenreDAO genreDAO = new GenreDAO();
@@ -28,15 +30,29 @@ public class ViewReservationController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// 로그인 여부 확인
-		// login 후 reservation 데이터 여부로 예약 버튼 바꿀 때 마저 작성할 예정...
-		/*
-		 * if (!UserSessionUtils.hasLogined(req.getSession())) { return
-		 * "redirect:/user/login/form"; // login form 요청으로 redirect }
-		 */
 
 		String gameId = req.getParameter("gameId");
-		String userId = "0"; // 임시
+		String userId = null;
+		req.setAttribute("isLogin", "false");
+		req.setAttribute("reservate", "false");
+
+		// 로그인 여부 확인
+		// 로그인 및 이미 예약한 게임인지 확인
+		if (UserSessionUtils.hasLogined(req.getSession())) {
+			req.setAttribute("isLogin", "true");
+			String session_Id = UserSessionUtils.getLoginUserId(req.getSession());
+			User user = userDAO.findUser(session_Id);
+			userId = String.valueOf(user.getUserId());
+			
+			int isReservate = reservationDAO.findReservateById(gameId, userId); // DB에서 user가 게임 예약한 기록 확인
+			if (isReservate == 0)
+				req.setAttribute("reservate", "false");
+			else
+				req.setAttribute("reservate", "true");
+		}
+
+		System.out.println("gameId : " + gameId + " userId : " + userId + " isLogin : " + req.getAttribute("isLogin")
+				+ " reservate : " + req.getAttribute("reservate"));
 
 		Game game = null;
 		Company company = null;
@@ -59,13 +75,6 @@ public class ViewReservationController implements Controller {
 
 			imageList = game.getImage_address().split(",");
 			rewardImageList = game.getReward_image().split(",");
-
-			// 나중에 Login 구현되면 그 안으로 들어갈 예정
-			boolean isReservate = reservationDAO.isReservate(gameId, userId); // DB에서 user가 게임 예약한 기록 확인
-			if (isReservate)
-				req.setAttribute("reservate", "true");
-			else
-				req.setAttribute("reservate", "false");
 		} catch (Exception e) {
 			return "redirect:/";
 		}

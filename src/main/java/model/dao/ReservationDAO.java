@@ -14,99 +14,120 @@ public class ReservationDAO {
 	private JDBCUtil jdbcUtil = null;
 
 	public ReservationDAO() {
-		jdbcUtil = new JDBCUtil(); // JDBCUtil °´Ã¼ »ı¼º
+		jdbcUtil = new JDBCUtil(); // JDBCUtil ê°ì²´ ìƒì„±
 	}
 
-	// ¿¹¾à Á¤º¸ Ãß°¡
+	// ì˜ˆì•½ ì •ë³´ ì¶”ê°€
 	public int create(Reservation reservation) throws SQLException {
 		String sql = "INSERT INTO Reservation (reservation_date, game_id, user_id) VALUES (?, ?, ?)";
 		Object[] param = new Object[] { reservation.getReservation_date(), reservation.getGame_id(),
 				reservation.getUser_id() };
-		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil ¿¡ insert¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil ì— insertë¬¸ê³¼ ë§¤ê°œ ë³€ìˆ˜ ì„¤ì •
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // insert ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate(); // insert ë¬¸ ì‹¤í–‰
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ë°˜í™˜
 		}
 		return 0;
 	}
 
-	// userId·Î ¿¹¾à Á¤º¸ »èÁ¦
+	// userIdë¡œ ì˜ˆì•½ ì •ë³´ ì‚­ì œ
 	public int removeByUserId(String userId) throws SQLException {
 		String sql = "DELETE FROM Reservation WHERE user_id=?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { userId }); // JDBCUtil¿¡ delete¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { userId }); // JDBCUtilì— deleteë¬¸ê³¼ ë§¤ê°œ ë³€ìˆ˜ ì„¤ì •
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // delete ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate(); // delete ë¬¸ ì‹¤í–‰
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ë°˜í™˜
 		}
 		return 0;
 	}
 
-	// gameId·Î ¿¹¾à Á¤º¸ »èÁ¦
+	// gameIdë¡œ ì˜ˆì•½ ì •ë³´ ì‚­ì œ
 	public int removeByGameId(String gameId) throws SQLException {
 		String sql = "DELETE FROM Reservation WHERE game_id=?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId }); // JDBCUtil¿¡ delete¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId }); // JDBCUtilì— deleteë¬¸ê³¼ ë§¤ê°œ ë³€ìˆ˜ ì„¤ì •
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // delete ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate(); // delete ë¬¸ ì‹¤í–‰
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ë°˜í™˜
 		}
 		return 0;
 	}
 
-	// gameId¿Í userId·Î ¿¹¾à Á¤º¸ »èÁ¦
+	// gameIdì™€ userIdë¡œ ì˜ˆì•½ ì •ë³´ ì‚­ì œ
 	public int removeByUserIdAndGameId(String gameId, String userId) throws SQLException {
 		String sql = "DELETE FROM Reservation WHERE game_id=? AND user_id=?";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId, userId }); // JDBCUtil¿¡ delete¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId, userId }); // JDBCUtilì— deleteë¬¸ê³¼ ë§¤ê°œ ë³€ìˆ˜ ì„¤ì •
 
 		try {
-			int result = jdbcUtil.executeUpdate(); // delete ¹® ½ÇÇà
+			int result = jdbcUtil.executeUpdate(); // delete ë¬¸ ì‹¤í–‰
 			return result;
 		} catch (Exception ex) {
 			jdbcUtil.rollback();
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.commit();
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ë°˜í™˜
+		}
+		return 0;
+	}
+	
+	public int findReservateById(String gameId, String userId) throws SQLException {
+		String sql = "SELECT reservation_id "
+				+ "FROM Reservation " + "WHERE game_id=? AND user_id=? ";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId, userId }); // JDBCUtilï¿½ëœï¿½ë£ï¿½ì‚• queryï¿½ëœï¿½ë£ï¿½ì‚•ï¿½ëœï¿½ë£ï¿½ì‚• ï¿½ëœï¿½ë–Šæ€¨ã…¼ì‚• ï¿½ëœï¿½ë£ï¿½ì‚•ï¿½ëœï¿½ë£ï¿½ì‚• ï¿½ëœï¿½ë£ï¿½ì‚•ï¿½ëœï¿½ë£ï¿½ì‚•
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();		// query ì‹¤í–‰
+			int find = 0;
+			if (rs.next()) {						//  ì •ë³´ ë°œê²¬
+				find++;
+			}
+			return find;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource ï¿½ëœï¿½ë£ï¿½ì‚•ï¿½ì†š
 		}
 		return 0;
 	}
 
 	/**
-	 * ÇØ´ç User°¡ ¿¹¾àÇÑ °ÔÀÓÀÎÁö È®ÀÎ
+	 * í•´ë‹¹ Userê°€ ì˜ˆì•½í•œ ê²Œì„ì¸ì§€ í™•ì¸
 	 */
 	public boolean isReservate(String gameId, String userId) throws SQLException {
-		String sql = "SELECT reservation_id " + "FROM Reservation " + "WHERE game_id=? AND user_id=? ";
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId, userId }); // JDBCUtil¿¡ query¹®°ú ¸Å°³ º¯¼ö ¼³Á¤
+		String sql = "SELECT count(*) " + "FROM Reservation " + "WHERE game_id=? AND user_id=? ";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { gameId, userId }); // JDBCUtilì— queryë¬¸ê³¼ ë§¤ê°œ ë³€ìˆ˜ ì„¤ì •
 
 		try {
-			ResultSet rs = jdbcUtil.executeQuery(); // query ½ÇÇà
-			if (rs.next()) { // ÇĞ»ı Á¤º¸ ¹ß°ß
-				return true;
+			ResultSet rs = jdbcUtil.executeQuery();
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				return (count == 1 ? true : false);
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			jdbcUtil.close(); // resource ¹İÈ¯
+			jdbcUtil.close(); // resource ë°˜í™˜
 		}
 		return false;
 	}

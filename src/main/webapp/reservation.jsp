@@ -191,7 +191,9 @@
 								role="tabpannel" aria-labelledby="description-tab">
 								<h5 class="card-title">${game.title }</h5>
 								<br>
-								<p class="card-text">${game.description}</p>
+								<p class="card-text">
+									<c:out value="${game.description}" escapeXml="false"></c:out>
+								</p>
 							</div>
 							<div class="tab-pane fade" id="reward" role="tabpannel"
 								aria-labelledby="reward-tab">
@@ -201,7 +203,8 @@
 										class="d-block w-100">
 									<br>
 								</c:forEach>
-								<br> ${game.reward_text}
+								<br>
+								<c:out value="${game.reward_text}" escapeXml="false"></c:out>
 							</div>
 							<div class="tab-pane fade" id="statistics" role="tabpannel"
 								aria-labelledby="statistics-tab">
@@ -258,24 +261,19 @@
 	</script>
 	<script>
 		// 게임 예약 버튼 클릭 시
-		function isLogin(){ 
-			<%-- var login = '<%=(String) request.getAttribute("login")%>'; --%>
-			
-			// 로그인 구현 전 임시로 뺴둠
-			alert('예약되었습니다!');
-			const gameId = '${game.game_id}';
-			location.href = '/unicon/reservate?gameId=' + gameId;
-			/* if (login === 'true') { // 로그인 되어있는 경우
+		function isLogin() {
+			var isLogin = '<%=(String)request.getAttribute("isLogin")%>';
+
+			if (isLogin === 'true') {
 				alert('예약되었습니다!');
 				const gameId = '${game.game_id}';
-				location.href = '/resevate?gameId='
-						+ gameId;
+				location.href = '/unicon/reservate?gameId=' + gameId;
 			} else { // 로그인 되어있지 않은 경우
 				alert('로그인이 필요합니다!');
-			} */ 
+			}
 		}
-		
-		function deleteReservation(){
+
+		function deleteReservation() {
 			// 로그인 구현 전 임시로 뺴둠
 			alert('예약이 취소되었습니다!');
 			const gameId = '${game.game_id}';
