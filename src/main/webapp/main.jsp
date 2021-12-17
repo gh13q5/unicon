@@ -326,7 +326,7 @@
 							</div>
 							<div class="row mb-3">
 								<a href="<c:url value = '/mypage'/>">
-									<button class="btn btn-primary">MY PAGE</button>
+									<button class="btn btn-warning" id="mypage-button">MY PAGE</button>
 								</a>
 							</div>
 							<div class="col-sm-4" align="right">
