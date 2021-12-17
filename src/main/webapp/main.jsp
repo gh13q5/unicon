@@ -39,7 +39,6 @@
 							</h2>
 							<div id="collapseOne" class="accordion-collapse collapse show"
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-
 								<div class="list-group">
 									<c:forEach var="genre" items="${genreList}" varStatus="status">
 										<a
@@ -72,170 +71,235 @@
 					</form>
 
 					<!-- recommend -->
-					<p class="h2" style="margin-top: 2%;">&lt; 추천 게임 &gt;</p>
-					<div id="carouselExampleDark" class="carousel carousel-dark slide"
-						data-bs-ride="carousel">
-
-						<div class="carousel-inner" style="margin: 10px; padding: 10px;">
-							<div class="carousel-item active">
-								<div class="row" align="center">
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<a href="<c:url value = '/reservation/game'></c:url>"
-												style="text-decoration: none"> <img
-												src="images/wallR.jpg" class="card-img-top" alt="...">
-												<div class="card-body">
-													<h5 class="card-title">game title</h5>
-													<p class="card-text">This is a wider card with
-														supporting text below as a natural lead-in to additional
-														content. This content is a little bit longer.</p>
-													<p class="card-text">
-														<small class="text-muted">Last updated 3 mins ago</small>
-													</p>
+					<!-- 로그인 되어 있으면 관심사에 맞춰 게임을 추천 -->
+					<c:if test="${!empty userId}">
+						<p class="h2" style="margin-top: 2%;">&lt; 추천 게임 &gt;</p>
+						<div id="carouselExampleDark" class="carousel carousel-dark slide"
+							data-bs-ride="carousel">
+							<div class="carousel-inner" style="margin: 10px; padding: 10px;">
+								<c:forEach var="recommend" items="${recommendList }" step="3"
+									varStatus="status">
+									<c:choose>
+										<c:when test="${status.first }">
+											<div class="carousel-item active">
+												<div class="row" align="center">
+													<div class="col">
+														<a
+															href="<c:url value='/game'>
+            			<c:param name='gameId' value='${recommend.game_id}' /></c:url>"
+															class="card-link">
+															<div class="card recommend"
+																style="width: 14rem; height: 20rem;">
+																<c:set var="image"
+																	value="${fn:split(recommend.image_address,',')}" />
+																<img
+																	src="<c:url value='/images/${recommend.company_id}/${image[0]}' />"
+																	class="card-img-top" alt="...">
+																<div class="card-body">
+																	<h5 class="card-title">
+																		<c:out value="${recommend.title}"></c:out>
+																	</h5>
+																	<div class="card-body">
+																		<p class="card-text">
+																			<c:out value="${recommend.description}"
+																				escapeXml="false"></c:out>
+																		</p>
+																	</div>
+																	<p class="card-date">
+																		<small class="text-muted">~<c:out
+																				value="${recommend.end_date}"></c:out></small>
+																	</p>
+																</div>
+															</div>
+														</a>
+													</div>
+													<div class="col">
+														<a
+															href="<c:url value='/game'>
+            			<c:param name='gameId' value='${recommendList[status.index + 1].game_id}' /></c:url>"
+															class="card-link">
+															<div class="card recommend"
+																style="width: 14rem; height: 20rem;">
+																<c:set var="image"
+																	value="${fn:split(recommendList[status.index + 1].image_address,',')}" />
+																<img
+																	src="<c:url value='/images/${recommendList[status.index + 1].company_id}/${image[0]}' />"
+																	class="card-img-top" alt="...">
+																<div class="card-body">
+																	<h5 class="card-title">
+																		<c:out
+																			value="${recommendList[status.index + 1].title}"></c:out>
+																	</h5>
+																	<div class="card-body">
+																		<p class="card-text">
+																			<c:out
+																				value="${recommendList[status.index + 1].description}"
+																				escapeXml="false"></c:out>
+																		</p>
+																	</div>
+																	<p class="card-date">
+																		<small class="text-muted">~<c:out
+																				value="${recommendList[status.index + 1].end_date}"></c:out></small>
+																	</p>
+																</div>
+															</div>
+														</a>
+													</div>
+													<div class="col">
+														<a
+															href="<c:url value='/game'>
+            			<c:param name='gameId' value='${recommendList[status.index + 2].game_id}' /></c:url>"
+															class="card-link">
+															<div class="card recommend"
+																style="width: 14rem; height: 20rem;">
+																<c:set var="image"
+																	value="${fn:split(recommendList[status.index + 2].image_address,',')}" />
+																<img
+																	src="<c:url value='/images/${recommendList[status.index + 2].company_id}/${image[0]}' />"
+																	class="card-img-top" alt="...">
+																<div class="card-body">
+																	<h5 class="card-title">
+																		<c:out
+																			value="${recommendList[status.index + 2].title}"></c:out>
+																	</h5>
+																	<div class="card-body">
+																		<p class="card-text">
+																			<c:out
+																				value="${recommendList[status.index + 2].description}"
+																				escapeXml="false"></c:out>
+																		</p>
+																	</div>
+																	<p class="card-date">
+																		<small class="text-muted">~<c:out
+																				value="${recommendList[status.index + 2].end_date}"></c:out></small>
+																	</p>
+																</div>
+															</div>
+														</a>
+													</div>
 												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
 											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="carousel-item">
-								<div class="row" align="center">
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<a href="<c:url value = '/reservation/game'></c:url>"
-												style="text-decoration: none"> <img
-												src="images/wallR.jpg" class="card-img-top" alt="...">
-												<div class="card-body">
-													<h5 class="card-title">game title</h5>
-													<p class="card-text">This is a wider card with
-														supporting text below as a natural lead-in to additional
-														content. This content is a little bit longer.</p>
-													<p class="card-text">
-														<small class="text-muted">Last updated 3 mins ago</small>
-													</p>
+										</c:when>
+										<c:otherwise>
+											<div class="carousel-item">
+												<div class="row" align="center">
+													<div class="col">
+														<a
+															href="<c:url value='/game'>
+            			<c:param name='gameId' value='${recommend.game_id}' /></c:url>"
+															class="card-link">
+															<div class="card recommend" style="width: 14rem; height: 20rem;">
+																<c:set var="image"
+																	value="${fn:split(recommend.image_address,',')}" />
+																<img
+																	src="<c:url value='/images/${recommend.company_id}/${image[0]}' />"
+																	class="card-img-top" alt="...">
+																<div class="card-body">
+																	<h5 class="card-title">
+																		<c:out value="${recommend.title}"></c:out>
+																	</h5>
+																	<div class="card-body">
+																		<p class="card-text">
+																			<c:out value="${recommend.description}"
+																				escapeXml="false"></c:out>
+																		</p>
+																	</div>
+																	<p class="card-date">
+																		<small class="text-muted">~<c:out
+																				value="${recommend.end_date}"></c:out></small>
+																	</p>
+																</div>
+															</div>
+														</a>
+													</div>
+													<div class="col">
+														<a
+															href="<c:url value='/game'>
+            			<c:param name='gameId' value='${recommendList[status.index + 1].game_id}' /></c:url>"
+															class="card-link">
+															<div class="card recommend" style="width: 14rem; height: 20rem;">
+																<c:set var="image"
+																	value="${fn:split(recommendList[status.index + 1].image_address,',')}" />
+																<img
+																	src="<c:url value='/images/${recommendList[status.index + 1].company_id}/${image[0]}' />"
+																	class="card-img-top" alt="...">
+																<div class="card-body">
+																	<h5 class="card-title">
+																		<c:out
+																			value="${recommendList[status.index + 1].title}"></c:out>
+																	</h5>
+																	<div class="card-body">
+																		<p class="card-text">
+																			<c:out
+																				value="${recommendList[status.index + 1].description}"
+																				escapeXml="false"></c:out>
+																		</p>
+																	</div>
+																	<p class="card-date">
+																		<small class="text-muted">~<c:out
+																				value="${recommendList[status.index + 1].end_date}"></c:out></small>
+																	</p>
+																</div>
+															</div>
+														</a>
+													</div>
+													<div class="col">
+														<a
+															href="<c:url value='/game'>
+            			<c:param name='gameId' value='${recommendList[status.index + 2].game_id}' /></c:url>"
+															class="card-link">
+															<div class="card recommend" style="width: 14rem; height: 20rem;">
+																<c:set var="image"
+																	value="${fn:split(recommendList[status.index + 2].image_address,',')}" />
+																<img
+																	src="<c:url value='/images/${recommendList[status.index + 2].company_id}/${image[0]}' />"
+																	class="card-img-top" alt="...">
+																<div class="card-body">
+																	<h5 class="card-title">
+																		<c:out
+																			value="${recommendList[status.index + 2].title}"></c:out>
+																	</h5>
+																	<div class="card-body">
+																		<p class="card-text">
+																			<c:out
+																				value="${recommendList[status.index + 2].description}"
+																				escapeXml="false"></c:out>
+																		</p>
+																	</div>
+																	<p class="card-date">
+																		<small class="text-muted">~<c:out
+																				value="${recommendList[status.index + 2].end_date}"></c:out></small>
+																	</p>
+																</div>
+															</div>
+														</a>
+													</div>
 												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
 											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
 							</div>
-							<div class="carousel-item">
-								<div class="row" align="center">
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<a href="<c:url value = '/reservation/game'></c:url>"
-												style="text-decoration: none"> <img
-												src="images/wallR.jpg" class="card-img-top" alt="...">
-												<div class="card-body">
-													<h5 class="card-title">game title</h5>
-													<p class="card-text">This is a wider card with
-														supporting text below as a natural lead-in to additional
-														content. This content is a little bit longer.</p>
-													<p class="card-text">
-														<small class="text-muted">Last updated 3 mins ago</small>
-													</p>
-												</div>
-											</a>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card" style="width: 15rem;">
-											<img src="images/wallR.jpg" class="card-img-top" alt="...">
-											<div class="card-body">
-												<h5 class="card-title">game title</h5>
-												<p class="card-text">This is a wider card with
-													supporting text below as a natural lead-in to additional
-													content. This content is a little bit longer.</p>
-												<p class="card-text">
-													<small class="text-muted">Last updated 3 mins ago</small>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							<button class="carousel-control-prev" type="button"
+								data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button"
+								data-bs-target="#carouselExampleDark" data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
 						</div>
-						<button class="carousel-control-prev" type="button"
-							data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Previous</span>
-						</button>
-						<button class="carousel-control-next" type="button"
-							data-bs-target="#carouselExampleDark" data-bs-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="visually-hidden">Next</span>
-						</button>
-					</div>
+					</c:if>
+
+					<!-- 로그인 전 -->
+					<c:if test="${empty userId}">
+						<p class="h2" style="margin-top: 2%;">&lt; 찜꽁과 함께 더 많은 추천 게임을
+							받아보세요! &gt;</p>
+						<p>회원가입 후, 관심사에 맞는 추천 게임을 바로 확인할 수 있습니다.</p>
+					</c:if>
+
 
 					<!-- 일반 게임 -->
 					<p class="h2" style="margin-top: 5%; margin-bottom: 3%;">&lt;
@@ -326,7 +390,8 @@
 							</div>
 							<div class="row mb-3">
 								<a href="<c:url value = '/mypage'/>">
-									<button class="btn btn-warning" id="mypage-button">MY PAGE</button>
+									<button class="btn btn-warning" id="mypage-button">MY
+										PAGE</button>
 								</a>
 							</div>
 							<div class="col-sm-4" align="right">
@@ -376,7 +441,8 @@
 		}
 		 // 게임 예약 버튼 클릭 시
 			function isLogin() {
-				var user = '<%=(String) session.getAttribute(UserSessionUtils.USER_SESSION_KEY)%>';
+				var user = '<%=(String) session.getAttribute(UserSessionUtils.USER_SESSION_KEY)%>
+		';
 
 			alert(user);
 			if (user === null) {
