@@ -165,23 +165,31 @@
 								<div id="genre-label" class="col">관심 분야</div>
 								<div id="genre-input">
 									<div class="checkbox-group">
-										<c:forEach var="tag" items="${genreList}" varStatus="status">
+									 <c:set var = "str" value = "${findUserInterestsList}"/>
+										<c:forEach var="tag" items="${findGenreList}" varStatus="status">
 											<c:choose>
 												<c:when
-													test="${(status.index % 4) eq 0 and status.index ne 0}">
+													test="${status.index % 4 eq 0 and status.index ne 0}">
 													<br>
-													<input class="form-check-input" type="checkbox"
-														value="${tag.genre_id }" id="${tag.genre_id }"
-														name="tag[]">
-													<label class="form-check-label" for="${tag.genre_id }">${tag.name }</label>
-												</c:when>
-												<c:otherwise>
-													<input class="form-check-input" type="checkbox"
-														value="${tag.genre_id }" id="${tag.genre_id }"
-														name="tag[]">
-													<label class="form-check-label" for="${tag.genre_id }">${tag.name }</label>
-												</c:otherwise>
-											</c:choose>
+													</c:when>
+													</c:choose>
+													
+													<c:set var = "ckd" value = "${tag.genre_id}"/>
+													<c:choose>
+													 <c:when test = "${fn:contains(str, ckd)}">
+													 	<input class="form-check-input" type="checkbox"
+															value='<c:out value="${tag.genre_id}"/>' id ="'<c:out value="${tag.genre_id}"/>'"
+															name="tag[]"  checked="checked">
+														<label class="form-check-label" for='<c:out value="${tag.genre_id}"/>'><c:out value="${tag.name}"/></label>
+													 </c:when>
+													 <c:otherwise>
+													 	<input class="form-check-input" type="checkbox"
+															value='<c:out value="${tag.genre_id}"/>' id ="'<c:out value="${tag.genre_id}"/>'"
+															name="tag[]">
+														<label class="form-check-label" for='<c:out value="${tag.genre_id}"/>'><c:out value="${tag.name}"/></label>
+													 </c:otherwise>
+													 </c:choose>
+													
 										</c:forEach>
 									</div>
 								</div>

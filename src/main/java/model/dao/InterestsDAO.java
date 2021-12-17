@@ -130,6 +130,33 @@ public class InterestsDAO {
 		}
 		return null;
 	}
+	
+	/**
+	 * 해당 유저의 관심사 정보를 검색하여 List에 저장 및 반환
+	 */
+	public List<Interests> findUserInterestsList(int id) throws SQLException {
+		String sql = "SELECT id, genre_id "
+				+ "FROM Interests " + "WHERE user_id=? ";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { id }); // JDBCUtil에 query문 설정
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery(); // query 실행
+			List<Interests> findUserInterestsList = new ArrayList<Interests>(); // Game들의 리스트 생성
+			while (rs.next()) {
+				Interests interests = new Interests(
+						rs.getInt("id"), id, rs.getInt("genre_id"));
+				findUserInterestsList.add(interests);
+			}
+			return findUserInterestsList;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource 반환
+		}
+		return null;
+	}
+
 
 	/**
 	 * 주어진  interestsId에 해당하는 관심사가 존재하는지 검사

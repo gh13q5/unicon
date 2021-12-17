@@ -3,7 +3,7 @@ package model;
 import java.util.Date;
 
 /**
- * 사용자 관리를 위해 필요한 도메인 클래스. USERINFO 테이블과 대응됨
+ * �궗�슜�옄 愿�由щ�� �쐞�빐 �븘�슂�븳 �룄硫붿씤 �겢�옒�뒪. USERINFO �뀒�씠釉붽낵 ���쓳�맖
  */
 public class User {
 	private int userId;
@@ -17,7 +17,19 @@ public class User {
 	//private int interests;
 	private int point;
 
-	public User() { }		// 기본 생성자
+	public User(String id, String password, String email, String name, String phone_number, Date birthDay, int gender,
+			int point) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.email = email;
+		this.name = name;
+		this.phone_number = phone_number;
+		this.birthDay = birthDay;
+		this.gender = gender;
+		//this.interests = interests;
+		this.point = point;
+	}		// 湲곕낯 �깮�꽦�옄
 	
 	public User(int userId, String id, String password, String email, String name, String phone_number, Date birthDay, int gender,
 			int point) {
@@ -32,7 +44,7 @@ public class User {
 		this.gender = gender;
 		//this.interests = interests;
 		this.point = point;
-	}//생성자
+	}//�깮�꽦�옄
 	
 	//getters&setters
 	public int getUserId() {
@@ -118,7 +130,7 @@ public class User {
         return this.userId == userid;
     }
 	
-	/* 비밀번호 검사 */
+	/* 鍮꾨�踰덊샇 寃��궗 */
 	public boolean matchPassword(String password) {
 		if (password == null) {
 			return false;
@@ -129,6 +141,6 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ",id=" + id + ", password=" + password + ", email=" + email + ", name=" + name
-				+ ", phone_number=" + phone_number + ", commId=" + birthDay + ", gender=" + gender + ", point=" + point + "]";
+				+ ", phone_number=" + phone_number + ", birthDay=" + birthDay + ", gender=" + gender + ", point=" + point + "]";
 	}	
 }

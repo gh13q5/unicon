@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -29,10 +31,10 @@
 	</div>
 	<div id="contents" align="center">
 		<div id=chooseUserType-title>회원가입</div>
-		<a href=userRegisterForm.jsp>
+		<a href ="<c:url value="/userregister"></c:url>">
 			<img class=userImg src="./images/commonUserImg.png"></img> 
 		</a>	
-		<a href=companyRegisterForm.jsp> 
+		<a href="<c:url value="/companyregister"></c:url>"> 
 			<img class=userImg src="./images/companyUserImg.png"></img>
 		</a>
 	</div>

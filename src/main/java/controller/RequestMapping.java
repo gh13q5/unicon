@@ -31,6 +31,9 @@ public class RequestMapping {
         
         // info
         mappings.put("/register", new ForwardController("/chooseUserType.jsp"));
+        mappings.put("/userregister", new ForwardController("/userRegisterForm.jsp"));
+        mappings.put("/companyregister", new ForwardController("/companyRegisterForm.jsp"));
+        mappings.put("/welcome", new ForwardController("/welcome.jsp"));
         mappings.put("/register/user", new UserRegisterController());
         mappings.put("/register/company", new CompanyRegisterController());
         mappings.put("/login", new LoginController());

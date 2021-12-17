@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%> 
+	
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,11 +29,14 @@
 			<hr>
 		</div>
 		<div class="container-fluid">
+		<c:if test="${registerFailed}">
+	      <font color="red"><c:out value="${exception.getMessage()}" /></font>
+	    </c:if>
 			<div class="row">
 				<div class="col" align="center" style="padding: 50px;">
 					<div id="registerForm-title">회원가입</div>
 					<!-- 회원가입 form -->
-					<form id="registerForm-form" action="<c:url value='/register_user'/>" method="post">
+					<form id="registerForm-form"  method="post" action="<c:url value='/register/user'/>">
 						<div id="form-container" class="container">
 							<!-- 회원 정보 입력 -->
 							<div class="row">
@@ -43,17 +48,17 @@
 								</div>
 							</div>
 							<div class="row">
-								<div id="passward-label" class="col-5">비밀번호</div>
-								<div id="passward-input" class="col-6">
+								<div id="password-label" class="col-5">비밀번호</div>
+								<div id="password-input" class="col-6">
 									<input type="password" class="form-control" id="password"
-										name="passward" data-rule-required="true"
+										name="password" data-rule-required="true"
 										placeholder="10자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="10">
 								</div>
 							</div>
 							<div class="row">
-								<div id="passwardCheck-label" class="col-5">비밀번호 확인</div>
-								<div id="passwardCheck-input" class="col-6">
-									<input name="passwardCheck" type="password" class="form-control" id="passwordCheck"
+								<div id="passwordCheck-label" class="col-5">비밀번호 확인</div>
+								<div id="passwordCheck-input" class="col-6">
+									<input name="passwordCheck" type="password" class="form-control" id="passwordCheck"
 										data-rule-required="true" placeholder="비밀번호를 다시 입력해주세요."
 										maxlength="10">
 								</div>
@@ -85,7 +90,7 @@
 							<div class="row">
 								<div id="birthday-label" class="col-5">생년월일</div>
 								<div id="birthday-input" class="col-6">
-									<input name="birthday" type="date" class="form-control onlyNumber"
+									<input name="birthDay" type="date" class="form-control onlyNumber"
 										id="birthday" data-rule-required="true"
 										placeholder="생년월일 6자를 입력해주세요. 예)961204" maxlength="6">
 								</div>
@@ -94,9 +99,9 @@
 								<div id="gender-label" class="col-5">성별</div>
 								<div id="gender-input" class="col-6">
 									<select name="gender" class="form-control" id="gender">
-										<option value="M">남</option>
-										<option value="F">여</option>
-										<option value="B">그 외</option>
+										<option value="0">남</option>
+										<option value="1">여</option>
+										<option value="2">그 외</option>
 									</select>
 								</div>
 							</div>

@@ -21,8 +21,10 @@ public class UserDAO {
 	 * �궗�슜�옄 愿�由� �뀒�씠釉붿뿉 �깉濡쒖슫 �궗�슜�옄 �깮�꽦.
 	 */
 	public int create(User user) throws SQLException {
-		String sql = "INSERT INTO COMMONUSER VALUES (?, ?, ?, ?, ?, ?, ?, ?)";		
-		Object[] param = new Object[] {user.getUserId(),user.getId(), user.getPassword(), 
+		String sql = "INSERT INTO COMMONUSER "+
+				"(id, password, email, name, phone_number, birthday, gender, point) "
+					+"VALUES (?, ?, ?, ?, ?, ?, ?, ?)";		
+		Object[] param = new Object[] {user.getId(), user.getPassword(), 
 						user.getEmail(), user.getName(), user.getPhone_number(), user.getBirthDay(), user.getGender(), 
 						user.getPoint()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil �뿉 insert臾멸낵 留ㅺ컻 蹂��닔 �꽕�젙

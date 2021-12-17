@@ -1,5 +1,6 @@
 package controller.info;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
@@ -16,6 +17,7 @@ import model.Interests;
 import model.dao.InterestsDAO;
 
 import model.service.ExistingUserException;
+import model.service.UserManager;
 
 public class UserRegisterController implements Controller {
 	private static final Logger log = LoggerFactory.getLogger(UserRegisterController.class);
@@ -23,41 +25,32 @@ public class UserRegisterController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		// 諛쏆� �궇吏쒕�� date濡� 蹂��솚�븯�뒗 �븿�닔
+		// 獄쏆룇占� 占쎄텊筌욎뮆占쏙옙 date嚥∽옙 癰귨옙占쎌넎占쎈릭占쎈뮉 占쎈맙占쎈땾
 		SimpleDateFormat userDate = new SimpleDateFormat("yyyy-MM-dd");
+		String value = request.getParameter("birthDay");
+		java.util.Date date = userDate.parse(value);
+		String formattedStartDate = userDate.format(date);
+		java.sql.Date Rdate = java.sql.Date.valueOf(formattedStartDate);
 
-		// POST request (�쉶�썝�젙蹂닿� parameter濡� �쟾�넚�맖)
-		User user = new User(Integer.parseInt(request.getParameter("gender")), request.getParameter("Id"),
+		// POST request (占쎌돳占쎌뜚占쎌젟癰귣떯占� parameter嚥∽옙 占쎌읈占쎈꽊占쎈쭡)
+	
+		User user = new User( request.getParameter("id"),
 				request.getParameter("password"),
 				request.getParameter("email"), request.getParameter("name"), request.getParameter("phone_number"),
-				userDate.parse(request.getParameter("birthDay")), Integer.parseInt(request.getParameter("gender")), 0);
+				Rdate, Integer.parseInt(request.getParameter("gender")), 0);
 		
 
 		log.debug("Create User : {}", user);
 
 		try {
-			if(request.getParameter("password") != request.getParameter("passwordCheck")) {
-				return "redirect:/userRegisterForm.jsp";
-			}
-			create(user);
-			return "redirect:/welcome.jsp"; // �꽦怨� �떆 �궗�슜�옄 由ъ뒪�듃 �솕硫댁쑝濡� redirect
-
-		} catch (ExistingUserException e) { // �삁�쇅 諛쒖깮 �떆 �쉶�썝媛��엯 form�쑝濡� forwarding
+			UserManager userManager = UserManager.getInstance();
+			userManager.create(user);
+			return "redirect:/welcome";
+		} catch (ExistingUserException e) { // 占쎌굙占쎌뇚 獄쏆뮇源� 占쎈뻻 占쎌돳占쎌뜚揶쏉옙占쎌뿯 form占쎌몵嚥∽옙 forwarding
 			request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("user", user);
-			return "redirect:/userRegisterForm.jsp";
+			return "redirect:/userregister";
 		}
 	}
-
-	public int create(User user) throws SQLException, ExistingUserException {
-
-		UserDAO userManager = new UserDAO();
-
-		if (userManager.existingUser(user.getUserId()) == true) {
-			throw new ExistingUserException(user.getUserId() + "is aleady exist.");
-		}
-		return userManager.create(user);
-	}
-
 }
