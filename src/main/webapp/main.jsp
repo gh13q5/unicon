@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="controller.info.UserSessionUtils"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,16 +17,17 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="css/main.css">
 
-<title>Hello, world!</title>
+<title>찜꽁</title>
 </head>
 <body>
 	<div id="header" align="center">
-		<h1>
-			<br>찜꽁
-		</h1>
+		<a href="<c:url value='/main'></c:url>"> <img
+			src="images/title_logo.png" id="title-logo">
+		</a>
 		<hr>
-		<div class="container-fluid"> 
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-2">
 					<div class="accordion" id="accordionExample">
@@ -32,72 +35,18 @@
 							<h2 class="accordion-header" id="headingOne">
 								<button class="accordion-button" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseOne"
-									aria-expanded="true" aria-controls="collapseOne">메뉴1</button>
+									aria-expanded="true" aria-controls="collapseOne">카테고리</button>
 							</h2>
 							<div id="collapseOne" class="accordion-collapse collapse show"
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 
 								<div class="list-group">
-									<a
-										href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
-										class="list-group-item list-group-item-action"
-										aria-current="true"> 스포츠 </a> <a
-										href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
-										class="list-group-item list-group-item-action">퍼즐</a> <a
-										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>"
-										class="list-group-item list-group-item-action">롤플레잉</a> <a
-										href="<c:url value='/category'><c:param name='category' value='3' /></c:url>"
-										class="list-group-item list-group-item-action">시뮬레이션</a> <a
-										href="<c:url value='/category'><c:param name='category' value='4' /></c:url>"
-										class="list-group-item list-group-item-action">액션</a> <a
-										href="<c:url value='/category'><c:param name='category' value='5' /></c:url>"
-										class="list-group-item list-group-item-action">음악</a> <a
-										href="<c:url value='/category'><c:param name='category' value='6' /></c:url>"
-										class="list-group-item list-group-item-action">보드</a> <a
-										href="<c:url value='/category'><c:param name='category' value='7' /></c:url>"
-										class="list-group-item list-group-item-action">FPS</a>
-
-								</div>
-
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingTwo">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-									aria-expanded="false" aria-controls="collapseTwo">메뉴2</button>
-							</h2>
-							<div id="collapseTwo" class="accordion-collapse collapse"
-								aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> 서브메뉴1 </a> <a href="#"
-										class="list-group-item list-group-item-action">서브메뉴2</a> <a
-										href="#" class="list-group-item list-group-item-action">서브메뉴3</a>
-									<a href="#" class="list-group-item list-group-item-action">서브메뉴4</a>
-								</div>
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingThree">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseThree"
-									aria-expanded="false" aria-controls="collapseThree">
-									메뉴3</button>
-							</h2>
-							<div id="collapseThree" class="accordion-collapse collapse"
-								aria-labelledby="headingThree"
-								data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="/category.jsp"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> 서브메뉴1 </a> <a href="#"
-										class="list-group-item list-group-item-action">서브메뉴2</a> <a
-										href="#" class="list-group-item list-group-item-action">서브메뉴3</a>
-									<a href="#" class="list-group-item list-group-item-action">서브메뉴4</a>
+									<c:forEach var="genre" items="${genreList}" varStatus="status">
+										<a
+											href="<c:url value='/category'><c:param name='category' value='${genre.genre_id }' /></c:url>"
+											class="list-group-item list-group-item-action"
+											aria-current="true"> ${genre.name } </a>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
@@ -114,6 +63,10 @@
 							</div>
 							<div class="col-auto">
 								<button type="submit" class="btn btn-outline-secondary">search</button>
+							</div>
+							<div class="col" align="right" style="margin: 20px;">
+								<button type="button" class="btn btn-warning"
+									onclick="isLogin()">게임 등록</button>
 							</div>
 						</div>
 					</form>
@@ -418,6 +371,18 @@
 				return false;
 			}
 			LoginController.submit();
+		}
+		 // 게임 예약 버튼 클릭 시
+			function isLogin() {
+				var user = '<%=(String) session.getAttribute(UserSessionUtils.USER_SESSION_KEY)%>
+		';
+
+			alert(user);
+			if (user === null) {
+				alert('로그인이 필요합니다!');
+			} else {
+				location.href = '/unicon/viewUpload';
+			}
 		}
 	</script>
 </body>

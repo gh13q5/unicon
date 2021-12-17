@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="controller.info.UserSessionUtils"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -112,7 +114,8 @@
 							<h1 class="display-5">Category Name</h1>
 						</div>
 						<div class="col" align="right" style="margin: 20px;">
-							<button type="button" class="btn btn-warning">게임 등록</button>
+							<button type="button" class="btn btn-warning" onclick="isLogin()">게임
+								등록</button>
 						</div>
 					</div>
 					<hr />
@@ -287,6 +290,19 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
+		<script>
+ // 게임 예약 버튼 클릭 시
+	function isLogin() {
+		var user = '<%=(String) session.getAttribute(UserSessionUtils.USER_SESSION_KEY)%>';
+
+		alert(user);
+				if (user === null) {
+					alert('로그인이 필요합니다!');
+				} else {
+					location.href = '/unicon/viewUpload';
+				}
+			}
+		</script>
 </body>
 </html>
 
