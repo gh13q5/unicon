@@ -124,7 +124,7 @@ public class UserDAO {
 //	 * �쟾泥� �궗�슜�옄 �젙蹂대�� 寃��깋�븯�뿬 List�뿉 ���옣 諛� 諛섑솚
 //	 */
 	public List<User> findUserList(int userId) throws SQLException {
-        String sql = " SELECT user_Id, password, email, name, phone_number, birthday, gender, point " 
+        String sql = " SELECT id, password, email, name, phone_number, birthday, gender, point " 
         		   + " FROM COMMONUSER " + " WHERE user_Id=? ";
         jdbcUtil.setSqlAndParameters(sql, new Object[] { userId }); // JDBCUtil�뿉 query臾� �꽕�젙
 					
@@ -133,7 +133,7 @@ public class UserDAO {
 			List<User> userList = new ArrayList<User>();	// User�뱾�쓽 由ъ뒪�듃 �깮�꽦
 			while (rs.next()) {
 				User user = new User(			// User 媛앹껜瑜� �깮�꽦�븯�뿬 �쁽�옱 �뻾�쓽 �젙蹂대�� ���옣
-					rs.getInt("userId"),
+						userId,
 					rs.getString("id"),
 					rs.getString("password"),
 					rs.getString("email"),
@@ -244,9 +244,9 @@ public class UserDAO {
 	/**
 	 * 二쇱뼱吏� �궗�슜�옄 ID�뿉 �빐�떦�븯�뒗 �궗�슜�옄媛� 議댁옱�븯�뒗吏� 寃��궗 
 	 */
-	public boolean existingUser(int i) throws SQLException {
-		String sql = "SELECT count(*) FROM COMMONUSER WHERE user_Id=?";      
-		jdbcUtil.setSqlAndParameters(sql, new Object[] {i});	// JDBCUtil�뿉 query臾멸낵 留ㅺ컻 蹂��닔 �꽕�젙
+	public boolean existingUser(String id) throws SQLException {
+		String sql = "SELECT count(*) FROM COMMONUSER WHERE id=?";      
+		jdbcUtil.setSqlAndParameters(sql, new Object[] {id});	// JDBCUtil�뿉 query臾멸낵 留ㅺ컻 蹂��닔 �꽕�젙
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery();		// query �떎�뻾

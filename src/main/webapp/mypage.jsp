@@ -99,13 +99,13 @@
 					<div id=contents align="center">
 						<p id=singUpP>회원 정보</p>
 						
-						<c:set var="user" value="${requestScope.User}"/>
+						<%-- <c:set var="user" value="${findUserList}"/> --%>
 						
 						<form class="form-horizontal" role="form" method="post">
 							<div id="makeItcenter" align="left">
 								<div class="form-group" id="userNameID">
 									<p>
-										<b>${user.name}</b> <span style="color: gray">${user.userId}</span>
+										<b>${findUser.name}</b> <span style="color: gray">${findUser.id}</span>
 									</p>
 
 								</div>
@@ -116,7 +116,7 @@
 									<p class="informaton">Email</p>
 								</div>
 								<div class="col-4">
-									<p>${user.email}</p>
+									<p>${findUser.email}</p>
 								</div>
 							</div>
 							<div class="form-group" id="phoneNumber">
@@ -125,7 +125,7 @@
 										<p class="informaton">전화번호</p>
 									</div>
 									<div class="col-4">
-										<p>${user.phone_number}</p>
+										<p>${findUser.phone_number}</p>
 									</div>
 								</div>
 							</div>
@@ -135,7 +135,7 @@
 										<p class="informaton">생년월일</p>
 									</div>
 									<div class="col-4">
-										<p>${user.birthday}</p>
+										<p>${findUser.birthDay}</p>
 									</div>
 								</div>
 							</div>
@@ -146,13 +146,13 @@
 									</div>
 									<div class="col-4">
 										<p>
-										<c:if test="${user.gender eq 0}">
+										<c:if test="${findUser.gender eq 0}">
 											<c:out value="남성" />
 										</c:if>
-										<c:if test="${user.gender eq 1}">
+										<c:if test="${findUser.gender eq 1}">
 											<c:out value="여성" />
 										</c:if>
-										<c:if test="${user.gender eq 2}">
+										<c:if test="${findUser.gender eq 2}">
 											<c:out value="기타" />
 										</c:if>
 										</p>
