@@ -21,8 +21,10 @@ public class CompanyDAO {
 	 * �뜝�럩�뤂�뜝�럡�뀬 占쎄슈�뜝�뜾逾녑뜝占� �뜝�럥占쎈���삕占쎈턄占쎈눀�겫�슜�뱺 �뜝�럡�돮�슖�돦裕뉛옙�뮧 �뜝�럩�뤂�뜝�럡�뀬 �뜝�럡臾멨뜝�럡�뎽.
 	 */
 	public int create(Company company) throws SQLException {
-		String sql = "INSERT INTO COMPANY VALUES (?, ?, ?, ?, ?, ?)";
-		Object[] param = new Object[] { company.getCompanyId(), company.getId(), company.getPassword(),
+		String sql = "INSERT INTO COMPANY "
+				+"(id, password, email, name, phone_number ) "
+				+"VALUES (?, ?, ?, ?, ?)";
+		Object[] param = new Object[] { company.getId(), company.getPassword(),
 				company.getEmail(), company.getName(), company.getPhone_number() };
 		jdbcUtil.setSqlAndParameters(sql, param); // JDBCUtil �뜝�럥�뱺 insert占쎈닱筌롫챶沅� 嶺뚮씞�걝�뚳옙 �솻洹⑥삕�뜝�럥�빢 �뜝�럡�맟�뜝�럩�젧
 

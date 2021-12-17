@@ -1,6 +1,7 @@
 package controller.info;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,9 +11,12 @@ import org.slf4j.LoggerFactory;
 
 import controller.Controller;
 import model.Company;
+import model.User;
 import model.dao.CompanyDAO;
+import model.service.CompanyManager;
 import model.service.ExistingUserException;
 import model.service.PasswordMismatchException;
+import model.service.UserManager;
 
 
 public class CompanyRegisterController implements Controller {
@@ -21,39 +25,25 @@ public class CompanyRegisterController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
        	
-     // POST request (회원정보가 parameter로 전송됨)
-       	Company company = new Company(
-			0,
-			request.getParameter("id"),
-			request.getParameter("password"),
-			request.getParameter("email"),
-			request.getParameter("name"),
-			request.getParameter("phone_number"));
-       	
+    
+
+		// POST request (占쎌돳占쎌뜚占쎌젟癰귣떯占� parameter嚥∽옙 占쎌읈占쎈꽊占쎈쭡)
+	
+		Company company = new Company(request.getParameter("id"), request.getParameter("password"), request.getParameter("email"),
+				request.getParameter("name"), request.getParameter("phone_number"));
 		
-        log.debug("Create Company : {}", company);
+
+		log.debug("Create User : {}", company);
 
 		try {
-			if(request.getParameter("password") != request.getParameter("passwordCheck") || request.getParameter("inputTermsYes") != "Y") {
-				return "redirect:/companyRegisterForm.jsp";
-			}
-			create(company);
-	        return "redirect:/welcome.jsp";	// 성공 시 사용자 리스트 화면으로 redirect
-	        
-		} catch (ExistingUserException e) {	// 예외 발생 시 회원가입 form으로 forwarding
-           request.setAttribute("registerFailed", true);
+			CompanyManager compManager = CompanyManager.getInstance();
+			compManager.create(company);
+			return "redirect:/welcome";
+		} catch (ExistingUserException e) { // 占쎌굙占쎌뇚 獄쏆뮇源� 占쎈뻻 占쎌돳占쎌뜚揶쏉옙占쎌뿯 form占쎌몵嚥∽옙 forwarding
+			request.setAttribute("registerFailed", true);
 			request.setAttribute("exception", e);
 			request.setAttribute("company", company);
-			return "redirect:/companyRegisterForm.jsp";
+			return "redirect:/companyregister";
 		}
-    }
-    public int create(Company company) throws SQLException, ExistingUserException {
-    	
-    	CompanyDAO companyManager = new CompanyDAO();
-    	
-		if (companyManager.existingCompany(company.getCompanyId()) == true) {
-			throw new ExistingUserException(company.getCompanyId() + "is aleady exist.");
-		}
-		return companyManager.create(company);
 	}
 }
