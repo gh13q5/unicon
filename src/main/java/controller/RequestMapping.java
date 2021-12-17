@@ -30,12 +30,13 @@ public class RequestMapping {
         
         // info
         mappings.put("/register", new ForwardController("/chooseUserType.jsp"));
-        mappings.put("/register_user", new UserRegisterController());
-        mappings.put("/register_company", new CompanyRegisterController());
+        mappings.put("/register/user", new UserRegisterController());
+        mappings.put("/register/company", new CompanyRegisterController());
         mappings.put("/login", new LoginController());
         mappings.put("/logout", new LogoutController());
         mappings.put("/userGameList", new ForwardController("/mypage.jsp"));
-        mappings.put("/updateRegister", new UpdateUserController());
+        mappings.put("/updateRegister/user", new UpdateUserController());
+        mappings.put("/updateRegister/company", new UpdateUserController());
         
         // point
         mappings.put("/pointShop", new ViewPointshopController());
@@ -43,13 +44,13 @@ public class RequestMapping {
         mappings.put("/addPoint", new AddPointController());
         
         // game
+        mappings.put("/viewUpload", new ViewUploadGameController());
         mappings.put("/upload", new UploadGameController());
-        mappings.put("/viewEdit", new ViewEditGameController());
-        mappings.put("/edit", new EditGameController());
+        mappings.put("/edit", new UpdateGameController());
         mappings.put("/remove", new DeleteGameController());
         
         // reservation
-        //mappings.put("/game", new ViewReservationController());
+        mappings.put("/game", new ViewReservationController());
         mappings.put("/reservate", new ReservateController());
         mappings.put("/cancle", new CancleReservationController());
         mappings.put("/reward", new SendRewardController());

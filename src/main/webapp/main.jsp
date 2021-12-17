@@ -332,14 +332,17 @@
 			<div class="card border-warning mb-3" style="max-width: 18rem;">
 				<div class="card-body">
 					<!-- 로그인 전 -->
-					<c:if test="${sessionScope.id==null}">
+					<c:if test="${loginFailed}">
+							${exception}
+					</c:if>
+					<c:if test="${empty userId}">
 					<form action="<c:url value='/login'/>" method="POST">
 							<div class="row mb-3">
 
 								<input name=id type="text" class="form-control" id="id" placeholder="ID">
 							</div>
 							<div class="row mb-3">
-								<input name=passward type="password" class="form-control" id="passward"
+								<input name=password type="password" class="form-control" id="password"
 									placeholder="PW">
 							</div>
 							<div class="row mb-3">
@@ -354,11 +357,11 @@
 							</form>
 						</c:if>
 						<!-- 로그인 후 -->
-						<c:if test='${sessionScope.id!=null}'>
-						<form action="<c:url value='/logout'/>" method="POST">
+						<c:if test="${!empty userId}">
+						<form>
 							<div class="row mb-3">
 								<p class="h5" align="left">
-									<u>${sessionScope.id}</u> 님
+									<u>${userObj.name}</u> 님
 								</p>
 							</div>
 							<div class="row mb-3">
@@ -367,7 +370,7 @@
 								</a>
 							</div>
 							<div class="col-sm-4" align="right">
-								<a href="#"> logout</a>
+								<a href=" <c:url value= '/logout'/>"> logout</a>
 							</div>
 							</form>
 							</c:if>

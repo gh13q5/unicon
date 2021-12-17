@@ -18,13 +18,13 @@ import model.dao.UserDAO;
 public class UserManager {
 	private static UserManager userMan = new UserManager();
 	private UserDAO userDAO;
-	private CommunityDAO commDAO;
+	//private CommunityDAO commDAO;
 	private UserAnalysis userAanlysis;
 
 	private UserManager() {
 		try {
 			userDAO = new UserDAO();
-			commDAO = new CommunityDAO();
+			//commDAO = new CommunityDAO();
 			userAanlysis = new UserAnalysis(userDAO);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -42,29 +42,29 @@ public class UserManager {
 		return userDAO.create(user);
 	}
 
-	public int update(User user) throws SQLException, UserNotFoundException {
-		int oldCommId = findUser(user.getUserId()).getCommId();
-		if (user.getCommId() != oldCommId) { 	// 소속 커뮤티니가 변경됨
-			Community comm = commDAO.findCommunity(oldCommId);  // 기존 소속 커뮤니티
-			if (comm != null && user.getUserId().equals(comm.getChairId())) {
-				// 사용자가 기존 소속 커뮤니티의 회장인 경우 -> 그 커뮤니티의 회장을 null로 변경 및 저장
-				comm.setChairId(null);
-				commDAO.updateChair(comm);
-			}
-		}
-		return userDAO.update(user);
-	}	
+//	public int update(User user) throws SQLException, UserNotFoundException {
+//		int oldCommId = findUser(user.getUserId()).getCommId();
+//		if (user.getCommId() != oldCommId) { 	// 소속 커뮤티니가 변경됨
+//			Community comm = commDAO.findCommunity(oldCommId);  // 기존 소속 커뮤니티
+//			if (comm != null && user.getUserId().equals(comm.getChairId())) {
+//				// 사용자가 기존 소속 커뮤니티의 회장인 경우 -> 그 커뮤니티의 회장을 null로 변경 및 저장
+//				comm.setChairId(null);
+//				commDAO.updateChair(comm);
+//			}
+//		}
+//		return userDAO.update(user);
+//	}	
 
-	public int remove(String userId) throws SQLException, UserNotFoundException {
-		int commId = findUser(userId).getCommId();
-		Community comm = commDAO.findCommunity(commId);  // 소속 커뮤니티
-		if (comm != null && userId.equals(comm.getChairId())) {
-			// 사용자가 소속 커뮤니티의 회장인 경우 -> 그 커뮤니티의 회장을 null로 변경 및 저장
-			comm.setChairId(null);
-			commDAO.updateChair(comm);
-		}
-		return userDAO.remove(userId);
-	}
+//	public int remove(String userId) throws SQLException, UserNotFoundException {
+//		int commId = findUser(userId).getCommId();
+//		Community comm = commDAO.findCommunity(commId);  // 소속 커뮤니티
+//		if (comm != null && userId.equals(comm.getChairId())) {
+//			// 사용자가 소속 커뮤니티의 회장인 경우 -> 그 커뮤니티의 회장을 null로 변경 및 저장
+//			comm.setChairId(null);
+//			commDAO.updateChair(comm);
+//		}
+//		return userDAO.remove(userId);
+//	}
 
 	public User findUser(String userId)
 		throws SQLException, UserNotFoundException {
@@ -88,6 +88,9 @@ public class UserManager {
 	public boolean login(String userId, String password)
 		throws SQLException, UserNotFoundException, PasswordMismatchException {
 		User user = findUser(userId);
+		
+//		UserDAO userDAO = new UserDAO();
+//		User user = userDAO.findUser(userId);
 
 		if (!user.matchPassword(password)) {
 			throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
