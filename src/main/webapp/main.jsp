@@ -72,7 +72,7 @@
 
 					<!-- recommend -->
 					<!-- 로그인 되어 있으면 관심사에 맞춰 게임을 추천 -->
-					<c:if test="${!empty userId}">
+					<c:if test="${(!empty userId) and (userType eq 'user')}">
 						<p class="h2" style="margin-top: 2%;">&lt; 추천 게임 &gt;</p>
 						<div id="carouselExampleDark" class="carousel carousel-dark slide"
 							data-bs-ride="carousel">
@@ -188,7 +188,8 @@
 															href="<c:url value='/game'>
             			<c:param name='gameId' value='${recommend.game_id}' /></c:url>"
 															class="card-link">
-															<div class="card recommend" style="width: 14rem; height: 20rem;">
+															<div class="card recommend"
+																style="width: 14rem; height: 20rem;">
 																<c:set var="image"
 																	value="${fn:split(recommend.image_address,',')}" />
 																<img
@@ -217,7 +218,8 @@
 															href="<c:url value='/game'>
             			<c:param name='gameId' value='${recommendList[status.index + 1].game_id}' /></c:url>"
 															class="card-link">
-															<div class="card recommend" style="width: 14rem; height: 20rem;">
+															<div class="card recommend"
+																style="width: 14rem; height: 20rem;">
 																<c:set var="image"
 																	value="${fn:split(recommendList[status.index + 1].image_address,',')}" />
 																<img
@@ -248,7 +250,8 @@
 															href="<c:url value='/game'>
             			<c:param name='gameId' value='${recommendList[status.index + 2].game_id}' /></c:url>"
 															class="card-link">
-															<div class="card recommend" style="width: 14rem; height: 20rem;">
+															<div class="card recommend"
+																style="width: 14rem; height: 20rem;">
 																<c:set var="image"
 																	value="${fn:split(recommendList[status.index + 2].image_address,',')}" />
 																<img
@@ -293,13 +296,18 @@
 						</div>
 					</c:if>
 
+					<!-- companyUser인 경우 -->
+					<c:if test="${(!empty userId) and (userType eq 'company')}">
+						<p class="h2" style="margin-top: 2%;">&lt; 당신의 게임을 홍보하세요! &gt;</p>
+						<p>누구보다도 빠르고 쉽게 사전 예약을 시작할 수 있습니다.</p>
+					</c:if>
+
 					<!-- 로그인 전 -->
 					<c:if test="${empty userId}">
 						<p class="h2" style="margin-top: 2%;">&lt; 찜꽁과 함께 더 많은 추천 게임을
 							받아보세요! &gt;</p>
 						<p>회원가입 후, 관심사에 맞는 추천 게임을 바로 확인할 수 있습니다.</p>
 					</c:if>
-
 
 					<!-- 일반 게임 -->
 					<p class="h2" style="margin-top: 5%; margin-bottom: 3%;">&lt;
@@ -381,21 +389,21 @@
 					</c:if>
 					<!-- 로그인 후 -->
 					<c:if test="${!empty userId}">
-							<div class="row mb-3">
-								<p class="h4" align="left">
-									<u>${userObj.name}</u> 님
-								</p>
-								<p align="left">안녕하세요! o(^^)o</p>
-							</div>
-							<div class="row mb-3">
-								<a href="<c:url value = '/mypage'/>">
-									<button class="btn btn-warning" id="mypage-button">MY
-										PAGE</button>
-								</a>
-							</div>
-							<div class="col-sm-4" align="right">
-								<a href=" <c:url value= '/logout'/>" id="logout-link"> 로그아웃</a>
-							</div>
+						<div class="row mb-3">
+							<p class="h4" align="left">
+								<u>${userObj.name}</u> 님
+							</p>
+							<p align="left">안녕하세요! o(^^)o</p>
+						</div>
+						<div class="row mb-3">
+							<a href="<c:url value = '/mypage'/>">
+								<button class="btn btn-warning" id="mypage-button">MY
+									PAGE</button>
+							</a>
+						</div>
+						<div class="col-sm-4" align="right">
+							<a href=" <c:url value= '/logout'/>" id="logout-link"> 로그아웃</a>
+						</div>
 					</c:if>
 
 				</div>

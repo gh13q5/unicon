@@ -143,6 +143,32 @@ public class GameDAO {
 		}
 		return null;
 	}
+	
+	public List<Game> findGameListByCompanyId(String companyId) throws SQLException {
+		String sql = "SELECT game_id, title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations "
+				+ "FROM Game " + "WHERE company_id=? " + "ORDER BY end_date DESC ";
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { companyId }); // JDBCUtil�뜝�룞�삕 query�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+
+		try {
+			ResultSet rs = jdbcUtil.executeQuery(); // query �뜝�룞�삕�뜝�룞�삕
+			List<Game> gameList = new ArrayList<Game>(); // Game�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�듃 �뜝�룞�삕�뜝�룞�삕
+			while (rs.next()) {
+				Game game = new Game( // Game �뜝�룞�삕泥닷뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�떦�슱�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+						rs.getInt("game_id"), rs.getString("title"), rs.getDate("start_date"),
+						rs.getDate("end_date"), rs.getString("image_address"), rs.getString("description"),
+						rs.getString("category"), rs.getString("reward_image"), rs.getString("reward_text"),
+						rs.getInt("total_reservations"), Integer.parseInt(companyId));
+				gameList.add(game); // List�뜝�룞�삕 Game �뜝�룞�삕泥� �뜝�룞�삕�뜝�룞�삕
+			}
+			return gameList;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			jdbcUtil.close(); // resource �뜝�룞�삕�솚
+		}
+		return null;
+	}
 
 	/**
 	 * 移닷뜝�뙎怨ㅼ삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙏�뙋�삕�뜝�떦�뙋�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�떙�궪�삕�뜝�떦�슱�삕 List�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕 �뜝�룞�삕�솚(�뜝�룞�삕�뜝�뛿媛��뜝�룞�삕)
