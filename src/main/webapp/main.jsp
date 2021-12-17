@@ -24,7 +24,7 @@
 			<br>찜꽁
 		</h1>
 		<hr>
-		<div class="container-fluid">
+		<div class="container-fluid"> 
 			<div class="row">
 				<div class="col-2">
 					<div class="accordion" id="accordionExample">
