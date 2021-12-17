@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,24 +32,33 @@
 							<h2 class="accordion-header" id="headingOne">
 								<button class="accordion-button" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseOne"
-									aria-expanded="true" aria-controls="collapseOne">카테고리별 보기</button>
+									aria-expanded="true" aria-controls="collapseOne">카테고리별
+									보기</button>
 							</h2>
 							<div id="collapseOne" class="accordion-collapse collapse show"
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-								
+
 								<div class="list-group">
-								
-									<a href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
+
+									<a
+										href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
 										class="list-group-item list-group-item-action"
-										aria-current="true" > 스포츠 </a> <a href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
+										aria-current="true"> 스포츠 </a> <a
+										href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
 										class="list-group-item list-group-item-action">퍼즐</a> <a
-										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>" class="list-group-item list-group-item-action">롤플레잉</a>
-									<a href="<c:url value='/category'><c:param name='category' value='3' /></c:url>" class="list-group-item list-group-item-action">시뮬레이션</a>
-									<a href="<c:url value='/category'><c:param name='category' value='4' /></c:url>" class="list-group-item list-group-item-action">액션</a>
-									<a href="<c:url value='/category'><c:param name='category' value='5' /></c:url>" class="list-group-item list-group-item-action">음악</a>
-									<a href="<c:url value='/category'><c:param name='category' value='6' /></c:url>" class="list-group-item list-group-item-action">보드</a>
-									<a href="<c:url value='/category'><c:param name='category' value='7' /></c:url>" class="list-group-item list-group-item-action">FPS</a>
-								
+										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>"
+										class="list-group-item list-group-item-action">롤플레잉</a> <a
+										href="<c:url value='/category'><c:param name='category' value='3' /></c:url>"
+										class="list-group-item list-group-item-action">시뮬레이션</a> <a
+										href="<c:url value='/category'><c:param name='category' value='4' /></c:url>"
+										class="list-group-item list-group-item-action">액션</a> <a
+										href="<c:url value='/category'><c:param name='category' value='5' /></c:url>"
+										class="list-group-item list-group-item-action">음악</a> <a
+										href="<c:url value='/category'><c:param name='category' value='6' /></c:url>"
+										class="list-group-item list-group-item-action">보드</a> <a
+										href="<c:url value='/category'><c:param name='category' value='7' /></c:url>"
+										class="list-group-item list-group-item-action">FPS</a>
+
 								</div>
 
 							</div>
@@ -133,23 +143,28 @@
 							</c:when> --%>
 						</c:choose>
 						<div class="col">
-							 <a href="<c:url value='/game'>
-            			<c:param name='gameId' value='${Cgame.game_id}' /></c:url>" style="color:black; text-decoration:none;"> 
-							<div class="card" style= "width: 15rem; margin:5px;">
-								<img src="images/wallR.jpg" class="card-img-top" alt="...">
-								<div class="card-body">
-									<h5 class="card-title">
-										<c:out value="${Cgame.title}"></c:out>
-									</h5>
-									<p class="card-text">
-										<c:out value="${Cgame.description}"></c:out>
-									</p>
-									<p class="card-text">
-										<small class="text-muted">~<c:out
-												value="${Cgame.end_date}"></c:out></small>
-									</p>
+							<a
+								href="<c:url value='/game'>
+            			<c:param name='gameId' value='${Cgame.game_id}' /></c:url>"
+								style="color: black; text-decoration: none;">
+								<div class="card" style="width: 15rem; margin: 5px;">
+									<c:set var="image" value="${fn:split(Cgame.image_address,',')}" />
+									<img
+										src="<c:url value='/images/${Cgame.company_id}/${image[0]}' />"
+										class="card-img-top" alt="...">
+									<div class="card-body">
+										<h5 class="card-title">
+											<c:out value="${Cgame.title}"></c:out>
+										</h5>
+										<p class="card-text">
+											<c:out value="${Cgame.description}" escapeXml="false"></c:out>
+										</p>
+										<p class="card-text">
+											<small class="text-muted">~<c:out
+													value="${Cgame.end_date}"></c:out></small>
+										</p>
+									</div>
 								</div>
-							</div>
 							</a>
 						</div>
 						<c:choose>
@@ -161,94 +176,96 @@
 			</c:when>
 			</c:choose>
 			</c:forEach>
-					<div>
-						<br>
-					</div>
-					<div class="row">
-						<div class="col" align="left" style="margin-left: 10px">
-							<h4>
-								<u>사전예약 종료</u>
-							</h4> 
-						</div>
-						<div class="col-sm-2" align="right"
-							style="margin-right: 20px; margin-bottom: 10px;">
-							<select class="form-select" aria-label="Default select example">
-								<option selected>Open this select menu</option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
-							</select>
-						</div>
-						
-						<c:forEach var="Egame" items="${endGameList}"
-						varStatus="status">
-						<c:choose>
-							<c:when test="${status.index % 4  eq 0}">
-								<div class="row" align="center">
-							</c:when>
-							<%-- <c:when test="${status.count eq 0}">
+			<div>
+				<br>
+			</div>
+			<div class="row">
+				<div class="col" align="left" style="margin-left: 10px">
+					<h4>
+						<u>사전예약 종료</u>
+					</h4>
+				</div>
+				<div class="col-sm-2" align="right"
+					style="margin-right: 20px; margin-bottom: 10px;">
+					<select class="form-select" aria-label="Default select example">
+						<option selected>Open this select menu</option>
+						<option value="1">One</option>
+						<option value="2">Two</option>
+						<option value="3">Three</option>
+					</select>
+				</div>
+
+				<c:forEach var="Egame" items="${endGameList}" varStatus="status">
+					<c:choose>
+						<c:when test="${status.index % 4  eq 0}">
+							<div class="row" align="center">
+						</c:when>
+						<%-- <c:when test="${status.count eq 0}">
 								<div class="row" align="center">
 							</c:when> --%>
-						</c:choose>
-						<%-- <a href="<c:url value='/game'>
+					</c:choose>
+					<%-- <a href="<c:url value='/game'>
             			<c:param name='game_id' value='${Cgame.id}' /></c:url>"> --%>
-						<div class="col">
-							<div class="card" style="width: 15rem;">
-								<img src="images/wallR.jpg" class="card-img-top" alt="...">
-								<div class="card-body">
-									<h5 class="card-title">
-										<c:out value="${Egame.title}"></c:out>
-									</h5>
-									<p class="card-text">
-										<c:out value="${Egame.description}"></c:out>
-									</p>
-									<p class="card-text">
-										<small class="text-muted">~<c:out
-												value="${Egame.end_date}"></c:out></small>
-									</p>
-								</div>
+					<div class="col">
+						<div class="card" style="width: 15rem;">
+							<c:set var="image" value="${fn:split(Egame.image_address,',')}" />
+							<img
+								src="<c:url value='/images/${Egame.company_id}/${image[0]}' />"
+								class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="card-title">
+									<c:out value="${Egame.title}"></c:out>
+								</h5>
+								<p class="card-text">
+									<c:out value="${Egame.description}" escapeXml="false"></c:out>
+								</p>
+								<p class="card-text">
+									<small class="text-muted">~<c:out
+											value="${Egame.end_date}"></c:out></small>
+								</p>
 							</div>
-							<!-- </a> -->
 						</div>
-						<c:choose>
-							<c:when test="${status.count % 4 eq 0}">
-				</div>
-				</c:when>
-				<c:when test="${status.last}">
+						<!-- </a> -->
+					</div>
+					<c:choose>
+						<c:when test="${status.count % 4 eq 0}">
 			</div>
 			</c:when>
-			</c:choose>
-			</c:forEach>
-						
-					</div>
-				</div>
-				<div class="col-2">
-					<div class="card border-warning mb-3" style="max-width: 18rem;">
-						<div class="card-body">
-							<form>
-								<div class="row mb-3">
+			<c:when test="${status.last}">
+		</div>
+		</c:when>
+		</c:choose>
+		</c:forEach>
 
-									<input type="email" class="form-control" id="inputEmail3"
-										placeholder="ID">
-								</div>
-								<div class="row mb-3">
-									<input type="password" class="form-control" id="inputPassword3"
-										placeholder="PW">
-								</div>
-								<div class="row mb-3">
-									<div class="col-sm-6" align="left">
-										<a href="#">regist in</a>
-									</div>
-									<div class="col-sm-6">
-										<button type="submit" class="btn btn-primary">Sign in</button>
-									</div>
-								</div>
-							</form>
+	</div>
+	</div>
+	<div class="col-2">
+		<div class="card border-warning mb-3" style="max-width: 18rem;">
+			<div class="card-body">
+				<form>
+					<div class="row mb-3">
+
+						<input type="email" class="form-control" id="inputEmail3"
+							placeholder="ID">
+					</div>
+					<div class="row mb-3">
+						<input type="password" class="form-control" id="inputPassword3"
+							placeholder="PW">
+					</div>
+					<div class="row mb-3">
+						<div class="col-sm-6" align="left">
+							<a href="#">regist in</a>
+						</div>
+						<div class="col-sm-6">
+							<button type="submit" class="btn btn-primary">Sign in</button>
 						</div>
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
+	</div>
+	</div>
+	</div>
 	</div>
 	<div id="footer">
 		<hr class="haveMargin">

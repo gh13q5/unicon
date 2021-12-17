@@ -149,8 +149,8 @@ public class GameDAO {
 	 */
 	public List<Game> categoryGameList(String category) throws SQLException {
 		String sql = "SELECT game_id, title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations, company_id "
-				+ "FROM Game " + "WHERE category=? AND start_date <= (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) AND end_date >= (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) " ;
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { category }); // JDBCUtil�뜝�룞�삕 query�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+				+ "FROM Game " + "WHERE category like ? AND start_date <= (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) AND end_date >= (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) " ;
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { "%"+category+"%" }); // JDBCUtil�뜝�룞�삕 query�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery(); // query �뜝�룞�삕�뜝�룞�삕
@@ -178,8 +178,8 @@ public class GameDAO {
 	 */
 	public List<Game> endCategoryGameList(String category) throws SQLException {
 		String sql = "SELECT game_id, title, start_date, end_date, image_address, description, category, reward_image, reward_text, total_reservations, company_id "
-				+ "FROM Game " + "WHERE category=? AND end_date < (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) " ;
-		jdbcUtil.setSqlAndParameters(sql, new Object[] { category }); // JDBCUtil�뜝�룞�삕 query�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
+				+ "FROM Game " + "WHERE category like ? AND end_date < (SELECT TO_CHAR(SYSDATE, 'YYYYMMDD') FROM DUAL) " ;
+		jdbcUtil.setSqlAndParameters(sql, new Object[] { "%"+category+"%" }); // JDBCUtil�뜝�룞�삕 query�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕
 
 		try {
 			ResultSet rs = jdbcUtil.executeQuery(); // query �뜝�룞�삕�뜝�룞�삕

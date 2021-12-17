@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -285,8 +286,7 @@
 
 					<!-- 일반 게임 -->
 					<p class="h2">Entire Games</p>
-					<c:forEach var="game" items="${entireGameList}"
-						varStatus="status">
+					<c:forEach var="game" items="${entireGameList}" varStatus="status">
 						<c:choose>
 							<c:when test="${status.index % 4  eq 0}">
 								<div class="row" align="center">
@@ -295,28 +295,33 @@
 								<div class="row" align="center">
 							</c:when> --%>
 						</c:choose>
-						 <div class="col"> 
-						 <a href="<c:url value='/game'>
-            			<c:param name='gameId' value='${game.game_id}' /></c:url>" style="color:black; text-decoration:none;"> 
-							<div class="card" style= "width: 15rem; margin:5px;">
-								<img src="images/wallR.jpg" class="card-img-top" alt="...">
-								<div class="card-body">
-									<h5 class="card-title">
-										<c:out value="${game.title}"></c:out>
-									</h5>
-									<div style="height: 10rem; overflow: hidden;">
-									<p class="card-text">
-										<c:out value="${game.description}"></c:out>
-									</p>
+						<div class="col">
+							<a
+								href="<c:url value='/game'>
+            			<c:param name='gameId' value='${game.game_id}' /></c:url>"
+								style="color: black; text-decoration: none;">
+								<div class="card" style="width: 13rem; margin: 5px;">
+									<c:set var="image" value="${fn:split(game.image_address,',')}" />
+									<img
+										src="<c:url value='/images/${game.company_id}/${image[0]}' />"
+										class="card-img-top" alt="...">
+									<div class="card-body">
+										<h5 class="card-title">
+											<c:out value="${game.title}"></c:out>
+										</h5>
+										<div style="height: 10rem; overflow: hidden;">
+											<p class="card-text">
+												<c:out value="${game.description}" escapeXml="false"></c:out>
+											</p>
+										</div>
+										<p class="card-text">
+											<small class="text-muted">~<c:out
+													value="${game.end_date}"></c:out></small>
+										</p>
 									</div>
-									<p class="card-text">
-										<small class="text-muted">~<c:out
-												value="${game.end_date}"></c:out></small>
-									</p>
 								</div>
-							</div>
-							 </a>
-						 </div> 
+							</a>
+						</div>
 						<c:choose>
 							<c:when test="${status.count % 4 eq 0}">
 				</div>
@@ -336,28 +341,28 @@
 							${exception}
 					</c:if>
 					<c:if test="${empty userId}">
-					<form action="<c:url value='/login'/>" method="POST">
+						<form action="<c:url value='/login'/>" method="POST">
 							<div class="row mb-3">
 
-								<input name=id type="text" class="form-control" id="id" placeholder="ID">
+								<input name=id type="text" class="form-control" id="id"
+									placeholder="ID">
 							</div>
 							<div class="row mb-3">
-								<input name=password type="password" class="form-control" id="password"
-									placeholder="PW">
+								<input name=password type="password" class="form-control"
+									id="password" placeholder="PW">
 							</div>
 							<div class="row mb-3">
 								<div class="col-sm-6" align="left">
 									<a href="chooseUserType.jsp">regist in</a>
 								</div>
 								<div class="col-sm-6">
-									<button type="submit" class="btn btn-primary">Sign
-										in</button>
+									<button type="submit" class="btn btn-primary">Sign in</button>
 								</div>
 							</div>
-							</form>
-						</c:if>
-						<!-- 로그인 후 -->
-						<c:if test="${!empty userId}">
+						</form>
+					</c:if>
+					<!-- 로그인 후 -->
+					<c:if test="${!empty userId}">
 						<form>
 							<div class="row mb-3">
 								<p class="h5" align="left">
@@ -372,9 +377,9 @@
 							<div class="col-sm-4" align="right">
 								<a href=" <c:url value= '/logout'/>"> logout</a>
 							</div>
-							</form>
-							</c:if>
-					
+						</form>
+					</c:if>
+
 				</div>
 			</div>
 		</div>
@@ -413,7 +418,7 @@
 				return false;
 			}
 			LoginController.submit();
-			
+
 		}
 	</script>
 </body>
