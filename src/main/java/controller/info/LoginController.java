@@ -40,6 +40,7 @@ public class LoginController implements Controller {
 	            session.setAttribute("userObj", user);
 				}
 				else {
+					if(companyDAO.existingCompany(id)) {
 					CompanyManager manager = CompanyManager.getInstance();
 					manager.login(id, password);
 					
@@ -49,6 +50,7 @@ public class LoginController implements Controller {
 					HttpSession session = request.getSession();
 		            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, String.valueOf(company.getId()));
 		            session.setAttribute("userObj", company);
+				}
 					
 				}
 	            return "redirect:/main";

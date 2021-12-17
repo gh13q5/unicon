@@ -17,16 +17,16 @@
 	crossorigin="anonymous">
 <!-- CSS -->
 <link rel="stylesheet" href="css/registerForm.css">
+<link rel="stylesheet" href="css/main.css">
 
 <title>찜꽁 - 회원가입</title>
 </head>
 <body>
 	<div id="header" align="center">
-		<div id="header" align="center">
-			<h1>
-				<br>찜꽁
-			</h1>
-			<hr>
+		<a href="<c:url value='/main'></c:url>"> <img
+			src="images/title_logo.png" id="title-logo">
+		</a>
+		<hr id="title-bar">
 		</div>
 		<div class="container-fluid">
 		<c:if test="${registerFailed}">

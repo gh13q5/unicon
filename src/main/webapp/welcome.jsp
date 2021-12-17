@@ -1,7 +1,10 @@
-<!-- ³¡! -->
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!doctype html> 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="controller.info.UserSessionUtils"%>
+<!doctype html>
 <html lang="en">
 <head>
 <!-- Required meta tags -->
@@ -14,15 +17,16 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="css/main.css">
 
-<title>welcome</title>
+<title>ì°œê½</title>
 </head>
 <body>
 	<div id="header" align="center">
-		<h1>
-			<br>Âò²Ç
-		</h1>
-		<hr>
+		<a href="<c:url value='/main'></c:url>"> <img
+			src="images/title_logo.png" id="title-logo">
+		</a>
+		<hr id="title-bar">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-2">
@@ -31,105 +35,102 @@
 							<h2 class="accordion-header" id="headingOne">
 								<button class="accordion-button" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseOne"
-									aria-expanded="true" aria-controls="collapseOne">¸Þ´º1</button>
+									aria-expanded="true" aria-controls="collapseOne">ì¹´í…Œê³ ë¦¬</button>
 							</h2>
 							<div id="collapseOne" class="accordion-collapse collapse show"
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 
 								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Þ´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Þ´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º4</a>
+
+									<a
+										href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
+										class="list-group-item list-group-item-action"
+										aria-current="true"> ìŠ¤í¬ì¸  </a> <a
+										href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
+										class="list-group-item list-group-item-action">í¼ì¦</a> <a
+										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>"
+										class="list-group-item list-group-item-action">ë¡¤í”Œë ˆìž‰</a> <a
+										href="<c:url value='/category'><c:param name='category' value='3' /></c:url>"
+										class="list-group-item list-group-item-action">ì‹œë®¬ë ˆì´ì…˜</a> <a
+										href="<c:url value='/category'><c:param name='category' value='4' /></c:url>"
+										class="list-group-item list-group-item-action">ì•¡ì…˜</a> <a
+										href="<c:url value='/category'><c:param name='category' value='5' /></c:url>"
+										class="list-group-item list-group-item-action">ìŒì•…</a> <a
+										href="<c:url value='/category'><c:param name='category' value='6' /></c:url>"
+										class="list-group-item list-group-item-action">ë³´ë“œ</a> <a
+										href="<c:url value='/category'><c:param name='category' value='7' /></c:url>"
+										class="list-group-item list-group-item-action">FPS</a>
+
 								</div>
 
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingTwo">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-									aria-expanded="false" aria-controls="collapseTwo">¸Þ´º2</button>
-							</h2>
-							<div id="collapseTwo" class="accordion-collapse collapse"
-								aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Þ´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Þ´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º4</a>
-								</div>
-							</div>
-						</div>
-						<div class="accordion-item">
-							<h2 class="accordion-header" id="headingThree">
-								<button class="accordion-button collapsed" type="button"
-									data-bs-toggle="collapse" data-bs-target="#collapseThree"
-									aria-expanded="false" aria-controls="collapseThree">
-									¸Þ´º3</button>
-							</h2>
-							<div id="collapseThree" class="accordion-collapse collapse"
-								aria-labelledby="headingThree"
-								data-bs-parent="#accordionExample">
-
-								<div class="list-group">
-									<a href="#"
-										class="list-group-item list-group-item-action active"
-										aria-current="true"> ¼­ºê¸Þ´º1 </a> <a href="#"
-										class="list-group-item list-group-item-action">¼­ºê¸Þ´º2</a> <a
-										href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º3</a>
-									<a href="#" class="list-group-item list-group-item-action">¼­ºê¸Þ´º4</a>
-								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-8 border">
 					<br><br>
-					<p align="left"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;°¡ÀÔÀ» ÃàÇÏÇÕ´Ï´Ù!</p>
+					<p align="left"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ê°€ìž…ì„ ì¶•í•˜í•©ë‹ˆë‹¤!</p>
 					<img src="./images/welcomeIMG.png"></img>
-					<p align="left"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;·Î±×ÀÎ ÈÄ ¼­ºñ½º ÀÌ¿ë ¹Ù¶ø´Ï´Ù.</p>
+					<p align="left"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ë¡œê·¸ì¸ í›„ ì„œë¹„ìŠ¤ ì´ìš© ë°”ëžë‹ˆë‹¤.</p>
 					<br><br>
 				</div>
 				<div class="col-2">
-					<div class="card border-warning mb-3" style="max-width: 18rem;">
-						<div class="card-body">
-							<form>
-								<div class="row mb-3">
+			<div class="card border-warning mb-3" style="max-width: 18rem;">
+				<div class="card-body" id="login-body">
+					<!-- ë¡œê·¸ì¸ ì „ -->
+					<c:if test="${loginFailed}">
+							${exception}
+					</c:if>
+					<c:if test="${empty userId}">
+						<form action="<c:url value='/login'/>" method="POST">
+							<div class="row mb-3">
 
-									<input type="email" class="form-control" id="inputEmail3"
-										placeholder="ID">
+								<input name=id type="text" class="form-control" id="id"
+									placeholder="ID">
+							</div>
+							<div class="row mb-3">
+								<input name=password type="password" class="form-control"
+									id="password" placeholder="PW">
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-6" align="left">
+									<a href="chooseUserType.jsp" id="register-link">íšŒì›ê°€ìž…</a>
 								</div>
-								<div class="row mb-3">
-									<input type="password" class="form-control" id="inputPassword3"
-										placeholder="PW">
+								<div class="col-sm-6">
+									<button type="submit" class="btn btn-warning" id="login-button">ë¡œê·¸ì¸</button>
 								</div>
-								<div class="row mb-3">
-									<div class="col-sm-6" align="left">
-										<a href="#">regist in</a>
-									</div>
-									<div class="col-sm-6">
-										<button type="submit" class="btn btn-primary">Sign in</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
+							</div>
+						</form>
+					</c:if>
+					<!-- ë¡œê·¸ì¸ í›„ -->
+					<c:if test="${!empty userId}">
+							<div class="row mb-3">
+								<p class="h4" align="left">
+									<u>${userObj.name}</u> ë‹˜
+								</p>
+								<p align="left">ì•ˆë…•í•˜ì„¸ìš”! o(^^)o</p>
+							</div>
+							<div class="row mb-3">
+								<a href="<c:url value = '/mypage'/>">
+									<button class="btn btn-warning" id="mypage-button">MY PAGE</button>
+								</a>
+							</div>
+							<div class="col-sm-4" align="right">
+								<a href=" <c:url value= '/logout'/>" id="logout-link"> ë¡œê·¸ì•„ì›ƒ</a>
+							</div>
+					</c:if>
+
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
+	</div>
 	<div id="footer">
-		<hr />
-
-		<p class="text-center">
-			<small><strong>¾÷Ã¼¸í</strong></small><br> <small>´ëÇ¥ : È«±æµ¿
-				¤ý ÁÖ¼Ò : »ç°Å¸® ¤ý »ç¾÷ÀÚµî·Ï¹øÈ£:123-12-12345 ¤ý ÀüÈ­ : 02-123-1234</small><br> <small>Copyright¨Ï
+		<hr class="haveMargin">
+		<p class="text-center" align="center">
+			<small><strong>íŒ€ëª…</strong></small><br> <small>íŒ€ :
+				UNI-CON ã† ì†Œì† : ë™ë•ì—¬ìžëŒ€í•™êµ ã† ì „í™” : 02-123-1234</small><br> <small>Copyrightâ“’
 				test.com All rights reserved.</small>
 		</p>
 	</div>

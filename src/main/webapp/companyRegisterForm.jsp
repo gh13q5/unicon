@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%> 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page import="javax.servlet.http.HttpSession"%>
+<%@ page import="controller.info.UserSessionUtils"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,17 +17,17 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<!-- CSS -->
-<link rel="stylesheet" href="css/registerForm.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/reservation.css">
 
-<title>찜꽁 - 회원가입</title>
+<title>찜꽁</title>
 </head>
 <body>
 	<div id="header" align="center">
-		<h1>
-			<br>찜꽁
-		</h1>
-		<hr>
+		<a href="<c:url value='/main'></c:url>"> <img
+			src="images/title_logo.png" id="title-logo">
+		</a>
+		<hr id="title-bar">
 	</div>
 	<div id="header" align="center">
 		<div class="container-fluid">
