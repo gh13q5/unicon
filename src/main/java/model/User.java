@@ -43,9 +43,21 @@ public class User {
 		this.birthDay = birthDay;
 		this.gender = gender;
 		//this.interests = interests;
-		this.point = point;
+		this.point = point; 
 	}//�깮�꽦�옄
 	
+	public User(String id, String password, String email, String name, String phone_number, int gender) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.email = email;
+		this.name = name;
+		this.phone_number = phone_number;
+	
+		this.gender = gender;
+		// TODO Auto-generated constructor stub
+	}
+
 	//getters&setters
 	public int getUserId() {
 		return userId;
