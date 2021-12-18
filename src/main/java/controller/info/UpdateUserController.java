@@ -32,7 +32,7 @@ public class UpdateUserController implements Controller {
     	if (!UserSessionUtils.hasLogined(request.getSession())) {
             return "redirect:/main";		// login form 요청으로 redirect
         }
-    	
+    	 
 		HttpSession session = request.getSession();
 		String userId = UserSessionUtils.getLoginUserId(session);
 		User user = userDAO.findUser(userId);

@@ -43,7 +43,7 @@ public class User {
 		this.birthDay = birthDay;
 		this.gender = gender;
 		//this.interests = interests;
-		this.point = point;
+		this.point = point; 
 	}//�깮�꽦�옄
 	
 	public User(String id, String password, String email, String name, String phone_number, int gender) {
