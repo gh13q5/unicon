@@ -213,6 +213,6 @@ public class EditGameController implements Controller {
 			}
 		}
 
-		return "redirect:/"; // 일단은 메인 페이지로 이동
+		return "redirect:/game?gameId=" + gameId; // 일단은 메인 페이지로 이동
 	}
 }

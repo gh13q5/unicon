@@ -130,6 +130,9 @@
 							</div>
 						</div>
 						<c:choose>
+							<c:when test="${userType eq 'company' }">
+								<button id="reservate" type="button" class="btn btn-warning">예약불가능</button>
+							</c:when>
 							<c:when test="${reservate eq true}">
 								<button id="reservate" type="button" class="btn btn-warning"
 									onClick="deleteReservation()">예약취소</button>
@@ -189,58 +192,60 @@
 						</div>
 					</div>
 				</div>
-						<!-- 로그인 창 -->
-		<div class="col-2">
-			<div class="card border-warning mb-3" style="max-width: 18rem;">
-				<div class="card-body" id="login-body">
-					<!-- 로그인 전 -->
-					<c:if test="${loginFailed}">
+				<!-- 로그인 창 -->
+				<div class="col-2">
+					<div class="card border-warning mb-3" style="max-width: 18rem;">
+						<div class="card-body" id="login-body">
+							<!-- 로그인 전 -->
+							<c:if test="${loginFailed}">
 							${exception}
 					</c:if>
-					<c:if test="${empty userId}">
-						<form action="<c:url value='/login'/>" method="POST">
-							<div class="row mb-3">
+							<c:if test="${empty userId}">
+								<form action="<c:url value='/login'/>" method="POST">
+									<div class="row mb-3">
 
-								<input name=id type="text" class="form-control" id="id"
-									placeholder="ID">
-							</div>
-							<div class="row mb-3">
-								<input name=password type="password" class="form-control"
-									id="password" placeholder="PW">
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-6" align="left">
-									<a href="chooseUserType.jsp" id="register-link">회원가입</a>
+										<input name=id type="text" class="form-control" id="id"
+											placeholder="ID">
+									</div>
+									<div class="row mb-3">
+										<input name=password type="password" class="form-control"
+											id="password" placeholder="PW">
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-6" align="left">
+											<a href="chooseUserType.jsp" id="register-link">회원가입</a>
+										</div>
+										<div class="col-sm-6">
+											<button type="submit" class="btn btn-warning"
+												id="login-button">로그인</button>
+										</div>
+									</div>
+								</form>
+							</c:if>
+							<!-- 로그인 후 -->
+							<c:if test="${!empty userId}">
+								<div class="row mb-3">
+									<p class="h4" align="left">
+										<u>${userObj.name}</u> 님
+									</p>
+									<p align="left">안녕하세요! o(^^)o</p>
 								</div>
-								<div class="col-sm-6">
-									<button type="submit" class="btn btn-warning" id="login-button">로그인</button>
+								<div class="row mb-3">
+									<a href="<c:url value = '/mypage'/>">
+										<button class="btn btn-warning" id="mypage-button">MY
+											PAGE</button>
+									</a>
 								</div>
-							</div>
-						</form>
-					</c:if>
-					<!-- 로그인 후 -->
-					<c:if test="${!empty userId}">
-							<div class="row mb-3">
-								<p class="h4" align="left">
-									<u>${userObj.name}</u> 님
-								</p>
-								<p align="left">안녕하세요! o(^^)o</p>
-							</div>
-							<div class="row mb-3">
-								<a href="<c:url value = '/mypage'/>">
-									<button class="btn btn-warning" id="mypage-button">MY PAGE</button>
-								</a>
-							</div>
-							<div class="col-sm-4" align="right">
-								<a href=" <c:url value= '/logout'/>" id="logout-link"> 로그아웃</a>
-							</div>
-					</c:if>
+								<div class="col-sm-4" align="right">
+									<a href=" <c:url value= '/logout'/>" id="logout-link"> 로그아웃</a>
+								</div>
+							</c:if>
 
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	</div>
 	</div>
 	<div id="footer">
 		<hr class="haveMargin">
@@ -284,7 +289,7 @@
 	<script>
 		// 게임 예약 버튼 클릭 시
 		function isLogin() {
-			var isLogin = '<%=(String)request.getAttribute("isLogin")%>';
+			var isLogin = '<%=(String) request.getAttribute("isLogin")%>';
 
 			if (isLogin === 'true') {
 				alert('예약되었습니다!');

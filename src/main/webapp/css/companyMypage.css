@@ -1,12 +1,21 @@
 @charset "UTF-8";
 
+
 div.col.upload {
 	width: 100%;
 	margin: 2%;
 	overflow: hidden;
 }
 
-div.card.upload, div.row.upload {
+div.card.upload {
 	width: 40%;
 	float: left; /*가로 정렬을 하기위한 float*/
+}
+
+button.btn.btn-info:hover {
+	color: white;
+}
+
+button.btn.btn-info:not(:disabled ){
+	background-color: #5ec8d6;
 }

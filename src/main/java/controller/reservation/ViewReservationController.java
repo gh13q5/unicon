@@ -35,20 +35,29 @@ public class ViewReservationController implements Controller {
 		String userId = null;
 		req.setAttribute("isLogin", "false");
 		req.setAttribute("reservate", "false");
+		req.setAttribute("userType", "false");
 
 		// 로그인 여부 확인
-		// 로그인 및 이미 예약한 게임인지 확인 
+		// 로그인 및 이미 예약한 게임인지 확인
 		if (UserSessionUtils.hasLogined(req.getSession())) {
 			req.setAttribute("isLogin", "true");
 			String session_Id = UserSessionUtils.getLoginUserId(req.getSession());
-			User user = userDAO.findUser(session_Id);
-			userId = String.valueOf(user.getUserId());
-			
-			int isReservate = reservationDAO.findReservateById(gameId, userId); // DB에서 user가 게임 예약한 기록 확인
-			if (isReservate == 0)
-				req.setAttribute("reservate", "false");
-			else
-				req.setAttribute("reservate", "true");
+
+			// company User는 추천 게임 제공 X
+			if (companyDAO.existingCompany(session_Id))
+				req.setAttribute("userType", "company");
+			else {
+				User user = userDAO.findUser(session_Id);
+				userId = String.valueOf(user.getUserId());
+				
+				req.setAttribute("userType", "user");
+
+				int isReservate = reservationDAO.findReservateById(gameId, userId); // DB에서 user가 게임 예약한 기록 확인
+				if (isReservate == 0)
+					req.setAttribute("reservate", "false");
+				else
+					req.setAttribute("reservate", "true");
+			}
 		}
 
 		System.out.println("gameId : " + gameId + " userId : " + userId + " isLogin : " + req.getAttribute("isLogin")

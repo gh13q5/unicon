@@ -17,6 +17,7 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="css/uploadGame.css">
 <link rel="stylesheet" href="css/main.css">
 
 <title>찜꽁</title>
@@ -70,8 +71,9 @@
 				<div class="col-8" align="center" style="padding: 50px;">
 					<div id="upload-title">게임 등록</div>
 					<!-- 게임 등록 form -->
-					<form action="/unicon/edit?gameId=${game.game_id }" id="upload-form" role="form"
-						enctype="multipart/form-data" method="POST">
+					<form action="/unicon/edit?gameId=${game.game_id }"
+						id="upload-form" role="form" enctype="multipart/form-data"
+						method="POST">
 						<div id="form-container" class="container">
 							<!-- 게임 이름 입력 -->
 							<div class="row">
@@ -197,58 +199,60 @@
 						</div>
 					</form>
 				</div>
-						<!-- 로그인 창 -->
-		<div class="col-2">
-			<div class="card border-warning mb-3" style="max-width: 18rem;">
-				<div class="card-body" id="login-body">
-					<!-- 로그인 전 -->
-					<c:if test="${loginFailed}">
+				<!-- 로그인 창 -->
+				<div class="col-2">
+					<div class="card border-warning mb-3" style="max-width: 18rem;">
+						<div class="card-body" id="login-body">
+							<!-- 로그인 전 -->
+							<c:if test="${loginFailed}">
 							${exception}
 					</c:if>
-					<c:if test="${empty userId}">
-						<form action="<c:url value='/login'/>" method="POST">
-							<div class="row mb-3">
+							<c:if test="${empty userId}">
+								<form action="<c:url value='/login'/>" method="POST">
+									<div class="row mb-3">
 
-								<input name=id type="text" class="form-control" id="id"
-									placeholder="ID">
-							</div>
-							<div class="row mb-3">
-								<input name=password type="password" class="form-control"
-									id="password" placeholder="PW">
-							</div>
-							<div class="row mb-3">
-								<div class="col-sm-6" align="left">
-									<a href="chooseUserType.jsp" id="register-link">회원가입</a>
+										<input name=id type="text" class="form-control" id="id"
+											placeholder="ID">
+									</div>
+									<div class="row mb-3">
+										<input name=password type="password" class="form-control"
+											id="password" placeholder="PW">
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-6" align="left">
+											<a href="chooseUserType.jsp" id="register-link">회원가입</a>
+										</div>
+										<div class="col-sm-6">
+											<button type="submit" class="btn btn-warning"
+												id="login-button">로그인</button>
+										</div>
+									</div>
+								</form>
+							</c:if>
+							<!-- 로그인 후 -->
+							<c:if test="${!empty userId}">
+								<div class="row mb-3">
+									<p class="h4" align="left">
+										<u>${userObj.name}</u> 님
+									</p>
+									<p align="left">안녕하세요! o(^^)o</p>
 								</div>
-								<div class="col-sm-6">
-									<button type="submit" class="btn btn-warning" id="login-button">로그인</button>
+								<div class="row mb-3">
+									<a href="<c:url value = '/mypage'/>">
+										<button class="btn btn-warning" id="mypage-button">MY
+											PAGE</button>
+									</a>
 								</div>
-							</div>
-						</form>
-					</c:if>
-					<!-- 로그인 후 -->
-					<c:if test="${!empty userId}">
-							<div class="row mb-3">
-								<p class="h4" align="left">
-									<u>${userObj.name}</u> 님
-								</p>
-								<p align="left">안녕하세요! o(^^)o</p>
-							</div>
-							<div class="row mb-3">
-								<a href="<c:url value = '/mypage'/>">
-									<button class="btn btn-warning" id="mypage-button">MY PAGE</button>
-								</a>
-							</div>
-							<div class="col-sm-4" align="right">
-								<a href=" <c:url value= '/logout'/>" id="logout-link"> 로그아웃</a>
-							</div>
-					</c:if>
+								<div class="col-sm-4" align="right">
+									<a href=" <c:url value= '/logout'/>" id="logout-link"> 로그아웃</a>
+								</div>
+							</c:if>
 
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	</div>
 	</div>
 	<div id="footer">
 		<hr class="haveMargin">
@@ -258,19 +262,6 @@
 				test.com All rights reserved.</small>
 		</p>
 	</div>
-	<!-- Optional JavaScript; choose one of the two! -->
-
-	<!-- Option 1: Bootstrap Bundle with Popper -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous"></script>
-
-	<!-- Option 2: Separate Popper and Bootstrap JS -->
-	<!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
