@@ -153,7 +153,8 @@ div#info-title {
 					<div id="row" align="right"
 						style="margin-right: 13%; margin-top: 5%;">
 						<input type="button" class="btn btn-warning" value="회원 정보 수정"
-							onClick="#">
+							onClick="location.href='<c:url value='/viewUpdateUser'>
+								<c:param name='userId' value='${findUser.id}' /></c:url>'">
 					</div>
 					<div id="reservation-box" style="padding: 5%;">
 						<div align="left" style="margin-left: 2%; margin-bottom: 5%;">
@@ -198,7 +199,8 @@ div#info-title {
 														value="${Rgame.end_date}"></c:out></small>
 											</p>
 										</div>
-									</div> </a>
+									</div>
+								</a>
 							</div>
 							<c:choose>
 								<c:when test="${status.count % 4 eq 0}">

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,62 +9,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="css/main.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/registerForm.css">
 
 <style>
-#singUpP {
-	font-size: 25px;
-	width: 300px;
-	hight: 80px;
-	padding: 15px;
-	margin: 50px;
-	border-style: solid;
-	border-width: 2px;
-}
-
-.input-form {
-	max-width: 680px;
-	margin-top: 80px;
-	padding: 32px;
-	background: #fff;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
+div#info-title {
+	width: 40%;
+	height: 80px;
+	margin: auto;
+	padding-top: 1.5%;
+	border: 3px solid #5fc8d7;
 	border-radius: 10px;
-	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
-}
-
-#makeItcenter, #userCategorys {
-	width: 500px;
-}
-
-.form-group {
-	white-space: nowrap;
-}
-
-#categoryBox {
-	hight: 400px;
-	padding: 15px;
-	border-style: solid;
-	border-width: 2px;
-}
-
-.haveMargin {
-	margin-top: 50px;
-}
-
-#finishButton {
-	margin-top: 100px;
+	text-align: center;
+	color: #5fc8d7;
+	font-weight: bolder;
+	text-align: center;
+	color: #5fc8d7;
+	font-weight: bolder;
+	font-size: 200%;
 }
 </style>
-
-<title>updateUserInfo</title>
+<title>ì°œê½ - íšŒì› ì •ë³´ ìˆ˜ì •</title>
 </head>
 <body>
 	<div id="header" align="center">
@@ -79,7 +50,7 @@
 							<h2 class="accordion-header" id="headingOne">
 								<button class="accordion-button" type="button"
 									data-bs-toggle="collapse" data-bs-target="#collapseOne"
-									aria-expanded="true" aria-controls="collapseOne">Ä«Å×°í¸®</button>
+									aria-expanded="true" aria-controls="collapseOne">ì¹´í…Œê³ ë¦¬</button>
 							</h2>
 							<div id="collapseOne" class="accordion-collapse collapse show"
 								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -89,21 +60,25 @@
 									<a
 										href="<c:url value='/category'><c:param name='category' value='0' /></c:url>"
 										class="list-group-item list-group-item-action"
-										aria-current="true"> ½ºÆ÷Ã÷ </a> <a
+										aria-current="true"> ìŠ¤í¬ì¸  </a> <a
 										href="<c:url value='/category'><c:param name='category' value='1' /></c:url>"
-										class="list-group-item list-group-item-action">ÆÛÁñ</a> <a
+										class="list-group-item list-group-item-action">í¼ì¦</a> <a
 										href="<c:url value='/category'><c:param name='category' value='2' /></c:url>"
-										class="list-group-item list-group-item-action">·ÑÇÃ·¹À×</a> <a
+										class="list-group-item list-group-item-action">ë¡¤í”Œë ˆì‰</a> <a
 										href="<c:url value='/category'><c:param name='category' value='3' /></c:url>"
-										class="list-group-item list-group-item-action">½Ã¹Ä·¹ÀÌ¼Ç</a> <a
+										class="list-group-item list-group-item-action">ì‹œë®¬ë ˆì´ì…˜</a> <a
 										href="<c:url value='/category'><c:param name='category' value='4' /></c:url>"
-										class="list-group-item list-group-item-action">¾×¼Ç</a> <a
+										class="list-group-item list-group-item-action">ì•¡ì…˜</a> <a
 										href="<c:url value='/category'><c:param name='category' value='5' /></c:url>"
-										class="list-group-item list-group-item-action">À½¾Ç</a> <a
+										class="list-group-item list-group-item-action">ìŒì•…</a> <a
 										href="<c:url value='/category'><c:param name='category' value='6' /></c:url>"
-										class="list-group-item list-group-item-action">º¸µå</a> <a
+										class="list-group-item list-group-item-action">ë³´ë“œ</a> <a
 										href="<c:url value='/category'><c:param name='category' value='7' /></c:url>"
-										class="list-group-item list-group-item-action">FPS</a>
+										class="list-group-item list-group-item-action">FPS</a> <a
+										href="<c:url value='/category'><c:param name='category' value='8' /></c:url>"
+										class="list-group-item list-group-item-action">ë©€í‹°í”Œë ˆì´ì–´</a> <a
+										href="<c:url value='/category'><c:param name='category' value='9' /></c:url>"
+										class="list-group-item list-group-item-action">ì†”ë¡œí”Œë ˆì´ì–´</a>
 
 								</div>
 
@@ -111,131 +86,155 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-8 border">
-
-
-					<div id=contents align="center">
-						<p id=singUpP>Á¤º¸ ¼öÁ¤</p>
-						<form class="form-horizontal" role="form" method="post">
-							<div class="form-group" id="email"></div>
-							<div class="row justify-content-center">
-								<div class="col-4">
-									<p>´Ğ³×ÀÓ</p>
-								</div>
-								<div class="col-4">
-									<input type="text" class="form-control" id="nickname" data-rule-required="true" placeholder="º°¸í" maxlength="15">
-								</div>
-							</div>
-							<div class="form-group" id="email"></div>
-							<div class="row justify-content-center">
-								<div class="col-4">
-									<p>¾ÆÀÌµğ</p>
-								</div>
-								<div class="col-4">
-									<input type="text" class="form-control onlyAlphabetAndNumber" id="id"
-									data-rule-required="true" placeholder="10ÀÚÀÌ³»ÀÇ ¾ËÆÄºª, ¼ıÀÚ¸¸ ÀÔ·Â °¡´ÉÇÕ´Ï´Ù." maxlength="10">
-								</div>
-							</div>
-							<div class="form-group" id="email"></div>
-							<div class="row justify-content-center">
-								<div class="col-4">
-									<p>ºñ¹Ğ¹øÈ£</p>
-								</div>
-								<div class="col-4">
-									<input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true"
-									placeholder="10ÀÚÀÌ³»ÀÇ ¾ËÆÄºª, ¼ıÀÚ¸¸ ÀÔ·Â °¡´ÉÇÕ´Ï´Ù." maxlength="30">
-								</div>
-							</div>
-							<div class="form-group" id="email"></div>
-							<div class="row justify-content-center">
-								<div class="col-4">
-									<p>Email</p>
-								</div>
-								<div class="col-4">
-									<input type="email" class="form-control" id="email" data-rule-required="true" placeholder="ÀÌ¸ŞÀÏ" maxlength="40">
-								</div>
-							</div>
-							<div class="form-group" id="phoneNumber">
-								<div class="row justify-content-center">
-									<div class="col-4">
-										<p>ÀüÈ­¹øÈ£</p>
-									</div>
-									<div class="col-4">
-										<input type="tel" class="form-control onlyNumber" id="phoneNumber" data-rule-required="true" placeholder="-¸¦ Á¦¿ÜÇÏ°í ¼ıÀÚ¸¸ ÀÔ·ÂÇÏ¼¼¿ä." maxlength="11">
+				<div class="col-8">
+					<div id=contents align="center"
+						style="padding-top: 3%; padding-left: 9%; padding-right: 9%;">
+						<div id="info-title" style="margin-bottom: 5%;">íšŒì› ì •ë³´ ìˆ˜ì •</div>
+						<form id="updateForm" method="post"
+							action="<c:url value='/updateRegister/user'/>">
+							<div id="form-container" class="container">
+								<div class="row">
+									<div id="name-label" class="col-5">ë‹‰ë„¤ì„</div>
+									<div id="name-input" class="col-6" style="padding: 0px;">
+										<input name="name" type="text"
+											class="form-control onlyAlphabetAndNumber" id="nickname"
+											data-rule-required="true" value="${user.name }"
+											maxlength="10">
 									</div>
 								</div>
-							</div>
-							<div class="form-group" id="birthday">
-								<div class="row justify-content-center">
-									<div class="col-4">
-										<p>»ı³â¿ùÀÏ</p>
-									</div>
-									<div class="col-4">
-										<input type="date" class="form-control onlyNumber" id="birthday"
-										data-rule-required="true" placeholder="»ı³â¿ùÀÏ 6ÀÚ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä. ¿¹)961204"
-										maxlength="6">
+								<div class="row">
+									<div id="id-label" class="col-5">ì•„ì´ë””</div>
+									<div id="id-input" class="col-6" style="padding: 0px;">
+										<input name="id" type="text"
+											class="form-control onlyAlphabetAndNumber" id="id"
+											data-rule-required="true" value="${user.id }">
 									</div>
 								</div>
-							</div>
-							<div class="form-group" id="gender">
-								<div class="row justify-content-center">
-									<div class="col-4">
-										<p>¼ºº°</p>
+								<div class="row">
+									<div id="pwd-label" class="col-5">ë¹„ë°€ë²ˆí˜¸</div>
+									<div id="pwd-input" class="col-6" style="padding: 0px;">
+										<input name="password" type="password"
+											class="form-control onlyAlphabetAndNumber" id="password"
+											data-rule-required="true" value="${user.password }">
 									</div>
-									<div class="col-4">
-										<select class="form-control" id="gender">
-											<option value="M">³²</option>
-											<option value="F">¿©</option>
-											<option value="B">±× ¿Ü</option>
+								</div>
+								<div class="row">
+									<div id="email-label" class="col-5">ì´ë©”ì¼</div>
+									<div id="email-input" class="col-6" style="padding: 0px;">
+										<input name="email" type="email"
+											class="form-control onlyAlphabetAndNumber" id="email"
+											data-rule-required="true" value="${user.email }">
+									</div>
+								</div>
+								<div class="row">
+									<div id="phone-label" class="col-5">ì „í™”ë²ˆí˜¸</div>
+									<div id="phone-input" class="col-6" style="padding: 0px;">
+										<input name="phone_number" type="tel"
+											class="form-control onlyAlphabetAndNumber" id="phone"
+											data-rule-required="true" value="${user.phone_number }">
+									</div>
+								</div>
+								<div class="row">
+									<div id="gender-label" class="col-5">ì„±ë³„</div>
+									<div id="gender-input" class="col-6" style="padding: 0px;">
+										<select name="gender" class="form-control" id="gender">
+											<c:choose>
+												<c:when test="${user.gender eq 0}">
+													<option value="0" selected>ë‚¨</option>
+													<option value="1">ì—¬</option>
+													<option value="2">ê·¸ ì™¸</option>
+												</c:when>
+												<c:when test="${user.gender eq 1}">
+													<option value="0">ë‚¨</option>
+													<option value="1" selected>ì—¬</option>
+													<option value="2">ê·¸ ì™¸</option>
+												</c:when>
+												<c:when test="${user.gender eq 2}">
+													<option value="0">ë‚¨</option>
+													<option value="1">ì—¬</option>
+													<option value="2" selected>ê·¸ ì™¸</option>
+												</c:when>
+											</c:choose>
 										</select>
 									</div>
 								</div>
 							</div>
+							<button id="submit-btn" type="submit" class="btn btn-warning"
+								style="width: 50%;">ìˆ˜ì • ì™„ë£Œ</button>
+						</form>
 					</div>
-					<div class="form-group" id="userCategorys" align="left">
-						<label for="chooseCategorys" class="col-lg-2 control-label">°ü½ÉºĞ¾ß
-							(ÃÖ¼Ò 1°³ ÅÃ)</label>
-						<div id="categoryBox" align="left">
-							<label><input type="checkbox" name="ganre1" value="0">°ÔÀÓÀå¸£
-								1rrrrrrrrrrrrr</label><br> <label><input type="checkbox"
-								name="ganre2" value="1">°ÔÀÓÀå¸£ 2rrrr</label><br> <label><input
-								type="checkbox" name="ganre3" value="2">°ÔÀÓÀå¸£ 3rr</lalel><br>
-								<label><input type="checkbox" name="ganre4" value="3">°ÔÀÓÀå¸£
-									4rrrrrrrrr</label><br> <label><input type="checkbox"
-									name="ganre5" value="4">°ÔÀÓÀå¸£ 5rr</label><br> <label><input
-									type="checkbox" name="ganre6" value="5">°ÔÀÓÀå¸£ 6</label><br>
+				</div>
+				<div class="col-2">
+					<div class="card border-warning mb-3" style="max-width: 18rem;">
+						<div class="card-body" id="login-body">
+							<!-- ë¡œê·¸ì¸ ì „ -->
+							<c:if test="${loginFailed}">
+							${exception}
+					</c:if>
+							<c:if test="${empty userId}">
+								<form action="<c:url value='/login'/>" method="POST">
+									<div class="row mb-3">
+
+										<input name=id type="text" class="form-control" id="id"
+											placeholder="ID">
+									</div>
+									<div class="row mb-3">
+										<input name=password type="password" class="form-control"
+											id="password" placeholder="PW">
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-6" align="left">
+											<a href="chooseUserType.jsp" id="register-link">íšŒì›ê°€ì…</a>
+										</div>
+										<div class="col-sm-6">
+											<button type="submit" class="btn btn-warning"
+												id="login-button">ë¡œê·¸ì¸</button>
+										</div>
+									</div>
+								</form>
+							</c:if>
+							<!-- ë¡œê·¸ì¸ í›„ -->
+							<c:if test="${!empty userId}">
+								<div class="row mb-3">
+									<p class="h4" align="left">
+										<u>${userObj.name}</u> ë‹˜
+									</p>
+									<p align="left">ì•ˆë…•í•˜ì„¸ìš”! o(^^)o</p>
+								</div>
+								<div class="row mb-3">
+									<a href="<c:url value = '/mypage'/>">
+										<button class="btn btn-warning" id="mypage-button">MY
+											PAGE</button>
+									</a>
+								</div>
+								<div class="col-sm-4" align="right">
+									<a href=" <c:url value= '/logout'/>" id="logout-link"> ë¡œê·¸ì•„ì›ƒ</a>
+								</div>
+							</c:if>
+
 						</div>
-						<br>
-						<div id="makeItcenter" align="right">
-							<div class="col-auto">
-    							<button type="button" class="btn btn-primary mb-3">¿Ï·á</button>
-  							</div>
-						</div>
-						<br>
 					</div>
-
-					</form>
-
-
-
 				</div>
 			</div>
 		</div>
 	</div>
-	<div id="footer">ºí¶óºí¶ó</div>
-	<!-- Optional JavaScript; choose one of the two! -->
-
-	<!-- Option 1: Bootstrap Bundle with Popper -->
+	</div>
+	</div>
+	</div>
+	</div>
+	<div id="footer">
+		<hr class="haveMargin" id="title-bar" style="margin-top: 2%;">
+		<p class="text-center" align="center">
+			<small><strong>íŒ€ëª…</strong></small><br> <small>íŒ€ :
+				UNI-CON ã† ì†Œì† : ë™ë•ì—¬ìëŒ€í•™êµ ã† ì „í™” : 02-123-1234</small><br> <small>Copyrightâ“’
+				test.com All rights reserved.</small>
+		</p>
+	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
 
-	<!-- Option 2: Separate Popper and Bootstrap JS -->
-	<!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
 </body>
 </html>
 

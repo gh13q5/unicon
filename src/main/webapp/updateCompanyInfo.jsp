@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ page import="javax.servlet.http.HttpSession"%>
-<%@ page import="controller.info.UserSessionUtils"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,11 +14,27 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="css/mypage.css">
 <link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/companyMypage.css">
+<link rel="stylesheet" href="css/registerForm.css">
 
-<title>찜꽁 - 게임사 마이 페이지</title>
+<style>
+div#info-title {
+	width: 40%;
+	height: 80px;
+	margin: auto;
+	padding-top: 1.5%;
+	border: 3px solid #5fc8d7;
+	border-radius: 10px;
+	text-align: center;
+	color: #5fc8d7;
+	font-weight: bolder;
+	text-align: center;
+	color: #5fc8d7;
+	font-weight: bolder;
+	font-size: 200%;
+}
+</style>
+<title>찜꽁 - 게임사 정보 수정</title>
 </head>
 <body>
 	<div id="header" align="center">
@@ -29,7 +42,7 @@
 			src="images/title_logo.png" id="title-logo">
 		</a>
 		<hr id="title-bar">
-		<div class="container-fluid" style="margin-top: 2%;">
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-2">
 					<div class="accordion" id="accordionExample">
@@ -73,103 +86,58 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-8" style="padding: 3%;">
-					<div id=contents align="center">
-						<div id="info-title" style="margin-bottom: 5%;">게임사 정보</div>
-						<form class="form-horizontal" role="form" method="post">
-							<div id="makeItcenter" style="margin-bottom: 5%;">
-								<div class="form-group" id="userNameID">
-									<h2>
-										<b>${company.name} &nbsp;</b><span style="color: gray">${company.id}</span>
-									</h2>
-								</div>
-							</div>
-							<div class="row justify-content-center">
-								<div class="col-4">
-									<h5 class="informaton">Email</h5>
-								</div>
-								<div class="col-4">
-									<p>${company.email}</p>
-								</div>
-							</div>
-							<div class="form-group" id="phoneNumber">
-								<div class="row justify-content-center">
-									<div class="col-4">
-										<h5 class="informaton">전화번호</h5>
-									</div>
-									<div class="col-4">
-										<p>${company.phone_number}</p>
+				<div class="col-8">
+					<div id=contents align="center"
+						style="padding-top: 3%; padding-left: 9%; padding-right: 9%;">
+						<div id="info-title" style="margin-bottom: 5%;">게임사 정보 수정</div>
+						<form id="updateForm" method="post"
+							action="<c:url value='/updateRegister/company'/>">
+							<div id="form-container" class="container">
+								<div class="row">
+									<div id="name-label" class="col-5">회사명</div>
+									<div id="name-input" class="col-6" style="padding: 0px;">
+										<input name="name" type="text"
+											class="form-control onlyAlphabetAndNumber" id="nickname"
+											data-rule-required="true" value="${company.name }"
+											maxlength="10">
 									</div>
 								</div>
+								<div class="row">
+									<div id="id-label" class="col-5">아이디</div>
+									<div id="id-input" class="col-6" style="padding: 0px;">
+										<input name="id" type="text"
+											class="form-control onlyAlphabetAndNumber" id="id"
+											data-rule-required="true" value="${company.id }">
+									</div>
+								</div>
+								<div class="row">
+									<div id="pwd-label" class="col-5">비밀번호</div>
+									<div id="pwd-input" class="col-6" style="padding: 0px;">
+										<input name="password" type="password"
+											class="form-control onlyAlphabetAndNumber" id="password"
+											data-rule-required="true" value="${company.password }">
+									</div>
+								</div>
+								<div class="row">
+									<div id="email-label" class="col-5">이메일</div>
+									<div id="email-input" class="col-6" style="padding: 0px;">
+										<input name="email" type="email"
+											class="form-control onlyAlphabetAndNumber" id="email"
+											data-rule-required="true" value="${company.email }">
+									</div>
+								</div>
+								<div class="row">
+									<div id="phone-label" class="col-5">전화번호</div>
+									<div id="phone-input" class="col-6" style="padding: 0px;">
+										<input name="phone_number" type="tel"
+											class="form-control onlyAlphabetAndNumber" id="phone"
+											data-rule-required="true" value="${company.phone_number }">
+									</div>
+								</div>
 							</div>
-							<div id="row" align="right"
-								style="margin-right: 13%; margin-top: 5%;">
-								<input type="button" class="btn btn-warning" value="게임사 정보 수정"
-									onClick="location.href='<c:url value='/viewUpdateCompany'>
-								<c:param name='companyId' value='${company.id}' /></c:url>'">
-							</div>
-							<br>
+							<button id="submit-btn" type="submit" class="btn btn-warning"
+								style="width: 50%;">수정 완료</button>
 						</form>
-					</div>
-					<br> <br>
-					<div id="upload-box" style="padding: 5%;">
-						<div align="left" style="margin-left: 2%; margin-bottom: 5%;">
-							<h4>
-								<b>등록한 게임 목록</b>
-							</h4>
-						</div>
-						<!-- 등록한 게임 -->
-						<c:forEach var="game" items="${uploadGameList}" varStatus="status">
-							<div class="col upload">
-								<a
-									href="<c:url value='/game'>
-							<c:param name='gameId' value='${game.game_id}' /></c:url>"
-									class="card-link">
-									<div class="card upload" style="width: 18rem;">
-										<c:set var="image" value="${fn:split(game.image_address,',')}" />
-										<img
-											src="<c:url value='/images/${game.company_id}/${image[0]}' />"
-											class="card-img-top" alt="...">
-										<div class="card-body">
-											<h5 class="card-title">
-												<c:out value="${game.title}"></c:out>
-											</h5>
-											<p class="card-text">
-												<c:out value="${game.description}" escapeXml="false"></c:out>
-											</p>
-											<p class="card-text">
-												<small class="text-muted">~<c:out
-														value="${game.end_date}"></c:out></small>
-											</p>
-										</div>
-									</div>
-								</a>
-								<div class="row" style="padding: 5%;">
-									<div class="row upload" style="width: 100%;">
-										<h3 style="width: 100%;">예약 현황 :
-											${game.total_reservations }명</h3>
-									</div>
-									<div class="row" style="margin-top: 5%;">
-										<button class="btn btn-info"
-											onclick="window.open('<c:url value='/reservationInfo'>
-												<c:param name='gameId' value='${game.game_id}' /></c:url>', '${game.title } 예약자 목록', 'width=500, height=400')">예약자
-											정보 보기</button>
-									</div>
-									<div class="row" style="margin-top: 5%;">
-										<button class="btn btn-info"
-											onclick="location.href='<c:url value='/viewEdit'>
-											<c:param name='gameId' value='${game.game_id}' /></c:url>'">게임
-											정보 수정</button>
-									</div>
-									<div class="row" style="margin-top: 5%;">
-										<button class="btn btn-danger"
-											onclick="location.href='<c:url value='/remove'>
-											<c:param name='gameId' value='${game.game_id}' /></c:url>'">게임
-											삭제</button>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
 					</div>
 				</div>
 				<div class="col-2">
@@ -225,6 +193,10 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	</div>
+	</div>
+	</div>
 	</div>
 	<div id="footer">
 		<hr class="haveMargin" id="title-bar" style="margin-top: 2%;">
