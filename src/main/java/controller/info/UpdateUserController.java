@@ -14,56 +14,66 @@ import controller.Controller;
 import controller.info.UserSessionUtils;
 import model.dao.UserDAO;
 import model.User;
+import model.Interests;
+import model.dao.InterestsDAO;
+import model.service.UserManager;
+import model.User;
 
 public class UpdateUserController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(UpdateUserController.class);
-
+    private UserDAO userDAO = new UserDAO();
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
  
-    	 //¹ŞÀº ³¯Â¥¸¦ date·Î º¯È¯ÇÏ´Â ÇÔ¼ö
+    	 //ë°›ì€ ë‚ ì§œë¥¼ dateë¡œ ë³€í™˜í•˜ëŠ” í•¨ìˆ˜
         SimpleDateFormat userDate = new SimpleDateFormat("yyyy-MM-dd");
         
-    	if (request.getMethod().equals("GET")) {	
-    		// GET request: È¸¿øÁ¤º¸ ¼öÁ¤ form ¿äÃ»	
-    		// ¿ø·¡´Â UpdateUserFormController°¡ Ã³¸®ÇÏ´ø ÀÛ¾÷À» ¿©±â¼­ ¼öÇà
-    		String updateId = request.getParameter("userId");
-
-    		log.debug("UpdateForm Request : {}", updateId);
-    		
-    		UserDAO userManager = new UserDAO();
-    		
-			User user = userManager.findUser(updateId);	// ¼öÁ¤ÇÏ·Á´Â »ç¿ëÀÚ Á¤º¸ °Ë»ö
+     // ë¡œê·¸ì¸ ì—¬ë¶€ í™•ì¸
+    	if (!UserSessionUtils.hasLogined(request.getSession())) {
+            return "redirect:/main";		// login form ìš”ì²­ìœ¼ë¡œ redirect
+        }
+    	
+		HttpSession session = request.getSession();
+		String userId = UserSessionUtils.getLoginUserId(session);
+		User user = userDAO.findUser(userId);
+		
+		//GET request: form ìš”ì²­
+		if (request.getMethod().equals("GET")) {
 			request.setAttribute("user", user);
-
-			HttpSession session = request.getSession();
-			if (UserSessionUtils.isLoginUser(updateId, session) ||
-				UserSessionUtils.isLoginUser("admin", session)) {
-				// ÇöÀç ·Î±×ÀÎÇÑ »ç¿ëÀÚ°¡ ¼öÁ¤ ´ë»ó »ç¿ëÀÚÀÌ°Å³ª °ü¸®ÀÚÀÎ °æ¿ì -> ¼öÁ¤ °¡´É
-				
-				return "/updateUserInfo.jsp";   // °Ë»öÇÑ »ç¿ëÀÚ Á¤º¸¸¦ update formÀ¸·Î Àü¼Û     
+			
+			if (UserSessionUtils.isLoginUser(userId, session)){
+				// í˜„ì¬ ë¡œê·¸ì¸í•œ ì‚¬ìš©ìê°€ ìˆ˜ì • ëŒ€ìƒ ì‚¬ìš©ìì´ê±°ë‚˜ ê´€ë¦¬ìì¸ ê²½ìš° -> ìˆ˜ì • ê°€ëŠ¥
+								
+				return "/myPage.jsp";   // ê²€ìƒ‰í•œ ì‚¬ìš©ì ì •ë³´ë¥¼ update formìœ¼ë¡œ ì „ì†¡     
 			}    
 			
-			// else (¼öÁ¤ ºÒ°¡´ÉÇÑ °æ¿ì) »ç¿ëÀÚ º¸±â È­¸éÀ¸·Î ¿À·ù ¸Ş¼¼Áö¸¦ Àü´Ş
-			request.setAttribute("updateFailed", true);
-			request.setAttribute("exception", 
-					new IllegalStateException("Å¸ÀÎÀÇ Á¤º¸´Â ¼öÁ¤ÇÒ ¼ö ¾ø½À´Ï´Ù."));            
-			return "/user/view.jsp";	// »ç¿ëÀÚ º¸±â È­¸éÀ¸·Î ÀÌµ¿ (forwarding)
-	    }	
-    	
-    	// POST request (È¸¿øÁ¤º¸°¡ parameter·Î Àü¼ÛµÊ)
-    	User updateUser = new User(
-    		request.getParameter("userId"),
-    		request.getParameter("password"),
-    		request.getParameter("name"),
-    		request.getParameter("email"),
-    		request.getParameter("phone_number"),
-    		userDate.parse(request.getParameter("birthday")),
-			Integer.parseInt(request.getParameter("gender")),
-			Integer.parseInt(request.getParameter("point")));
+//			// else (ìˆ˜ì • ë¶ˆê°€ëŠ¥í•œ ê²½ìš°) ì‚¬ìš©ì ë³´ê¸° í™”ë©´ìœ¼ë¡œ ì˜¤ë¥˜ ë©”ì„¸ì§€ë¥¼ ì „ë‹¬
+//			request.setAttribute("updateFailed", true);
+//			request.setAttribute("exception", 
+//				new IllegalStateException("íƒ€ì¸ì˜ ì •ë³´ëŠ” ìˆ˜ì •í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));            
+//			return "/myPage/myPage.jsp";	// ì‚¬ìš©ì ë³´ê¸° í™”ë©´ìœ¼ë¡œ ì´ë™ (forwarding)
+		}
+		
+		
+//		String value = request.getParameter("birthDay");
+//		java.util.Date date = userDate.parse(value);
+//		String formattedStartDate = userDate.format(date);
+//		java.sql.Date Rdate = java.sql.Date.valueOf(formattedStartDate);
 
-    	log.debug("Update User : {}", updateUser);
-			
-        return "redirect:/mypage";			
-    }
+		// POST request (å ìŒë³å ìŒëœšå ìŒì Ÿç™°ê·£ë–¯å ï¿½ parameteråš¥âˆ½ì˜™ å ìŒìˆå ìˆê½Šå ìˆì­¡)
+	
+		User updateUser = new User( request.getParameter("id"),
+				request.getParameter("password"),
+				request.getParameter("email"), request.getParameter("name"), request.getParameter("phone_number"), Integer.parseInt(request.getParameter("gender")));
+		
+	
+		try {
+			userDAO.update(userId, updateUser);
+		} catch(Exception e) { 
+			e.printStackTrace(); 
+		} 
+
+		request.setAttribute("user", updateUser);
+		return "/ViewmyPage.jsp?userId=" + userId;
+	}
 }
