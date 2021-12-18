@@ -6,17 +6,11 @@
 
 [CommonUser]
 
-ID: kimfirst111 
-PW: admin1111
-
-ID:  leesecond2
-PW: root2222
+ID: kimfirst111 (PW: admin1111)
+ID:  leesecond2 (PW: root2222)
 
 
 [CompanyUser]
 
-ID:  master
-PW: unicon0104
-
-ID:  urara4567 
-PW: root1234
+ID:  master (PW: unicon0104)
+ID:  urara4567 (PW: root1234)
