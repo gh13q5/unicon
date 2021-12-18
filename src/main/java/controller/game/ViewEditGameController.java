@@ -12,6 +12,7 @@ import controller.info.UserSessionUtils;
 import model.Company;
 import model.Game;
 import model.Genre;
+import model.User;
 import model.dao.CompanyDAO;
 import model.dao.GameDAO;
 import model.dao.GenreDAO;
@@ -24,9 +25,12 @@ public class ViewEditGameController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-
+	
 		String companyId = null;
+		
 		req.setAttribute("isLogin", "false");
+		req.setAttribute("userType", "false");
+		req.setAttribute("userObj", "false");
 
 		// 로그인 여부 확인 
 		if (UserSessionUtils.hasLogined(req.getSession())) {
@@ -35,6 +39,8 @@ public class ViewEditGameController implements Controller {
 
 			if (companyDAO.existingCompany(session_Id)) {
 				Company company = companyDAO.findCompany(session_Id);
+				req.setAttribute("userType", "company");
+				req.setAttribute("userObj", company);
 				companyId = String.valueOf(company.getCompanyId());
 			} else {
 				return "redirect:/";

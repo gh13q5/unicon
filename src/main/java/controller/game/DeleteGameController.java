@@ -11,44 +11,22 @@ import controller.Controller;
 import controller.info.DeleteUserController;
 import controller.info.UserSessionUtils;
 import model.dao.CompanyDAO;
+import model.dao.GameDAO;
 
 public class DeleteGameController implements Controller {
-    private static final Logger log = LoggerFactory.getLogger(DeleteUserController.class);
-
-    @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
-		String deleteId = request.getParameter("category");
-		String CompanyId = request.getParameter("companyId");
-		CompanyDAO manager = new CompanyDAO();
-		
-    	log.debug("Delete Game : {}", deleteId);
-		
-		HttpSession session = request.getSession();	
 	
-		if ((UserSessionUtils.isLoginUser("admin", session) && 	// 로그인한 사용자가 관리자이고 	
-			 !deleteId.equals("admin"))							// 삭제 대상이 일반 사용자인 경우, 
-			   || 												// 또는 
-			(!UserSessionUtils.isLoginUser("admin", session) &&  // 로그인한 사용자가 관리자가 아니고 
-			  UserSessionUtils.isLoginUser(CompanyId, session))) { // 로그인한 사용자가 게임사 사용자인 경우
-				
-			manager.remove(deleteId);				// 사용자 정보 삭제
-			if (UserSessionUtils.isLoginUser("admin", session))	// 로그인한 사용자가 관리자 	
-				return "redirect:/main";		// main으로 이동
-			else 									
-				return "redirect:/CompanyMypage";		// companyMypage로 redirect
+	GameDAO gameDAO = new GameDAO();
+
+	@Override
+	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+
+		String gameId = req.getParameter("gameId");
+		try {
+			gameDAO.remove(gameId);
+		}catch(Exception e) {
+			return "redirect:/companyMypage";
 		}
 		
-		/* 삭제가 불가능한 경우 */
-	    
-		
-		manager.findCompany(deleteId);	// 사용자 정보 검색
-	    
-		request.setAttribute("company", manager);						
-		request.setAttribute("deleteFailed", true);
-		String msg = (UserSessionUtils.isLoginUser("admin", session)) 
-				   ? "시스템 관리자 정보는 삭제할 수 없습니다."		
-				   : "타인의 정보는 삭제할 수 없습니다.";													
-		request.setAttribute("exception", new IllegalStateException(msg));            
-		return "/CompanyMypage.jsp";		// 사용자 보기 화면으로 이동 (forwarding)	
+		return "redirect:/companyMypage";
 	}
 }

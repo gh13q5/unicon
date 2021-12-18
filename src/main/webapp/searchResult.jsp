@@ -19,7 +19,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/main.css">
 
-<title>찜꽁</title>
+<title>찜꽁 - 검색 결과</title>
 </head>
 <body>
 	<div id="header" align="center">
@@ -59,7 +59,11 @@
 										href="<c:url value='/category'><c:param name='category' value='6' /></c:url>"
 										class="list-group-item list-group-item-action">보드</a> <a
 										href="<c:url value='/category'><c:param name='category' value='7' /></c:url>"
-										class="list-group-item list-group-item-action">FPS</a>
+										class="list-group-item list-group-item-action">FPS</a> <a
+										href="<c:url value='/category'><c:param name='category' value='8' /></c:url>"
+										class="list-group-item list-group-item-action">멀티플레이어</a> <a
+										href="<c:url value='/category'><c:param name='category' value='9' /></c:url>"
+										class="list-group-item list-group-item-action">솔로플레이어</a>
 
 								</div>
 
@@ -67,31 +71,23 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-8 border">
+				<div class="col-8" style="padding: 2%;">
 					<!-- 일반 게임 -->
 					<div class="row">
 						<div class="col" align="left" style="margin-top: 10px;">
-							<h1 class="display-5">Category Name</h1>
+							<h1 class="display-5">${keyword }</h1>
 						</div>
-						<div class="col" align="right" style="margin: 20px;">
-							<button type="button" onclick="isLogin()" class="btn btn-warning">게임 등록</button>
+						<div class="col" align="right" style="margin-top: 20px;">
+							<button type="button" onclick="isLogin()" class="btn btn-warning"
+								id="upload-button">게임 등록</button>
 						</div>
 					</div>
 					<hr />
 					<div class="row">
-						<div class="col" align="left">
+						<div class="col" align="left" style="margin-bottom: 2%;">
 							<h4>
 								<u>사전예약 진행 중</u>
 							</h4>
-						</div>
-						<div class="col-sm-2" align="right"
-							style="margin-right: 20px; margin-bottom: 10px;">
-							<select class="form-select" aria-label="Default select example">
-								<option selected>Open this select menu</option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
-							</select>
 						</div>
 					</div>
 					<c:forEach var="Sgame" items="${searchGameList}" varStatus="status">
@@ -105,7 +101,7 @@
 								href="<c:url value='/game'>
             			<c:param name='gameId' value='${Sgame.game_id}' /></c:url>"
 								style="color: black; text-decoration: none;">
-								<div class="card" style="width: 15rem; margin: 5px;">
+								<div class="card game" style="width: 15rem;">
 									<c:set var="image" value="${fn:split(Sgame.image_address,',')}" />
 									<img
 										src="<c:url value='/images/${Sgame.company_id}/${image[0]}' />"
@@ -114,10 +110,12 @@
 										<h5 class="card-title">
 											<c:out value="${Sgame.title}"></c:out>
 										</h5>
-										<p class="card-text">
-											<c:out value="${Sgame.description}" escapeXml="false"></c:out>
-										</p>
-										<p class="card-text">
+										<div class="card-body">
+											<p class="card-text">
+												<c:out value="${Sgame.description}" escapeXml="false"></c:out>
+											</p>
+										</div>
+										<p class="card-date">
 											<small class="text-muted">~<c:out
 													value="${Sgame.end_date}"></c:out></small>
 										</p>
@@ -138,19 +136,11 @@
 				<br>
 			</div>
 			<div class="row">
-				<div class="col" align="left" style="margin-left: 10px">
+				<div class="col" align="left"
+					style="margin-top: 2%; margin-bottom: 2%;">
 					<h4>
 						<u>사전예약 종료</u>
 					</h4>
-				</div>
-				<div class="col-sm-2" align="right"
-					style="margin-right: 20px; margin-bottom: 10px;">
-					<select class="form-select" aria-label="Default select example">
-						<option selected>Open this select menu</option>
-						<option value="1">One</option>
-						<option value="2">Two</option>
-						<option value="3">Three</option>
-					</select>
 				</div>
 
 				<c:forEach var="ESgame" items="${endsearchGameList}"
@@ -166,7 +156,7 @@
 					<%-- <a href="<c:url value='/game'>
             			<c:param name='game_id' value='${Cgame.id}' /></c:url>"> --%>
 					<div class="col">
-						<div class="card" style="width: 15rem;">
+						<div class="card game" style="width: 15rem;">
 							<c:set var="image" value="${fn:split(ESgame.image_address,',')}" />
 							<img
 								src="<c:url value='/images/${ESgame.company_id}/${image[0]}' />"
@@ -175,10 +165,12 @@
 								<h5 class="card-title">
 									<c:out value="${ESgame.title}"></c:out>
 								</h5>
-								<p class="card-text">
-									<c:out value="${ESgame.description}" escapeXml="false"></c:out>
-								</p>
-								<p class="card-text">
+								<div class="card-body">
+									<p class="card-text">
+										<c:out value="${ESgame.description}" escapeXml="false"></c:out>
+									</p>
+								</div>
+								<p class="card-date">
 									<small class="text-muted">~<c:out
 											value="${ESgame.end_date}"></c:out></small>
 								</p>
@@ -198,82 +190,74 @@
 
 	</div>
 	</div>
-	
+
 	<div class="col-2">
-			<div class="card border-warning mb-3" style="max-width: 18rem;">
-				<div class="card-body" id="login-body">
-					<!-- 로그인 전 -->
-					<c:if test="${loginFailed}">
+		<div class="card border-warning mb-3" style="max-width: 18rem;">
+			<div class="card-body" id="login-body">
+				<!-- 로그인 전 -->
+				<c:if test="${loginFailed}">
 							${exception}
 					</c:if>
-					<c:if test="${empty userId}">
-						<form action="<c:url value='/login'/>" method="POST">
-							<div class="row mb-3">
+				<c:if test="${empty userId}">
+					<form action="<c:url value='/login'/>" method="POST">
+						<div class="row mb-3">
 
-								<input name=id type="text" class="form-control" id="id"
-									placeholder="ID">
+							<input name=id type="text" class="form-control" id="id"
+								placeholder="ID">
+						</div>
+						<div class="row mb-3">
+							<input name=password type="password" class="form-control"
+								id="password" placeholder="PW">
+						</div>
+						<div class="row mb-3">
+							<div class="col-sm-6" align="left">
+								<a href="chooseUserType.jsp" id="register-link">회원가입</a>
 							</div>
-							<div class="row mb-3">
-								<input name=password type="password" class="form-control"
-									id="password" placeholder="PW">
+							<div class="col-sm-6">
+								<button type="submit" class="btn btn-warning" id="login-button">로그인</button>
 							</div>
-							<div class="row mb-3">
-								<div class="col-sm-6" align="left">
-									<a href="chooseUserType.jsp" id="register-link">회원가입</a>
-								</div>
-								<div class="col-sm-6">
-									<button type="submit" class="btn btn-warning" id="login-button">로그인</button>
-								</div>
-							</div>
-						</form>
-					</c:if>
-					<!-- 로그인 후 -->
-					<c:if test="${!empty userId}">
-							<div class="row mb-3">
-								<p class="h4" align="left">
-									<u>${userObj.name}</u> 님
-								</p>
-								<p align="left">안녕하세요! o(^^)o</p>
-							</div>
-							<div class="row mb-3">
-								<a href="<c:url value = '/mypage'/>">
-									<button class="btn btn-warning" id="mypage-button">MY PAGE</button>
-								</a>
-							</div>
-							<div class="col-sm-4" align="right">
-								<a href=" <c:url value= '/logout'/>" id="logout-link"> 로그아웃</a>
-							</div>
-					</c:if>
+						</div>
+					</form>
+				</c:if>
+				<!-- 로그인 후 -->
+				<c:if test="${!empty userId}">
+					<div class="row mb-3">
+						<p class="h4" align="left">
+							<u>${userObj.name}</u> 님
+						</p>
+						<p align="left">안녕하세요! o(^^)o</p>
+					</div>
+					<div class="row mb-3">
+						<a href="<c:url value = '/mypage'/>">
+							<button class="btn btn-warning" id="mypage-button">MY
+								PAGE</button>
+						</a>
+					</div>
+					<div class="col-sm-4" align="right">
+						<a href=" <c:url value= '/logout'/>" id="logout-link"> 로그아웃</a>
+					</div>
+				</c:if>
 
-				</div>
 			</div>
 		</div>
 	</div>
 	</div>
 	</div>
+	</div>
 	<div id="footer">
-		<hr class="haveMargin">
+		<hr class="haveMargin" id="title-bar" style="margin-top: 2%;">
 		<p class="text-center" align="center">
 			<small><strong>팀명</strong></small><br> <small>팀 :
 				UNI-CON ㆍ 소속 : 동덕여자대학교 ㆍ 전화 : 02-123-1234</small><br> <small>Copyrightⓒ
 				test.com All rights reserved.</small>
 		</p>
 	</div>
-	<!-- Optional JavaScript; choose one of the two! -->
-
-	<!-- Option 1: Bootstrap Bundle with Popper -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
 
-	<!-- Option 2: Separate Popper and Bootstrap JS -->
-	<!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
-    
-    <script>
+	<script>
 		function login_() {
 			if (id == "") {
 				alert("사용자 아이디를 입력하십시요.");

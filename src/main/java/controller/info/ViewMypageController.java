@@ -31,10 +31,8 @@ public class ViewMypageController implements Controller {
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		
-		// 로그인 여부 
-//		if (!UserSessionUtils.hasLogined(req.getSession())) { // 로그인 안되어있는 있는 경우
-//			return "redirect:/main";	
-//		} 
+		req.setAttribute("userType", "false");
+		req.setAttribute("userObj", "false");
 		
 		String session_Id = UserSessionUtils.getLoginUserId(req.getSession());
 		
@@ -46,6 +44,9 @@ public class ViewMypageController implements Controller {
 		
 			User user = userDAO.findUser(session_Id);
 			int user_id = user.getUserId();
+			
+			req.setAttribute("userObj", user);
+			req.setAttribute("userType", "user");
 			
 			List<Interests> findUserInterestsList = interestDAO.findUserInterestsList(user_id);
 			List<Genre> findGenreList = genreDAO.findGenreList();

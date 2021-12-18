@@ -61,6 +61,7 @@ public class RequestMapping {
 		mappings.put("/cancle", new CancleReservationController());
 		mappings.put("/reward", new SendRewardController());
 		mappings.put("/statistics", new StatisticUserController());
+		mappings.put("/reservationInfo", new ReservationInfoController());
 
 		logger.info("Initialized Request Mapping!");
 	}

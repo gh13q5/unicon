@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/uploadGame.css">
 <link rel="stylesheet" href="css/main.css">
 
-<title>찜꽁</title>
+<title>찜꽁 - 게임 수정</title>
 </head>
 <body>
 	<div id="header" align="center">
@@ -60,8 +60,11 @@
 										href="<c:url value='/category'><c:param name='category' value='6' /></c:url>"
 										class="list-group-item list-group-item-action">보드</a> <a
 										href="<c:url value='/category'><c:param name='category' value='7' /></c:url>"
-										class="list-group-item list-group-item-action">FPS</a>
-
+										class="list-group-item list-group-item-action">FPS</a> <a
+										href="<c:url value='/category'><c:param name='category' value='8' /></c:url>"
+										class="list-group-item list-group-item-action">멀티플레이어</a> <a
+										href="<c:url value='/category'><c:param name='category' value='9' /></c:url>"
+										class="list-group-item list-group-item-action">솔로플레이어</a>
 								</div>
 
 							</div>
@@ -255,7 +258,7 @@
 		</div>
 	</div>
 	<div id="footer">
-		<hr class="haveMargin">
+		<hr class="haveMargin" id="title-bar" style="margin-top:2%;">
 		<p class="text-center" align="center">
 			<small><strong>팀명</strong></small><br> <small>팀 :
 				UNI-CON ㆍ 소속 : 동덕여자대학교 ㆍ 전화 : 02-123-1234</small><br> <small>Copyrightⓒ

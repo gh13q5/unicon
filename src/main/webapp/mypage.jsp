@@ -17,10 +17,27 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-	<link rel="stylesheet" href="css/mypage.css">
+<link rel="stylesheet" href="css/mypage.css">
 <link rel="stylesheet" href="css/main.css">
+<style>
+div#info-title {
+	width: 40%;
+	height: 80px;
+	margin: auto;
+	padding-top: 1.5%;
+	border: 3px solid #5fc8d7;
+	border-radius: 10px;
+	text-align: center;
+	color: #5fc8d7;
+	font-weight: bolder;
+	text-align: center;
+	color: #5fc8d7;
+	font-weight: bolder;
+	font-size: 200%;
+}
+</style>
 
-<title>찜꽁</title>
+<title>찜꽁 - 마이 페이지</title>
 </head>
 <body>
 	<div id="header" align="center">
@@ -60,7 +77,11 @@
 										href="<c:url value='/category'><c:param name='category' value='6' /></c:url>"
 										class="list-group-item list-group-item-action">보드</a> <a
 										href="<c:url value='/category'><c:param name='category' value='7' /></c:url>"
-										class="list-group-item list-group-item-action">FPS</a>
+										class="list-group-item list-group-item-action">FPS</a> <a
+										href="<c:url value='/category'><c:param name='category' value='8' /></c:url>"
+										class="list-group-item list-group-item-action">멀티플레이어</a> <a
+										href="<c:url value='/category'><c:param name='category' value='9' /></c:url>"
+										class="list-group-item list-group-item-action">솔로플레이어</a>
 
 								</div>
 
@@ -68,27 +89,20 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-8 border">
-
-
+				<div class="col-8" style="padding: 3%;">
 					<div id=contents align="center">
-						<p id=singUpP>회원 정보</p>
-						
-						<%-- <c:set var="user" value="${findUserList}"/> --%>
-						
+						<div id="info-title" style="margin-bottom: 5%;">회원 정보</div>
 						<form class="form-horizontal" role="form" method="post">
-							<div id="makeItcenter" align="left">
+							<div id="makeItcenter" style="margin-bottom: 5%;">
 								<div class="form-group" id="userNameID">
-									<p>
-										<b>${findUser.name}</b> <span style="color: gray">${findUser.id}</span>
-									</p>
-
+									<h2>
+										<b>${findUser.name} &nbsp;</b><span style="color: gray">${findUser.id}</span>
+									</h2>
 								</div>
 							</div>
-							<div class="form-group" id="email"></div>
 							<div class="row justify-content-center">
 								<div class="col-4">
-									<p class="informaton">Email</p>
+									<h5 class="informaton">Email</h5>
 								</div>
 								<div class="col-4">
 									<p>${findUser.email}</p>
@@ -97,7 +111,7 @@
 							<div class="form-group" id="phoneNumber">
 								<div class="row justify-content-center">
 									<div class="col-4">
-										<p class="informaton">전화번호</p>
+										<h5 class="informaton">전화번호</h5>
 									</div>
 									<div class="col-4">
 										<p>${findUser.phone_number}</p>
@@ -107,7 +121,7 @@
 							<div class="form-group" id="birthday">
 								<div class="row justify-content-center">
 									<div class="col-4">
-										<p class="informaton">생년월일</p>
+										<h5 class="informaton">생년월일</h5>
 									</div>
 									<div class="col-4">
 										<p>${findUser.birthDay}</p>
@@ -117,146 +131,155 @@
 							<div class="form-group" id="gender">
 								<div class="row justify-content-center">
 									<div class="col-4">
-										<p>성별</p>
+										<h5>성별</h5>
 									</div>
 									<div class="col-4">
 										<p>
-										<c:if test="${findUser.gender eq 0}">
-											<c:out value="남성" />
-										</c:if>
-										<c:if test="${findUser.gender eq 1}">
-											<c:out value="여성" />
-										</c:if>
-										<c:if test="${findUser.gender eq 2}">
-											<c:out value="기타" />
-										</c:if>
+											<c:if test="${findUser.gender eq 0}">
+												<c:out value="남성" />
+											</c:if>
+											<c:if test="${findUser.gender eq 1}">
+												<c:out value="여성" />
+											</c:if>
+											<c:if test="${findUser.gender eq 2}">
+												<c:out value="기타" />
+											</c:if>
 										</p>
 									</div>
 								</div>
 							</div>
+						</form>
 					</div>
-					<!-- 게임 장르 체크박스  -->
-							<div id="genre-row" class="row">
-								<div id="genre-label" class="col">관심 분야</div>
-								<div id="genre-input">
-									<div class="checkbox-group">
-									 <c:set var = "str" value = "${findUserInterestsList}"/>
-										<c:forEach var="tag" items="${findGenreList}" varStatus="status">
-											<c:choose>
-												<c:when
-													test="${status.index % 4 eq 0 and status.index ne 0}">
-													<br>
-													</c:when>
-													</c:choose>
-													
-													<c:set var = "ckd" value = "${tag.genre_id}"/>
-													<c:choose>
-													 <c:when test = "${fn:contains(str, ckd)}">
-													 	<input class="form-check-input" type="checkbox"
-															value='<c:out value="${tag.genre_id}"/>' id ="'<c:out value="${tag.genre_id}"/>'"
-															name="tag[]"  checked="checked">
-														<label class="form-check-label" for='<c:out value="${tag.genre_id}"/>'><c:out value="${tag.name}"/></label>
-													 </c:when>
-													 <c:otherwise>
-													 	<input class="form-check-input" type="checkbox"
-															value='<c:out value="${tag.genre_id}"/>' id ="'<c:out value="${tag.genre_id}"/>'"
-															name="tag[]">
-														<label class="form-check-label" for='<c:out value="${tag.genre_id}"/>'><c:out value="${tag.name}"/></label>
-													 </c:otherwise>
-													 </c:choose>
-													
-										</c:forEach>
-									</div>
-								</div>
-							</div>
-
-					<br>
-					<div align="left">
-						<p>
-							<b>예약 게임 목록</b>
-						</p>
-
+					<div id="row" align="right"
+						style="margin-right: 13%; margin-top: 5%;">
+						<input type="button" class="btn btn-warning" value="회원 정보 수정"
+							onClick="#">
 					</div>
-					<!-- 예약 게임 -->
-					<c:forEach var="Rgame" items="${findrv}" varStatus="status">
-					<c:choose>
-						<c:when test="${status.index % 4  eq 0}">
-							<div class="row" align="center">
-						</c:when>
-						<%-- <c:when test="${status.count eq 0}">
+					<div id="reservation-box" style="padding: 5%;">
+						<div align="left" style="margin-left: 2%; margin-bottom: 5%;">
+							<h4>
+								<b>예약 게임 목록</b>
+							</h4>
+						</div>
+						<!-- 예약 게임 -->
+						<c:forEach var="Rgame" items="${findrv}" varStatus="status">
+							<c:choose>
+								<c:when test="${status.index % 4  eq 0}">
+									<div class="row" align="center">
+								</c:when>
+								<%-- <c:when test="${status.count eq 0}">
 								<div class="row" align="center">
 							</c:when> --%>
-					</c:choose>
-					<%-- <a href="<c:url value='/game'>
+							</c:choose>
+							<%-- <a href="<c:url value='/game'>
             			<c:param name='game_id' value='${Cgame.id}' /></c:url>"> --%>
-					<div class="col">
-						<div class="card" style="width: 15rem;">
-							<c:set var="image" value="${fn:split(Rgame.image_address,',')}" />
-							<img
-								src="<c:url value='/images/${Rgame.company_id}/${image[0]}' />"
-								class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">
-									<c:out value="${Rgame.title}"></c:out>
-								</h5>
-								<p class="card-text">
-									<c:out value="${Rgame.description}" escapeXml="false"></c:out>
-								</p>
-								<p class="card-text">
-									<small class="text-muted">~<c:out
-											value="${Rgame.end_date}"></c:out></small>
-								</p>
+							<div class="col">
+								<a
+									href="<c:url value='/game'>
+							<c:param name='gameId' value='${Rgame.game_id}' /></c:url>"
+									class="card-link">
+									<div class="card reservate" style="width: 15rem;">
+										<c:set var="image"
+											value="${fn:split(Rgame.image_address,',')}" />
+										<img
+											src="<c:url value='/images/${Rgame.company_id}/${image[0]}' />"
+											class="card-img-top" alt="...">
+										<div class="card-body">
+											<h5 class="card-title">
+												<c:out value="${Rgame.title}"></c:out>
+											</h5>
+											<div class="card-body">
+												<p class="card-text">
+													<c:out value="${Rgame.description}" escapeXml="false"></c:out>
+												</p>
+											</div>
+											<p class="card-date">
+												<small class="text-muted">~<c:out
+														value="${Rgame.end_date}"></c:out></small>
+											</p>
+										</div>
+									</div> </a>
 							</div>
-						</div>
-						<!-- </a> -->
+							<c:choose>
+								<c:when test="${status.count % 4 eq 0}">
 					</div>
-					<c:choose>
-						<c:when test="${status.count % 4 eq 0}">
+					</c:when>
+					<c:when test="${status.last}">
+				</div>
+				</c:when>
+				</c:choose>
+				</c:forEach>
+				<!-- 끝 -->
 			</div>
-			</c:when>
-			<c:when test="${status.last}">
 		</div>
-		</c:when>
-		</c:choose>
-		</c:forEach>
-					<!-- 끝 -->
+		<div class="col-2">
+			<div class="card border-warning mb-3" style="max-width: 18rem;">
+				<div class="card-body" id="login-body">
+					<!-- 로그인 전 -->
+					<c:if test="${loginFailed}">
+							${exception}
+					</c:if>
+					<c:if test="${empty userId}">
+						<form action="<c:url value='/login'/>" method="POST">
+							<div class="row mb-3">
 
-					<div id="makeItcenter" align="right">
-						<div class="col-auto">
-							<input type="button" class="btn btn-primary mb-3" value="정보 수정" onClick="#">
+								<input name=id type="text" class="form-control" id="id"
+									placeholder="ID">
+							</div>
+							<div class="row mb-3">
+								<input name=password type="password" class="form-control"
+									id="password" placeholder="PW">
+							</div>
+							<div class="row mb-3">
+								<div class="col-sm-6" align="left">
+									<a href="chooseUserType.jsp" id="register-link">회원가입</a>
+								</div>
+								<div class="col-sm-6">
+									<button type="submit" class="btn btn-warning" id="login-button">로그인</button>
+								</div>
+							</div>
+						</form>
+					</c:if>
+					<!-- 로그인 후 -->
+					<c:if test="${!empty userId}">
+						<div class="row mb-3">
+							<p class="h4" align="left">
+								<u>${userObj.name}</u> 님
+							</p>
+							<p align="left">안녕하세요! o(^^)o</p>
 						</div>
-					</div>
-					<br>
-
-					</form>
-
-
+						<div class="row mb-3">
+							<a href="<c:url value = '/mypage'/>">
+								<button class="btn btn-warning" id="mypage-button">MY
+									PAGE</button>
+							</a>
+						</div>
+						<div class="col-sm-4" align="right">
+							<a href=" <c:url value= '/logout'/>" id="logout-link"> 로그아웃</a>
+						</div>
+					</c:if>
 
 				</div>
 			</div>
 		</div>
 	</div>
-<div id="footer">
-		<hr class="haveMargin">
+	</div>
+	</div>
+	</div>
+	</div>
+	<div id="footer">
+		<hr class="haveMargin" id="title-bar" style="margin-top: 2%;">
 		<p class="text-center" align="center">
 			<small><strong>팀명</strong></small><br> <small>팀 :
 				UNI-CON ㆍ 소속 : 동덕여자대학교 ㆍ 전화 : 02-123-1234</small><br> <small>Copyrightⓒ
 				test.com All rights reserved.</small>
 		</p>
 	</div>
-	<!-- Optional JavaScript; choose one of the two! -->
-
-	<!-- Option 1: Bootstrap Bundle with Popper -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
 
-	<!-- Option 2: Separate Popper and Bootstrap JS -->
-	<!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
 </body>
 </html>
 

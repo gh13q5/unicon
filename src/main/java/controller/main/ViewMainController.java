@@ -47,8 +47,11 @@ public class ViewMainController implements Controller {
 			String userID = UserSessionUtils.getLoginUserId(session);
 
 			// company User는 추천 게임 제공 X
-			if (companyDAO.existingCompany(userID))
+			if (companyDAO.existingCompany(userID)) {
+				Company company = companyDAO.findCompany(userID);
 				req.setAttribute("userType", "company");
+				req.setAttribute("userObj", company);
+			}
 			else {
 				User user = userDAO.findUser(userID); // 사용자 정보 검색
 				// String nickName = user.getName();

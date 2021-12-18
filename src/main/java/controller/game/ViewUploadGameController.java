@@ -26,6 +26,8 @@ public class ViewUploadGameController implements Controller {
 
 		String companyId = null;
 		req.setAttribute("isLogin", "false");
+		req.setAttribute("userType", "false");
+		req.setAttribute("userObj", "false");
 
 		// 로그인 여부 확인 
 		if (UserSessionUtils.hasLogined(req.getSession())) {
@@ -34,6 +36,8 @@ public class ViewUploadGameController implements Controller {
 
 			if (companyDAO.existingCompany(session_Id)) {
 				Company company = companyDAO.findCompany(session_Id);
+				req.setAttribute("userType", "company");
+				req.setAttribute("userObj", company);
 				companyId = String.valueOf(company.getCompanyId());
 			} else {
 				return "redirect:/";

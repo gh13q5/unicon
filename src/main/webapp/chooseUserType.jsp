@@ -19,7 +19,7 @@
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/main.css">
 
-<title>찜꽁</title>
+<title>찜꽁 - 회원가입</title>
 
 </head>
 <body>
@@ -30,19 +30,23 @@
 		<hr id="title-bar">
 	</div>
 	<div id="contents" align="center">
-		<div id=chooseUserType-title>회원가입</div>
-		<a href ="<c:url value="/userregister"></c:url>">
-			<img class=userImg src="./images/commonUserImg.png"></img> 
-		</a>	
-		<a href="<c:url value="/companyregister"></c:url>"> 
-			<img class=userImg src="./images/companyUserImg.png"></img>
+		<div id="chooseUserType-title" style="margin: 2%;">
+			<h2>회원가입</h2>
+			<p>회원 유형을 선택해주세요.</p>
+		</div>
+		<a href="<c:url value="/userregister"></c:url>"> <img
+			class=userImg src="./images/commonUserImg.jpg"
+			style="margin-right: 2%; border: 2px solid white; border-radius: 30px;"></img>
+		</a> <a href="<c:url value="/companyregister"></c:url>"> <img
+			class=userImg src="./images/companyUserImg.jpg"
+			style="margin-left: 2%; border: 2px solid white; border-radius: 30px;"></img>
 		</a>
 	</div>
 	<div id="footer">
-		<hr>
+		<hr class="haveMargin" id="title-bar" style="margin-top: 4%;">
 		<p class="text-center" align="center">
-			<small><strong>업체명</strong></small><br> <small>대표 : 홍길동
-				ㆍ 주소 : 사거리 ㆍ 사업자등록번호:123-12-12345 ㆍ 전화 : 02-123-1234</small><br> <small>Copyrightⓒ
+			<small><strong>팀명</strong></small><br> <small>팀 :
+				UNI-CON ㆍ 소속 : 동덕여자대학교 ㆍ 전화 : 02-123-1234</small><br> <small>Copyrightⓒ
 				test.com All rights reserved.</small>
 		</p>
 	</div>

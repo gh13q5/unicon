@@ -36,6 +36,7 @@ public class ViewReservationController implements Controller {
 		req.setAttribute("isLogin", "false");
 		req.setAttribute("reservate", "false");
 		req.setAttribute("userType", "false");
+		req.setAttribute("userObj", "false");
 
 		// 로그인 여부 확인
 		// 로그인 및 이미 예약한 게임인지 확인
@@ -44,13 +45,16 @@ public class ViewReservationController implements Controller {
 			String session_Id = UserSessionUtils.getLoginUserId(req.getSession());
 
 			// company User는 추천 게임 제공 X
-			if (companyDAO.existingCompany(session_Id))
+			if (companyDAO.existingCompany(session_Id)) {
+				Company company = companyDAO.findCompany(session_Id);
 				req.setAttribute("userType", "company");
-			else {
+				req.setAttribute("userObj", company);
+			} else {
 				User user = userDAO.findUser(session_Id);
 				userId = String.valueOf(user.getUserId());
-				
-				req.setAttribute("userType", "user");
+
+				req.setAttribute("userType", "false");
+				req.setAttribute("userObj", user);
 
 				int isReservate = reservationDAO.findReservateById(gameId, userId); // DB에서 user가 게임 예약한 기록 확인
 				if (isReservate == 0)
