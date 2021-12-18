@@ -15,13 +15,15 @@ import controller.Controller;
 import controller.info.UserSessionUtils;
 import model.dao.UserDAO;
 import model.User;
+import model.Company;
 import model.Interests;
+import model.dao.CompanyDAO;
 import model.dao.InterestsDAO;
 import model.service.UserManager;
 import model.User;
 
-public class UpdateUserController implements Controller {
-	private UserDAO userDAO = new UserDAO();
+public class UpdateCompanyController implements Controller {
+	private CompanyDAO companyDAO = new CompanyDAO();
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -31,14 +33,14 @@ public class UpdateUserController implements Controller {
 		}
 
 		HttpSession session = request.getSession();
-		String userId = UserSessionUtils.getLoginUserId(session);
-		User originUser = userDAO.findUser(userId);
+		String companyId = UserSessionUtils.getLoginUserId(session);
+		Company originCompany = companyDAO.findCompany(companyId);
 
-		User updateUser = new User(originUser.getUserId(), request.getParameter("id"), request.getParameter("password"),
-				request.getParameter("email"), request.getParameter("name"), request.getParameter("phone_number"),
-				originUser.getBirthDay(), Integer.parseInt(request.getParameter("gender")), originUser.getPoint());
+		Company updateCompany = new Company(originCompany.getCompanyId(), request.getParameter("id"),
+				request.getParameter("password"), request.getParameter("email"), request.getParameter("name"),
+				request.getParameter("phone_number"));
 		try {
-			userDAO.update(userId, updateUser);
+			companyDAO.update(updateCompany);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "redirect:/viewUpdateUser";
