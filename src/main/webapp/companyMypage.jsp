@@ -107,58 +107,66 @@
 							</div>
 						</form>
 					</div>
-
-					<br>
-					<div align="left">
-						<p>
-							<b>등록한 게임 목록</b>
-						</p>
-
-					</div>
-					<!-- 등록한 게임 -->
-					<c:forEach var="game" items="${uploadGameList}" varStatus="status">
-						<div class="col upload">
-							<a
-								href="<c:url value='/game'>
+					<br> <br>
+					<div id="upload-box" style="padding: 5%;">
+						<div align="left" style="margin-left: 2%; margin-bottom: 5%;">
+							<h4>
+								<b>등록한 게임 목록</b>
+							</h4>
+						</div>
+						<!-- 등록한 게임 -->
+						<c:forEach var="game" items="${uploadGameList}" varStatus="status">
+							<div class="col upload">
+								<a
+									href="<c:url value='/game'>
 							<c:param name='gameId' value='${game.game_id}' /></c:url>"
-								class="card-link">
-								<div class="card upload" style="width: 18rem;">
-									<c:set var="image" value="${fn:split(game.image_address,',')}" />
-									<img
-										src="<c:url value='/images/${game.company_id}/${image[0]}' />"
-										class="card-img-top" alt="...">
-									<div class="card-body">
-										<h5 class="card-title">
-											<c:out value="${game.title}"></c:out>
-										</h5>
-										<p class="card-text">
-											<c:out value="${game.description}" escapeXml="false"></c:out>
-										</p>
-										<p class="card-text">
-											<small class="text-muted">~<c:out
-													value="${game.end_date}"></c:out></small>
-										</p>
+									class="card-link">
+									<div class="card upload" style="width: 18rem;">
+										<c:set var="image" value="${fn:split(game.image_address,',')}" />
+										<img
+											src="<c:url value='/images/${game.company_id}/${image[0]}' />"
+											class="card-img-top" alt="...">
+										<div class="card-body">
+											<h5 class="card-title">
+												<c:out value="${game.title}"></c:out>
+											</h5>
+											<p class="card-text">
+												<c:out value="${game.description}" escapeXml="false"></c:out>
+											</p>
+											<p class="card-text">
+												<small class="text-muted">~<c:out
+														value="${game.end_date}"></c:out></small>
+											</p>
+										</div>
+									</div>
+								</a>
+								<div class="row" style="padding: 5%;">
+									<div class="row upload" style="width: 100%;">
+										<h3 style="width: 100%;">예약 현황 :
+											${game.total_reservations }명</h3>
+									</div>
+									<div class="row" style="margin-top: 5%;">
+										<button class="btn btn-info">예약자 정보 보기</button>
+									</div>
+									<div class="row" style="margin-top: 5%;">
+										<button class="btn btn-info"
+											onclick="location.href='<c:url value='/viewEdit'>
+											<c:param name='gameId' value='${game.game_id}' /></c:url>'">게임
+											정보 수정</button>
+									</div>
+									<div class="row" style="margin-top: 5%;">
+										<button class="btn btn-danger">게임 삭제</button>
 									</div>
 								</div>
-							</a>
-							<div class="row">
-								<div class="row upload">
-									<div id="total-reservate-text" class="col-9">예약 현황</div>
-									<div id="total-reservate-num" class="col-3">${game.total_reservations}명</div>
-								</div>
-								<div class="row">
-									<button type="submit" class="btn btn-info" id="search-button">search</button>
-								</div>
-
 							</div>
-						</div>
-					</c:forEach>
+						</c:forEach>
+					</div>
 					<!-- 끝 -->
 
 					<div id="makeItcenter" align="right">
 						<div class="col-auto">
-							<input type="button" class="btn btn-primary mb-3" value="정보 수정"
-								onClick="#">
+							<input type="button" class="btn btn-primary mb-3"
+								value="회원 정보 수정" onClick="#">
 						</div>
 					</div>
 					<br>
