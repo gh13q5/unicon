@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 
 div#upload-title {
 	width: 40%;
@@ -12,7 +12,7 @@ div#upload-title {
 	text-align: center; color : #5fc8d7; font-weight : bolder;
 	font-size: 200%;
 }
-/* °ÔÀÓ ¾÷·Îµå form */
+/* ê²Œì„ ì—…ë¡œë“œ form */
 form#upload-form {
 	width: 100%;
 	margin-top: 50px;
@@ -39,7 +39,7 @@ div.col-6 input {
 	width: 100%;
 	border: 2px solid #AAAAAA;
 }
-/* ¾÷·Îµå ±â°£ ¼³Á¤ */
+/* ì—…ë¡œë“œ ê¸°ê°„ ì„¤ì • */
 div#period-input {
 	text-align: left;
 }
@@ -48,7 +48,7 @@ input#start-period, input#end-period {
 	display: inline;
 	width: 47%;
 }
-/* È«º¸ ÀÌ¹ÌÁö ¾÷·Îµå + º¸»ó ÀÌ¹ÌÁö ¾÷·Îµå */
+/* í™ë³´ ì´ë¯¸ì§€ ì—…ë¡œë“œ + ë³´ìƒ ì´ë¯¸ì§€ ì—…ë¡œë“œ */
 div#image-label, div#description-label, div#genre-label, div#reward-description-label
 	{
 	padding-left: 18%;
@@ -74,7 +74,7 @@ div#image-input input, div#reward-image-input input {
 	display: none !important;
 }
 
-/* °ÔÀÓ ¼Ò°³±Û + º¸»ó ¸ñ·Ï */
+/* ê²Œì„ ì†Œê°œê¸€ + ë³´ìƒ ëª©ë¡ */
 div#description-row, div#genre-row, div#reward-description-row {
 	justify-content: center;
 }
@@ -89,7 +89,7 @@ textarea#description, textarea#reward-description {
 	border: 2px solid #AAAAAA;
 }
 
-/* °ÔÀÓ Àå¸£(ÅÂ±×) ¼±ÅÃ */
+/* ê²Œì„ ì¥ë¥´(íƒœê·¸) ì„ íƒ */
 div#genre-input {
 	width: 68%;
 	margin-top: 10px;
@@ -120,7 +120,7 @@ hr#reward-divide {
 	border-top: 3px solid #222222;
 }
 
-/* °ÔÀÓ ¾÷·Îµå */
+/* ê²Œì„ ì—…ë¡œë“œ */
 button#upload-btn {
 	margin: 50px;
 	width: 550px;

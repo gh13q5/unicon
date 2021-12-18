@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/companyMypage.css">
 
-<title>찜꽁</title>
+<title>찜꽁 - 게임사 마이 페이지</title>
 </head>
 <body>
 	<div id="header" align="center">
@@ -61,7 +61,11 @@
 										href="<c:url value='/category'><c:param name='category' value='6' /></c:url>"
 										class="list-group-item list-group-item-action">보드</a> <a
 										href="<c:url value='/category'><c:param name='category' value='7' /></c:url>"
-										class="list-group-item list-group-item-action">FPS</a>
+										class="list-group-item list-group-item-action">FPS</a> <a
+										href="<c:url value='/category'><c:param name='category' value='8' /></c:url>"
+										class="list-group-item list-group-item-action">멀티플레이어</a> <a
+										href="<c:url value='/category'><c:param name='category' value='9' /></c:url>"
+										class="list-group-item list-group-item-action">솔로플레이어</a>
 
 								</div>
 
@@ -69,27 +73,20 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-8 border">
-
-
+				<div class="col-8" style="padding: 3%;">
 					<div id=contents align="center">
-						<p id=singUpP>게임사 정보</p>
-
-						<%-- <c:set var="user" value="${findUserList}"/> --%>
-
+						<div id="info-title" style="margin-bottom: 5%;">게임사 정보</div>
 						<form class="form-horizontal" role="form" method="post">
-							<div id="makeItcenter" align="left">
+							<div id="makeItcenter" style="margin-bottom: 5%;">
 								<div class="form-group" id="userNameID">
-									<p>
-										<b>${company.name}</b> <span style="color: gray">${company.id}</span>
-									</p>
-
+									<h2>
+										<b>${company.name} &nbsp;</b><span style="color: gray">${company.id}</span>
+									</h2>
 								</div>
 							</div>
-							<div class="form-group" id="email"></div>
 							<div class="row justify-content-center">
 								<div class="col-4">
-									<p class="informaton">Email</p>
+									<h5 class="informaton">Email</h5>
 								</div>
 								<div class="col-4">
 									<p>${company.email}</p>
@@ -98,13 +95,19 @@
 							<div class="form-group" id="phoneNumber">
 								<div class="row justify-content-center">
 									<div class="col-4">
-										<p class="informaton">전화번호</p>
+										<h5 class="informaton">전화번호</h5>
 									</div>
 									<div class="col-4">
 										<p>${company.phone_number}</p>
 									</div>
 								</div>
 							</div>
+							<div id="row" align="right"
+								style="margin-right: 13%; margin-top: 5%;">
+								<input type="button" class="btn btn-warning" value="게임사 정보 수정"
+									onClick="#">
+							</div>
+							<br>
 						</form>
 					</div>
 					<br> <br>
@@ -146,7 +149,10 @@
 											${game.total_reservations }명</h3>
 									</div>
 									<div class="row" style="margin-top: 5%;">
-										<button class="btn btn-info">예약자 정보 보기</button>
+										<button class="btn btn-info"
+											onclick="window.open('<c:url value='/reservationInfo'>
+												<c:param name='gameId' value='${game.game_id}' /></c:url>', '${game.title } 예약자 목록', 'width=500, height=400')">예약자
+											정보 보기</button>
 									</div>
 									<div class="row" style="margin-top: 5%;">
 										<button class="btn btn-info"
@@ -155,51 +161,83 @@
 											정보 수정</button>
 									</div>
 									<div class="row" style="margin-top: 5%;">
-										<button class="btn btn-danger">게임 삭제</button>
+										<button class="btn btn-danger"
+											onclick="location.href='<c:url value='/remove'>
+											<c:param name='gameId' value='${game.game_id}' /></c:url>'">게임
+											삭제</button>
 									</div>
 								</div>
 							</div>
 						</c:forEach>
 					</div>
-					<!-- 끝 -->
+				</div>
+				<div class="col-2">
+					<div class="card border-warning mb-3" style="max-width: 18rem;">
+						<div class="card-body" id="login-body">
+							<!-- 로그인 전 -->
+							<c:if test="${loginFailed}">
+							${exception}
+					</c:if>
+							<c:if test="${empty userId}">
+								<form action="<c:url value='/login'/>" method="POST">
+									<div class="row mb-3">
 
-					<div id="makeItcenter" align="right">
-						<div class="col-auto">
-							<input type="button" class="btn btn-primary mb-3"
-								value="회원 정보 수정" onClick="#">
+										<input name=id type="text" class="form-control" id="id"
+											placeholder="ID">
+									</div>
+									<div class="row mb-3">
+										<input name=password type="password" class="form-control"
+											id="password" placeholder="PW">
+									</div>
+									<div class="row mb-3">
+										<div class="col-sm-6" align="left">
+											<a href="chooseUserType.jsp" id="register-link">회원가입</a>
+										</div>
+										<div class="col-sm-6">
+											<button type="submit" class="btn btn-warning"
+												id="login-button">로그인</button>
+										</div>
+									</div>
+								</form>
+							</c:if>
+							<!-- 로그인 후 -->
+							<c:if test="${!empty userId}">
+								<div class="row mb-3">
+									<p class="h4" align="left">
+										<u>${userObj.name}</u> 님
+									</p>
+									<p align="left">안녕하세요! o(^^)o</p>
+								</div>
+								<div class="row mb-3">
+									<a href="<c:url value = '/mypage'/>">
+										<button class="btn btn-warning" id="mypage-button">MY
+											PAGE</button>
+									</a>
+								</div>
+								<div class="col-sm-4" align="right">
+									<a href=" <c:url value= '/logout'/>" id="logout-link"> 로그아웃</a>
+								</div>
+							</c:if>
+
 						</div>
 					</div>
-					<br>
-
-					</form>
-
-
-
 				</div>
 			</div>
 		</div>
 	</div>
 	<div id="footer">
-		<hr class="haveMargin">
+		<hr class="haveMargin" id="title-bar" style="margin-top: 2%;">
 		<p class="text-center" align="center">
 			<small><strong>팀명</strong></small><br> <small>팀 :
 				UNI-CON ㆍ 소속 : 동덕여자대학교 ㆍ 전화 : 02-123-1234</small><br> <small>Copyrightⓒ
 				test.com All rights reserved.</small>
 		</p>
 	</div>
-	<!-- Optional JavaScript; choose one of the two! -->
-
-	<!-- Option 1: Bootstrap Bundle with Popper -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
 
-	<!-- Option 2: Separate Popper and Bootstrap JS -->
-	<!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
 </body>
 </html>
 

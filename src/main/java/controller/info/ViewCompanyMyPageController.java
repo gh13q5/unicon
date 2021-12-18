@@ -25,14 +25,20 @@ public class ViewCompanyMyPageController implements Controller {
 
 	private GameDAO gameDAO = new GameDAO();
 	private CompanyDAO companyDAO = new CompanyDAO();
+	private UserDAO userDAO = new UserDAO();
 
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+
+		req.setAttribute("userType", "false");
+		req.setAttribute("userObj", "false");
 
 		String session_Id = UserSessionUtils.getLoginUserId(req.getSession());
 
 		Company company = companyDAO.findCompany(session_Id);
 		int companyId = company.getCompanyId();
+		req.setAttribute("userType", "company");
+		req.setAttribute("userObj", company);
 
 		List<Game> uploadGameList = gameDAO.findGameListByCompanyId(String.valueOf(companyId));
 

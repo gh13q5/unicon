@@ -18,9 +18,9 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/reservation.css">
+<link rel="stylesheet" href="css/registerForm.css">
 
-<title>찜꽁</title>
+<title>찜꽁 - 게임 회사 회원가입</title>
 </head>
 <body>
 	<div id="header" align="center">
@@ -32,7 +32,7 @@
 	<div id="header" align="center">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col" align="center" style="padding: 50px;">
+				<div class="col" align="center" style="padding-left: 18%; padding-right:18%; padding-top:3%;">
 					<div id="registerForm-title">회원가입</div>
 					<!-- 회원가입 form -->
 					<form id="registerForm-form"  method="post" action="<c:url value='/register/company'/>">
@@ -41,7 +41,7 @@
 							
 							<div class="row">
 								<div id="id-label" class="col-5">아이디</div>
-								<div id="id-input" class="col-6">
+								<div id="id-input" class="col-6" style="padding:0px;">
 									<input name="id" type="text" class="form-control onlyAlphabetAndNumber"
 										id="id" data-rule-required="true"
 										placeholder="10자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="10">
@@ -49,7 +49,7 @@
 							</div>
 							<div class="row">
 								<div id="passward-label" class="col-5">비밀번호</div>
-								<div id="passward-input" class="col-6">
+								<div id="passward-input" class="col-6" style="padding:0px;">
 									<input name="password" type="password" class="form-control" id="password"
 											 data-rule-required="true"
 										placeholder="10자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="10">
@@ -101,11 +101,11 @@
 		</div>
 	</div>
 	<div id="footer">
-		<hr class="haveMargin">
+		<hr class="haveMargin" id="title-bar" style="margin-top:2%;">
 		<p class="text-center" align="center">
-			<small><strong>업체명 : UNI-CON</strong></small><br> <small>대표
-				: 심해림 박주희 최가희 조수빈 ㆍ 주소 : 동덕여자 대학교 ㆍ 사업자등록번호:123-12-12345 ㆍ 전화 :
-				02-123-1234</small><br> <small>Copyrightⓒ 찜꽁 - 찜하고 꽁짜 보상 받자! .</small>
+			<small><strong>팀명</strong></small><br> <small>팀 :
+				UNI-CON ㆍ 소속 : 동덕여자대학교 ㆍ 전화 : 02-123-1234</small><br> <small>Copyrightⓒ
+				test.com All rights reserved.</small>
 		</p>
 	</div>
 	<script

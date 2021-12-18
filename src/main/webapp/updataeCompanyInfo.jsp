@@ -112,8 +112,6 @@
 					</div>
 				</div>
 				<div class="col-8 border">
-
-
 					<div id=contents align="center">
 						<p id=singUpP>정보 수정</p>
 						<form class="form-horizontal" role="form" method="post">
@@ -123,7 +121,8 @@
 									<p>회사명</p>
 								</div>
 								<div class="col-4">
-									<input type="text" class="form-control" id="nickname" data-rule-required="true" placeholder="회사명" maxlength="15">
+									<input type="text" class="form-control" id="nickname"
+										data-rule-required="true" placeholder="회사명" maxlength="15">
 								</div>
 							</div>
 							<div class="form-group" id="email"></div>
@@ -132,8 +131,9 @@
 									<p>아이디</p>
 								</div>
 								<div class="col-4">
-									<input type="text" class="form-control onlyAlphabetAndNumber" id="id"
-									data-rule-required="true" placeholder="10자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="10">
+									<input type="text" class="form-control onlyAlphabetAndNumber"
+										id="id" data-rule-required="true"
+										placeholder="10자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="10">
 								</div>
 							</div>
 							<div class="form-group" id="email"></div>
@@ -142,8 +142,9 @@
 									<p>비밀번호</p>
 								</div>
 								<div class="col-4">
-									<input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true"
-									placeholder="10자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="30">
+									<input type="password" class="form-control" id="password"
+										name="excludeHangul" data-rule-required="true"
+										placeholder="10자이내의 알파벳, 숫자만 입력 가능합니다." maxlength="30">
 								</div>
 							</div>
 							<div class="form-group" id="email"></div>
@@ -152,7 +153,8 @@
 									<p>Email</p>
 								</div>
 								<div class="col-4">
-									<input type="email" class="form-control" id="email" data-rule-required="true" placeholder="이메일" maxlength="40">
+									<input type="email" class="form-control" id="email"
+										data-rule-required="true" placeholder="이메일" maxlength="40">
 								</div>
 							</div>
 							<div class="form-group" id="phoneNumber">
@@ -161,41 +163,42 @@
 										<p>전화번호</p>
 									</div>
 									<div class="col-4">
-										<input type="tel" class="form-control onlyNumber" id="phoneNumber" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
+										<input type="tel" class="form-control onlyNumber"
+											id="phoneNumber" data-rule-required="true"
+											placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
 									</div>
 								</div>
 							</div>
-							
+
+							<div class="form-group" id="userCategorys" align="left">
+								<br>
+								<div id="makeItcenter" align="right">
+									<div class="col-auto">
+										<button type="button" class="btn btn-primary mb-3">완료</button>
+									</div>
+								</div>
+								<br>
+							</div>
+
+						</form>
+
+
+
 					</div>
-					<div class="form-group" id="userCategorys" align="left">
-						<br>
-						<div id="makeItcenter" align="right">
-							<div class="col-auto">
-    							<button type="button" class="btn btn-primary mb-3">완료</button>
-  							</div>
-						</div>
-						<br>
-					</div>
-
-					</form>
-
-
-
 				</div>
 			</div>
 		</div>
-	</div>
-	<div id="footer">블라블라</div>
-	<!-- Optional JavaScript; choose one of the two! -->
+		<div id="footer">블라블라</div>
+		<!-- Optional JavaScript; choose one of the two! -->
 
-	<!-- Option 1: Bootstrap Bundle with Popper -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous"></script>
+		<!-- Option 1: Bootstrap Bundle with Popper -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+			crossorigin="anonymous"></script>
 
-	<!-- Option 2: Separate Popper and Bootstrap JS -->
-	<!--
+		<!-- Option 2: Separate Popper and Bootstrap JS -->
+		<!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->

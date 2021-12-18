@@ -1,5 +1,20 @@
 @charset "UTF-8";
 
+div#info-title {
+	width: 40%;
+	height: 80px;
+	margin: auto;
+	padding-top: 1.5%;
+	border: 3px solid #5fc8d7;
+	border-radius: 10px;
+	text-align: center;
+	color: #5fc8d7;
+	font-weight: bolder;
+	text-align: center;
+	color: #5fc8d7;
+	font-weight: bolder;
+	font-size: 200%;
+}
 
 div.col.upload {
 	width: 100%;
